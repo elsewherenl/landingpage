@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Spotlight | Featured Photographers | Elsewhere Collective</title>
+    <meta name="title" content="Spotlight | Featured Photographers | Elsewhere Collective">
+    <meta name="description" content="Explore our curated selection of contemporary photographers. Discover emerging artists with distinctive perspectives, from cultural narratives to poetic introspection.">
+    <meta name="keywords" content="featured photographers, photography collection, emerging artists, contemporary photography portfolio, art discovery, photography spotlight">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://elsewherecollective.nl/spotlight.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elsewherecollective.nl/spotlight.html">
+    <meta property="og:title" content="Featured Photographers | Elsewhere Collective Spotlight">
+    <meta property="og:description" content="An evolving visual archive of works that inspire us with their presence and perspective. Discover emerging photographers with distinctive voices.">
+    <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://elsewherecollective.nl/spotlight.html">
+    <meta property="twitter:title" content="Featured Photographers | Elsewhere Collective Spotlight">
+    <meta property="twitter:description" content="An evolving visual archive of works that inspire us with their presence and perspective. Discover emerging photographers with distinctive voices.">
+    <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NZVK7P7J3D');
+    </script>
+</head>
+    <title>Spotlight - Elsewhere Collective</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+     <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NZVK7P7J3D');
+    </script>
+    
+    <style>
+        :root {
+            --cream-bg: #F3EFE9;
+            --deep-charcoal: #2C2C2C;
+            --warm-gray: #8A8580;
+            --warm-off-white: #FDFCF8;
+            --biscuit-gold: #D6B370;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream-bg);
+            color: var(--deep-charcoal);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(243, 239, 233, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        .header-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            text-transform: lowercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--biscuit-gold);
+            letter-spacing: 0.08em;
+            transform: scale(1.02);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--deep-charcoal);
+            font-weight: 300;
+            font-size: 1.1rem;
+            letter-spacing: 0.01em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--biscuit-gold);
+        }
+
+        .main {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 10rem 3rem 4rem 3rem;
+        }
+
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            margin-bottom: 4rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem 3rem;
+            align-items: start;
+        }
+
+        .gallery-item {
+            width: 100%;
+        }
+
+        .gallery-item:nth-child(even) {
+            margin-top: 2rem;
+        }
+
+        .item-image {
+            width: 100%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .item-image:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .item-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .item-info {
+            padding: 0 0.5rem;
+            min-height: 140px;
+        }
+
+        .item-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+            color: var(--deep-charcoal);
+        }
+
+        .item-artist {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--warm-gray);
+            margin-bottom: 0.8rem;
+        }
+
+        .item-description {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+        }
+
+        .item-link {
+            font-size: 0.9rem;
+            color: var(--deep-charcoal);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .item-link:hover {
+            color: var(--biscuit-gold);
+            border-bottom: 1px solid var(--biscuit-gold);
+        }
+
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .fullscreen-modal.active {
+            display: flex;
+        }
+
+        .fullscreen-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fullscreen-image {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .fullscreen-caption {
+            color: var(--warm-off-white);
+            text-align: center;
+            margin-top: 1.5rem;
+            max-width: 700px;
+            padding: 0 1rem;
+            max-height: 20vh;
+            overflow-y: auto;
+        }
+
+        .fullscreen-caption .caption-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .fullscreen-caption .caption-artist {
+            font-size: 1rem;
+            color: var(--warm-gray);
+            margin-bottom: 1rem;
+        }
+
+        .fullscreen-caption .caption-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--warm-gray);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: var(--warm-off-white);
+            font-size: 3rem;
+            cursor: pointer;
+            font-weight: 300;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--biscuit-gold);
+        }
+
+        .fullscreen-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-charcoal);
+        }
+
+        .fullscreen-nav:hover {
+            background: var(--biscuit-gold);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .fullscreen-prev {
+            left: 2rem;
+        }
+
+        .fullscreen-next {
+            right: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 2rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .main {
+                padding: 8rem 2rem 3rem 2rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .page-subtitle {
+                margin-bottom: 3rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .gallery-item:nth-child(even) {
+                margin-top: 0;
+            }
+
+            .item-title {
+                font-size: 1.2rem;
+            }
+
+            .fullscreen-caption {
+                margin-top: 1rem;
+                max-height: 25vh;
+            }
+
+            .close-modal {
+                top: 1rem;
+                right: 1rem;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">elsewhere collective</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="spotlight.html">Spotlight</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <h1 class="page-title">Spotlight</h1>
+        <p class="page-subtitle">An evolving visual archive of works that inspire us with their presence and perspective.</p>
+
+        <div class="gallery-grid">
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Birgette%20B.png', 'Somewhere in Africa', 'Brigitte Bourger', 'Figures in motion - from a series on lives by the sea.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Birgette%20B.png" alt="Somewhere in Africa by Brigitte Bourger">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Somewhere in Africa</h2>
+                    <p class="item-artist">Brigitte Bourger</p>
+                    <p class="item-description">Figures in motion - from a series on lives by the sea.</p>
+                    <a href="https://www.instagram.com/brigittebourger/" class="item-link" target="_blank">@brigittebourger</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Alvin%20Ng.png', 'Book of Days', 'Alvin Ng', 'Inspired by Ovid&apos;s Book of Days, Alvin&apos;s works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Alvin%20Ng.png" alt="Book of Days by Alvin Ng">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Book of Days</h2>
+                    <p class="item-artist">Alvin Ng</p>
+                    <p class="item-description">Inspired by Ovid's Book of Days, Alvin's works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision.</p>
+                    <a href="https://www.instagram.com/alvinnzh/" class="item-link" target="_blank">@alvinnzh</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Vakho%20Khetaguri.png', 'Cambodia', 'Vakho Khetaguri', 'From the series Tbilisi to Siem Reap, capturing moments of quiet observation and cultural intersection.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Vakho%20Khetaguri.png" alt="Cambodia by Vakho Khetaguri">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Cambodia</h2>
+                    <p class="item-artist">Vakho Khetaguri</p>
+                    <p class="item-description">From the series Tbilisi to Siem Reap, capturing moments of quiet observation and cultural intersection.</p>
+                    <a href="https://www.instagram.com/vakhokhetaguri0/" class="item-link" target="_blank">@vakhokhetaguri0</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Murray%20Ballard.png', 'Torre San Giovannni', 'Murray Ballard', 'A wreck of a migrant boat in Salento, southern Italy. From Ballard&apos;s series Ghosts in the Field, exploring how the region is being reshaped by an ecological crisis, tourism, and old local folklore, this work speaks to today&apos;s societal issues where leisure and crisis can sit alongside each other.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Murray%20Ballard.png" alt="Torre San Giovannni by Murray Ballard">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Torre San Giovannni</h2>
+                    <p class="item-artist">Murray Ballard</p>
+                    <p class="item-description">A wreck of a migrant boat in Salento, southern Italy. From Ballard's series Ghosts in the Field, exploring how the region is being reshaped by an ecological crisis, tourism, and old local folklore, this work speaks to today's societal issues where leisure and crisis can sit alongside each other.</p>
+                    <a href="https://www.instagram.com/murrayballard/" class="item-link" target="_blank">@murrayballard</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Kim%20Woo%20Young.png', 'The Vastness', 'Kim Woo Young', 'The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Kim%20Woo%20Young.png" alt="The Vastness by Kim Woo Young">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">The Vastness</h2>
+                    <p class="item-artist">Kim Woo Young</p>
+                    <p class="item-description">The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human.</p>
+                    <a href="https://www.instagram.com/kimwooyoung_com/" class="item-link" target="_blank">@kimwooyoung_com</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Yemin%20.png', 'Teoswa', 'Yimin Chen', 'Teoswa is a journey into the ancestral echoes of his mother&apos;s hometown - the Teochew region of Guangdong - and an intimate search for the meaning of home.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Yemin%20.png" alt="Teoswa by Yimin Chen">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Teoswa</h2>
+                    <p class="item-artist">Yimin Chen</p>
+                    <p class="item-description">Teoswa is a journey into the ancestral echoes of his mother's hometown - the Teochew region of Guangdong - and an intimate search for the meaning of "home."</p>
+                    <a href="https://www.instagram.com/eindchan/" class="item-link" target="_blank">@eindchan</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Farewell.png', 'Farwell to Elders', 'Mahmoud Khatab', 'I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Farewell.png" alt="Farwell to Elders by Mahmoud Khatab">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Farwell to Elders</h2>
+                    <p class="item-artist">Mahmoud Khatab</p>
+                    <p class="item-description">"I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised."</p>
+                    <a href="https://www.instagram.com/somewhereincairo/" class="item-link" target="_blank">@somewhereincairo</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/The%20Cube.png', 'The Cube', 'Orestis Ilias', 'Raw marble from Pedeli&apos;s Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/The%20Cube.png" alt="The Cube by Orestis Ilias">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">The Cube</h2>
+                    <p class="item-artist">Orestis Ilias</p>
+                    <p class="item-description">Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.</p>
+                    <a href="https://www.instagram.com/orestis.ilias/" class="item-link" target="_blank">@orestis.ilias</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Claudia%20F.png', 'Metamorphosis', 'Claudia Fuggetti', 'Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Claudia%20F.png" alt="Metamorphosis by Claudia Fuggetti">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Metamorphosis</h2>
+                    <p class="item-artist">Claudia Fuggetti</p>
+                    <p class="item-description">Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity. </p>
+                    <a href="https://www.instagram.com/lafugg/" class="item-link" target="_blank">@lafugg</a>
+                </div>
+            </article>
+
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Claire%20Amaouche.png', 'Of All The Wild Paths', 'Claire Amaouche', 'Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Claire%20Amaouche.png" alt="Of All The Wild Paths by Claire Amaouche">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Of All The Wild Paths</h2>
+                    <p class="item-artist">Claire Amaouche</p>
+                    <p class="item-description">Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.</p>
+                    <a href="https://www.instagram.com/maoucha/" class="item-link" target="_blank">@maoucha</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div class="fullscreen-modal" id="fullscreenModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <button class="fullscreen-nav fullscreen-prev" onclick="showPrevious()">‹</button>
+        <button class="fullscreen-nav fullscreen-next" onclick="showNext()">›</button>
+        <div class="fullscreen-content">
+            <img id="fullscreenImage" class="fullscreen-image" src="" alt="">
+            <div class="fullscreen-caption" id="fullscreenCaption">
+                <div class="caption-title" id="captionTitle"></div>
+                <div class="caption-artist" id="captionArtist"></div>
+                <div class="caption-description" id="captionDescription"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const galleryWorks = [
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Birgette%20B.png",
+                title: "Somewhere in Africa",
+                artist: "Brigitte Bourger",
+                description: "Figures in motion - from a series on lives by the sea."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Alvin%20Ng.png",
+                title: "Book of Days",
+                artist: "Alvin Ng",
+                description: "Inspired by Ovid's Book of Days, Alvin's works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Vakho%20Khetaguri.png",
+                title: "Cambodia",
+                artist: "Vakho Khetaguri",
+                description: "From the series Tbilisi to Siem Reap, capturing moments of quiet observation and cultural intersection."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Murray%20Ballard.png",
+                title: "Torre San Giovannni",
+                artist: "Murray Ballard",
+                description: "A wreck of a migrant boat in Salento, southern Italy. From Ballard's series Ghosts in the Field, exploring how the region is being reshaped by an ecological crisis, tourism, and old local folklore, this work speaks to today's societal issues where leisure and crisis can sit alongside each other."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Kim%20Woo%20Young.png",
+                title: "The Vastness",
+                artist: "Kim Woo Young",
+                description: "The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Yemin%20.png",
+                title: "Teoswa",
+                artist: "Yimin Chen",
+                description: "Teoswa is a journey into the ancestral echoes of his mother's hometown - the Teochew region of Guangdong - and an intimate search for the meaning of \"home.\""
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Farewell.png",
+                title: "Farwell to Elders",
+                artist: "Mahmoud Khatab",
+                description: "I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/The%20Cube.png",
+                title: "The Cube",
+                artist: "Orestis Ilias",
+                description: "Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Claudia%20F.png",
+                title: "Metamorphosis",
+                artist: "Claudia Fuggetti",
+                description: "Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity."
+            },
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Claire%20Amaouche.png",
+                title: "Of All The Wild Paths",
+                artist: "Claire Amaouche",
+                description: "Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present."
+            }
+        ];
+
+        let currentFullscreenIndex = 0;
+
+        function openFullscreen(imgSrc, title, artist, description) {
+            currentFullscreenIndex = galleryWorks.findIndex(work => work.image === imgSrc);
+            if (currentFullscreenIndex === -1) currentFullscreenIndex = 0;
+            
+            document.getElementById('fullscreenImage').src = imgSrc;
+            document.getElementById('captionTitle').textContent = title;
+            document.getElementById('captionArtist').textContent = artist;
+            document.getElementById('captionDescription').textContent = description;
+            document.getElementById('fullscreenModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('fullscreenModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPrevious() {
+            currentFullscreenIndex = (currentFullscreenIndex - 1 + galleryWorks.length) % galleryWorks.length;
+            const work = galleryWorks[currentFullscreenIndex];
+            document.getElementById('fullscreenImage').src = work.image;
+            document.getElementById('captionTitle').textContent = work.title;
+            document.getElementById('captionArtist').textContent = work.artist;
+            document.getElementById('captionDescription').textContent = work.description;
+        }
+
+        function showNext() {
+            currentFullscreenIndex = (currentFullscreenIndex + 1) % galleryWorks.length;
+            const work = galleryWorks[currentFullscreenIndex];
+            document.getElementById('fullscreenImage').src = work.image;
+            document.getElementById('captionTitle').textContent = work.title;
+            document.getElementById('captionArtist').textContent = work.artist;
+            document.getElementById('captionDescription').textContent = work.description;
+        }
+
+        document.getElementById('fullscreenModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('fullscreenModal').classList.contains('active')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') showPrevious();
+                if (e.key === 'ArrowRight') showNext();
+            }
+        });
+    </script>
+</body>
+</html>
