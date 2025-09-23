@@ -258,29 +258,64 @@
         }
 
         @media (max-width: 968px) {
-            .header-container {
-                padding: 0 2rem;
-                flex-direction: column;
-                gap: 0.5rem;
-            }
+    /* FIX 1: Centered header */
+    .header-container {
+        padding: 0 2rem;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center; /* CENTER everything */
+    }
 
-            .contact-container {
-                padding: 8rem 2rem 4rem;
-            }
+    /* FIX 2: Center the logo */
+    .logo {
+        text-align: center;
+        width: 100%;
+    }
 
-            .page-title {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
-            }
+    /* FIX 3: Center navigation */
+    .nav-menu {
+        justify-content: center;
+        width: 100%;
+    }
 
-            .page-subtitle {
-                margin-bottom: 3rem;
-            }
+    /* FIX 4: Add proper spacing for content below header */
+    .contact-container {
+        padding: 10rem 2rem 4rem; /* Increased from 8rem to 10rem */
+    }
 
-            .contact-form {
-                padding: 2rem;
-            }
-        }
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0; /* Remove any extra margin */
+    }
+
+    .page-subtitle {
+        margin-bottom: 3rem;
+    }
+
+    .contact-form {
+        padding: 2rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .contact-container {
+        padding: 9rem 1.5rem 3rem;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    .nav-menu a {
+        font-size: 1rem;
+    }
+}
     </style>
 </head>
 <body>
