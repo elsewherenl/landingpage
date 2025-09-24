@@ -314,10 +314,17 @@
         }
 
         .work-info {
-            flex: 1;
-            padding: 0;
-        }
+    flex: 1;
+    padding: 0;
+    padding-right: 2rem; /* Add breathing room from right edge */
+}
 
+/* Keep mobile unchanged */
+@media (max-width: 768px) {
+    .work-info {
+        padding-right: 0; /* Remove extra padding on mobile */
+    }
+}
         .carousel-indicators {
             display: flex;
             justify-content: center;
