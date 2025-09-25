@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -43,68 +44,6 @@
         gtag('js', new Date());
         gtag('config', 'G-NZVK7P7J3D');
     </script>
-<link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
-<script src="/cookie-banner/silktide-consent-manager.js"></script>
-<script>
-silktideCookieBannerManager.updateCookieBannerConfig({
-  background: {
-    showBackground: true
-  },
-  cookieIcon: {
-    position: "bottomRight"
-  },
-  cookieTypes: [
-    {
-      id: "necessary",
-      name: "Necessary",
-      description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
-      required: true,
-      onAccept: function() {
-        console.log('Add logic for the required Necessary here');
-      }
-    },
-    {
-      id: "analytics",
-      name: "Analytics",
-      description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
-      required: false,
-      onAccept: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-        });
-        dataLayer.push({
-          'event': 'consent_accepted_analytics',
-        });
-      },
-      onReject: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'denied',
-        });
-      }
-    }
-  ],
-  text: {
-    banner: {
-      description: "<p>We use cookies to analyse site usage and improve your experience. Cookie Policy. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
-      acceptAllButtonText: "OK",
-      acceptAllButtonAccessibleLabel: "Accept all cookies",
-      rejectNonEssentialButtonText: "Essential Only ",
-      rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
-      preferencesButtonText: "Settings",
-      preferencesButtonAccessibleLabel: "Cookie preferences"
-    },
-    preferences: {
-      title: "Cookie Settings ",
-      description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
-      creditLinkText: "",
-      creditLinkAccessibleLabel: ""
-    }
-  },
-  position: {
-    banner: "bottomRight"
-  }
-});
-</script>
 </head>
     <title>Elsewhere Collective - Contemporary Photography</title>
     <meta name="description" content="Championing contemporary photographers with distinctive voices and wall-worthy presence. Limited editions launching soon.">
@@ -546,22 +485,31 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             color: var(--deep-charcoal);
         }
 
-        .footer-section p,
         .footer-section a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             font-size: 1rem;
             font-weight: 300;
             color: var(--warm-gray);
             text-decoration: none;
             line-height: 1.5;
             margin-bottom: 0.8rem;
-            display: block;
             transition: all 0.3s ease;
-            border-bottom: 1px solid transparent;
         }
 
-        .footer-section a:hover {
-            color: var(--biscuit-gold);
+        .footer-section a span {
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .footer-section a:hover span {
             border-bottom: 1px solid var(--biscuit-gold);
+            color: var(--biscuit-gold);
+        }
+
+        .footer-section svg {
+            flex-shrink: 0;
         }
 
         .footer-bottom {
@@ -912,8 +860,21 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Enquiries</h4>
-                <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
-                <a href="https://instagram.com/else.where.collective" target="_blank">@else.where.collective</a>
+                <a href="mailto:hello@elsewherecollective.nl">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#D6B370" stroke-width="1.5" fill="none"/>
+                        <path d="M22 6L12 13L2 6" stroke="#D6B370" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>hello@elsewherecollective.nl</span>
+                </a>
+                <a href="https://instagram.com/else.where.collective" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#D6B370" stroke-width="1.5" fill="none"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="#D6B370" stroke-width="1.5" fill="none"/>
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="#D6B370"/>
+                    </svg>
+                    <span>@else.where.collective</span>
+                </a>
             </div>
         </div>
         
