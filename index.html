@@ -44,6 +44,63 @@
         gtag('js', new Date());
         gtag('config', 'G-NZVK7P7J3D');
     </script>
+ <!-- Cookie Banner -->
+  <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css">
+  <script src="/cookie-banner/silktide-consent-manager.js"></script>
+  <script>
+  silktideCookieBannerManager.updateCookieBannerConfig({
+    background: {
+      showBackground: true
+    },
+    cookieIcon: {
+      position: "bottomRight"
+    },
+    cookieTypes: [
+      {
+        id: "necessary",
+        name: "Necessary",
+        description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+        required: true,
+        onAccept: function() {
+          console.log('Necessary cookies always active');
+        }
+      },
+      {
+        id: "analytics",
+        name: "Analytics",
+        description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+        required: false,
+        onAccept: function() {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+          dataLayer.push({ 'event': 'consent_accepted_analytics' });
+        },
+        onReject: function() {
+          gtag('consent', 'update', { analytics_storage: 'denied' });
+        }
+      }
+    ],
+    text: {
+      banner: {
+        description: "<p>We use cookies to analyse site usage and improve your experience. <a href='/cookie-policy.html' target='_blank'>Cookie Policy</a></p>",
+        acceptAllButtonText: "OK",
+        acceptAllButtonAccessibleLabel: "Accept all cookies",
+        rejectNonEssentialButtonText: "Essential Only",
+        rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
+        preferencesButtonText: "Settings",
+        preferencesButtonAccessibleLabel: "Cookie preferences"
+      },
+      preferences: {
+        title: "Cookie Settings",
+        description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
+        creditLinkText: "",
+        creditLinkAccessibleLabel: ""
+      }
+    },
+    position: {
+      banner: "bottomCenter"
+    }
+  });
+  </script>
 </head>
     <title>Elsewhere Collective - Contemporary Photography</title>
     <meta name="description" content="Championing contemporary photographers with distinctive voices and wall-worthy presence. Limited editions launching soon.">
