@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Cookie Policy | Elsewhere Collective | Privacy & Data Usage</title>
+    <meta name="title" content="Cookie Policy | Elsewhere Collective | Privacy & Data Usage">
+    <meta name="description" content="Transparent information about how Elsewhere Collective uses cookies to improve your browsing experience and analyze site usage while respecting your privacy.">
+    <meta name="keywords" content="cookie policy, privacy policy, GDPR, data usage, website cookies, analytics">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://elsewherecollective.nl/cookie-policy.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elsewherecollective.nl/cookie-policy.html">
+    <meta property="og:title" content="Cookie Policy | Elsewhere Collective">
+    <meta property="og:description" content="Transparent information about how we use cookies to improve your experience while respecting your privacy.">
+    <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://elsewherecollective.nl/cookie-policy.html">
+    <meta property="twitter:title" content="Cookie Policy | Elsewhere Collective">
+    <meta property="twitter:description" content="Transparent information about how we use cookies to improve your experience while respecting your privacy.">
+    <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
+    <script>
+        console.log('Checking cookie consent for GA...');
+        if (localStorage.getItem('analyticsConsent') === 'true') {
+            console.log('✅ Loading Google Analytics with user consent');
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NZVK7P7J3D');
+            
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+            document.head.appendChild(script);
+            
+        } else {
+            console.log('❌ Google Analytics blocked - no consent given');
+        }
+    </script>
+    
+    <style>
+        :root {
+            --cream-bg: #F3EFE9;
+            --deep-charcoal: #2C2C2C;
+            --warm-gray: #8A8580;
+            --warm-off-white: #FDFCF8;
+            --biscuit-gold: #D6B370;
+            --sage-green: #A8B5A0;
+            --soft-terracotta: #C4A394;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream-bg);
+            color: var(--deep-charcoal);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(243, 239, 233, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        .header-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--deep-charcoal);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            text-transform: lowercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--biscuit-gold);
+            letter-spacing: 0.08em;
+            transform: scale(1.02);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--deep-charcoal);
+            font-weight: 300;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--biscuit-gold);
+        }
+
+        /* Single Column Layout for Policy Page - Left Aligned */
+        .policy-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 10rem 3rem 4rem;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .policy-content {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .policy-header {
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .policy-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--deep-charcoal);
+            text-align: left;
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--warm-gray);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .text-block {
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .text-block h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--deep-charcoal);
+            text-align: left;
+        }
+
+        .text-block h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--deep-charcoal);
+            text-align: left;
+        }
+
+        .text-block p {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .text-block ul {
+            margin: 0.8rem 0 0.8rem 1.5rem;
+            color: var(--warm-gray);
+        }
+
+        .text-block li {
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 0.4rem;
+        }
+
+        .text-block a {
+            color: var(--deep-charcoal);
+            text-decoration: underline;
+            text-decoration-color: var(--biscuit-gold);
+            transition: color 0.3s ease;
+        }
+
+        .text-block a:hover {
+            color: var(--biscuit-gold);
+        }
+
+        .legal-basis {
+            background: rgba(168, 181, 160, 0.1);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 3px solid var(--sage-green);
+        }
+
+        .legal-basis p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        .contact-section {
+            background: rgba(214, 179, 112, 0.1);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 3px solid var(--biscuit-gold);
+        }
+
+        .contact-section h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-section p {
+            margin-bottom: 0;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--warm-gray);
+            border-top: 1px solid rgba(44, 44, 44, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .header-container {
+                padding: 0 2rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
+
+            .logo {
+                text-align: center;
+                width: 100%;
+            }
+
+            .nav-menu {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .policy-container {
+                padding: 10rem 2rem 4rem;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .policy-container {
+                padding: 9rem 1.5rem 3rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
+            .nav-menu a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">elsewhere collective</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="spotlight.html">Spotlight</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="policy-container">
+        <div class="policy-content">
+            <div class="policy-header">
+                <h1>Cookie Policy</h1>
+                <div class="last-updated">Last updated: September 2025</div>
+            </div>
+
+        <section class="text-block">
+            <h2>What Are Cookies</h2>
+            <p>Cookies are small text files stored on your device when you visit our website. They help us provide you with a better browsing experience and understand how visitors use our site.</p>
+        </section>
+
+        <section class="text-block">
+            <h2>How We Use Cookies</h2>
+            <p>At Elsewhere Collective, we use two types of cookies:</p>
+        </section>
+
+        <section class="text-block">
+            <h3>Essential Cookies</h3>
+            <p>These cookies are necessary for our website to function properly and cannot be disabled. They enable core functionality such as:</p>
+            <ul>
+                <li>Remembering your cookie preferences</li>
+                <li>Ensuring the website loads correctly</li>
+                <li>Basic site navigation and functionality</li>
+            </ul>
+            <div class="legal-basis">
+                <p><strong>Legal basis:</strong> These cookies are necessary for the legitimate operation of our website and do not require your consent under GDPR.</p>
+            </div>
+        </section>
+
+        <section class="text-block">
+            <h3>Analytics Cookies</h3>
+            <p>We use Google Analytics to understand how visitors interact with our website. These cookies help us:</p>
+            <ul>
+                <li>Analyze which pages are most popular</li>
+                <li>Understand how visitors navigate through our site</li>
+                <li>Improve our content and user experience</li>
+                <li>Track overall site performance</li>
+            </ul>
+            <p><strong>Information collected:</strong> Anonymous data about your visit, including pages viewed, time spent on site, browser type, and general location (country/city level only). No personally identifiable information is collected.</p>
+            <div class="legal-basis">
+                <p><strong>Legal basis:</strong> These cookies require your explicit consent under GDPR and can be disabled at any time.</p>
+            </div>
+        </section>
+
+        <section class="text-block">
+            <h2>Google Analytics Specifically</h2>
+            <p>We use Google Analytics 4 (GA4) with the following configuration:</p>
+            <ul>
+                <li><strong>Data retention:</strong> 14 months</li>
+                <li><strong>IP anonymization:</strong> Enabled</li>
+                <li><strong>Demographics and interests reports:</strong> Disabled</li>
+                <li><strong>Advertising features:</strong> Disabled</li>
+            </ul>
+            <p>For more information about how Google processes data, see <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+        </section>
+
+        <section class="text-block">
+            <h2>Your Cookie Choices</h2>
+            <p>You can manage your cookie preferences at any time:</p>
+            <ol>
+                <li><strong>On first visit:</strong> Choose "OK" to accept all cookies or "Essential Only" to decline analytics</li>
+                <li><strong>After initial choice:</strong> Click the cookie icon (bottom right of any page) to update your preferences</li>
+                <li><strong>Browser settings:</strong> You can also disable cookies through your browser settings, though this may affect site functionality</li>
+            </ol>
+        </section>
+
+        <section class="text-block">
+            <h2>Data We Do NOT Collect</h2>
+            <p>We do not use cookies for:</p>
+            <ul>
+                <li>Advertising or marketing purposes</li>
+                <li>Social media tracking</li>
+                <li>Cross-site tracking</li>
+                <li>Selling or sharing personal data with third parties</li>
+                <li>Creating detailed user profiles</li>
+            </ul>
+        </section>
+
+        <div class="contact-section">
+            <h3>Contact Us</h3>
+            <p>If you have questions about our cookie usage: <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a></p>
+        </div>
+
+        <section class="text-block">
+            <h2>Changes to This Policy</h2>
+            <p>We may update this cookie policy occasionally. Any changes will be posted on this page with an updated revision date.</p>
+        </section>
+
+        <div class="footer-note">
+            This policy is designed to be transparent about our minimal data collection practices and your privacy rights under GDPR and other applicable privacy laws.
+        </div>
+        </div>
+    </main>
+</body>
+</html>
