@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -56,79 +55,143 @@
             console.log('❌ Google Analytics blocked - no consent given');
         }
     </script>
- <link rel="stylesheet" id="silktide-consent-manager-css" href="path-to-css/silktide-consent-manager.css">
-<script src="path-to-js/silktide-consent-manager.js"></script>
-<script>
-silktideCookieBannerManager.updateCookieBannerConfig({
-  background: {
-    showBackground: true
-  },
-  cookieIcon: {
-    position: "bottomRight"
-  },
-  cookieTypes: [
-    {
-      id: "necessary",
-      name: "Necessary",
-      description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
-      required: true,
-      onAccept: function() {
-        console.log('Add logic for the required Necessary here');
-      }
-    },
-    {
-      id: "analytics",
-      name: "Analytics",
-      description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
-      required: false,
-      onAccept: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-        });
-        dataLayer.push({
-          'event': 'consent_accepted_analytics',
-        });
-      },
-      onReject: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'denied',
-        });
-      }
-    }
-  ],
-  text: {
-    banner: {
-      description: "<p>We use cookies to analyse site usage and improve your experience. Cookie Policy. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
-      acceptAllButtonText: "OK",
-      acceptAllButtonAccessibleLabel: "Accept all cookies",
-      rejectNonEssentialButtonText: "Essential Only ",
-      rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
-      preferencesButtonText: "Settings",
-      preferencesButtonAccessibleLabel: "Cookie preferences"
-    },
-    preferences: {
-      title: "Cookie Settings ",
-      description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
-      creditLinkText: "",
-      creditLinkAccessibleLabel: ""
-    }
-  },
-  position: {
-    banner: "bottomRight"
-  }
-});
-</script>
-</head>
-    <title>Elsewhere Collective - Contemporary Photography</title>
-    <meta name="description" content="Championing contemporary photographers with distinctive voices and wall-worthy presence. Limited editions launching soon.">
-    <meta property="og:title" content="Elsewhere Collective - Contemporary Photography">
-    <meta property="og:description" content="A curated selection from emerging artists who challenge perceptions and reward contemplation.">
-    <meta property="og:type" content="website">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- FIXED: Correct file paths for Silktide -->
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
+    <script src="cookie-banner/silktide-consent-manager.js"></script>
     
-    
+    <!-- Cookie Banner Configuration -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if Silktide is loaded
+        if (typeof silktideCookieBannerManager !== 'undefined') {
+            // Use Silktide if available
+            silktideCookieBannerManager.updateCookieBannerConfig({
+                background: {
+                    showBackground: true
+                },
+                cookieIcon: {
+                    position: "bottomRight"
+                },
+                cookieTypes: [
+                    {
+                        id: "necessary",
+                        name: "Necessary",
+                        description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+                        required: true,
+                        onAccept: function() {
+                            console.log('Necessary cookies accepted');
+                        }
+                    },
+                    {
+                        id: "analytics",
+                        name: "Analytics",
+                        description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+                        required: false,
+                        onAccept: function() {
+                            localStorage.setItem('analyticsConsent', 'true');
+                            if (typeof gtag !== 'undefined') {
+                                gtag('consent', 'update', {
+                                    analytics_storage: 'granted',
+                                });
+                                dataLayer.push({
+                                    'event': 'consent_accepted_analytics',
+                                });
+                            }
+                            loadAnalytics();
+                        },
+                        onReject: function() {
+                            localStorage.setItem('analyticsConsent', 'false');
+                            if (typeof gtag !== 'undefined') {
+                                gtag('consent', 'update', {
+                                    analytics_storage: 'denied',
+                                });
+                            }
+                        }
+                    }
+                ],
+                text: {
+                    banner: {
+                        description: "<p>We use cookies to analyse site usage and improve your experience. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
+                        acceptAllButtonText: "OK",
+                        acceptAllButtonAccessibleLabel: "Accept all cookies",
+                        rejectNonEssentialButtonText: "Essential Only",
+                        rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
+                        preferencesButtonText: "Settings",
+                        preferencesButtonAccessibleLabel: "Cookie preferences"
+                    },
+                    preferences: {
+                        title: "Cookie Settings",
+                        description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
+                        creditLinkText: "",
+                        creditLinkAccessibleLabel: ""
+                    }
+                },
+                position: {
+                    banner: "bottomRight"
+                }
+            });
+        } else {
+            // Fallback: Custom cookie banner if Silktide fails to load
+            console.log('Silktide not available, using custom cookie banner');
+            initCustomCookieBanner();
+        }
+        
+        function loadAnalytics() {
+            if (!window.dataLayer) {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-NZVK7P7J3D');
+                
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+                document.head.appendChild(script);
+                
+                console.log('✅ Analytics loaded via cookie banner');
+            }
+        }
+        
+        function initCustomCookieBanner() {
+            const cookieConsent = localStorage.getItem('cookieConsent');
+            
+            if (!cookieConsent) {
+                const banner = document.createElement('div');
+                banner.className = 'cookie-banner show';
+                banner.innerHTML = `
+                    <div class="cookie-content">
+                        <div class="cookie-text">
+                            We use cookies to analyse site usage and improve your experience.
+                            <a href="https://elsewherecollective.nl/cookie-policy" target="_blank" class="cookie-link">Cookie Policy</a>
+                        </div>
+                        <div class="cookie-actions">
+                            <button class="cookie-button" id="acceptCookies">Accept All</button>
+                            <span class="essential-link" id="essentialOnly">Essential Only</span>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(banner);
+                
+                document.getElementById('acceptCookies').onclick = function() {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    localStorage.setItem('analyticsConsent', 'true');
+                    banner.remove();
+                    loadAnalytics();
+                };
+                
+                document.getElementById('essentialOnly').onclick = function() {
+                    localStorage.setItem('cookieConsent', 'essential');
+                    localStorage.setItem('analyticsConsent', 'false');
+                    banner.remove();
+                };
+            } else if (cookieConsent === 'accepted') {
+                loadAnalytics();
+            }
+        }
+    });
+    </script>
+
     <style>
         :root {
             --cream-bg: #F3EFE9;
@@ -380,17 +443,11 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         }
 
         .work-info {
-    flex: 1;
-    padding: 0;
-    padding-right: 2rem; /* Add breathing room from right edge */
-}
+            flex: 1;
+            padding: 0;
+            padding-right: 2rem;
+        }
 
-/* Keep mobile unchanged */
-@media (max-width: 768px) {
-    .work-info {
-        padding-right: 0; /* Remove extra padding on mobile */
-    }
-}
         .carousel-indicators {
             display: flex;
             justify-content: center;
@@ -633,7 +690,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        /* Portrait-specific styling */
         .fullscreen-image.portrait {
             max-width: 60%;
             max-height: 95%;
@@ -693,7 +749,7 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             transform: scale(1.1);
         }
 
-        /* ========== COOKIE BANNER STYLES ========== */
+        /* Cookie Banner Styles */
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -703,8 +759,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             color: var(--warm-off-white);
             padding: 1rem 2rem;
             z-index: 10000;
-            
-            /* Animation */
             opacity: 0;
             transform: translateY(100%);
             transition: all 0.4s ease;
@@ -783,139 +837,133 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             color: var(--warm-off-white);
         }
 
-        /* Mobile Responsive - UPDATED */
-@media (max-width: 768px) {
-    /* FIX 1: Centered header layout */
-    .header {
-        padding: 1rem 0;
-    }
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 0;
+            }
 
-    .header-container {
-        padding: 0 2rem;
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: center; /* CENTER everything */
-    }
+            .header-container {
+                padding: 0 2rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
 
-    /* FIX 2: Center the logo */
-    .logo {
-        text-align: center;
-        width: 100%;
-    }
+            .logo {
+                text-align: center;
+                width: 100%;
+            }
 
-    /* FIX 3: Center navigation */
-    .nav-menu {
-        gap: 2rem;
-        justify-content: center;
-        width: 100%;
-    }
+            .nav-menu {
+                gap: 2rem;
+                justify-content: center;
+                width: 100%;
+            }
 
-    /* FIX 4: Adjust hero padding to account for fixed header */
-    .hero {
-        padding-top: 10rem; /* Increased from 8rem to add space for header */
-    }
+            .hero {
+                padding-top: 10rem;
+            }
 
-    .hero-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 0 2rem;
-    }
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 2rem;
+            }
 
-    .hero-text {
-        text-align: center;
-    }
+            .hero-text {
+                text-align: center;
+            }
 
-    .hero-title {
-        font-size: 2rem;
-        margin-top: 0; /* Ensure no extra margin */
-    }
+            .hero-title {
+                font-size: 2rem;
+                margin-top: 0;
+            }
 
-    .hero-subtitle {
-        font-size: 1rem;
-    }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
 
-    .featured-work {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
-    }
+            .featured-work {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
 
-    .work-image {
-        flex: none;
-        width: 100%;
-        max-width: 350px;
-        height: 300px;
-        margin: 0 auto;
-    }
+            .work-image {
+                flex: none;
+                width: 100%;
+                max-width: 350px;
+                height: 300px;
+                margin: 0 auto;
+            }
 
-    .work-info {
-        padding: 0;
-    }
+            .work-info {
+                padding-right: 0;
+            }
 
-    .footer-content {
-        text-align: left;
-        padding: 0 2rem;
-    }
+            .footer-content {
+                text-align: left;
+                padding: 0 2rem;
+            }
 
-    .footer-bottom {
-        text-align: left;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
+            .footer-bottom {
+                text-align: left;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
 
-    .newsletter-content {
-        text-align: left;
-        padding: 0 2rem;
-    }
+            .newsletter-content {
+                text-align: left;
+                padding: 0 2rem;
+            }
 
-    .newsletter-form {
-        flex-direction: column;
-        gap: 1rem;
-    }
+            .newsletter-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
 
-    .newsletter {
-        padding: 3rem 0;
-    }
+            .newsletter {
+                padding: 3rem 0;
+            }
 
-    /* Cookie banner mobile */
-    .cookie-banner {
-        padding: 1rem;
-    }
+            .cookie-banner {
+                padding: 1rem;
+            }
 
-    .cookie-content {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
+            .cookie-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
 
-    .cookie-actions {
-        justify-content: center;
-        width: 100%;
-    }
-}
+            .cookie-actions {
+                justify-content: center;
+                width: 100%;
+            }
+        }
 
-/* Optional: Even smaller screens */
-@media (max-width: 480px) {
-    .hero {
-        padding-top: 9rem; /* Slightly less padding for very small screens */
-    }
-    
-    .header-container {
-        padding: 0 1rem;
-    }
-    
-    .logo {
-        font-size: 1.8rem; /* Slightly smaller logo on tiny screens */
-    }
-    
-    .nav-menu {
-        gap: 1.5rem;
-    }
-    
-    .nav-menu a {
-        font-size: 1rem;
-    }
-}
+        @media (max-width: 480px) {
+            .hero {
+                padding-top: 9rem;
+            }
+            
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
+            .nav-menu a {
+                font-size: 1rem;
+            }
+        }
 
         html {
             scroll-behavior: smooth;
@@ -947,7 +995,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
                     <li><a href="about.html">About</a></li>
                     <li><a href="spotlight.html">Spotlight</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    
                 </ul>
             </nav>
         </div>
@@ -1111,7 +1158,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
                 indicators.forEach(indicator => indicator.classList.remove('active'));
                 
                 if (slides[index]) {
-                    // Move carousel track to show the correct slide
                     const trackContainer = document.querySelector('.carousel-track');
                     trackContainer.style.transform = `translateX(-${index * 100}%)`;
                     
@@ -1127,18 +1173,16 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             }
 
             function startSlideshow() {
-                slideInterval = setInterval(nextSlide, 10000); // 10 seconds
+                slideInterval = setInterval(nextSlide, 10000);
             }
 
             function stopSlideshow() {
                 clearInterval(slideInterval);
             }
 
-            // Initialize carousel
             showSlide(0);
             startSlideshow();
 
-            // Pause on hover
             const carouselContainer = document.querySelector('.carousel-container');
             carouselContainer.addEventListener('mouseenter', stopSlideshow);
             carouselContainer.addEventListener('mouseleave', startSlideshow);
@@ -1158,7 +1202,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
                 fullscreenImage.src = work.image;
                 fullscreenImage.alt = `${work.title} by ${work.artist}`;
                 
-                // Detect image orientation and apply appropriate class
                 fullscreenImage.onload = function() {
                     if (this.naturalHeight > this.naturalWidth) {
                         this.classList.add('portrait');
@@ -1182,7 +1225,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
                 fullscreenImage.src = work.image;
                 fullscreenImage.alt = `${work.title} by ${work.artist}`;
                 
-                // Detect image orientation and apply appropriate class
                 fullscreenImage.onload = function() {
                     if (this.naturalHeight > this.naturalWidth) {
                         this.classList.add('portrait');
@@ -1198,7 +1240,6 @@ silktideCookieBannerManager.updateCookieBannerConfig({
                 fullscreenImage.src = work.image;
                 fullscreenImage.alt = `${work.title} by ${work.artist}`;
                 
-                // Detect image orientation and apply appropriate class
                 fullscreenImage.onload = function() {
                     if (this.naturalHeight > this.naturalWidth) {
                         this.classList.add('portrait');
@@ -1208,12 +1249,10 @@ silktideCookieBannerManager.updateCookieBannerConfig({
                 };
             }
 
-            // Fullscreen event listeners
             fullscreenClose.addEventListener('click', closeFullscreen);
             fullscreenPrev.addEventListener('click', showPrevious);
             fullscreenNext.addEventListener('click', showNext);
 
-            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
                 if (fullscreenGallery.classList.contains('active')) {
                     if (e.key === 'Escape') closeFullscreen();
@@ -1222,12 +1261,10 @@ silktideCookieBannerManager.updateCookieBannerConfig({
                 }
             });
 
-            // Close on background click
             fullscreenGallery.addEventListener('click', function(e) {
                 if (e.target === fullscreenGallery) closeFullscreen();
             });
 
-            // Smooth scrolling for navigation
             const links = document.querySelectorAll('a[href^="#"]');
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
