@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -44,100 +43,7 @@
         gtag('js', new Date());
         gtag('config', 'G-NZVK7P7J3D');
     </script>
- <link rel="stylesheet" id="silktide-consent-manager-css" href="path-to-css/silktide-consent-manager.css">
-<script src="path-to-js/silktide-consent-manager.js"></script>
-<script>
-silktideCookieBannerManager.updateCookieBannerConfig({
-  background: {
-    showBackground: true
-  },
-  cookieIcon: {
-    position: "bottomRight"
-  },
-  cookieTypes: [
-    {
-      id: "necessary",
-      name: "Necessary",
-      description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
-      required: true,
-      onAccept: function() {
-        console.log('Add logic for the required Necessary here');
-      }
-    },
-    {
-      id: "analytics",
-      name: "Analytics",
-      description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
-      required: false,
-      onAccept: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-        });
-        dataLayer.push({
-          'event': 'consent_accepted_analytics',
-        });
-      },
-      onReject: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'denied',
-        });
-      }
-    }
-  ],
-  text: {
-    banner: {
-      description: "<p>We use cookies to analyse site usage and improve your experience. Cookie Policy. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
-      acceptAllButtonText: "OK",
-      acceptAllButtonAccessibleLabel: "Accept all cookies",
-      rejectNonEssentialButtonText: "Essential Only ",
-      rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
-      preferencesButtonText: "Settings",
-      preferencesButtonAccessibleLabel: "Cookie preferences"
-    },
-    preferences: {
-      title: "Cookie Settings ",
-      description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
-      creditLinkText: "",
-      creditLinkAccessibleLabel: ""
-    }
-  },
-  position: {
-    banner: "bottomRight"
-  }
-});
-</script>
-</head>
-    <title>Elsewhere Collective - Contemporary Photography</title>
-    <meta name="description" content="Championing contemporary photographers with distinctive voices and wall-worthy presence. Limited editions launching soon.">
-    <meta property="og:title" content="Elsewhere Collective - Contemporary Photography">
-    <meta property="og:description" content="A curated selection from emerging artists who challenge perceptions and reward contemplation.">
-    <meta property="og:type" content="website">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-NZVK7P7J3D');
-    </script>
 
-  
-</head>
-    <title>Spotlight - Elsewhere Collective</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-NZVK7P7J3D');
-    </script>
-    
     <style>
         :root {
             --cream-bg: #F3EFE9;
@@ -431,84 +337,79 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         }
 
         @media (max-width: 768px) {
-    /* FIX 1: Centered header */
-    .header-container {
-        padding: 0 2rem;
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: center; /* CENTER everything */
-    }
+            .header-container {
+                padding: 0 2rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
 
-    /* FIX 2: Center the logo */
-    .logo {
-        text-align: center;
-        width: 100%;
-    }
+            .logo {
+                text-align: center;
+                width: 100%;
+            }
 
-    /* FIX 3: Center navigation */
-    .nav-menu {
-        justify-content: center;
-        width: 100%;
-    }
+            .nav-menu {
+                justify-content: center;
+                width: 100%;
+            }
 
-    /* FIX 4: Add proper spacing for content below header */
-    .main {
-        padding: 10rem 2rem 3rem 2rem; /* Increased from 8rem to 10rem */
-    }
+            .main {
+                padding: 10rem 2rem 3rem 2rem;
+            }
 
-    .page-title {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0; /* Remove any extra margin */
-    }
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+                margin-top: 0;
+            }
 
-    .page-subtitle {
-        margin-bottom: 3rem;
-    }
+            .page-subtitle {
+                margin-bottom: 3rem;
+            }
 
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
 
-    .gallery-item:nth-child(even) {
-        margin-top: 0;
-    }
+            .gallery-item:nth-child(even) {
+                margin-top: 0;
+            }
 
-    .item-title {
-        font-size: 1.2rem;
-    }
+            .item-title {
+                font-size: 1.2rem;
+            }
 
-    .fullscreen-caption {
-        margin-top: 1rem;
-        max-height: 25vh;
-    }
+            .fullscreen-caption {
+                margin-top: 1rem;
+                max-height: 25vh;
+            }
 
-    .close-modal {
-        top: 1rem;
-        right: 1rem;
-        font-size: 2.5rem;
-    }
-}
+            .close-modal {
+                top: 1rem;
+                right: 1rem;
+                font-size: 2.5rem;
+            }
+        }
 
-/* Extra small screens */
-@media (max-width: 480px) {
-    .main {
-        padding: 9rem 1.5rem 3rem 1.5rem;
-    }
-    
-    .logo {
-        font-size: 1.8rem;
-    }
-    
-    .nav-menu {
-        gap: 1.5rem;
-    }
-    
-    .nav-menu a {
-        font-size: 1rem;
-    }
-}
+        @media (max-width: 480px) {
+            .main {
+                padding: 9rem 1.5rem 3rem 1.5rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
+            .nav-menu a {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -530,6 +431,18 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         <p class="page-subtitle">An evolving visual archive of works that inspire us with their presence and perspective.</p>
 
         <div class="gallery-grid">
+            <article class="gallery-item">
+                <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/artistcards/refs/heads/main/Bruno%201.png', 'Wird', 'Bruno Hadjih', 'Hadjih\'s colours and movements bring us closer Sufi rituals, making the mystical appear closer.')">
+                    <img src="https://raw.githubusercontent.com/elsewherenl/artistcards/refs/heads/main/Bruno%201.png" alt="Wird by Bruno Hadjih">
+                </div>
+                <div class="item-info">
+                    <h2 class="item-title">Wird</h2>
+                    <p class="item-artist">Bruno Hadjih</p>
+                    <p class="item-description">Hadjih's colours and movements bring us closer Sufi rituals, making the mystical appear closer.</p>
+                    <a href="https://www.instagram.com/brunohadjih/" class="item-link" target="_blank">@brunohadjih</a>
+                </div>
+            </article>
+
             <article class="gallery-item">
                 <div class="item-image" onclick="openFullscreen('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Birgette%20B.png', 'Somewhere in Africa', 'Brigitte Bourger', 'Figures in motion - from a series on lives by the sea.')">
                     <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Birgette%20B.png" alt="Somewhere in Africa by Brigitte Bourger">
@@ -668,6 +581,12 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
     <script>
         const galleryWorks = [
+            {
+                image: "https://raw.githubusercontent.com/elsewherenl/artistcards/refs/heads/main/Bruno%201.png",
+                title: "Wird",
+                artist: "Bruno Hadjih",
+                description: "Hadjih's colours and movements bring us closer Sufi rituals, making the mystical appear closer."
+            },
             {
                 image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Birgette%20B.png",
                 title: "Somewhere in Africa",
