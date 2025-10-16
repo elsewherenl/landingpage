@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -37,99 +36,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-NZVK7P7J3D');
-    </script>
- <link rel="stylesheet" id="silktide-consent-manager-css" href="path-to-css/silktide-consent-manager.css">
-<script src="path-to-js/silktide-consent-manager.js"></script>
-<script>
-silktideCookieBannerManager.updateCookieBannerConfig({
-  background: {
-    showBackground: true
-  },
-  cookieIcon: {
-    position: "bottomRight"
-  },
-  cookieTypes: [
-    {
-      id: "necessary",
-      name: "Necessary",
-      description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
-      required: true,
-      onAccept: function() {
-        console.log('Add logic for the required Necessary here');
-      }
-    },
-    {
-      id: "analytics",
-      name: "Analytics",
-      description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
-      required: false,
-      onAccept: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-        });
-        dataLayer.push({
-          'event': 'consent_accepted_analytics',
-        });
-      },
-      onReject: function() {
-        gtag('consent', 'update', {
-          analytics_storage: 'denied',
-        });
-      }
-    }
-  ],
-  text: {
-    banner: {
-      description: "<p>We use cookies to analyse site usage and improve your experience. Cookie Policy. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
-      acceptAllButtonText: "OK",
-      acceptAllButtonAccessibleLabel: "Accept all cookies",
-      rejectNonEssentialButtonText: "Essential Only ",
-      rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
-      preferencesButtonText: "Settings",
-      preferencesButtonAccessibleLabel: "Cookie preferences"
-    },
-    preferences: {
-      title: "Cookie Settings ",
-      description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
-      creditLinkText: "",
-      creditLinkAccessibleLabel: ""
-    }
-  },
-  position: {
-    banner: "bottomRight"
-  }
-});
-</script>
-</head>
-    <title>Elsewhere Collective - Contemporary Photography</title>
-    <meta name="description" content="Championing contemporary photographers with distinctive voices and wall-worthy presence. Limited editions launching soon.">
-    <meta property="og:title" content="Elsewhere Collective - Contemporary Photography">
-    <meta property="og:description" content="A curated selection from emerging artists who challenge perceptions and reward contemplation.">
-    <meta property="og:type" content="website">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-NZVK7P7J3D');
-    </script>
-
-      
-</head>
-    <title>Contact - Elsewhere Collective</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -221,63 +127,104 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         .contact-container {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 10rem 3rem 4rem;
+            padding: 7rem 3rem 3rem;
         }
 
         .page-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 300;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.4rem;
             letter-spacing: -0.02em;
         }
 
         .page-subtitle {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 300;
             color: var(--warm-gray);
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
+            max-width: 550px;
         }
 
+        /* Gallery Card Form - COMPACT */
         .form-wrapper {
             max-width: 550px;
         }
 
         .contact-form {
             background: var(--warm-off-white);
-            padding: 2.5rem;
-            border: 1px solid rgba(44, 44, 44, 0.1);
+            padding: 1.25rem 1rem;
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.04),
+                0 8px 16px rgba(0, 0, 0, 0.06),
+                0 16px 32px rgba(0, 0, 0, 0.04);
+            position: relative;
+            border: 1px solid rgba(44, 44, 44, 0.08);
+        }
+
+        /* Subtle paper texture */
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(44, 44, 44, 0.01) 2px,
+                    rgba(44, 44, 44, 0.01) 4px
+                );
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Single column - tight spacing */
+        .form-row {
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group.full-width {
+            margin-bottom: 0.5rem;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.85rem;
-            font-weight: 400;
+            font-size: 0.65rem;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.25rem;
             color: var(--deep-charcoal);
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 0.8rem 0;
+            padding: 0.3rem 0;
             border: none;
-            border-bottom: 1px solid rgba(44, 44, 44, 0.2);
+            border-bottom: 1.5px solid rgba(44, 44, 44, 0.15);
             background: transparent;
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: var(--deep-charcoal);
             transition: border-color 0.3s ease;
             appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+            height: auto;
         }
 
         .form-group select {
@@ -285,12 +232,13 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             background-repeat: no-repeat;
             background-position: right 0 center;
             background-size: 1.5rem;
-            padding-right: 2rem;
+            padding-right: 2.5rem;
             cursor: pointer;
+            width: 100%;
         }
-
-        .form-group select::-ms-expand {
-            display: none;
+        
+        .form-group select option {
+            padding: 0.5rem;
         }
 
         .form-group input:focus,
@@ -302,31 +250,51 @@ silktideCookieBannerManager.updateCookieBannerConfig({
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
-            padding-top: 0.8rem;
+            min-height: 45px;
+            padding-top: 0.3rem;
         }
 
+        /* Gallery seal button */
         .submit-btn {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 2.5rem;
+            gap: 0.7rem;
+            padding: 0.7rem 2.2rem;
             background: var(--biscuit-gold);
             color: var(--deep-charcoal);
             border: none;
-            font-family: inherit;
-            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            box-shadow: 
+                0 2px 8px rgba(214, 179, 112, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            margin-top: 0.4rem;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            pointer-events: none;
         }
 
         .submit-btn:hover {
             background: var(--sage-green);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(168, 181, 160, 0.4);
+            box-shadow: 
+                0 4px 16px rgba(168, 181, 160, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .submit-btn::after {
@@ -338,65 +306,181 @@ silktideCookieBannerManager.updateCookieBannerConfig({
             transform: translateX(4px);
         }
 
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 44, 44, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .success-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .success-content {
+            background: var(--warm-off-white);
+            padding: 3rem 2.5rem;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(44, 44, 44, 0.1);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: var(--sage-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .success-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+            color: var(--deep-charcoal);
+        }
+
+        .success-message {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .success-close {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            background: var(--biscuit-gold);
+            color: var(--deep-charcoal);
+            border: none;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .success-close:hover {
+            background: var(--sage-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Loading state for button */
+        .submit-btn.loading {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .submit-btn.loading::after {
+            content: '';
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--deep-charcoal);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         @media (max-width: 968px) {
-    /* FIX 1: Centered header */
-    .header-container {
-        padding: 0 2rem;
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: center; /* CENTER everything */
-    }
+            .header-container {
+                padding: 0 2rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
 
-    /* FIX 2: Center the logo */
-    .logo {
-        text-align: center;
-        width: 100%;
-    }
+            .logo {
+                text-align: center;
+                width: 100%;
+            }
 
-    /* FIX 3: Center navigation */
-    .nav-menu {
-        justify-content: center;
-        width: 100%;
-    }
+            .nav-menu {
+                justify-content: center;
+                width: 100%;
+            }
 
-    /* FIX 4: Add proper spacing for content below header */
-    .contact-container {
-        padding: 10rem 2rem 4rem; /* Increased from 8rem to 10rem */
-    }
+            .contact-container {
+                padding: 7rem 2rem 3rem;
+            }
 
-    .page-title {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0; /* Remove any extra margin */
-    }
+            .form-group {
+                margin-bottom: 0.7rem;
+            }
 
-    .page-subtitle {
-        margin-bottom: 3rem;
-    }
+            .contact-form {
+                padding: 1.25rem 1rem;
+            }
 
-    .contact-form {
-        padding: 2rem;
-    }
-}
+            .page-title {
+                font-size: 2rem;
+            }
+        }
 
-/* Extra small screens */
-@media (max-width: 480px) {
-    .contact-container {
-        padding: 9rem 1.5rem 3rem;
-    }
-    
-    .logo {
-        font-size: 1.8rem;
-    }
-    
-    .nav-menu {
-        gap: 1.5rem;
-    }
-    
-    .nav-menu a {
-        font-size: 1rem;
-    }
-}
+        @media (max-width: 480px) {
+            .contact-container {
+                padding: 9rem 1.5rem 3rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
+            .nav-menu a {
+                font-size: 1rem;
+            }
+
+            .contact-form {
+                padding: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -418,42 +502,131 @@ silktideCookieBannerManager.updateCookieBannerConfig({
         <p class="page-subtitle">Interested in acquiring works, artist collaborations, or have questions about our collection? We'd love to hear from you.</p>
 
         <div class="form-wrapper">
+            <form class="contact-form" action="https://formspree.io/f/meorqelp" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
 
-        <form class="contact-form" action="https://formspree.io/f/meorqelp" method="POST">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required>
-            </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required>
-            </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="">Select...</option>
+                            <option value="purchase">Purchase Enquiry</option>
+                            <option value="commercial">Commercial / Project Enquiry</option>
+                            <option value="collaboration">Artist Collaboration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <select id="subject" name="subject" required>
-                    <option value="">Select...</option>
-                    <option value="acquisition">Acquire a Work</option>
-                    <option value="collaboration">Artist Collaboration</option>
-                    <option value="press">Press Enquiry</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-
-            <button type="submit" class="submit-btn">Send</button>
-        </form>
+                <button type="submit" class="submit-btn">Send</button>
+            </form>
         </div>
     </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">Thank you!</h2>
+            <p class="success-message">We've received your message and will be in touch within 48 hours.</p>
+            <button class="success-close" onclick="closeSuccessModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.contact-form');
+            const submitBtn = document.querySelector('.submit-btn');
+            const successModal = document.getElementById('successModal');
+
+            if (!form || !submitBtn || !successModal) {
+                console.error('Form elements not found');
+                return;
+            }
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Stop default form submission
+                e.stopPropagation(); // Stop event bubbling
+                
+                console.log('Form submission intercepted');
+                
+                // Show loading state
+                submitBtn.classList.add('loading');
+                const originalHTML = submitBtn.innerHTML;
+                submitBtn.textContent = 'Sending';
+                
+                // Get form data
+                const formData = new FormData(form);
+                
+                try {
+                    // Send to Formspree via AJAX
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    console.log('Response status:', response.status);
+                    
+                    if (response.ok) {
+                        // Success! Show modal
+                        successModal.classList.add('show');
+                        form.reset(); // Clear the form
+                        
+                        // Reset button
+                        submitBtn.classList.remove('loading');
+                        submitBtn.innerHTML = originalHTML;
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    // Error handling
+                    alert('Oops! There was a problem sending your message. Please try again or email us directly at hello@elsewherecollective.nl');
+                    
+                    // Reset button
+                    submitBtn.classList.remove('loading');
+                    submitBtn.innerHTML = originalHTML;
+                }
+            });
+
+            // Close modal function
+            window.closeSuccessModal = function() {
+                successModal.classList.remove('show');
+            };
+
+            // Close modal when clicking outside
+            successModal.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    window.closeSuccessModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
