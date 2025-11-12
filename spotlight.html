@@ -127,14 +127,14 @@
         .main {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 10rem 3rem 4rem 3rem;
+            padding: 10rem 3rem 2rem 3rem;
         }
 
         .page-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 3rem;
             font-weight: 300;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
 
@@ -142,28 +142,23 @@
             font-size: 1.1rem;
             font-weight: 300;
             color: var(--warm-gray);
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem 3rem;
-            align-items: start;
+            gap: 1.5rem;
         }
 
         .gallery-item {
             width: 100%;
         }
 
-        .gallery-item:nth-child(even) {
-            margin-top: 2rem;
-        }
-
         .item-image {
             width: 100%;
             background: white;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             margin-bottom: 1rem;
             cursor: pointer;
@@ -397,15 +392,15 @@
             .main {
                 padding: 9rem 1.5rem 3rem 1.5rem;
             }
-            
+
             .logo {
                 font-size: 1.8rem;
             }
-            
+
             .nav-menu {
                 gap: 1.5rem;
             }
-            
+
             .nav-menu a {
                 font-size: 1rem;
             }
@@ -654,7 +649,7 @@
         function openFullscreen(imgSrc, title, artist, description) {
             currentFullscreenIndex = galleryWorks.findIndex(work => work.image === imgSrc);
             if (currentFullscreenIndex === -1) currentFullscreenIndex = 0;
-            
+
             document.getElementById('fullscreenImage').src = imgSrc;
             document.getElementById('captionTitle').textContent = title;
             document.getElementById('captionArtist').textContent = artist;
