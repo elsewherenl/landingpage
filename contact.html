@@ -97,7 +97,7 @@
             letter-spacing: 0.05em;
             text-transform: lowercase;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .logo:hover {
@@ -117,7 +117,7 @@
             color: var(--deep-charcoal);
             font-weight: 300;
             font-size: 1.1rem;
-            transition: color 0.3s ease;
+            transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-menu a:hover {
@@ -146,40 +146,15 @@
             max-width: 550px;
         }
 
-        /* Gallery Card Form - COMPACT */
+        /* Clean minimal form - no box */
         .form-wrapper {
             max-width: 550px;
         }
 
         .contact-form {
-            background: var(--warm-off-white);
-            padding: 1.5rem 1rem;
-            box-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.04),
-                0 8px 16px rgba(0, 0, 0, 0.06),
-                0 16px 32px rgba(0, 0, 0, 0.04);
+            background: transparent;
+            padding: 0;
             position: relative;
-            border: 1px solid rgba(44, 44, 44, 0.08);
-        }
-
-        /* Subtle paper texture */
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(44, 44, 44, 0.01) 2px,
-                    rgba(44, 44, 44, 0.01) 4px
-                );
-            pointer-events: none;
-            opacity: 0.5;
         }
 
         /* Single column - tight spacing */
@@ -445,6 +420,7 @@
 
             .contact-container {
                 padding: 10rem 2rem 3rem;
+                text-align: center;
             }
 
             .form-group {
@@ -452,11 +428,13 @@
             }
 
             .contact-form {
-                padding: 1.25rem 1rem;
+                padding: 0;
             }
 
             .page-title {
                 font-size: 2rem;
+                text-align: center;
+                margin-top: 0;
             }
         }
 
@@ -478,7 +456,7 @@
             }
 
             .contact-form {
-                padding: 1.25rem;
+                padding: 0;
             }
         }
     </style>
@@ -499,49 +477,8 @@
 
     <div class="contact-container">
         <h1 class="page-title">Get in touch</h1>
-
-        <div class="form-wrapper">
-            <form class="contact-form" action="https://formspree.io/f/meorqelp" method="POST">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <select id="subject" name="subject">
-                            <option value="">Select...</option>
-                            <option value="purchase">Purchase Enquiry</option>
-                            <option value="commercial">Commercial / Project Enquiry</option>
-                            <option value="collaboration">Artist Collaboration</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn">Send</button>
-            </form>
-        </div>
+        <p class="page-subtitle">For any enquiries please contact: <a href="mailto:alex@elsewherecollective.nl" style="color: var(--biscuit-gold); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s ease;" onmouseover="this.style.borderBottom='1px solid var(--biscuit-gold)'" onmouseout="this.style.borderBottom='1px solid transparent'">alex@elsewherecollective.nl</a></p>
+        <p class="page-subtitle" style="margin-top: 1.5rem;">Follow: Instagram: <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" style="color: var(--biscuit-gold); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s ease;" onmouseover="this.style.borderBottom='1px solid var(--biscuit-gold)'" onmouseout="this.style.borderBottom='1px solid transparent'">@elsewhere___collective</a></p>
     </div>
 
     <!-- Success Modal -->
