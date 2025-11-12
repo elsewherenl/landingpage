@@ -283,7 +283,7 @@
             justify-content: center;
             position: relative;
             background: var(--cream-bg);
-            padding: 8rem 0 3rem 0;
+            padding: 10rem 0 3rem 0;
         }
 
         .hero-content {
@@ -364,7 +364,7 @@
         }
 
         .container {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 3rem;
         }
@@ -394,23 +394,26 @@
 
         .carousel-container {
             position: relative;
-            max-width: 900px;
+            max-width: 100%;
             margin: 0.5rem auto 0;
             overflow: hidden;
         }
 
         .carousel-track {
             display: flex;
-            transition: transform 0.6s ease;
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .featured-work {
             flex: 0 0 100%;
             display: flex;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
+            justify-content: center;
+            padding: 0;
             opacity: 1;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .featured-work.active {
@@ -418,15 +421,16 @@
         }
 
         .work-image {
-            flex: 0 0 450px;
-            height: 400px;
+            flex: 0 0 500px;
+            height: 450px;
             background: white;
-            padding: 20px;
+            padding: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
         }
 
         .work-image:hover {
@@ -439,13 +443,15 @@
             height: 100%;
             object-fit: contain;
             display: block;
-            transition: opacity 0.3s ease;
         }
 
         .work-info {
-            flex: 1;
+            flex: 0 1 450px;
+            max-width: 450px;
             padding: 0;
-            padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
         }
 
         .carousel-indicators {
@@ -461,7 +467,7 @@
             border-radius: 50%;
             background: rgba(44, 44, 44, 0.2);
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .indicator.active {
@@ -488,24 +494,37 @@
             font-weight: 300;
             color: var(--warm-gray);
             line-height: 1.4;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .work-instagram {
             font-size: 0.85rem;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
+            line-height: 1.6;
+            min-height: 1.6em;
         }
 
         .work-instagram a {
             color: var(--warm-gray);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-bottom: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.2rem 0;
         }
 
         .work-instagram a:hover {
             color: var(--biscuit-gold);
             border-bottom: 1px solid var(--biscuit-gold);
+        }
+
+        .work-instagram svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            flex-shrink: 0;
         }
 
         /* Newsletter Section */
@@ -685,7 +704,7 @@
             max-width: 80%;
             max-height: 80%;
             object-fit: contain;
-            background: white;
+            background: none !important;
             padding: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
@@ -844,62 +863,125 @@
             }
 
             .header-container {
-                padding: 0 2rem;
+                padding: 0 1.5rem;
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 1.5rem;
                 align-items: center;
             }
 
             .logo {
                 text-align: center;
                 width: 100%;
+                margin-bottom: 0;
             }
 
             .nav-menu {
                 gap: 2rem;
                 justify-content: center;
                 width: 100%;
+                margin-top: 0;
             }
 
             .hero {
                 padding-top: 10rem;
+                padding-bottom: 3rem;
             }
 
             .hero-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 0 2rem;
+                gap: 2.5rem;
+                padding: 0 1.5rem;
+                max-width: 100%;
             }
 
             .hero-text {
                 text-align: center;
+                padding: 0 0.5rem;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .hero-gallery {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                padding: 0;
+            }
+
+            .carousel-container {
+                max-width: 400px;
+                width: 100%;
+                margin: 0 auto;
             }
 
             .hero-title {
-                font-size: 2rem;
+                font-size: 1.25rem;
                 margin-top: 0;
+                margin-bottom: 0;
+                line-height: 1.5;
+                font-weight: 300;
+                max-width: 100%;
+                padding: 0;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
             }
 
             .hero-subtitle {
                 font-size: 1rem;
             }
 
+            .section-header {
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-description {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
             .featured-work {
                 flex-direction: column;
                 text-align: center;
                 gap: 2rem;
+                align-items: center;
+                padding: 0;
             }
 
             .work-image {
                 flex: none;
                 width: 100%;
-                max-width: 350px;
-                height: 300px;
-                margin: 0 auto;
+                max-width: 400px;
+                height: 350px;
+                margin: 0;
+                padding: 10px;
             }
 
             .work-info {
-                padding-right: 0;
+                padding: 0;
+                max-width: 400px;
+                width: 100%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .work-title,
+            .work-artist,
+            .work-description {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+
+            .carousel-indicators {
+                margin-top: 2rem;
             }
 
             .footer-content {
@@ -1009,47 +1091,11 @@
             <div class="hero-gallery">
                 <div class="carousel-container">
                     <div class="carousel-track">
-                        <div class="featured-work active">
-                            <div class="work-image">
-                                <img src="https://raw.githubusercontent.com/elsewherenl/artistcards/refs/heads/main/Amy%20Querin.png" alt="Dare alla luce by Amy Friend" loading="lazy">
-                            </div>
-                            <div class="work-info">
-                                <h3 class="work-title">Dare alla luce</h3>
-                                <p class="work-artist">Amy Friend</p>
-                                <p class="work-description">The series Dare alla Luce explores the transient nature of photographs and their influence on personal and collective memory.</p>
-                                <p class="work-instagram"><a href="https://www.instagram.com/amyquerin/" target="_blank">@amyquerin</a></p>
-                            </div>
-                        </div>
-
-                        <div class="featured-work">
-                            <div class="work-image">
-                                <img src="https://raw.githubusercontent.com/elsewherenl/artistcards/refs/heads/main/Kin%20by%20Kin.png" alt="Mongolia by Kinn Coedel" loading="lazy">
-                            </div>
-                            <div class="work-info">
-                                <h3 class="work-title">Mongolia</h3>
-                                <p class="work-artist">Kinn Coedel</p>
-                                <p class="work-description">Documeting local customs and offering a tender glimpse into the lives of Inner Mongolia's nomadic peoples.</p>
-                                <p class="work-instagram"><a href="https://www.instagram.com/kinbykin/" target="_blank">@kinbykin</a></p>
-                            </div>
-                        </div>
-
-                        <div class="featured-work">
-                            <div class="work-image">
-                                <img src="https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Vakho%20Khetaguri.png" alt="Cambodia by Vakho Khetaguri" loading="lazy">
-                            </div>
-                            <div class="work-info">
-                                <h3 class="work-title">Cambodia</h3>
-                                <p class="work-artist">Vakho Khetaguri</p>
-                                <p class="work-description">From the series Tbilisi to Siem Reap</p>
-                                <p class="work-instagram"><a href="https://www.instagram.com/vakhokhetaguri0/" target="_blank">@vakhokhetaguri0</a></p>
-                            </div>
-                        </div>
+                        <!-- Carousel will be populated dynamically from instagram-feed.json -->
                     </div>
 
                     <div class="carousel-indicators">
-                        <div class="indicator active" data-slide="0"></div>
-                        <div class="indicator" data-slide="1"></div>
-                        <div class="indicator" data-slide="2"></div>
+                        <!-- Indicators will be populated dynamically -->
                     </div>
                 </div>
             </div>
@@ -1086,13 +1132,13 @@
                     </svg>
                     <span>hello@elsewherecollective.nl</span>
                 </a>
-                <a href="https://www.instagram.com/elsewhere___collective/" target="_blank">
+                <a href="https://instagram.com/else.where.collective" target="_blank">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#D6B370" stroke-width="1.5" fill="none"/>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="#D6B370" stroke-width="1.5" fill="none"/>
                         <circle cx="17.5" cy="6.5" r="1.5" fill="#D6B370"/>
                     </svg>
-                    <span>elsewhere___collective</span>
+                    <span>@else.where.collective</span>
                 </a>
             </div>
         </div>
@@ -1113,36 +1159,107 @@
     </div>
 
     <script>
-        const galleryWorks = [
-            {
-                image: "https://raw.githubusercontent.com/elsewherenl/artistcards/refs/heads/main/Amy%20Querin.png",
-                title: "Dare alla luce",
-                artist: "Amy Friend"
-            },
-            {
-                image: "https://raw.githubusercontent.com/elsewherenl/artistcards/refs/heads/main/Kin%20by%20Kin.png",
-                title: "Mongolia",
-                artist: "Kinn Coedel"
-            },
-            {
-                image: "https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/Vakho%20Khetaguri.png",
-                title: "Cambodia",
-                artist: "Vakho Khetaguri"
-            }
-        ];
+        let galleryWorks = [];
+        let allPosts = [];
+        let rotationInterval;
 
-        document.addEventListener('DOMContentLoaded', function() {
+        // Load gallery works from JSON
+        async function loadGalleryWorks() {
+            try {
+                const response = await fetch('instagram-feed.json');
+                const data = await response.json();
+                allPosts = data.posts;
+
+                // Initial random selection
+                selectRandomWorks();
+
+                // Preload images for smoother transitions
+                preloadImages();
+
+                // Start rotation every 8 seconds for dynamic experience
+                rotationInterval = setInterval(() => {
+                    selectRandomWorks();
+                    preloadImages();
+                }, 8000);
+            } catch (error) {
+                console.error('Error loading gallery works:', error);
+                // Fallback to empty array
+                galleryWorks = [];
+            }
+        }
+
+        function selectRandomWorks() {
+            // Filter out posts without captions
+            const postsWithCaptions = allPosts.filter(post => post.caption && post.caption.trim() !== '');
+
+            // Shuffle and pick 5 random works
+            const shuffled = [...postsWithCaptions].sort(() => 0.5 - Math.random());
+            galleryWorks = shuffled.slice(0, 5).map(post => ({
+                image: post.image_url,
+                title: post.title,
+                artist: post.artist,
+                artist_handle: post.artist_handle,
+                description: post.caption
+            }));
+
+            // Re-render the carousel if it's already loaded
+            if (document.querySelector('.carousel-track')) {
+                renderCarousel();
+            }
+        }
+
+        function preloadImages() {
+            // Preload next batch of images for instant loading
+            galleryWorks.forEach(work => {
+                const img = new Image();
+                img.src = work.image;
+            });
+        }
+
+        function renderCarousel() {
+            const track = document.querySelector('.carousel-track');
+            const indicators = document.querySelector('.carousel-indicators');
+
+            if (!track || !indicators || galleryWorks.length === 0) return;
+
+            // Render slides
+            track.innerHTML = galleryWorks.map((work, index) => `
+                <div class="featured-work ${index === 0 ? 'active' : ''}">
+                    <div class="work-image" onclick="openFullscreen(${index})">
+                        <img src="${work.image}" alt="${work.title} by ${work.artist}" loading="lazy" decoding="async">
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">${work.title}</h3>
+                        <p class="work-artist">${work.artist}</p>
+                        <p class="work-description">${work.description}</p>
+                        ${work.artist_handle ? `<p class="work-instagram"><a href="${work.artist_handle}" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            ${work.artist}
+                        </a></p>` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            // Render indicators
+            indicators.innerHTML = galleryWorks.map((work, index) => `
+                <span class="indicator ${index === 0 ? 'active' : ''}"></span>
+            `).join('');
+
+            // Reinitialize carousel functionality
+            initCarousel();
+        }
+
+        let currentSlide = 0;
+        let slideInterval;
+
+        function initCarousel() {
             // Carousel functionality
-            let currentSlide = 0;
             const slides = document.querySelectorAll('.featured-work');
             const indicators = document.querySelectorAll('.indicator');
-            let slideInterval;
 
-            // Add click handlers to work images for fullscreen
-            const workImages = document.querySelectorAll('.work-image');
-            workImages.forEach((image, index) => {
-                image.addEventListener('click', () => openFullscreen(index));
-            });
+            if (slides.length === 0 || indicators.length === 0) return;
 
             // Add click handlers to indicators
             indicators.forEach((indicator, index) => {
@@ -1154,25 +1271,30 @@
             });
 
             function showSlide(index) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                indicators.forEach(indicator => indicator.classList.remove('active'));
-                
-                if (slides[index]) {
+                const currentSlides = document.querySelectorAll('.featured-work');
+                const currentIndicators = document.querySelectorAll('.indicator');
+
+                currentSlides.forEach(slide => slide.classList.remove('active'));
+                currentIndicators.forEach(indicator => indicator.classList.remove('active'));
+
+                if (currentSlides[index]) {
                     const trackContainer = document.querySelector('.carousel-track');
                     trackContainer.style.transform = `translateX(-${index * 100}%)`;
-                    
-                    slides[index].classList.add('active');
-                    indicators[index].classList.add('active');
+
+                    currentSlides[index].classList.add('active');
+                    currentIndicators[index].classList.add('active');
                     currentSlide = index;
                 }
             }
 
             function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
+                const currentSlides = document.querySelectorAll('.featured-work');
+                currentSlide = (currentSlide + 1) % currentSlides.length;
                 showSlide(currentSlide);
             }
 
             function startSlideshow() {
+                clearInterval(slideInterval);
                 slideInterval = setInterval(nextSlide, 10000);
             }
 
@@ -1184,70 +1306,83 @@
             startSlideshow();
 
             const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.removeEventListener('mouseenter', stopSlideshow);
+            carouselContainer.removeEventListener('mouseleave', startSlideshow);
             carouselContainer.addEventListener('mouseenter', stopSlideshow);
             carouselContainer.addEventListener('mouseleave', startSlideshow);
+        }
 
-            // Fullscreen Gallery
-            let currentFullscreenIndex = 0;
+        // Fullscreen Gallery - Global scope
+        let currentFullscreenIndex = 0;
+
+        function openFullscreen(index) {
+            currentFullscreenIndex = index;
+            const work = galleryWorks[index];
             const fullscreenGallery = document.getElementById('fullscreenGallery');
             const fullscreenImage = document.getElementById('fullscreenImage');
+
+            fullscreenImage.src = work.image;
+            fullscreenImage.alt = `${work.title} by ${work.artist}`;
+
+            fullscreenImage.onload = function() {
+                if (this.naturalHeight > this.naturalWidth) {
+                    this.classList.add('portrait');
+                } else {
+                    this.classList.remove('portrait');
+                }
+            };
+
+            fullscreenGallery.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreen() {
+            const fullscreenGallery = document.getElementById('fullscreenGallery');
+            fullscreenGallery.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPrevious() {
+            currentFullscreenIndex = (currentFullscreenIndex - 1 + galleryWorks.length) % galleryWorks.length;
+            const work = galleryWorks[currentFullscreenIndex];
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            fullscreenImage.src = work.image;
+            fullscreenImage.alt = `${work.title} by ${work.artist}`;
+
+            fullscreenImage.onload = function() {
+                if (this.naturalHeight > this.naturalWidth) {
+                    this.classList.add('portrait');
+                } else {
+                    this.classList.remove('portrait');
+                }
+            };
+        }
+
+        function showNext() {
+            currentFullscreenIndex = (currentFullscreenIndex + 1) % galleryWorks.length;
+            const work = galleryWorks[currentFullscreenIndex];
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            fullscreenImage.src = work.image;
+            fullscreenImage.alt = `${work.title} by ${work.artist}`;
+
+            fullscreenImage.onload = function() {
+                if (this.naturalHeight > this.naturalWidth) {
+                    this.classList.add('portrait');
+                } else {
+                    this.classList.remove('portrait');
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load gallery works from JSON
+            loadGalleryWorks();
+
+            // Fullscreen Gallery event listeners
+            const fullscreenGallery = document.getElementById('fullscreenGallery');
             const fullscreenPrev = document.getElementById('fullscreenPrev');
             const fullscreenNext = document.getElementById('fullscreenNext');
             const fullscreenClose = document.getElementById('fullscreenClose');
-
-            function openFullscreen(index) {
-                currentFullscreenIndex = index;
-                const work = galleryWorks[index];
-                
-                fullscreenImage.src = work.image;
-                fullscreenImage.alt = `${work.title} by ${work.artist}`;
-                
-                fullscreenImage.onload = function() {
-                    if (this.naturalHeight > this.naturalWidth) {
-                        this.classList.add('portrait');
-                    } else {
-                        this.classList.remove('portrait');
-                    }
-                };
-                
-                fullscreenGallery.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeFullscreen() {
-                fullscreenGallery.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-
-            function showPrevious() {
-                currentFullscreenIndex = (currentFullscreenIndex - 1 + galleryWorks.length) % galleryWorks.length;
-                const work = galleryWorks[currentFullscreenIndex];
-                fullscreenImage.src = work.image;
-                fullscreenImage.alt = `${work.title} by ${work.artist}`;
-                
-                fullscreenImage.onload = function() {
-                    if (this.naturalHeight > this.naturalWidth) {
-                        this.classList.add('portrait');
-                    } else {
-                        this.classList.remove('portrait');
-                    }
-                };
-            }
-
-            function showNext() {
-                currentFullscreenIndex = (currentFullscreenIndex + 1) % galleryWorks.length;
-                const work = galleryWorks[currentFullscreenIndex];
-                fullscreenImage.src = work.image;
-                fullscreenImage.alt = `${work.title} by ${work.artist}`;
-                
-                fullscreenImage.onload = function() {
-                    if (this.naturalHeight > this.naturalWidth) {
-                        this.classList.add('portrait');
-                    } else {
-                        this.classList.remove('portrait');
-                    }
-                };
-            }
 
             fullscreenClose.addEventListener('click', closeFullscreen);
             fullscreenPrev.addEventListener('click', showPrevious);
