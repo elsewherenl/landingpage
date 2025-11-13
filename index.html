@@ -32,6 +32,8 @@
     <link rel="apple-touch-icon" href="favicon.png">
 
     <!-- DNS Prefetch for faster image loading -->
+    <link rel="dns-prefetch" href="//res.cloudinary.com">
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="dns-prefetch" href="//github.com">
     <link rel="dns-prefetch" href="//raw.githubusercontent.com">
     <link rel="preconnect" href="https://github.com" crossorigin>
@@ -1201,7 +1203,7 @@
             // Shuffle and pick 5 random works
             const shuffled = [...postsWithCaptions].sort(() => 0.5 - Math.random());
             galleryWorks = shuffled.slice(0, 5).map(post => ({
-                image: post.image_url,
+                image: post.cloudinary_url || post.image_url,
                 title: post.title,
                 artist: post.artist,
                 artist_handle: post.artist_handle,
