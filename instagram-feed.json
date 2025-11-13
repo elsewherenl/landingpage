@@ -3,6 +3,7 @@
     {
       "id": "1",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/Mahmoud%20Kehtab,%20Farewell%20to%20Elders.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019392/Mahmoud_K_y1nub5.jpg",
       "title": "Farewell to Elders",
       "artist": "Mahmoud Khatab",
       "artist_handle": "https://www.instagram.com/somewhereincairo/",
@@ -13,6 +14,7 @@
     {
       "id": "2",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/Brigitte%20Bourger.png?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019310/Briggite_B_yrcnkv.jpg",
       "title": "Somewhere in Africa",
       "artist": "Brigitte Bourger",
       "artist_handle": "https://www.instagram.com/brigittebourger/",
@@ -23,6 +25,7 @@
     {
       "id": "3",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Teoswa%201.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019437/Yimin_Chen_ggngru.jpg",
       "title": "Teoswa",
       "artist": "Yimin Chen",
       "artist_handle": "https://www.instagram.com/eindchan/",
@@ -33,6 +36,7 @@
     {
       "id": "4",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Orestis%20Ilias%2C%20The%20Cube%2015.08.25.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019526/Orestis_Ilias_ftre3u.jpg",
       "title": "The Cube",
       "artist": "Orestis Ilias",
       "artist_handle": "https://www.instagram.com/orestis.ilias/",
@@ -43,6 +47,7 @@
     {
       "id": "5",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Book%20of%20Days%201.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973385/Alvin_Ng_1_xmpnrm.jpg",
       "title": "Book of Days",
       "artist": "Alvin Ng",
       "artist_handle": "https://www.instagram.com/alvinnzh/",
@@ -53,6 +58,7 @@
     {
       "id": "6",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Murray%20Ballard%2021.08.25.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Murray_Ballard_chog5p.jpg",
       "title": "Torre San Giovanni",
       "artist": "Murray Ballard",
       "artist_handle": "https://www.instagram.com/murrayballard/",
@@ -63,6 +69,7 @@
     {
       "id": "7",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Claire%20Amaouche%201.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973387/Claire_Amaouche_epmibv.jpg",
       "title": "Of All The Wild Paths",
       "artist": "Claire Amaouche",
       "artist_handle": "https://www.instagram.com/maoucha/",
@@ -73,6 +80,7 @@
     {
       "id": "8",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Fabio%20Pelinga%20Transitions.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973386/Fabio_Pelinga_ttosws.jpg",
       "title": "Transitions",
       "artist": "Fabio Pelinga",
       "artist_handle": "https://www.instagram.com/fabiopelinga_/",
@@ -83,6 +91,7 @@
     {
       "id": "9",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/1.%20Cardi.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019547/Claudia_F_g7ronn.jpg",
       "title": "Metamorphosis",
       "artist": "Claudia Fuggetti",
       "artist_handle": "https://www.instagram.com/lafugg/",
@@ -93,6 +102,7 @@
     {
       "id": "10",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Kim%20Woo%20Young%201%20Lower%20Res.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Kim_Woo_Young_a9xisf.jpg",
       "title": "The Vastness",
       "artist": "Kim Woo Young",
       "artist_handle": "https://www.instagram.com/kimwooyoung_com/",
@@ -103,6 +113,7 @@
     {
       "id": "11",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Nick%20Meek%201.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Nick_Meek_ym902a.jpg",
       "title": "Between Sakura",
       "artist": "Nick Meek",
       "artist_handle": "https://www.instagram.com/nickmeek/",
@@ -110,10 +121,10 @@
       "permalink": "https://www.instagram.com/p/DOslOjSiB5I/?img_index=2",
       "timestamp": "24/09/2025"
     },
-
     {
       "id": "12",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bruno%20%231.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973386/Bruno_Hadjih_mwty4e.jpg",
       "title": "Wird",
       "artist": "Bruno Hadjih",
       "artist_handle": "https://www.instagram.com/brunohadjih/",
@@ -121,10 +132,10 @@
       "permalink": "https://www.instagram.com/p/DPOjJHLCAjF/?img_index=2",
       "timestamp": "30/09/2025"
     },
-
     {
       "id": "13",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bertrand%20Stofleth%201.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973386/Bertrand_Stofleth_aozli4.jpg",
       "title": "Rhodanie",
       "artist": "Bertrand Stofleth",
       "artist_handle": "https://www.instagram.com/bertrandstofleth/",
@@ -132,10 +143,10 @@
       "permalink": "https://www.instagram.com/p/DPOjJHLCAjF/?img_index=2",
       "timestamp": "06/10/2025"
     },
-
     {
       "id": "14",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Zhang%201.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973391/Zhang_Kechun_ds2o9q.jpg",
       "title": "The Yellow River",
       "artist": "Zhang Kechun",
       "artist_handle": "https://www.instagram.com/kechunz/",
@@ -143,10 +154,10 @@
       "permalink": "https://www.instagram.com/p/DPjUkCrCLdy/?img_index=2",
       "timestamp": "08/10/2025"
     },
-
     {
       "id": "15",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Miriam%20Stanke%201.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Miriam_Stanke_j1g1zc.jpg",
       "title": "Bakhtiari - Nomads of Iran",
       "artist": "Miriam Stanke",
       "artist_handle": "https://www.instagram.com/miriamstanke/",
@@ -154,10 +165,10 @@
       "permalink": "https://www.instagram.com/p/DQEesjniIYS/?img_index=2",
       "timestamp": "21/10/2025"
     },
-
     {
       "id": "16",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Kevin%20Scali%201%20lower%20res.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Kevin_Scali_vwsmj2.jpg",
       "title": "Abstract landscapes, Central Italy",
       "artist": "Kevin Scali",
       "artist_handle": "https://www.instagram.com/kevinscali/",
@@ -165,10 +176,10 @@
       "permalink": "https://www.instagram.com/p/DQwMYqTCO-G/?img_index=2",
       "timestamp": "07/11/2025"
     },
-
     {
       "id": "17",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Terra%20Firma%201%20Lower%20res.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Parth_Gupta_apgh8u.jpg",
       "title": "Terra Firma",
       "artist": "Parth Gupta",
       "artist_handle": "https://www.instagram.com/pxrth.gupta/",
@@ -176,8 +187,5 @@
       "permalink": "https://www.instagram.com/p/DQ6mRIXiL4Z/?img_index=2",
       "timestamp": "11/11/2025"
     }
-
-
-
   ]
 }
