@@ -32,6 +32,8 @@
     <link rel="apple-touch-icon" href="favicon.png">
 
     <!-- DNS Prefetch for faster image loading -->
+    <link rel="dns-prefetch" href="//res.cloudinary.com">
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="dns-prefetch" href="//github.com">
     <link rel="dns-prefetch" href="//raw.githubusercontent.com">
     <link rel="preconnect" href="https://github.com" crossorigin>
@@ -600,7 +602,7 @@
             grid.innerHTML = postsToShow.map((post, index) => `
                 <article class="instagram-post">
                     <div class="post-image" onclick="openFullscreen(${index})">
-                        <img src="${post.image_url}" alt="${post.title || post.caption.substring(0, 50)}" loading="lazy" decoding="async">
+                        <img src="${post.cloudinary_url || post.image_url}" alt="${post.title || post.caption.substring(0, 50)}" loading="lazy" decoding="async">
                         <div class="image-overlay">
                             <div class="overlay-title">${post.title || 'Untitled'}</div>
                             <div class="overlay-artist">${post.artist || ''}</div>
@@ -615,7 +617,7 @@
             currentFullscreenIndex = index;
             const post = instagramPosts[currentFullscreenIndex];
 
-            document.getElementById('fullscreenImage').src = post.image_url;
+            document.getElementById('fullscreenImage').src = post.cloudinary_url || post.image_url;
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
 
             // Create artist link with Instagram icon
@@ -660,7 +662,7 @@
         function updateFullscreenContent() {
             const post = instagramPosts[currentFullscreenIndex];
 
-            document.getElementById('fullscreenImage').src = post.image_url;
+            document.getElementById('fullscreenImage').src = post.cloudinary_url || post.image_url;
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
 
             // Update artist link with Instagram icon
