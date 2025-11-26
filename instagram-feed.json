@@ -198,6 +198,30 @@
       "caption": "Before the sea.",
       "permalink": "https://www.instagram.com/p/DRCO7ihiNSS/?img_index=1",
       "timestamp": "14/11/2025"
+    },
+
+{
+      "id": "19",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/PW%203.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764149230/PW_3_xa9ovt.jpg",
+      "title": "Restricted Images",
+      "artist": "Patrick Waterhouse",
+      "artist_handle": "https://www.instagram.com/patrick_waterhouse/",
+      "caption": "Working with Warlpiri artists in Central Australia, Patrick's black and white photographs of them are transformed through their traditional dot painting.",
+      "permalink": "https://www.instagram.com/p/DRSPtvRCEsr/?img_index=1",
+      "timestamp": "20/11/2025"
+    },
+
+{
+      "id": "20",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/251125%20Ignacio%20Infanti.jpg?raw=true",
+      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764149362/251125_Ignacio_Infanti_vcpfpx.jpg",
+      "title": "Untitled",
+      "artist": "Ignacio Infanti",
+      "artist_handle": "https://www.instagram.com/ignacioinfanti/",
+      "permalink": "https://www.instagram.com/p/DRfHZ4sCBG0/",
+      "timestamp": "25/11/2025"
     }
+
   ]
 }
