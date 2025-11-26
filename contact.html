@@ -121,11 +121,13 @@
             color: var(--deep-charcoal);
             font-weight: 300;
             font-size: 1.1rem;
-            transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
         }
 
         .nav-menu a:hover {
-            color: var(--biscuit-gold);
+            color: var(--deep-charcoal);
+            border-bottom: 1px solid var(--deep-charcoal);
         }
 
         .contact-container {
@@ -148,6 +150,18 @@
             color: var(--warm-gray);
             margin-bottom: 1.5rem;
             max-width: 550px;
+        }
+
+        .contact-link {
+            color: var(--warm-gray);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--deep-charcoal);
+            border-bottom: 1px solid var(--deep-charcoal);
         }
 
         /* Clean minimal form - no box */
@@ -481,8 +495,8 @@
 
     <div class="contact-container">
         <h1 class="page-title">Get in touch</h1>
-        <p class="page-subtitle">For any enquiries please contact: <a href="mailto:alex@elsewherecollective.nl" style="color: var(--biscuit-gold); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s ease;" onmouseover="this.style.borderBottom='1px solid var(--biscuit-gold)'" onmouseout="this.style.borderBottom='1px solid transparent'">alex@elsewherecollective.nl</a></p>
-        <p class="page-subtitle" style="margin-top: 1.5rem;">Follow: Instagram: <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" style="color: var(--biscuit-gold); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s ease;" onmouseover="this.style.borderBottom='1px solid var(--biscuit-gold)'" onmouseout="this.style.borderBottom='1px solid transparent'">@elsewhere___collective</a></p>
+        <p class="page-subtitle">For any enquiries please contact: <a href="mailto:alex@elsewherecollective.nl" class="contact-link">alex@elsewherecollective.nl</a></p>
+        <p class="page-subtitle" style="margin-top: 1.5rem;">Follow: Instagram: <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" class="contact-link">@elsewhere___collective</a></p>
     </div>
 
     <!-- Success Modal -->
