@@ -276,49 +276,61 @@
             font-weight: 300;
             font-size: 1.1rem;
             letter-spacing: 0.01em;
-            transition: color 0.3s ease;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
         }
 
         .nav-menu a:hover {
-            color: var(--biscuit-gold);
+            color: var(--deep-charcoal);
+            border-bottom: 1px solid var(--deep-charcoal);
         }
 
         /* Hero Section */
         .hero {
             height: auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             background: var(--cream-bg);
-            padding: 10rem 0 3rem 0;
+            padding: 12rem 0 3rem 0;
         }
 
         .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
             max-width: 1600px;
             width: 100%;
             padding: 0 3rem;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: flex-start;
         }
 
         .hero-text {
             text-align: left;
-        }
-
-        .hero-gallery {
-            justify-self: center;
+            width: 100%;
         }
 
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 300;
-            line-height: 1.1;
-            margin-bottom: 1rem;
+            line-height: 1.2;
+            margin-bottom: 0;
             color: var(--deep-charcoal);
+            letter-spacing: -0.02em;
+        }
+
+        /* Gallery Grid */
+        .hero-gallery {
+            width: 100%;
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
 
         .hero-subtitle {
@@ -400,89 +412,100 @@
             line-height: 1.5;
         }
 
-        .carousel-container {
-            position: relative;
-            max-width: 100%;
-            margin: 0.5rem auto 0;
-            overflow: hidden;
+        .instagram-post {
+            width: 100%;
         }
 
-        .carousel-track {
+        .post-image {
+            width: 100%;
+            height: 320px;
+            background: white;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
             display: flex;
-            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
-        }
-
-        .featured-work {
-            flex: 0 0 100%;
-            display: flex;
-            gap: 3rem;
             align-items: center;
             justify-content: center;
-            padding: 0;
-            opacity: 1;
-            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .featured-work.active {
-            opacity: 1;
-        }
-
-        .work-image {
-            flex: 0 0 500px;
-            height: 450px;
-            background: white;
-            padding: 12px;
-            box-shadow: none;
+            padding: 16px;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .work-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        .post-image:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
-        .work-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        /* Default: Portrait images - fit within box maintaining aspect ratio */
+        .post-image img {
+            max-width: 100%;
+            max-height: 100%;
             display: block;
         }
 
-        .work-info {
-            flex: 1 1 auto;
-            max-width: none;
-            padding: 0 4rem 0 0;
+        /* Landscape images - same size as overlay box */
+        .post-image.landscape img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
             display: flex;
             flex-direction: column;
-            overflow: visible;
-            border: none;
-            outline: none;
-            box-shadow: none;
-        }
-
-        .carousel-indicators {
-            display: flex;
             justify-content: center;
-            gap: 0.5rem;
-            margin-top: 3rem;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
         }
 
-        .indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(44, 44, 44, 0.2);
-            cursor: pointer;
-            transition: background 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+        .post-image:hover .image-overlay {
+            opacity: 1;
         }
 
-        .indicator.active {
-            background: var(--biscuit-gold);
+        .overlay-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: var(--warm-off-white);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .overlay-artist {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--biscuit-gold);
+            text-align: center;
+        }
+
+        .post-info {
+            text-align: left;
+            display: none;
+        }
+
+        .post-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin-bottom: 0.1rem;
+            color: var(--deep-charcoal);
+        }
+
+        .post-handle {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--warm-gray);
         }
 
         .work-title {
@@ -509,40 +532,105 @@
         }
 
         .work-instagram {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             margin-top: 0.5rem;
             line-height: 1.6;
             min-height: 1.6em;
+            opacity: 0.7;
         }
 
         .work-instagram a {
             color: var(--warm-gray);
             text-decoration: none;
-            transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             border-bottom: 1px solid transparent;
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.3rem;
             padding: 0.2rem 0;
         }
 
         .work-instagram a:hover {
             color: var(--biscuit-gold);
             border-bottom: 1px solid var(--biscuit-gold);
+            opacity: 1;
         }
 
         .work-instagram svg {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             fill: currentColor;
             flex-shrink: 0;
         }
 
+        /* About Section */
+        .about-section {
+            padding: 4rem 0;
+            background: #F3EFE9;
+            border-top: 1px solid transparent;
+        }
+
+        .about-header {
+            text-align: left;
+            max-width: 1600px;
+            margin: 0 auto 3rem auto;
+            padding: 0 3rem;
+        }
+
+        .about-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 0;
+            color: var(--deep-charcoal);
+            letter-spacing: -0.02em;
+        }
+
+        .about-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .about-block {
+            text-align: left;
+            padding: 0;
+            background: transparent;
+            border: none;
+            transition: all 0.4s ease;
+        }
+
+        .about-block:hover {
+            transform: none;
+        }
+
+        .about-block h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            color: var(--deep-charcoal);
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(214, 179, 112, 0.3);
+        }
+
+        .about-block p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            line-height: 1.9;
+        }
+
         /* Newsletter Section */
         .newsletter {
-            padding: 2rem 0;
-            background: var(--deep-charcoal);
-            color: var(--warm-off-white);
+            padding: 4rem 0;
+            background: #F3EFE9;
+            color: var(--deep-charcoal);
         }
 
         .newsletter-content {
@@ -554,111 +642,117 @@
 
         .newsletter-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
+            font-size: 2.8rem;
             font-weight: 300;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--deep-charcoal);
+            letter-spacing: -0.02em;
         }
 
         .newsletter-description {
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             font-weight: 300;
-            color: rgba(253, 252, 248, 0.8);
+            color: var(--warm-gray);
             margin-bottom: 3rem;
-            line-height: 1.4;
+            line-height: 1.8;
+            max-width: 600px;
         }
 
         .newsletter-form {
             display: flex;
-            gap: 0;
-            max-width: 400px;
+            gap: 1rem;
+            max-width: 600px;
             margin: 0;
         }
 
         .newsletter-input {
             flex: 1;
-            padding: 1rem 1.5rem;
-            border: 1px solid rgba(253, 252, 248, 0.2);
+            padding: 1rem 0;
+            border: none;
+            border-bottom: 1px solid rgba(44, 44, 44, 0.2);
             background: transparent;
-            color: var(--warm-off-white);
+            color: var(--deep-charcoal);
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 1rem;
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .newsletter-input::placeholder {
-            color: rgba(253, 252, 248, 0.5);
+            color: rgba(44, 44, 44, 0.4);
         }
 
         .newsletter-input:focus {
-            border-color: var(--biscuit-gold);
+            border-bottom-color: var(--biscuit-gold);
         }
 
         .newsletter-button {
             padding: 1rem 2.5rem;
-            background: var(--biscuit-gold);
+            background: transparent;
             color: var(--deep-charcoal);
-            border: none;
+            border: 1px solid rgba(44, 44, 44, 0.2);
             font-family: inherit;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.9rem;
+            font-weight: 400;
             cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.02em;
+            transition: all 0.4s ease;
+            letter-spacing: 0.05em;
+            text-transform: none;
         }
 
         .newsletter-button:hover {
-            background: var(--sage-green);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(168, 181, 160, 0.4);
+            background: var(--deep-charcoal);
+            color: var(--cream-bg);
+            border-color: var(--deep-charcoal);
         }
 
         /* Footer */
         .footer {
-            padding: 2rem 0 1rem;
+            padding: 4rem 0 3rem;
             background: var(--cream-bg);
-            border-top: 1px solid rgba(44, 44, 44, 0.1);
+            border-top: 1px solid transparent;
         }
 
         .footer-content {
             display: flex;
             justify-content: flex-start;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             max-width: 1600px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto 3rem auto;
             padding: 0 3rem;
         }
 
         .footer-section h4 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
             color: var(--deep-charcoal);
+            text-transform: none;
+            letter-spacing: -0.02em;
         }
 
         .footer-section a {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1rem;
+            gap: 1rem;
+            font-size: 1.05rem;
             font-weight: 300;
             color: var(--warm-gray);
             text-decoration: none;
-            line-height: 1.5;
-            margin-bottom: 0.8rem;
-            transition: all 0.3s ease;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
         }
 
         .footer-section a span {
             border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .footer-section a:hover span {
-            border-bottom: 1px solid var(--biscuit-gold);
-            color: var(--biscuit-gold);
+            border-bottom: 1px solid var(--deep-charcoal);
+            color: var(--deep-charcoal);
         }
 
         .footer-section svg {
@@ -667,8 +761,8 @@
 
         .footer-bottom {
             text-align: left;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(44, 44, 44, 0.1);
+            padding-top: 3rem;
+            border-top: 1px solid rgba(44, 44, 44, 0.08);
             max-width: 1600px;
             margin: 0 auto;
             padding-left: 3rem;
@@ -676,9 +770,10 @@
         }
 
         .footer-bottom p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 300;
-            color: var(--warm-gray);
+            color: rgba(44, 44, 44, 0.4);
+            letter-spacing: 0.02em;
         }
 
         /* Fullscreen Gallery */
@@ -867,6 +962,28 @@
             color: var(--warm-off-white);
         }
 
+        /* Desktop Layout - Side by Side */
+        @media (min-width: 769px) {
+            .hero-content {
+                flex-direction: row;
+                gap: 4rem;
+                padding: 0 4rem;
+                align-items: center;
+            }
+
+            .hero-text {
+                flex: 0 0 400px;
+            }
+
+            .hero-gallery {
+                flex: 1;
+            }
+
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .header {
@@ -894,15 +1011,16 @@
             }
 
             .hero {
-                padding-top: 10rem;
-                padding-bottom: 3rem;
+                padding-top: 8rem;
+                padding-bottom: 0;
             }
 
             .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
+                flex-direction: column;
+                gap: 3rem;
                 padding: 0 1.5rem;
                 max-width: 100%;
+                align-items: center;
             }
 
             .hero-text {
@@ -910,19 +1028,30 @@
                 padding: 0 0.5rem;
                 max-width: 100%;
                 overflow: hidden;
+                margin-bottom: 0;
             }
 
-            .hero-gallery {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                padding: 0;
+            .instagram-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                row-gap: 2rem;
             }
 
-            .carousel-container {
-                max-width: 400px;
-                width: 100%;
-                margin: 0 auto;
+            .instagram-post:nth-child(n+3) {
+                display: none;
+            }
+
+            .post-image {
+                height: 400px;
+                margin-bottom: 1rem;
+            }
+
+            .image-overlay {
+                display: none !important;
+            }
+
+            .post-info {
+                display: block;
             }
 
             .hero-title {
@@ -958,10 +1087,32 @@
                 padding: 0 2rem;
             }
 
+            .about-section {
+                padding: 4rem 0;
+            }
+
+            .about-header {
+                padding: 0 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 2rem;
+            }
+
+            .about-block {
+                padding: 0;
+            }
+
+            .about-block:hover {
+                transform: none;
+            }
+
             .featured-work {
                 flex-direction: column;
                 text-align: center;
-                gap: 2rem;
+                gap: 1.5rem;
                 align-items: center;
                 padding: 0;
             }
@@ -970,7 +1121,10 @@
                 flex: none;
                 width: 100%;
                 max-width: 400px;
-                height: 350px;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                min-height: 300px;
+                max-height: 350px;
                 margin: 0;
                 padding: 10px;
             }
@@ -1020,6 +1174,14 @@
                 padding: 3rem 0;
             }
 
+            .newsletter-title {
+                font-size: 2rem;
+            }
+
+            .newsletter-description {
+                font-size: 1rem;
+            }
+
             .cookie-banner {
                 padding: 1rem;
             }
@@ -1038,21 +1200,21 @@
 
         @media (max-width: 480px) {
             .hero {
-                padding-top: 9rem;
+                padding-top: 7rem;
             }
-            
+
             .header-container {
                 padding: 0 1rem;
             }
-            
+
             .logo {
                 font-size: 1.8rem;
             }
-            
+
             .nav-menu {
                 gap: 1.5rem;
             }
-            
+
             .nav-menu a {
                 font-size: 1rem;
             }
@@ -1100,15 +1262,30 @@
                 <h1 class="hero-title">Championing contemporary photographers with presence and&nbsp;perspective.</h1>
             </div>
             <div class="hero-gallery">
-                <div class="carousel-container">
-                    <div class="carousel-track">
-                        <!-- Carousel will be populated dynamically from instagram-feed.json -->
-                    </div>
-
-                    <div class="carousel-indicators">
-                        <!-- Indicators will be populated dynamically -->
-                    </div>
+                <div class="instagram-grid" id="instagramGrid">
+                    <!-- Grid will be populated dynamically from instagram-feed.json -->
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-header">
+            <h2 class="about-title">Launching soon</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-block">
+                <h2>Our focus</h2>
+                <p>Contemporary work set in context and culture. Subtlety over spectacle.</p>
+            </div>
+            <div class="about-block">
+                <h2>What we do</h2>
+                <p>We represent and champion artists by helping tell their stories and making collecting accessible. We support artists and help collectors find work that brings joy.</p>
+            </div>
+            <div class="about-block">
+                <h2>About us</h2>
+                <p>Founded in Amsterdam to represent emerging photographers. We work for our artists to connect them with collectors who want to discover contemporary work.</p>
             </div>
         </div>
     </section>
@@ -1135,13 +1312,13 @@
     <footer class="footer" id="contact">
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Enquiries</h4>
-                <a href="mailto:hello@elsewherecollective.nl">
+                <h4>Get in touch</h4>
+                <a href="mailto:alex@elsewherecollective.nl">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#D6B370" stroke-width="1.5" fill="none"/>
                         <path d="M22 6L12 13L2 6" stroke="#D6B370" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>hello@elsewherecollective.nl</span>
+                    <span>alex@elsewherecollective.nl</span>
                 </a>
                 <a href="https://instagram.com/else.where.collective" target="_blank">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1172,7 +1349,6 @@
     <script>
         let galleryWorks = [];
         let allPosts = [];
-        let rotationInterval;
 
         // Load gallery works from JSON
         async function loadGalleryWorks() {
@@ -1181,17 +1357,11 @@
                 const data = await response.json();
                 allPosts = data.posts;
 
-                // Initial random selection
+                // Initial random selection - only happens once per page load
                 selectRandomWorks();
 
                 // Preload images for smoother transitions
                 preloadImages();
-
-                // Start rotation every 8 seconds for dynamic experience
-                rotationInterval = setInterval(() => {
-                    selectRandomWorks();
-                    preloadImages();
-                }, 8000);
             } catch (error) {
                 console.error('Error loading gallery works:', error);
                 // Fallback to empty array
@@ -1203,125 +1373,87 @@
             // Filter out posts without captions
             const postsWithCaptions = allPosts.filter(post => post.caption && post.caption.trim() !== '');
 
-            // Shuffle and pick 5 random works
+            // Shuffle and pick 6 random works for grid
             const shuffled = [...postsWithCaptions].sort(() => 0.5 - Math.random());
-            galleryWorks = shuffled.slice(0, 5).map(post => ({
-                image: post.cloudinary_url || post.image_url,
+            galleryWorks = shuffled.slice(0, 6).map(post => ({
+                image: post.cloudinary_cropped_url || post.cloudinary_url || post.image_url,
                 title: post.title,
                 artist: post.artist,
                 artist_handle: post.artist_handle,
                 description: post.caption
             }));
 
-            // Re-render the carousel if it's already loaded
-            if (document.querySelector('.carousel-track')) {
-                renderCarousel();
+            // Re-render the grid if it's already loaded
+            if (document.querySelector('.instagram-grid')) {
+                renderGrid();
             }
         }
 
         function preloadImages() {
-            // Preload next batch of images for instant loading
-            galleryWorks.forEach(work => {
-                const img = new Image();
-                img.src = work.image;
-            });
+            // Preload first image immediately for instant display
+            if (galleryWorks.length > 0) {
+                const firstImg = new Image();
+                firstImg.src = galleryWorks[0].image;
+            }
+
+            // Preload remaining images with slight delay
+            setTimeout(() => {
+                galleryWorks.slice(1).forEach(work => {
+                    const img = new Image();
+                    img.src = work.image;
+                });
+            }, 100);
         }
 
-        function renderCarousel() {
-            const track = document.querySelector('.carousel-track');
-            const indicators = document.querySelector('.carousel-indicators');
+        function renderGrid() {
+            const grid = document.querySelector('.instagram-grid');
 
-            if (!track || !indicators || galleryWorks.length === 0) return;
+            if (!grid || galleryWorks.length === 0) return;
 
-            // Render slides
-            track.innerHTML = galleryWorks.map((work, index) => `
-                <div class="featured-work ${index === 0 ? 'active' : ''}">
-                    <div class="work-image" onclick="openFullscreen(${index})">
-                        <img src="${work.image}" alt="${work.title} by ${work.artist}" loading="lazy" decoding="async">
+            // Render grid
+            grid.innerHTML = galleryWorks.map((work, index) => `
+                <div class="instagram-post">
+                    <div class="post-image" onclick="openFullscreen(${index})">
+                        <img src="${work.image}" alt="${work.title} by ${work.artist}" loading="lazy" decoding="async" onload="detectImageOrientation(this)">
+                        <div class="image-overlay">
+                            <div class="overlay-title">${work.title}</div>
+                            <div class="overlay-artist">${work.artist}</div>
+                        </div>
                     </div>
-                    <div class="work-info">
-                        <h3 class="work-title">${work.title}</h3>
-                        <p class="work-artist">${work.artist}</p>
-                        <p class="work-description">${work.description}</p>
-                        ${work.artist_handle ? `<p class="work-instagram"><a href="${work.artist_handle}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                            ${work.artist}
-                        </a></p>` : ''}
+                    <div class="post-info">
+                        <div class="post-title">${work.title}</div>
+                        ${work.artist_handle ? `<div class="post-handle">${work.artist}</div>` : ''}
                     </div>
                 </div>
             `).join('');
-
-            // Render indicators
-            indicators.innerHTML = galleryWorks.map((work, index) => `
-                <span class="indicator ${index === 0 ? 'active' : ''}"></span>
-            `).join('');
-
-            // Reinitialize carousel functionality
-            initCarousel();
         }
 
-        let currentSlide = 0;
-        let slideInterval;
+        // Detect image orientation and apply class
+        function detectImageOrientation(img) {
+            const container = img.closest('.post-image');
+            if (!container) return;
 
-        function initCarousel() {
-            // Carousel functionality
-            const slides = document.querySelectorAll('.featured-work');
-            const indicators = document.querySelectorAll('.indicator');
+            // Remove existing orientation classes
+            container.classList.remove('portrait', 'landscape', 'claudia-portrait');
 
-            if (slides.length === 0 || indicators.length === 0) return;
-
-            // Add click handlers to indicators
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    showSlide(index);
-                    stopSlideshow();
-                    startSlideshow();
-                });
-            });
-
-            function showSlide(index) {
-                const currentSlides = document.querySelectorAll('.featured-work');
-                const currentIndicators = document.querySelectorAll('.indicator');
-
-                currentSlides.forEach(slide => slide.classList.remove('active'));
-                currentIndicators.forEach(indicator => indicator.classList.remove('active'));
-
-                if (currentSlides[index]) {
-                    const trackContainer = document.querySelector('.carousel-track');
-                    trackContainer.style.transform = `translateX(-${index * 100}%)`;
-
-                    currentSlides[index].classList.add('active');
-                    currentIndicators[index].classList.add('active');
-                    currentSlide = index;
-                }
+            // Check if this is Claudia's image (portrait that needs contain)
+            const overlayTitle = container.querySelector('.overlay-title');
+            if (overlayTitle && overlayTitle.textContent === 'Metamorphosis') {
+                container.classList.add('claudia-portrait');
+                return;
             }
 
-            function nextSlide() {
-                const currentSlides = document.querySelectorAll('.featured-work');
-                currentSlide = (currentSlide + 1) % currentSlides.length;
-                showSlide(currentSlide);
+            // Detect orientation based on natural dimensions
+            if (img.naturalWidth > img.naturalHeight) {
+                // Landscape orientation
+                container.classList.add('landscape');
+            } else {
+                // Portrait orientation
+                container.classList.add('portrait');
             }
-
-            function startSlideshow() {
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 10000);
-            }
-
-            function stopSlideshow() {
-                clearInterval(slideInterval);
-            }
-
-            showSlide(0);
-            startSlideshow();
-
-            const carouselContainer = document.querySelector('.carousel-container');
-            carouselContainer.removeEventListener('mouseenter', stopSlideshow);
-            carouselContainer.removeEventListener('mouseleave', startSlideshow);
-            carouselContainer.addEventListener('mouseenter', stopSlideshow);
-            carouselContainer.addEventListener('mouseleave', startSlideshow);
         }
+
+        // Grid doesn't need carousel functions
 
         // Fullscreen Gallery - Global scope
         let currentFullscreenIndex = 0;
@@ -1427,6 +1559,7 @@
                 });
             });
         });
+
     </script>
 </body>
 </html>
