@@ -186,12 +186,7 @@
             height: auto;
             display: block;
             object-fit: cover;
-            transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             background: #f0f0f0;
-        }
-
-        .post-image:hover img {
-            opacity: 0.3;
         }
 
         .image-overlay {
@@ -205,9 +200,9 @@
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.4s ease;
             pointer-events: none;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.9);
             padding: 2rem;
         }
 
@@ -587,7 +582,7 @@
             }
         }
 
-        // Render posts to the grid (show only 8 most recent)
+        // Render posts to the grid (show only 12 most recent)
         function renderPosts() {
             const grid = document.getElementById('instagram-grid');
 
@@ -596,8 +591,8 @@
                 return;
             }
 
-            // Only show 8 most recent posts for faster loading
-            const postsToShow = instagramPosts.slice(0, 8);
+            // Only show 12 most recent posts for faster loading
+            const postsToShow = instagramPosts.slice(0, 12);
 
             grid.innerHTML = postsToShow.map((post, index) => `
                 <article class="instagram-post">
