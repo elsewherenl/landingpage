@@ -207,6 +207,7 @@
             --warm-gray: #8A8580;
             --warm-off-white: #FDFCF8;
             --biscuit-gold: #D6B370;
+            --terracotta-red: #95392E;
             --sage-green: #A8B5A0;
             --soft-terracotta: #C4A394;
         }
@@ -565,7 +566,7 @@
 
         /* About Section */
         .about-section {
-            padding: 4rem 0;
+            padding: 2rem 0 4rem 0;
             background: #F3EFE9;
             border-top: 1px solid transparent;
         }
@@ -616,7 +617,18 @@
             margin-bottom: 1.5rem;
             color: var(--deep-charcoal);
             padding-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(214, 179, 112, 0.3);
+            border-bottom: none;
+            position: relative;
+        }
+
+        .about-block h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 350px;
+            height: 1px;
+            background: var(--terracotta-red);
         }
 
         .about-block p {
@@ -624,11 +636,12 @@
             font-weight: 300;
             color: var(--warm-gray);
             line-height: 1.9;
+            max-width: 380px;
         }
 
         /* Newsletter Section */
         .newsletter {
-            padding: 4rem 0;
+            padding: 2rem 0 4rem 0;
             background: #F3EFE9;
             color: var(--deep-charcoal);
         }
@@ -683,7 +696,7 @@
         }
 
         .newsletter-input:focus {
-            border-bottom-color: var(--biscuit-gold);
+            border-bottom-color: var(--terracotta-red);
         }
 
         .newsletter-button {
@@ -708,7 +721,7 @@
 
         /* Footer */
         .footer {
-            padding: 4rem 0 3rem;
+            padding: 2rem 0 3rem;
             background: var(--cream-bg);
             border-top: 1px solid transparent;
         }
@@ -1064,7 +1077,7 @@
                 padding: 0;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
-                hyphens: auto;
+                hyphens: none;
             }
 
             .hero-subtitle {
@@ -1273,7 +1286,7 @@
     <section class="hero fade-in" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="hero-title">Championing contemporary photographers with presence and&nbsp;perspective.</h1>
+                <h1 class="hero-title">Championing contemporary&nbsp;photographers with presence and&nbsp;perspective.</h1>
             </div>
             <div class="hero-gallery">
                 <div class="instagram-grid" id="instagramGrid">
@@ -1291,15 +1304,15 @@
         <div class="about-content">
             <div class="about-block">
                 <h2>Our focus</h2>
-                <p>Contemporary work set in context and culture. Subtlety over spectacle.</p>
+                <p>Contemporary photography set in context and culture. Subtlety over spectacle.</p>
             </div>
             <div class="about-block">
                 <h2>What we do</h2>
-                <p>We represent and champion artists by helping tell their stories and making collecting accessible. We support artists and help collectors find work that brings joy.</p>
+                <p>We represent artists and help collectors discover limited edition, collectible works of art.</p>
             </div>
             <div class="about-block">
                 <h2>About us</h2>
-                <p>Founded in Amsterdam to represent emerging photographers. We work for our artists to connect them with collectors who want to discover contemporary work.</p>
+                <p>Based in Amsterdam, supporting emerging and established artists.</p>
             </div>
         </div>
     </section>
@@ -1329,16 +1342,16 @@
                 <h4>Get in touch</h4>
                 <a href="mailto:alex@elsewherecollective.nl">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#D6B370" stroke-width="1.5" fill="none"/>
-                        <path d="M22 6L12 13L2 6" stroke="#D6B370" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="#95392E" stroke-width="1.5" fill="none"/>
+                        <path d="M22 6L12 13L2 6" stroke="#95392E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>alex@elsewherecollective.nl</span>
                 </a>
                 <a href="https://www.instagram.com/elsewhere___collective/" target="_blank">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#D6B370" stroke-width="1.5" fill="none"/>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="#D6B370" stroke-width="1.5" fill="none"/>
-                        <circle cx="17.5" cy="6.5" r="1.5" fill="#D6B370"/>
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#95392E" stroke-width="1.5" fill="none"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="#95392E" stroke-width="1.5" fill="none"/>
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="#95392E"/>
                     </svg>
                     <span>@elsewhere___collective</span>
                 </a>
