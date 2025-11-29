@@ -975,8 +975,32 @@
             color: var(--warm-off-white);
         }
 
+        /* Tablet Layout - Vertical with 2 columns */
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .hero-content {
+                flex-direction: column;
+                gap: 3rem;
+                padding: 0 3rem;
+                align-items: center;
+            }
+
+            .hero-text {
+                text-align: center;
+                width: 100%;
+            }
+
+            .hero-gallery {
+                width: 100%;
+            }
+
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
         /* Desktop Layout - Side by Side */
-        @media (min-width: 769px) {
+        @media (min-width: 1024px) {
             .hero-content {
                 flex-direction: row;
                 gap: 4rem;
