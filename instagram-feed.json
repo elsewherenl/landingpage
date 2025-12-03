@@ -241,6 +241,18 @@
       "artist_handle": "https://www.instagram.com/ignacioinfanti/",
       "permalink": "https://www.instagram.com/p/DRfHZ4sCBG0/",
       "timestamp": "25/11/2025"
+    },
+    {
+      "id": "21",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Andrew%20Owen%202.jpg?raw=true",
+      "cloudinary_url": "",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764780063/AO_kmgsay.jpg",
+      "title": "In Light Years",
+      "artist": "Andrew Owen",
+      "artist_handle": "https://www.instagram.com/andrewowen/",
+      "caption": "Fire and snow are testament to nature's power in California's extreme weather this decade.",
+      "permalink": "https://www.instagram.com/p/DRu11r0CE7B/?img_index=1",
+      "timestamp": "01/12/2025"
     }
 
   ]
