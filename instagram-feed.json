@@ -3,7 +3,6 @@
     {
       "id": "1",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/Mahmoud%20Kehtab,%20Farewell%20to%20Elders.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019392/Mahmoud_K_y1nub5.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764175657/Mahmoud_K_vopjna.jpg",
       "title": "Farewell to Elders",
       "artist": "Mahmoud Khatab",
@@ -15,7 +14,6 @@
     {
       "id": "2",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/Brigitte%20Bourger.png?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019310/Briggite_B_yrcnkv.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764175771/Brigitte_B_agpfpd.jpg",
       "title": "Somewhere in Africa",
       "artist": "Brigitte Bourger",
@@ -27,8 +25,7 @@
     {
       "id": "3",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Teoswa%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019437/Yimin_Chen_ggngru.jpg",
-      "cloudinary_cropped_url": "",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764845809/Yimin_Chen_entrtb.png",
       "title": "Teoswa",
       "artist": "Yimin Chen",
       "artist_handle": "https://www.instagram.com/eindchan/",
@@ -39,8 +36,7 @@
     {
       "id": "4",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Orestis%20Ilias%2C%20The%20Cube%2015.08.25.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019526/Orestis_Ilias_ftre3u.jpg",
-      "cloudinary_cropped_url": "",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764925344/Orestis_Cube_Cloudinary_j9astc.jpg",
       "title": "The Cube",
       "artist": "Orestis Ilias",
       "artist_handle": "https://www.instagram.com/orestis.ilias/",
@@ -51,7 +47,6 @@
     {
       "id": "5",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Book%20of%20Days%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973385/Alvin_Ng_1_xmpnrm.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174530/Alvin_Ng_Book_of_Days_1_kwhatg.jpg",
       "title": "Book of Days",
       "artist": "Alvin Ng",
@@ -63,7 +58,6 @@
     {
       "id": "6",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Murray%20Ballard%2021.08.25.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Murray_Ballard_chog5p.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174538/Murray_Ballard_wyhyix.jpg",
       "title": "Torre San Giovanni",
       "artist": "Murray Ballard",
@@ -75,7 +69,6 @@
     {
       "id": "7",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Claire%20Amaouche%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973387/Claire_Amaouche_epmibv.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174533/Claire_A_ah72bz.jpg",
       "title": "Of All The Wild Paths",
       "artist": "Claire Amaouche",
@@ -87,7 +80,6 @@
     {
       "id": "8",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Fabio%20Pelinga%20Transitions.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973386/Fabio_Pelinga_ttosws.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174534/Fabio_P_jurllf.jpg",
       "title": "Transitions",
       "artist": "Fabio Pelinga",
@@ -99,7 +91,6 @@
     {
       "id": "9",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/1.%20Cardi.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763019547/Claudia_F_g7ronn.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174534/Claudia_F_qwcmbh.jpg",
       "title": "Metamorphosis",
       "artist": "Claudia Fuggetti",
@@ -111,8 +102,7 @@
     {
       "id": "10",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Kim%20Woo%20Young%201%20Lower%20Res.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Kim_Woo_Young_a9xisf.jpg",
-      "cloudinary_cropped_url": "",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764925050/Kim_Woo_Young_cropped_bkjunj.jpg",
       "title": "The Vastness",
       "artist": "Kim Woo Young",
       "artist_handle": "https://www.instagram.com/kimwooyoung_com/",
@@ -123,8 +113,7 @@
     {
       "id": "11",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Nick%20Meek%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Nick_Meek_ym902a.jpg",
-      "cloudinary_cropped_url": "",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764925100/Nick_Meek_Cloud_vwh01z.jpg",
       "title": "Between Sakura",
       "artist": "Nick Meek",
       "artist_handle": "https://www.instagram.com/nickmeek/",
@@ -135,7 +124,6 @@
     {
       "id": "12",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bruno%20%231.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973386/Bruno_Hadjih_mwty4e.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174535/bruno-hadjih_1_wt0tot.jpg",
       "title": "Wird",
       "artist": "Bruno Hadjih",
@@ -147,7 +135,6 @@
     {
       "id": "13",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bertrand%20Stofleth%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973386/Bertrand_Stofleth_aozli4.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174533/Betrand_Stofleth_1_2_jamrkf.jpg",
       "title": "Rhodanie",
       "artist": "Bertrand Stofleth",
@@ -159,7 +146,6 @@
     {
       "id": "14",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Zhang%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973391/Zhang_Kechun_ds2o9q.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174540/Zhang_1_1_ys5zfn.jpg",
       "title": "The Yellow River",
       "artist": "Zhang Kechun",
@@ -171,7 +157,6 @@
     {
       "id": "15",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Miriam%20Stanke%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Miriam_Stanke_j1g1zc.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174540/Miriam_Stanke_c9hc16.jpg",
       "title": "Bakhtiari - Nomads of Iran",
       "artist": "Miriam Stanke",
@@ -183,7 +168,6 @@
     {
       "id": "16",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Kevin%20Scali%201%20lower%20res.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Kevin_Scali_vwsmj2.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174535/Kevin_S_lq1nlo.jpg",
       "title": "Abstract landscapes, Central Italy",
       "artist": "Kevin Scali",
@@ -195,7 +179,6 @@
     {
       "id": "17",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Terra%20Firma%201%20Lower%20res.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1762973390/Parth_Gupta_apgh8u.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174542/Parth_Gupta_seuebt.jpg",
       "title": "Terra Firma",
       "artist": "Parth Gupta",
@@ -208,7 +191,6 @@
 {
       "id": "18",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Nicola%20Cappellari%201.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1763644975/Nicola_C_1_Lower_Res_px0zzu.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174537/Nicola_C_ssaihv.jpg",
       "title": "Schleswig-Holstein",
       "artist": "Nicola Cappellari",
@@ -221,7 +203,6 @@
 {
       "id": "19",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/PW%203.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764149230/PW_3_xa9ovt.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174542/PW_Restricted_Images_3_2_unxv20.jpg",
       "title": "Restricted Images",
       "artist": "Patrick Waterhouse",
@@ -234,7 +215,6 @@
 {
       "id": "20",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/251125%20Ignacio%20Infanti.jpg?raw=true",
-      "cloudinary_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764149362/251125_Ignacio_Infanti_vcpfpx.jpg",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764174534/Ignacio_I_jqnrrf.jpg",
       "title": "Untitled",
       "artist": "Ignacio Infanti",
@@ -245,7 +225,6 @@
     {
       "id": "21",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Andrew%20Owen%202.jpg?raw=true",
-      "cloudinary_url": "",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dsmrzyzub/image/upload/v1764780063/AO_kmgsay.jpg",
       "title": "In Light Years",
       "artist": "Andrew Owen",
