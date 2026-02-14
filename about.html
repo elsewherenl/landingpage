@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>About | Elsewhere Collective | Amsterdam Photography Curation</title>
-    <meta name="title" content="About | Elsewhere Collective | Amsterdam Photography Curation">
-    <meta name="description" content="Amsterdam-based photography collective championing emerging artists. Curating work that challenges perceptions, rewards contemplation, and reframes how we see ourselves and our world.">
+    <title>About | Elsewhere Collective</title>
+    <meta name="title" content="About | Elsewhere Collective">
+    <meta name="description" content="Elsewhere Collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
+    <meta name="robots" content="index, follow">
     <meta name="keywords" content="Amsterdam photography gallery, art curation, emerging photographers, contemporary photography Amsterdam, photography collective, art discovery">
 
     <!-- Canonical URL -->
@@ -16,15 +17,15 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/about.html">
-    <meta property="og:title" content="About Elsewhere Collective | Photography Curation in Amsterdam">
-    <meta property="og:description" content="A space for discovering and collecting contemporary photography. We seek different viewpoints and champion artists with perspectives worth seeing.">
+    <meta property="og:title" content="About | Elsewhere Collective">
+    <meta property="og:description" content="Elsewhere Collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://elsewherecollective.nl/about.html">
-    <meta property="twitter:title" content="About Elsewhere Collective | Photography Curation in Amsterdam">
-    <meta property="twitter:description" content="A space for discovering and collecting contemporary photography. We seek different viewpoints and champion artists with perspectives worth seeing.">
+    <meta property="twitter:title" content="About | Elsewhere Collective">
+    <meta property="twitter:description" content="Elsewhere Collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Favicon -->
@@ -56,6 +57,10 @@
             --biscuit-gold: #D6B370;
             --sage-green: #A8B5A0;
             --soft-terracotta: #C4A394;
+            --page-top-desktop: 7.25rem;
+            --page-top-mobile: 10rem;
+            --page-top-small: 9rem;
+            --title-body-gap: 1.5rem;
         }
 
         * {
@@ -72,13 +77,14 @@
             line-height: 1.6;
         }
 
+        /* Header */
         .header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(243, 239, 233, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+            background: rgba(243, 239, 233, 0.92); /* softer paper feel */
+            backdrop-filter: blur(8px); /* reduced blur */
+            border-bottom: none; /* remove hard UI divider */
             z-index: 1000;
             padding: 1.5rem 0;
         }
@@ -95,19 +101,19 @@
         .logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.2rem;
-            font-weight: 600;
+            font-weight: 500; /* slightly lighter */
             color: var(--deep-charcoal);
             text-decoration: none;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             text-transform: lowercase;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, letter-spacing 0.3s ease;
         }
 
         .logo:hover {
-            color: var(--biscuit-gold);
-            letter-spacing: 0.08em;
-            transform: scale(1.02);
+            opacity: 1;
+            letter-spacing: 0.06em;
+            transform: none;
         }
 
         .nav-menu {
@@ -118,23 +124,24 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--deep-charcoal);
+            color: rgba(44,44,44,0.75);
             font-weight: 300;
-            font-size: 1.1rem;
-            border-bottom: 1px solid transparent;
-            transition: all 0.4s ease;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            border-bottom: none;
+            transition: opacity 0.3s ease, color 0.3s ease;
         }
 
         .nav-menu a:hover {
+            opacity: 0.5;
             color: var(--deep-charcoal);
-            border-bottom: 1px solid var(--deep-charcoal);
         }
 
         /* Compact Two-Column Layout */
         .about-container {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 10rem 3rem 4rem;
+            padding: var(--page-top-desktop) 3rem 4rem;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
@@ -145,26 +152,38 @@
         .text-column {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 0.6rem;
         }
 
         .text-block h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             font-weight: 300;
             line-height: 1.2;
-            margin-bottom: 1.2rem;
+            margin-bottom: var(--title-body-gap);
             color: var(--deep-charcoal);
+            letter-spacing: -0.02em;
+        }
+
+        @media (min-width: 1280px) {
+            .text-block h1 {
+                font-size: 2.2rem;
+                line-height: 1.25;
+                letter-spacing: -0.015em;2
+            }
         }
 
         .text-block h2 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.9rem;
             font-weight: 500;
-            text-transform: uppercase;
             letter-spacing: 0.15em;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             color: var(--deep-charcoal);
+        }
+
+        .contact-block {
+            margin-top: 2rem;
         }
 
         .text-block p {
@@ -177,7 +196,10 @@
 
         .text-block .subtitle {
             font-size: 1rem;
+            font-weight: 300;
             line-height: 1.6;
+            color: rgba(44, 44, 44, 0.65);
+            max-width: 760px;
         }
 
         .name-meaning {
@@ -186,16 +208,33 @@
             color: var(--biscuit-gold);
             margin-top: 0.5rem;
         }
-
+        
         .location {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 300;
-            letter-spacing: 0.05em;
             color: var(--warm-gray);
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(44, 44, 44, 0.1);
+            margin-top: 0.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-links a {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--deep-charcoal);
+            opacity: 0.85;
         }
 
         /* Right Column - Images */
@@ -204,7 +243,7 @@
             flex-direction: column;
             gap: 2rem;
             position: sticky;
-            top: 10rem;
+            top: var(--page-top-desktop);
         }
 
         .image-placeholder {
@@ -223,31 +262,50 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
         }
 
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
        /* Mobile Responsive */
-@media (max-width: 968px) {
-    /* FIX 1: Centered header */
-    .header-container {
-        padding: 0 2rem;
-        flex-direction: column;
-        gap: 0.75rem;
-        align-items: center; /* CENTER everything */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem 0;
     }
 
-    /* FIX 2: Center the logo */
+    .header-container {
+        padding: 0 1.5rem;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
     .logo {
         text-align: center;
         width: 100%;
+        margin-bottom: 0;
     }
 
-    /* FIX 3: Center navigation */
     .nav-menu {
+        gap: 2rem;
         justify-content: center;
         width: 100%;
+        margin-top: 0;
     }
 
     /* FIX 4: Add proper spacing for content below header */
     .about-container {
-        padding: 10rem 2rem 4rem; /* Increased from 8rem to 10rem */
+        padding: var(--page-top-mobile) 1.5rem 4rem; /* Increased from 8rem to 10rem and side padding reduced */
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: center; /* Center all text on mobile */
@@ -285,7 +343,7 @@
 /* Extra small screens */
 @media (max-width: 480px) {
     .about-container {
-        padding: 9rem 1.5rem 3rem;
+        padding: var(--page-top-small) 1.5rem 3rem;
     }
     
     .logo {
@@ -310,34 +368,28 @@
                 <ul class="nav-menu">
                     <li><a href="about.html">About</a></li>
                     <li><a href="spotlight.html">Spotlight</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="about-container">
+    <main class="about-container fade-in">
         <!-- Left Column: Text Content -->
         <div class="text-column">
             <section class="text-block">
-                <h1>A space for discovering and collecting contemporary photography.</h1>
-                <p class="subtitle">We champion emerging artists who challenge perceptions and reward contemplation. </p>
+                <h1>Contemporary work set in context and culture. Subtlety over spectacle.</h1>
+                <p class="subtitle">We started Elsewhere Collective to support photographers and help collectors discover new work and perspectives.</p>
+                <p class="subtitle">Our ambition is to create a curated space to discover and collect new art.</p>
+                <p class="subtitle">We are drawn to works that bring us closer to ourselves and our world, works with a sense of mystery that stay with you and continue to unfold over time.</p>
+                <p class="location">Amsterdam, 2026.</p>
             </section>
 
-            <section class="text-block">
-                <h2>Our Focus</h2>
-                <p>Contemporary work set in context and culture. Subtlety over spectacle.</p>
-            </section>
-
-            <section class="text-block">
-                <h2>What We Do</h2>
-                <p>We represent and champion artists by helping tell their stories and making collecting accessible. We support artists and help collectors find work that brings joy.</p>
-            </section>
-
-            <section class="text-block">
-                <h2>About Elsewhere Collective</h2>
-                <p>Founded in Amsterdam to represent emerging photographers. We work for our artists to connect them with collectors who want to discover contemporary work.</p>
-                <p>Elsewhere because we seek different viewpoints. Collective because we champion artists and build sustainable careers through representation. </p>
+            <section class="text-block contact-block">
+                <h2>Contact</h2>
+                <div class="contact-links">
+                    <a href="mailto:alex@elsewherecollective.nl">alex@elsewherecollective.nl</a>
+                    <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere___collective</a>
+                </div>
             </section>
         </div>
 
