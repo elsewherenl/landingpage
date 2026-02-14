@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Spotlight | Featured Photographers | Elsewhere Collective</title>
-    <meta name="title" content="Spotlight | Featured Photographers | Elsewhere Collective">
-    <meta name="description" content="Explore our curated selection of contemporary photographers. Discover emerging artists with distinctive perspectives, from cultural narratives to poetic introspection.">
+    <title>Spotlight | Elsewhere Collective</title>
+    <meta name="title" content="Spotlight | Elsewhere Collective">
+    <meta name="description" content="Discover emerging and established photographers featured by Elsewhere Collective. A curated selection of contemporary work to explore and collect.">
+    <meta name="robots" content="index, follow">
     <meta name="keywords" content="featured photographers, photography collection, emerging artists, contemporary photography portfolio, art discovery, photography spotlight">
 
     <!-- Canonical URL -->
@@ -16,15 +17,15 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/spotlight.html">
-    <meta property="og:title" content="Featured Photographers | Elsewhere Collective Spotlight">
-    <meta property="og:description" content="An evolving visual archive of works that inspire us with their presence and perspective. Discover emerging photographers with distinctive voices.">
+    <meta property="og:title" content="Spotlight | Elsewhere Collective">
+    <meta property="og:description" content="Discover emerging and established photographers featured by Elsewhere Collective. A curated selection of contemporary work to explore and collect.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://elsewherecollective.nl/spotlight.html">
-    <meta property="twitter:title" content="Featured Photographers | Elsewhere Collective Spotlight">
-    <meta property="twitter:description" content="An evolving visual archive of works that inspire us with their presence and perspective. Discover emerging photographers with distinctive voices.">
+    <meta property="twitter:title" content="Spotlight | Elsewhere Collective">
+    <meta property="twitter:description" content="Discover emerging and established photographers featured by Elsewhere Collective. A curated selection of contemporary work to explore and collect.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Favicon -->
@@ -76,13 +77,14 @@
             line-height: 1.5;
         }
 
+        /* Header */
         .header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(243, 239, 233, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+            background: rgba(243, 239, 233, 0.92); /* softer paper feel */
+            backdrop-filter: blur(8px); /* reduced blur */
+            border-bottom: none; /* remove hard UI divider */
             z-index: 1000;
             padding: 1.5rem 0;
         }
@@ -99,19 +101,19 @@
         .logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.2rem;
-            font-weight: 600;
+            font-weight: 500; /* slightly lighter */
             color: var(--deep-charcoal);
             text-decoration: none;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             text-transform: lowercase;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, letter-spacing 0.3s ease;
         }
 
         .logo:hover {
-            color: var(--biscuit-gold);
-            letter-spacing: 0.08em;
-            transform: scale(1.02);
+            opacity: 1;
+            letter-spacing: 0.06em;
+            transform: none;
         }
 
         .nav-menu {
@@ -122,38 +124,58 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--deep-charcoal);
+            color: rgba(44,44,44,0.75);
             font-weight: 300;
-            font-size: 1.1rem;
-            letter-spacing: 0.01em;
-            border-bottom: 1px solid transparent;
-            transition: all 0.4s ease;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            border-bottom: none;
+            transition: opacity 0.3s ease, color 0.3s ease;
         }
 
         .nav-menu a:hover {
+            opacity: 0.5;
             color: var(--deep-charcoal);
-            border-bottom: 1px solid var(--deep-charcoal);
         }
 
         .main {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 10rem 3rem 2rem 3rem;
+            padding: 7.25rem 3rem 2rem 3rem;
         }
 
         .page-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
+            font-size: 2.1rem;
             font-weight: 300;
-            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--deep-charcoal);
             letter-spacing: -0.02em;
+        }
+        @media (min-width: 1280px) {
+            .page-title {
+                font-size: 2.2rem;
+                line-height: 1.25;
+                letter-spacing: -0.015em;
+            }
         }
 
         .page-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 300;
             color: var(--warm-gray);
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .ig-handle {
+            color: var(--biscuit-gold);
+            text-decoration: none;
+            transition: opacity 0.25s ease, color 0.25s ease;
+        }
+
+        .ig-handle:hover {
+            color: var(--deep-charcoal);
+            opacity: 0.6;
         }
 
         /* 2x2 Grid Layout */
@@ -205,13 +227,14 @@
             bottom: 15px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-end;
+            align-items: flex-start;
             opacity: 0;
             transition: opacity 0.4s ease;
             pointer-events: none;
             background: rgba(0, 0, 0, 0.9);
             padding: 2rem;
+            text-align: left;
         }
 
         .post-image:hover .image-overlay {
@@ -220,46 +243,47 @@
 
         .overlay-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.05rem;
             font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.02em;
             color: var(--warm-off-white);
-            margin-bottom: 0.5rem;
-            text-align: center;
+            margin-bottom: 0.2rem;
+            text-align: left;
+            text-transform: none;
         }
 
         .overlay-artist {
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             font-weight: 300;
             color: var(--biscuit-gold);
-            text-align: center;
+            text-align: left;
         }
 
         .post-info {
             display: none;
-            padding: 0 0.5rem;
-            min-height: 140px;
-            text-align: center;
+            text-align: left;
+            margin-top: 0.4rem;
+            padding: 0;
+            min-height: auto;
         }
 
         .post-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.1rem;
             color: var(--deep-charcoal);
-            text-align: center;
+            text-transform: none;
+            letter-spacing: 0.02em;
+            text-align: left;
         }
 
         .post-handle {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--biscuit-gold);
-            margin-bottom: 0.8rem;
-            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            margin-bottom: 0;
+            text-align: left;
         }
 
         .post-caption {
@@ -330,33 +354,50 @@
 
         .fullscreen-caption .caption-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.05rem;
             font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.35rem;
+            text-transform: none;
         }
 
         .fullscreen-caption .caption-artist {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            color: var(--biscuit-gold);
         }
 
         .fullscreen-caption .caption-artist a {
-            color: var(--terracotta-red);
+            color: var(--biscuit-gold);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.25s ease, color 0.25s ease;
         }
 
         .fullscreen-caption .caption-artist a:hover {
             color: var(--warm-off-white);
+            opacity: 0.85;
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .fullscreen-caption .caption-artist svg {
@@ -373,124 +414,131 @@
         }
 
         .close-modal {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            color: var(--warm-off-white);
-            font-size: 3rem;
-            cursor: pointer;
+            position: fixed;
+            top: 0;
+            right: 0;
+            color: white;
+            font-size: 1.5rem;
             font-weight: 300;
-            line-height: 1;
-            transition: color 0.3s ease;
-        }
-
-        .close-modal:hover {
-            color: var(--terracotta-red);
-        }
-
-        .fullscreen-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.75);
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--deep-charcoal);
+            line-height: 1;
+            transition: background 0.2s ease;
+            z-index: 10001;
+        }
+
+        .close-modal:hover {
+            background: rgba(149, 57, 46, 0.9);
+        }
+
+        .fullscreen-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 0;
+            font-size: 1.75rem;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            line-height: 1;
+            padding: 0;
+            z-index: 10002;
         }
 
         .fullscreen-nav:hover {
-            background: var(--terracotta-red);
-            color: white;
-            transform: translateY(-50%) scale(1.1);
+            background: rgba(149, 57, 46, 0.85);
+            transform: translateY(-50%);
         }
 
         .fullscreen-prev {
-            left: 2rem;
+            left: 1rem;
         }
 
         .fullscreen-next {
-            right: 2rem;
+            right: 1rem;
         }
 
         @media (max-width: 768px) {
+            .header {
+                padding: 1rem 0;
+            }
             .header-container {
-                padding: 0 2rem;
+                padding: 0 1.5rem;
                 flex-direction: column;
                 gap: 0.75rem;
                 align-items: center;
             }
-
             .logo {
                 text-align: center;
                 width: 100%;
+                margin-bottom: 0;
             }
-
             .nav-menu {
+                gap: 2rem;
                 justify-content: center;
                 width: 100%;
+                margin-top: 0;
             }
-
             .main {
-                padding: 10rem 2rem 3rem 2rem;
+                padding: 10rem 1.5rem 3rem 1.5rem;
                 text-align: center;
             }
-
             .page-title {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
+                font-size: 1.9rem;
+                margin-bottom: 0.75rem;
                 margin-top: 0;
                 text-align: center;
             }
-
             .page-subtitle {
                 margin-bottom: 3rem;
                 text-align: center;
             }
-
             .instagram-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
-
             .image-overlay {
                 display: none !important;
             }
-
             .post-info {
                 display: block;
+                text-align: left;
+                margin-top: 0.4rem;
+                padding: 0;
+                min-height: auto;
             }
-
             .fullscreen-caption {
                 margin-top: 1rem;
                 max-height: 25vh;
             }
-
             .fullscreen-nav {
                 width: 40px;
                 height: 40px;
                 font-size: 1.5rem;
             }
-
-            .fullscreen-prev {
-                left: 0.5rem;
-            }
-
-            .fullscreen-next {
-                right: 0.5rem;
-            }
-
             .close-modal {
-                top: 1rem;
-                right: 1rem;
-                font-size: 2.5rem;
+                width: 40px;
+                height: 40px;
+            }
+            .fullscreen-prev {
+                left: 0;
+            }
+            .fullscreen-next {
+                right: 0;
             }
         }
 
@@ -498,15 +546,12 @@
             .main {
                 padding: 9rem 1.5rem 3rem 1.5rem;
             }
-
             .logo {
                 font-size: 1.8rem;
             }
-
             .nav-menu {
                 gap: 1.5rem;
             }
-
             .nav-menu a {
                 font-size: 1rem;
             }
@@ -540,15 +585,14 @@
                 <ul class="nav-menu">
                     <li><a href="about.html">About</a></li>
                     <li><a href="spotlight.html">Spotlight</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="main">
+    <main class="main fade-in">
         <h1 class="page-title">Spotlight</h1>
-        <p class="page-subtitle">A selection of posts from our Instagram feed <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" style="color: var(--biscuit-gold); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='var(--deep-charcoal)'" onmouseout="this.style.color='var(--biscuit-gold)'">@elsewhere___collective</a> </p>
+        <p class="page-subtitle">A selection of posts from our Instagram feed <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" class="ig-handle" rel="noopener">@elsewhere___collective</a> </p>
 
         <div id="instagram-grid" class="instagram-grid">
             <div class="loading">Loading posts...</div>
@@ -617,6 +661,10 @@
                             <div class="overlay-title">${post.title || 'Untitled'}</div>
                             <div class="overlay-artist">${post.artist || ''}</div>
                         </div>
+                    </div>
+                    <div class="post-info">
+                        <div class="post-title">${post.title || 'Untitled'}</div>
+                        <div class="post-handle">${post.artist || ''}</div>
                     </div>
                 </article>
             `).join('');
