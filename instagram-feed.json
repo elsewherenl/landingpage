@@ -265,6 +265,17 @@
       "caption": "",
       "permalink": "https://www.instagram.com/p/DTkcRT7COMh/?img_index=1",
       "timestamp": "16/01/2026"
+    },
+    {
+      "id": "25",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Stefan%20G%206.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1771252360/Stefan_G_Bike_Garage_io91sr.jpg",
+      "title": "Italia on the road",
+      "artist": "Stefan Giftthaler",
+      "artist_handle": "https://www.instagram.com/stefangiftthaler/",
+      "caption": "Travels through the Baroque.",
+      "permalink": "https://www.instagram.com/p/DUGxPHmEx3_/?img_index=1",
+      "timestamp": "29/01/2026"
     }
 
   ]
