@@ -219,6 +219,7 @@
       "title": "Untitled",
       "artist": "Ignacio Infanti",
       "artist_handle": "https://www.instagram.com/ignacioinfanti/",
+      "caption": "",
       "permalink": "https://www.instagram.com/p/DRfHZ4sCBG0/",
       "timestamp": "25/11/2025"
     },
@@ -276,6 +277,17 @@
       "caption": "Travels through the Baroque.",
       "permalink": "https://www.instagram.com/p/DUGxPHmEx3_/?img_index=1",
       "timestamp": "29/01/2026"
+    },
+    {
+      "id": "26",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Antonio%201.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1771349532/I_AM_NOT_HERE_lje91d.jpg",
+      "title": "I AM NOT HERE",
+      "artist": "Antonio Rosato",
+      "artist_handle": "https://www.instagram.com/antoniorosato_ph/",
+      "caption": "Antonio explores the way detachment and alienation shape how we see. The familiar becomes altered and uncertain.",
+      "permalink": "https://www.instagram.com/p/DU3fj_dCAvC/?img_index=1",
+      "timestamp": "17/02/2026"
     }
 
   ]
