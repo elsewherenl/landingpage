@@ -659,8 +659,8 @@
                 return;
             }
 
-            // Only show 12 most recent posts for faster loading
-            const postsToShow = instagramPosts.slice(0, 12);
+            // Only show 16 most recent posts for faster loading
+            const postsToShow = instagramPosts.slice(0, 16);
 
             grid.innerHTML = postsToShow.map((post, index) => `
                 <article class="instagram-post">
