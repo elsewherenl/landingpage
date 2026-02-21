@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>About | Elsewhere Collective</title>
-    <meta name="title" content="About | Elsewhere Collective">
-    <meta name="description" content="Elsewhere Collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
+    <title>About | elsewhere collective</title>
+    <meta name="title" content="About | elsewhere collective">
+    <meta name="description" content="elsewhere collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="Amsterdam photography gallery, art curation, emerging photographers, contemporary photography Amsterdam, photography collective, art discovery">
 
@@ -17,15 +17,15 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/about.html">
-    <meta property="og:title" content="About | Elsewhere Collective">
-    <meta property="og:description" content="Elsewhere Collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
+    <meta property="og:title" content="About | elsewhere collective">
+    <meta property="og:description" content="elsewhere collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://elsewherecollective.nl/about.html">
-    <meta property="twitter:title" content="About | Elsewhere Collective">
-    <meta property="twitter:description" content="Elsewhere Collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
+    <meta property="twitter:title" content="About | elsewhere collective">
+    <meta property="twitter:description" content="elsewhere collective is a curated platform supporting photographers and helping collectors discover and live with contemporary photography. Based in Amsterdam.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Favicon -->
@@ -37,9 +37,14 @@
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'SuisseIntl';
+            src: url('fonts/SuisseIntl-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
         @font-face {
             font-family: 'SuisseIntl';
             src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
@@ -47,15 +52,177 @@
             font-style: normal;
             font-display: swap;
         }
+        @font-face {
+            font-family: 'Favorit';
+            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Favorit';
+            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
     </style>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D"></script>
+    <!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-NZVK7P7J3D');
+        console.log('Checking cookie consent for GA...');
+        if (localStorage.getItem('analyticsConsent') === 'true') {
+            console.log('✅ Loading Google Analytics with user consent');
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NZVK7P7J3D');
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+            document.head.appendChild(script);
+
+        } else {
+            console.log('❌ Google Analytics blocked - no consent given');
+        }
+    </script>
+
+    <!-- FIXED: Correct file paths for Silktide -->
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
+    <script src="cookie-banner/silktide-consent-manager.js"></script>
+
+    <!-- Cookie Banner Configuration -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if Silktide is loaded
+        if (typeof silktideCookieBannerManager !== 'undefined') {
+            // Use Silktide if available
+            silktideCookieBannerManager.updateCookieBannerConfig({
+                background: {
+                    showBackground: true
+                },
+                cookieIcon: {
+                    position: "bottomRight"
+                },
+                cookieTypes: [
+                    {
+                        id: "necessary",
+                        name: "Necessary",
+                        description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+                        required: true,
+                        onAccept: function() {
+                            console.log('Necessary cookies accepted');
+                        }
+                    },
+                    {
+                        id: "analytics",
+                        name: "Analytics",
+                        description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+                        required: false,
+                        onAccept: function() {
+                            localStorage.setItem('analyticsConsent', 'true');
+                            if (typeof gtag !== 'undefined') {
+                                gtag('consent', 'update', {
+                                    analytics_storage: 'granted',
+                                });
+                                dataLayer.push({
+                                    'event': 'consent_accepted_analytics',
+                                });
+                            }
+                            loadAnalytics();
+                        },
+                        onReject: function() {
+                            localStorage.setItem('analyticsConsent', 'false');
+                            if (typeof gtag !== 'undefined') {
+                                gtag('consent', 'update', {
+                                    analytics_storage: 'denied',
+                                });
+                            }
+                        }
+                    }
+                ],
+                text: {
+                    banner: {
+                        description: "<p>We use cookies to analyse site usage and improve your experience. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
+                        acceptAllButtonText: "OK",
+                        acceptAllButtonAccessibleLabel: "Accept all cookies",
+                        rejectNonEssentialButtonText: "Essential Only",
+                        rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
+                        preferencesButtonText: "Settings",
+                        preferencesButtonAccessibleLabel: "Cookie preferences"
+                    },
+                    preferences: {
+                        title: "Cookie Settings",
+                        description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
+                        creditLinkText: "",
+                        creditLinkAccessibleLabel: ""
+                    }
+                },
+                position: {
+                    banner: "bottomRight"
+                }
+            });
+        } else {
+            // Fallback: Custom cookie banner if Silktide fails to load
+            console.log('Silktide not available, using custom cookie banner');
+            initCustomCookieBanner();
+        }
+
+        function loadAnalytics() {
+            if (!window.dataLayer) {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-NZVK7P7J3D');
+
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+                document.head.appendChild(script);
+
+                console.log('✅ Analytics loaded via cookie banner');
+            }
+        }
+
+        function initCustomCookieBanner() {
+            const cookieConsent = localStorage.getItem('cookieConsent');
+
+            if (!cookieConsent) {
+                const banner = document.createElement('div');
+                banner.className = 'cookie-banner show';
+                banner.innerHTML = `
+                    <div class="cookie-content">
+                        <div class="cookie-text">
+                            We use cookies to analyse site usage and improve your experience.
+                            <a href="https://elsewherecollective.nl/cookie-policy" target="_blank" class="cookie-link">Cookie Policy</a>
+                        </div>
+                        <div class="cookie-actions">
+                            <button class="cookie-button" id="acceptCookies">Accept All</button>
+                            <span class="essential-link" id="essentialOnly">Essential Only</span>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(banner);
+
+                document.getElementById('acceptCookies').onclick = function() {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    localStorage.setItem('analyticsConsent', 'true');
+                    banner.remove();
+                    loadAnalytics();
+                };
+
+                document.getElementById('essentialOnly').onclick = function() {
+                    localStorage.setItem('cookieConsent', 'essential');
+                    localStorage.setItem('analyticsConsent', 'false');
+                    banner.remove();
+                };
+            } else if (cookieConsent === 'accepted') {
+                loadAnalytics();
+            }
+        }
+    });
     </script>
     <style>
         :root {
@@ -79,7 +246,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Favorit', sans-serif;
             background: var(--cream-bg);
             color: var(--deep-charcoal);
             overflow-x: hidden;
@@ -165,7 +332,7 @@
         }
 
         .text-block h1 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 2.1rem;
             font-weight: 300;
             line-height: 1.2;
@@ -174,29 +341,33 @@
             letter-spacing: -0.02em;
         }
 
+        .mobile-break {
+            display: none;
+        }
+
         @media (min-width: 1280px) {
             .text-block h1 {
                 font-size: 2.2rem;
                 line-height: 1.25;
-                letter-spacing: -0.015em;2
+                letter-spacing: -0.015em;
             }
         }
 
         .text-block h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
+            font-family: 'Favorit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
             color: var(--deep-charcoal);
         }
 
         .contact-block {
-            margin-top: 2rem;
+            margin-top: 1.6rem;
         }
 
         .text-block p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 300;
             color: var(--warm-gray);
             line-height: 1.6;
@@ -228,8 +399,8 @@
         .contact-links {
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
-            margin-top: 0.2rem;
+            gap: 0.8rem;
+            margin-top: 0;
         }
 
         .contact-links a {
@@ -239,6 +410,7 @@
             text-decoration: none;
             letter-spacing: 0.02em;
             transition: color 0.3s ease, opacity 0.3s ease;
+            line-height: 1.6;
         }
 
         .contact-links a:hover {
@@ -286,6 +458,94 @@
             }
         }
 
+        /* Cookie Banner Styles */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--deep-charcoal);
+            color: var(--warm-off-white);
+            padding: 1rem 2rem;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+            display: none;
+        }
+
+        .cookie-banner.show {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .cookie-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .cookie-text {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--warm-off-white);
+            line-height: 1.4;
+        }
+
+        .cookie-link {
+            color: var(--biscuit-gold);
+            text-decoration: none;
+            border-bottom: 1px solid var(--biscuit-gold);
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-link:hover {
+            color: var(--warm-off-white);
+            border-bottom-color: var(--warm-off-white);
+        }
+
+        .cookie-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cookie-button {
+            background: var(--biscuit-gold);
+            color: var(--deep-charcoal);
+            border: none;
+            padding: 0.6rem 1.25rem;
+            font-family: 'Favorit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-button:hover {
+            background: var(--sage-green);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .essential-link {
+            color: rgba(253, 252, 248, 0.7);
+            font-size: 0.8rem;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .essential-link:hover {
+            color: var(--warm-off-white);
+        }
+
        /* Mobile Responsive */
 @media (max-width: 768px) {
     .header {
@@ -326,6 +586,10 @@
         text-align: center; /* Center title on mobile */
     }
 
+    .mobile-break {
+        display: inline;
+    }
+
     .text-block h2 {
         text-align: center; /* Center section headings on mobile */
     }
@@ -346,6 +610,21 @@
     .image-placeholder {
         max-width: 400px;
         margin: 0 auto;
+    }
+
+    .cookie-banner {
+        padding: 1rem;
+    }
+
+    .cookie-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .cookie-actions {
+        justify-content: center;
+        width: 100%;
     }
 }
 
@@ -386,17 +665,17 @@
         <!-- Left Column: Text Content -->
         <div class="text-column">
             <section class="text-block">
-                <h1>Contemporary work set in context and culture. Subtlety over spectacle.</h1>
-                <p class="subtitle">We started Elsewhere Collective to support photographers and help collectors discover new work and perspectives.</p>
-                <p class="subtitle">Our ambition is to create a curated space to discover and collect new art.</p>
-                <p class="subtitle">We are drawn to works that bring us closer to ourselves and our world, works with a sense of mystery that stay with you and continue to unfold over time.</p>
+                <h1>Work set in context and culture. <br class="mobile-break">Subtlety over spectacle.</h1>
+                <p class="subtitle">We started elsewhere collective to support photographers and help collectors discover new work and perspectives.</p>
+                <p class="subtitle">We are drawn to work with presence and perspective. Work that reframes how we see ourselves and the world, and rewards contemplation.</p>
+                <p class="subtitle">Our ambition is to create a curated space for discovery and collection.</p>
                 <p class="location">Amsterdam, 2026.</p>
             </section>
 
             <section class="text-block contact-block">
                 <h2>Contact</h2>
                 <div class="contact-links">
-                    <a href="mailto:alex@elsewherecollective.nl">alex@elsewherecollective.nl</a>
+                    <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
                     <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere___collective</a>
                 </div>
             </section>
