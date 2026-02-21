@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Home | Elsewhere Collective</title>
-    <meta name="title" content="Home | Elsewhere Collective">
+    <title>Home | elsewhere collective</title>
+    <meta name="title" content="Home | elsewhere collective">
     <meta name="description" content="New voices and celebrated perspectives in contemporary photography. Thoughtfully curated. Limited editions. Ready to collect.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="contemporary photography, emerging photographers, limited edition prints, curated photography, art collection, photography prints, Amsterdam gallery, fine art photography">
@@ -17,14 +17,14 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/">
-    <meta property="og:title" content="Home | Elsewhere Collective">
+    <meta property="og:title" content="Home | elsewhere collective">
     <meta property="og:description" content="New voices and celebrated perspectives in contemporary photography. Thoughtfully curated. Limited editions. Ready to collect.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://elsewherecollective.nl/">
-    <meta property="twitter:title" content="Home | Elsewhere Collective">
+    <meta property="twitter:title" content="Home | elsewhere collective">
     <meta property="twitter:description" content="New voices and celebrated perspectives in contemporary photography. Thoughtfully curated. Limited editions. Ready to collect.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
@@ -44,13 +44,32 @@
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'SuisseIntl';
+            src: url('fonts/SuisseIntl-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
         @font-face {
             font-family: 'SuisseIntl';
             src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
             font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Favorit';
+            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Favorit';
+            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Light.woff2') format('woff2');
+            font-weight: 300;
             font-style: normal;
             font-display: swap;
         }
@@ -237,7 +256,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Favorit', sans-serif;
             background: var(--cream-bg);
             color: var(--deep-charcoal);
             overflow-x: hidden;
@@ -332,7 +351,7 @@
         }
 
         .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 2.1rem;
             font-weight: 300;
             line-height: 1.2;
@@ -438,7 +457,7 @@
         }
 
         .section-title {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 2.5rem;
             font-weight: 300;
             margin-bottom: 0.25rem;
@@ -498,7 +517,7 @@
         }
 
         .overlay-title {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 1.05rem;
             font-weight: 400;
             letter-spacing: 0.02em;
@@ -521,7 +540,7 @@
         }
 
         .post-title {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 1rem;
             font-weight: 400;
             margin-bottom: 0.1rem;
@@ -535,7 +554,7 @@
         }
 
         .work-title {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 1.3rem;
             font-weight: 400;
             margin-bottom: 0.5rem;
@@ -603,7 +622,7 @@
 
         .about-editorial {
             max-width: 620px;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 1.15rem;
             font-weight: 300;
             line-height: 1.75;
@@ -627,7 +646,8 @@
         /* C. Context label sits directly above the field row */
         .newsletter-label {
             display: block;
-            font-size: 1rem;
+            font-family: 'Favorit', sans-serif;
+            font-size: 1.15rem;
             font-weight: 300;
             color: rgba(44, 44, 44, 0.65);
             line-height: 1.6;
@@ -639,14 +659,14 @@
             display: flex;
             align-items: center;
             gap: 0;
-            max-width: 620px;
+            max-width: 450px;
             margin: 0;
-            border-bottom: 1px solid rgba(44, 44, 44, 0.18);
+            border-bottom: 0.5px solid rgba(44, 44, 44, 0.12);
             transition: border-color 0.3s ease;
         }
 
         .newsletter-form:focus-within {
-            border-bottom-color: rgba(44, 44, 44, 0.55);
+            border-bottom-color: rgba(44, 44, 44, 0.35);
         }
 
         .newsletter-input {
@@ -655,7 +675,7 @@
             border: none;
             background: transparent;
             color: var(--deep-charcoal);
-            font-family: inherit;
+            font-family: 'Favorit', sans-serif;
             font-size: 1rem;
             font-weight: 300;
             outline: none;
@@ -673,11 +693,11 @@
         }
 
         .newsletter-button {
-            padding: 0.75rem 0 0.75rem 1.25rem;
+            padding: 0.75rem 0 0.75rem 1rem;
             background: transparent;
             border: none;
             color: var(--deep-charcoal);
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
             font-weight: 400;
             cursor: pointer;
@@ -689,6 +709,7 @@
 
         .newsletter-button::before {
             content: '→ ';
+            opacity: 0.5;
         }
 
         .newsletter-button:hover {
@@ -704,17 +725,18 @@
         .newsletter-success,
         .newsletter-error {
             display: none;
+            font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
             font-weight: 300;
             line-height: 1.6;
             padding: 0.75rem 0;
-            max-width: 620px;
-            border-bottom: 1px solid transparent;
+            max-width: 450px;
+            border-bottom: 0.5px solid transparent;
         }
 
         .newsletter-success {
             color: var(--deep-charcoal);
-            border-bottom-color: rgba(44, 44, 44, 0.18);
+            border-bottom-color: rgba(44, 44, 44, 0.12);
         }
 
         .newsletter-error {
@@ -744,7 +766,7 @@
         }
 
         .footer-section h4 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 2.8rem;
             font-weight: 300;
             margin-bottom: 2.5rem;
@@ -973,7 +995,7 @@
             color: var(--deep-charcoal);
             border: none;
             padding: 0.6rem 1.25rem;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
@@ -1259,6 +1281,7 @@
 
             .newsletter-label {
                 text-align: center;
+                font-size: 0.95rem;
             }
 
             .newsletter-form {
@@ -1267,10 +1290,22 @@
                 flex-direction: row;
             }
 
+            .newsletter-input {
+                font-size: 0.95rem;
+                padding: 0.65rem 0;
+            }
+
+            .newsletter-button {
+                font-size: 0.95rem;
+                padding: 0.65rem 0 0.65rem 0.9rem;
+            }
+
             .newsletter-success,
             .newsletter-error {
                 text-align: center;
                 margin: 0 auto;
+                font-size: 0.95rem;
+                padding: 0.65rem 0;
             }
 
             .newsletter {
@@ -1381,16 +1416,16 @@
     <section class="hero fade-in" id="hero">
         <div class="hero-content">
             <div class="hero-text hero-intro">
-                <h1 class="hero-title">Championing contemporary photographers with presence and perspective.</h1>
+                <h1 class="hero-title">Championing photographers with presence and perspective.</h1>
             </div>
             <div class="hero-text hero-body">
                 <p class="hero-tagline">
-                    Contemporary photography set in context and culture, with an emphasis on subtlety over spectacle.
+                    Photography set in context and culture. Subtlety over spectacle.
                 </p>
                 <p class="hero-tagline">
-                    Elsewhere Collective represents artists and supports collectors in discovering limited edition, collectible works of art.
+                    We work with photographers and support collectors in discovering considered, limited editions.
                 </p>
-                <p class="hero-tagline location">Based in Amsterdam, working with emerging and established photographers.</p>
+                <p class="hero-tagline location">Based in Amsterdam, collaborating with emerging and established artists.</p>
             </div>
             <div class="hero-gallery">
                 <div class="instagram-grid" id="instagramGrid">
@@ -1407,7 +1442,7 @@
             <!-- A. AJAX form with inline feedback -->
             <!-- C. Context label directly above the field — no gap between intent and action -->
             <label class="newsletter-label" for="newsletterEmail">
-                Join us for early access to limited editions and featured artists.
+                Early access to limited editions and curated releases.
             </label>
 
             <!-- B. Single border wraps input + button as one visual unit -->
@@ -1422,14 +1457,14 @@
                     autocomplete="email"
                 >
                 <!-- D. Placeholder fades on focus; label above provides the context instead -->
-                <button type="submit" class="newsletter-button" id="newsletterButton">Subscribe</button>
+                <button type="submit" class="newsletter-button" id="newsletterButton">Join</button>
             </form>
 
             <p class="newsletter-success" id="newsletterSuccess">
-                You are in! We'll be in touch.
+                You are in. Welcome! We will be in touch.
             </p>
             <p class="newsletter-error" id="newsletterError">
-                Something went wrong. Please try again or email us directly.
+                Something went wrong. Please try again or email us at hello@elsewherecollective.nl
             </p>
 
         </div>
@@ -1439,12 +1474,12 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <a href="mailto:alex@elsewherecollective.nl" class="footer-link">
+                <a href="mailto:hello@elsewherecollective.nl" class="footer-link">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
                         <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"/>
                         <path d="M22 6L12 13L2 6" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    alex@elsewherecollective.nl
+                    hello@elsewherecollective.nl
                 </a>
                 <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener" class="footer-link">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
@@ -1452,7 +1487,7 @@
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/>
                         <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
                     </svg>
-                    @elsewherecollective
+                    @elsewhere___collective
                 </a>
             </div>
         </div>
@@ -1677,7 +1712,7 @@
                     }
                 } catch (err) {
                     // Error: restore button, show error line
-                    button.textContent = 'Subscribe';
+                    button.textContent = 'Join';
                     button.disabled = false;
                     errorMsg.classList.add('visible');
                 }
