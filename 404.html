@@ -3,33 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        // GitHub Pages URL routing workaround
-        // This redirects clean URLs to the correct .html files
+        // GitHub Pages clean URL handler
+        // This fetches and displays the correct .html file while keeping the clean URL
 
-        const path = window.location.pathname;
+        (function() {
+            const path = window.location.pathname;
+            const cleanPath = path.replace(/\/$/, '');
 
-        // Remove trailing slash if present
-        const cleanPath = path.replace(/\/$/, '');
+            // Map clean URLs to actual files
+            const routes = {
+                '/about': '/about.html',
+                '/spotlight': '/spotlight.html'
+            };
 
-        // Map clean URLs to actual files
-        const routes = {
-            '/about': '/about.html',
-            '/spotlight': '/spotlight.html'
-        };
+            const targetFile = routes[cleanPath];
 
-        // If the path matches a route, redirect to the actual file
-        if (routes[cleanPath]) {
-            window.location.replace(routes[cleanPath]);
-        } else if (cleanPath === '' || cleanPath === '/') {
-            // Root path - go to index
-            window.location.replace('/index.html');
-        } else {
-            // Actual 404 - redirect to home
-            window.location.replace('/');
-        }
+            if (targetFile) {
+                // Fetch the HTML content and replace the current page
+                fetch(targetFile)
+                    .then(response => response.text())
+                    .then(html => {
+                        // Replace the entire document with the fetched content
+                        document.open();
+                        document.write(html);
+                        document.close();
+
+                        // Update the history state to keep the clean URL
+                        history.replaceState(null, '', cleanPath);
+                    })
+                    .catch(() => {
+                        window.location.replace('/');
+                    });
+            } else if (cleanPath === '' || cleanPath === '/') {
+                window.location.replace('/');
+            } else {
+                // Actual 404 - redirect to home
+                window.location.replace('/');
+            }
+        })();
     </script>
 </head>
 <body>
-    <p>Redirecting...</p>
+    <p>Loading...</p>
 </body>
 </html>
