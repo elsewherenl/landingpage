@@ -12,18 +12,28 @@
     <meta name="keywords" content="contemporary photography, emerging photographers, limited edition prints, curated photography, art collection, photography prints, Amsterdam gallery, fine art photography">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://elsewherecollective.nl/">
+    <link rel="canonical" href="https://elsewherecollective.nl/home">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://elsewherecollective.nl/">
+    <meta property="og:url" content="https://elsewherecollective.nl/home">
     <meta property="og:title" content="elsewhere collective | contemporary curated photography">
     <meta property="og:description" content="a curated platform for contemporary photography, highlighting artists, context, and visual culture from amsterdam.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://elsewherecollective.nl/">
+    <meta property="twitter:url" content="https://elsewherecollective.nl/home">
+
+    <script>
+        (function() {
+            const currentPath = window.location.pathname.replace(/\/$/, "");
+            const cleanHomePath = "/home";
+            if (currentPath === "" || currentPath === "/" || currentPath === "/index.html") {
+                window.history.replaceState(null, "", cleanHomePath + window.location.search + window.location.hash);
+            }
+        })();
+    </script>
     <meta property="twitter:title" content="elsewhere collective | contemporary curated photography">
     <meta property="twitter:description" content="a curated platform for contemporary photography, highlighting artists, context, and visual culture from amsterdam.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
@@ -1402,11 +1412,11 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="#hero" class="logo">elsewhere collective</a>
+            <a href="/home" class="logo">elsewhere collective</a>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="spotlight.html">Spotlight</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/spotlights">Spotlight</a></li>
                 </ul>
             </nav>
         </div>
