@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // GitHub Pages URL routing workaround
+        // This redirects clean URLs to the correct .html files
+
+        const path = window.location.pathname;
+
+        // Remove trailing slash if present
+        const cleanPath = path.replace(/\/$/, '');
+
+        // Map clean URLs to actual files
+        const routes = {
+            '/about': '/about.html',
+            '/spotlight': '/spotlight.html'
+        };
+
+        // If the path matches a route, redirect to the actual file
+        if (routes[cleanPath]) {
+            window.location.replace(routes[cleanPath]);
+        } else if (cleanPath === '' || cleanPath === '/') {
+            // Root path - go to index
+            window.location.replace('/index.html');
+        } else {
+            // Actual 404 - redirect to home
+            window.location.replace('/');
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
