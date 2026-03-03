@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <script>
-        // GitHub Pages clean URL handler
-        // This fetches and displays the correct .html file while keeping the clean URL
-
+        // GitHub Pages clean URL handler for static HTML pages.
         (function() {
             const path = window.location.pathname;
-            const cleanPath = path.replace(/\/$/, '');
+            const cleanPath = path.replace(/\/$/, "");
+            const fallbackPath = "/home";
 
-            // Map clean URLs to actual files
+            // Map clean URLs to physical files.
             const routes = {
-                '/about': '/about.html',
-                '/spotlight': '/spotlight.html'
+                "/home": "/index.html",
+                "/about": "/about.html",
+                "/spotlight": "/spotlight.html"
             };
 
-            const targetFile = routes[cleanPath];
-
-            if (targetFile) {
-                // Fetch the HTML content and replace the current page
-                fetch(targetFile)
-                    .then(response => response.text())
-                    .then(html => {
-                        // Replace the entire document with the fetched content
-                        document.open();
-                        document.write(html);
-                        document.close();
-
-                        // Update the history state to keep the clean URL
-                        history.replaceState(null, '', cleanPath);
-                    })
-                    .catch(() => {
-                        window.location.replace('/');
-                    });
-            } else if (cleanPath === '' || cleanPath === '/') {
-                window.location.replace('/');
-            } else {
-                // Actual 404 - redirect to home
-                window.location.replace('/');
+            if (cleanPath === "" || cleanPath === "/") {
+                window.location.replace(fallbackPath);
+                return;
             }
+
+            const targetFile = routes[cleanPath];
+            if (!targetFile) {
+                window.location.replace(fallbackPath);
+                return;
+            }
+
+            fetch(targetFile)
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error("Route target not found");
+                    }
+                    return response.text();
+                })
+                .then(function(html) {
+                    document.open();
+                    document.write(html);
+                    document.close();
+                    history.replaceState(null, "", cleanPath);
+                })
+                .catch(function() {
+                    window.location.replace(fallbackPath);
+                });
         })();
     </script>
 </head>
