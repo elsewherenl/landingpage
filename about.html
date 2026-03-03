@@ -12,18 +12,27 @@
     <meta name="keywords" content="Amsterdam photography gallery, art curation, emerging photographers, contemporary photography Amsterdam, photography collective, art discovery">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://elsewherecollective.nl/about.html">
+    <link rel="canonical" href="https://elsewherecollective.nl/about">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://elsewherecollective.nl/about.html">
+    <meta property="og:url" content="https://elsewherecollective.nl/about">
     <meta property="og:title" content="about elsewhere collective | curatorial approach">
     <meta property="og:description" content="learn about elsewhere collective's curatorial approach, values, and focus on contemporary photography.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://elsewherecollective.nl/about.html">
+    <meta property="twitter:url" content="https://elsewherecollective.nl/about">
+
+    <script>
+        (function() {
+            const currentPath = window.location.pathname.replace(/\/$/, "");
+            if (currentPath === "/about.html") {
+                window.history.replaceState(null, "", "/about" + window.location.search + window.location.hash);
+            }
+        })();
+    </script>
     <meta property="twitter:title" content="about elsewhere collective | curatorial approach">
     <meta property="twitter:description" content="learn about elsewhere collective's curatorial approach, values, and focus on contemporary photography.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
@@ -651,11 +660,11 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="index.html" class="logo">elsewhere collective</a>
+            <a href="/home" class="logo">elsewhere collective</a>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="spotlight.html">Spotlight</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/spotlights">Spotlight</a></li>
                 </ul>
             </nav>
         </div>
