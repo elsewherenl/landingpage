@@ -8,15 +8,20 @@
             const path = window.location.pathname;
             const cleanPath = path.replace(/\/$/, "");
             const fallbackPath = "/home";
+            const spotlightPath = "/spotlight";
 
             // Map clean URLs to physical files.
             const routes = {
                 "/home": "/index.html",
                 "/about": "/about.html",
                 "/spotlight": "/spotlight.html",
-                "/spotlights": "/spotlight.html",
                 "/cookie-policy": "/cookie-policy.html"
             };
+
+            if (cleanPath === "/spotlights") {
+                window.location.replace(spotlightPath);
+                return;
+            }
 
             if (cleanPath === "" || cleanPath === "/") {
                 window.location.replace(fallbackPath);
