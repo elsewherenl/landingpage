@@ -11,18 +11,27 @@
     <meta name="keywords" content="cookie policy, privacy policy, GDPR, data usage, website cookies, analytics">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://elsewherecollective.nl/cookie-policy.html">
+    <link rel="canonical" href="https://elsewherecollective.nl/cookie-policy">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://elsewherecollective.nl/cookie-policy.html">
+    <meta property="og:url" content="https://elsewherecollective.nl/cookie-policy">
     <meta property="og:title" content="Cookie Policy | Elsewhere Collective">
     <meta property="og:description" content="Transparent information about how we use cookies to improve your experience while respecting your privacy.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://elsewherecollective.nl/cookie-policy.html">
+    <meta property="twitter:url" content="https://elsewherecollective.nl/cookie-policy">
+
+    <script>
+        (function() {
+            const currentPath = window.location.pathname.replace(/\/$/, "");
+            if (currentPath === "/cookie-policy.html") {
+                window.history.replaceState(null, "", "/cookie-policy" + window.location.search + window.location.hash);
+            }
+        })();
+    </script>
     <meta property="twitter:title" content="Cookie Policy | Elsewhere Collective">
     <meta property="twitter:description" content="Transparent information about how we use cookies to improve your experience while respecting your privacy.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
@@ -34,7 +43,16 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <style>
+        @font-face {
+            font-family: 'SuisseIntl';
+            src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
     <!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
     <script>
         console.log('Checking cookie consent for GA...');
@@ -65,6 +83,9 @@
             --biscuit-gold: #D6B370;
             --sage-green: #A8B5A0;
             --soft-terracotta: #C4A394;
+            --page-top-desktop: 7.25rem;
+            --page-top-mobile: 10rem;
+            --page-top-small: 9rem;
         }
 
         * {
@@ -85,9 +106,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(243, 239, 233, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+            background: rgba(243, 239, 233, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: none;
             z-index: 1000;
             padding: 1.5rem 0;
         }
@@ -102,21 +123,21 @@
         }
 
         .logo {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'SuisseIntl', sans-serif;
             font-size: 2.2rem;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--deep-charcoal);
             text-decoration: none;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             text-transform: lowercase;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, letter-spacing 0.3s ease;
         }
 
         .logo:hover {
-            color: var(--biscuit-gold);
-            letter-spacing: 0.08em;
-            transform: scale(1.02);
+            opacity: 1;
+            letter-spacing: 0.06em;
+            transform: none;
         }
 
         .nav-menu {
@@ -127,21 +148,24 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--deep-charcoal);
+            color: rgba(44,44,44,0.75);
             font-weight: 300;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            border-bottom: none;
+            transition: opacity 0.3s ease, color 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: var(--biscuit-gold);
+            opacity: 0.5;
+            color: var(--deep-charcoal);
         }
 
         /* Single Column Layout for Policy Page - Left Aligned */
         .policy-container {
             max-width: 1600px;
             margin: 0 auto;
-            padding: 10rem 3rem 4rem;
+            padding: var(--page-top-desktop) 3rem 4rem;
             display: flex;
             justify-content: flex-start;
         }
@@ -157,7 +181,7 @@
         }
 
         .policy-header h1 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'SuisseIntl', sans-serif;
             font-size: 2.2rem;
             font-weight: 300;
             line-height: 1.2;
@@ -267,9 +291,13 @@
         }
 
         /* Mobile Responsive */
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 0;
+            }
+
             .header-container {
-                padding: 0 2rem;
+                padding: 0 1.5rem;
                 flex-direction: column;
                 gap: 0.75rem;
                 align-items: center;
@@ -278,15 +306,18 @@
             .logo {
                 text-align: center;
                 width: 100%;
+                margin-bottom: 0;
             }
 
             .nav-menu {
+                gap: 2rem;
                 justify-content: center;
                 width: 100%;
+                margin-top: 0;
             }
 
             .policy-container {
-                padding: 10rem 2rem 4rem;
+                padding: var(--page-top-mobile) 1.5rem 4rem;
             }
 
             .policy-header h1 {
@@ -297,17 +328,17 @@
 
         @media (max-width: 480px) {
             .policy-container {
-                padding: 9rem 1.5rem 3rem;
+                padding: var(--page-top-small) 1.5rem 3rem;
             }
-            
+
             .logo {
                 font-size: 1.8rem;
             }
-            
+
             .nav-menu {
                 gap: 1.5rem;
             }
-            
+
             .nav-menu a {
                 font-size: 1rem;
             }
@@ -317,12 +348,11 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="index.html" class="logo">elsewhere collective</a>
+            <a href="/" class="logo">elsewhere collective</a>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="spotlight.html">Spotlight</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/spotlight">Spotlight</a></li>
                 </ul>
             </nav>
         </div>
@@ -332,7 +362,7 @@
         <div class="policy-content">
             <div class="policy-header">
                 <h1>Cookie Policy</h1>
-                <div class="last-updated">Last updated: September 2025</div>
+                <div class="last-updated">Last updated: February 2026</div>
             </div>
 
         <section class="text-block">
@@ -409,7 +439,7 @@
 
         <div class="contact-section">
             <h3>Contact Us</h3>
-            <p>If you have questions about our cookie usage: <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a></p>
+            <p>If you have questions about our cookie usage: <a href="mailto:alex@elsewherecollective.nl">alex@elsewherecollective.nl</a></p>
         </div>
 
         <section class="text-block">
