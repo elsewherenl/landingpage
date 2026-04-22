@@ -36,7 +36,7 @@
     {
       "id": "4",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Orestis%20Ilias%2C%20The%20Cube%2015.08.25.jpg?raw=true",
-      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199627/Orestis_The_Cube_jzcv1z.jpg",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871784/Orestis_The_Cube_jzcv1z.jpg",
       "title": "The Cube",
       "artist": "Orestis Ilias",
       "artist_handle": "https://www.instagram.com/orestis.ilias/",
@@ -47,7 +47,7 @@
     {
       "id": "5",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Book%20of%20Days%201.jpg?raw=true",
-      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199616/Alvin_Ng_rgjrcu.jpg",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871725/Alvin_Ng_rgjrcu.jpg",
       "title": "Book of Days",
       "artist": "Alvin Ng",
       "artist_handle": "https://www.instagram.com/alvinnzh/",
@@ -306,7 +306,7 @@
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1772204531/Viktor_Kostenko_iqtj9y.webp",
       "artist": "Viktor Kostenko",
       "artist_handle": "https://www.instagram.com/atelier_kostenko/",
-      "caption": "Eternal time.\n\nA search for peace underpins Viktor's practice, inviting a moment of stillness.\n\nWorking exclusively with analog methods, process and result sit in balance.",
+      "caption": "Eternal time. A search for peace underpins Viktor's practice, inviting a moment of stillness.\n\nWorking exclusively with analog methods, process and result sit in balance.",
       "permalink": "https://www.instagram.com/p/DVOo6-siETR/?img_index=1",
       "timestamp": "26/02/2026"
     },
