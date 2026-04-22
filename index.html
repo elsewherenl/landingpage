@@ -6,7 +6,7 @@
 
     <!-- Primary Meta Tags -->
     <title>elsewhere collective | contemporary curated photography</title>
-    <meta name="description" content="a curated platform for contemporary photography, highlighting artists, context, and visual culture from amsterdam.">
+    <meta name="description" content="Curated contemporary photography from Amsterdam, highlighting emerging photographers, interesting perspectives and cultural context.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="contemporary photography, emerging photographers, limited edition prints, curated photography, art collection, photography prints, Amsterdam gallery, fine art photography">
 
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/">
     <meta property="og:title" content="elsewhere collective | contemporary curated photography">
-    <meta property="og:description" content="a curated platform for contemporary photography, highlighting artists, context, and visual culture from amsterdam.">
+    <meta property="og:description" content="Curated contemporary photography from Amsterdam, highlighting emerging photographers, interesting perspectives and cultural context.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
@@ -34,7 +34,7 @@
         })();
     </script>
     <meta property="twitter:title" content="elsewhere collective | contemporary curated photography">
-    <meta property="twitter:description" content="a curated platform for contemporary photography, highlighting artists, context, and visual culture from amsterdam.">
+    <meta property="twitter:description" content="Curated contemporary photography from Amsterdam, highlighting emerging photographers, interesting perspectives and cultural context.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Pinterest Verification -->
@@ -48,7 +48,7 @@
         "name": "elsewhere collective",
         "url": "https://elsewherecollective.nl",
         "logo": "https://elsewherecollective.nl/og-image.png",
-        "description": "A curated platform for contemporary photography, highlighting artists, context, and visual culture from Amsterdam.",
+        "description": "Curated contemporary photography from Amsterdam, highlighting emerging photographers, interesting perspectives and cultural context.",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Amsterdam",
@@ -1464,7 +1464,7 @@
                     Photography set in context and culture, guided by subtlety rather than spectacle.
                 </p>
                 <p class="hero-tagline">
-                    Limited editions by emerging photographers whose work holds attention and rewards contemplation.
+                    Photography by emerging photographers whose work holds attention and rewards contemplation.
                 </p>
             </div>
             <div class="hero-gallery">
@@ -1482,7 +1482,7 @@
             <!-- A. AJAX form with inline feedback -->
             <!-- C. Context label directly above the field — no gap between intent and action -->
             <label class="newsletter-label" for="newsletterEmail">
-                Early access to limited editions and curated releases.
+                Early access to new spotlights, curated releases and future editions.
             </label>
 
             <!-- B. Single border wraps input + button as one visual unit -->
@@ -1570,7 +1570,7 @@
             const shuffled = [...postsWithCaptions].sort(() => 0.5 - Math.random());
             galleryWorks = shuffled.slice(0, 6).map(post => ({
                 image: post.cloudinary_cropped_url || post.cloudinary_url || post.image_url,
-                title: post.title,
+                title: post.title || 'Untitled',
                 artist: post.artist,
                 artist_handle: post.artist_handle,
                 description: post.caption
