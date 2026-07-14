@@ -12,8 +12,8 @@
 #silktide-wrapper {
               --focus: 0 0 0 2px #ffffff, 0 0 0 4px #000000, 0 0 0 6px #ffffff;
               --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
-              --fontFamily: Helvetica Neue, Segoe UI, Arial, sans-serif;
-              --primaryColor: #D6B370;
+              --fontFamily: 'Favorit', Helvetica Neue, Segoe UI, Arial, sans-serif;
+              --primaryColor: #A8493D;
               --backgroundColor: #2c2c2c;
               --textColor: #fdfcf8;
               --backdropBackgroundColor: #2C2C2C4d;
@@ -81,7 +81,7 @@
 -------------------------------- */
 
 #silktide-wrapper .st-button {
-  color: var(--backgroundColor);
+  color: var(--textColor);
   background-color: var(--primaryColor);
   border: 2px solid var(--primaryColor);
   padding: 10px 20px;
@@ -196,6 +196,7 @@
 #silktide-banner p {
   font-size: 16px;
   line-height: 24px;
+  color: color-mix(in srgb, var(--textColor) 70%, var(--backgroundColor));
   margin: 0px 0px 15px;
 }
 
@@ -251,7 +252,7 @@
   display: none;
   pointer-events: auto;
   overflow: auto;
-  width: 800px;
+  width: 640px;
   max-width: 100%;
   max-height: 100%;
   border: 0px;
@@ -262,7 +263,7 @@
   font-family: var(--fontFamily);
   color: var(--textColor);
   flex-direction: column;
-  padding: 30px;
+  padding: 24px;
   background-color: var(--backgroundColor);
   border-radius: 5px;
   box-sizing: border-box;
@@ -283,7 +284,8 @@
   font-family: var(--fontFamily);
   color: var(--textColor);
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 300;
+  letter-spacing: -0.02em;
   margin: 0px;
 }
 
@@ -307,7 +309,7 @@
 
 #silktide-modal section {
   flex: 1;
-  margin-top: 32px;
+  margin-top: 20px;
 }
 
 #silktide-modal section::-webkit-scrollbar {
@@ -323,7 +325,7 @@
 #silktide-modal p {
   font-size: 16px;
   line-height: 24px;
-  color: var(--textColor);
+  color: color-mix(in srgb, var(--textColor) 70%, var(--backgroundColor));
   margin: 0px 0px 15px;
 }
 
@@ -438,6 +440,7 @@
 #silktide-modal .switch input:checked ~ .switch__on {
   right: calc(100% - 34px);
   opacity: 1;
+  color: var(--textColor);
 }
 
 /* Disabled Switch Styles */
@@ -464,8 +467,7 @@
 }
 
 #silktide-modal footer a {
-  margin-left: auto;
-  padding: 14px 0px;
+  display: none;
 }
 
 /* Cookie Icon */
