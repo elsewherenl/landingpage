@@ -40,14 +40,33 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+   <!-- Fonts -->
     <style>
+        @font-face {
+            font-family: 'SuisseIntl';
+            src: url('fonts/SuisseIntl-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
         @font-face {
             font-family: 'SuisseIntl';
             src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
             font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Favorit';
+            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Favorit';
+            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Light.woff2') format('woff2');
+            font-weight: 300;
             font-style: normal;
             font-display: swap;
         }
@@ -73,7 +92,143 @@
             console.log('❌ Google Analytics blocked - no consent given');
         }
     </script>
-    
+
+    <!-- FIXED: Correct file paths for Silktide -->
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
+    <script src="cookie-banner/silktide-consent-manager.js"></script>
+
+    <!-- Cookie Banner Configuration -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if Silktide is loaded
+        if (typeof silktideCookieBannerManager !== 'undefined') {
+            // Use Silktide if available
+            silktideCookieBannerManager.updateCookieBannerConfig({
+                background: {
+                    showBackground: true
+                },
+                cookieIcon: {
+                    position: "bottomRight"
+                },
+                cookieTypes: [
+                    {
+                        id: "necessary",
+                        name: "Necessary",
+                        description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+                        required: true,
+                        onAccept: function() {
+                            console.log('Necessary cookies accepted');
+                        }
+                    },
+                    {
+                        id: "analytics",
+                        name: "Analytics",
+                        description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+                        required: false,
+                        onAccept: function() {
+                            localStorage.setItem('analyticsConsent', 'true');
+                            if (typeof gtag !== 'undefined') {
+                                gtag('consent', 'update', {
+                                    analytics_storage: 'granted',
+                                });
+                                dataLayer.push({
+                                    'event': 'consent_accepted_analytics',
+                                });
+                            }
+                            loadAnalytics();
+                        },
+                        onReject: function() {
+                            localStorage.setItem('analyticsConsent', 'false');
+                            if (typeof gtag !== 'undefined') {
+                                gtag('consent', 'update', {
+                                    analytics_storage: 'denied',
+                                });
+                            }
+                        }
+                    }
+                ],
+                text: {
+                    banner: {
+                        description: "<p>We use cookies to analyse site usage and improve your experience. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
+                        acceptAllButtonText: "OK",
+                        acceptAllButtonAccessibleLabel: "Accept all cookies",
+                        rejectNonEssentialButtonText: "Essential Only",
+                        rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
+                        preferencesButtonText: "Settings",
+                        preferencesButtonAccessibleLabel: "Cookie preferences"
+                    },
+                    preferences: {
+                        title: "Cookie Settings",
+                        description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
+                        creditLinkText: "",
+                        creditLinkAccessibleLabel: ""
+                    }
+                },
+                position: {
+                    banner: "bottomRight"
+                }
+            });
+        } else {
+            // Fallback: Custom cookie banner if Silktide fails to load
+            console.log('Silktide not available, using custom cookie banner');
+            initCustomCookieBanner();
+        }
+
+        function loadAnalytics() {
+            if (!window.dataLayer) {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-NZVK7P7J3D');
+
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+                document.head.appendChild(script);
+
+                console.log('✅ Analytics loaded via cookie banner');
+            }
+        }
+
+        function initCustomCookieBanner() {
+            const cookieConsent = localStorage.getItem('cookieConsent');
+
+            if (!cookieConsent) {
+                const banner = document.createElement('div');
+                banner.className = 'cookie-banner show';
+                banner.innerHTML = `
+                    <div class="cookie-content">
+                        <div class="cookie-text">
+                            We use cookies to analyse site usage and improve your experience.
+                            <a href="https://elsewherecollective.nl/cookie-policy" target="_blank" class="cookie-link">Cookie Policy</a>
+                        </div>
+                        <div class="cookie-actions">
+                            <button class="cookie-button" id="acceptCookies">Accept All</button>
+                            <span class="essential-link" id="essentialOnly">Essential Only</span>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(banner);
+
+                document.getElementById('acceptCookies').onclick = function() {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    localStorage.setItem('analyticsConsent', 'true');
+                    banner.remove();
+                    loadAnalytics();
+                };
+
+                document.getElementById('essentialOnly').onclick = function() {
+                    localStorage.setItem('cookieConsent', 'essential');
+                    localStorage.setItem('analyticsConsent', 'false');
+                    banner.remove();
+                };
+            } else if (cookieConsent === 'accepted') {
+                loadAnalytics();
+            }
+        }
+    });
+    </script>
+
     <style>
         :root {
             --cream-bg: #F3EFE9;
@@ -95,11 +250,20 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Favorit', sans-serif;
             background: var(--cream-bg);
             color: var(--deep-charcoal);
             overflow-x: hidden;
             line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
         }
 
         .header {
@@ -181,10 +345,11 @@
         }
 
         .policy-header h1 {
-            font-family: 'SuisseIntl', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 2.2rem;
             font-weight: 300;
             line-height: 1.2;
+            letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
             color: var(--deep-charcoal);
             text-align: left;
@@ -204,18 +369,20 @@
         }
 
         .text-block h2 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 1.3rem;
-            font-weight: 400;
+            font-weight: 300;
+            letter-spacing: 0.02em;
             margin-bottom: 1rem;
             color: var(--deep-charcoal);
             text-align: left;
         }
 
         .text-block h3 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Favorit', sans-serif;
             font-size: 1.1rem;
-            font-weight: 500;
+            font-weight: 400;
+            letter-spacing: 0.02em;
             margin-bottom: 0.8rem;
             color: var(--deep-charcoal);
             text-align: left;
@@ -254,10 +421,12 @@
         }
 
         .legal-basis {
-            background: rgba(168, 181, 160, 0.1);
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            border-left: 3px solid var(--sage-green);
+            background: var(--warm-off-white);
+            border: 1px solid rgba(44, 44, 44, 0.08);
+            border-top: 2px solid var(--sage-green);
+            border-radius: 4px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
         }
 
         .legal-basis p {
@@ -267,10 +436,12 @@
         }
 
         .contact-section {
-            background: rgba(214, 179, 112, 0.1);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-left: 3px solid var(--biscuit-gold);
+            background: var(--warm-off-white);
+            border: 1px solid rgba(44, 44, 44, 0.08);
+            border-top: 2px solid var(--biscuit-gold);
+            border-radius: 4px;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
         }
 
         .contact-section h3 {
@@ -288,6 +459,94 @@
             border-top: 1px solid rgba(44, 44, 44, 0.1);
             padding-top: 2rem;
             margin-top: 3rem;
+        }
+
+        /* Cookie Banner Styles */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--deep-charcoal);
+            color: var(--warm-off-white);
+            padding: 1rem 2rem;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+            display: none;
+        }
+
+        .cookie-banner.show {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .cookie-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .cookie-text {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--warm-off-white);
+            line-height: 1.4;
+        }
+
+        .cookie-link {
+            color: var(--biscuit-gold);
+            text-decoration: none;
+            border-bottom: 1px solid var(--biscuit-gold);
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-link:hover {
+            color: var(--warm-off-white);
+            border-bottom-color: var(--warm-off-white);
+        }
+
+        .cookie-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cookie-button {
+            background: var(--biscuit-gold);
+            color: var(--deep-charcoal);
+            border: none;
+            padding: 0.6rem 1.25rem;
+            font-family: 'Favorit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-button:hover {
+            background: var(--sage-green);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .essential-link {
+            color: rgba(253, 252, 248, 0.7);
+            font-size: 0.8rem;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .essential-link:hover {
+            color: var(--warm-off-white);
         }
 
         /* Mobile Responsive */
@@ -314,6 +573,21 @@
                 justify-content: center;
                 width: 100%;
                 margin-top: 0;
+            }
+
+            .cookie-banner {
+                padding: 1rem;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .cookie-actions {
+                justify-content: center;
+                width: 100%;
             }
 
             .policy-container {
@@ -439,7 +713,7 @@
 
         <div class="contact-section">
             <h3>Contact Us</h3>
-            <p>If you have questions about our cookie usage: <a href="mailto:alex@elsewherecollective.nl">alex@elsewherecollective.nl</a></p>
+            <p>If you have questions about our cookie usage: <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a></p>
         </div>
 
         <section class="text-block">
