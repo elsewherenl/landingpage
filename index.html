@@ -406,26 +406,7 @@
         }
 
         .hero-gallery {
-            margin-bottom: 0;
-        }
-
-        /* Gallery Grid */
-        .hero-gallery {
             width: 100%;
-        }
-
-        .instagram-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: var(--warm-gray);
-            line-height: 1.4;
-            margin-bottom: 1rem;
         }
 
         .hero-tagline {
@@ -440,229 +421,100 @@
             margin-top: 0.1rem;
         }
 
-        .hero-tagline.location {
-            margin-top: 0.1rem;
+        /* Masonry preview grid, same as spotlight-editorial-dummy .grid-view/.grid-item */
+        .grid-view {
+            column-count: 4;
+            column-gap: 1.5rem;
         }
 
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--deep-charcoal);
-            text-decoration: none;
-            font-weight: 300;
-            font-size: 1rem;
-            padding: 1rem 2rem;
-            border: 1px solid rgba(44, 44, 44, 0.2);
-            transition: all 0.3s ease;
-            letter-spacing: 0.02em;
-        }
-
-        .hero-cta:hover {
-            background: var(--sage-green);
-            color: var(--warm-off-white);
-            border-color: var(--sage-green);
-        }
-
-        .hero-cta::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
-
-        .hero-cta:hover::after {
-            transform: translateX(3px);
-        }
-
-        /* Featured Section */
-        .featured {
-            padding: 1rem 0 1rem 0;
-            background: var(--cream-bg);
-        }
-
-        .container {
-            max-width: none;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 1rem;
-            margin-top: -1.5rem;
-        }
-
-        .section-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 0.25rem;
-            color: var(--deep-charcoal);
-        }
-
-        .section-description {
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--warm-gray);
-            max-width: 450px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .instagram-post {
-            width: 100%;
-        }
-
-        .post-image {
-            width: 100%;
-            height: 320px;
-            background: white;
-            cursor: pointer;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
+        .grid-item {
             position: relative;
             overflow: hidden;
-            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.02);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            background: rgba(44, 44, 44, 0.04);
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
         }
 
-        .post-image:hover {
-            transform: none;
-            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.02);
-        }
-
-        /* Default: Portrait images - fit within box maintaining aspect ratio */
-        .post-image img {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-        }
-
-        /* Landscape images - same size as overlay box */
-        .post-image.landscape img {
+        .grid-item img {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .image-overlay {
-            display: none;
-        }
-
-        .overlay-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            color: var(--deep-charcoal);
-            margin-bottom: 0.2rem;
-            text-align: left;
-        }
-
-        .overlay-artist {
-            font-size: 0.95rem;
-            font-weight: 300;
-            color: var(--deep-charcoal);
-            text-align: left;
-        }
-
-        .post-info {
-            text-align: left;
+            height: auto;
             display: block;
-            margin-top: 0.4rem;
+            filter: grayscale(0.15);
+            transition: transform 0.5s ease, filter 0.5s ease;
         }
 
-        .post-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 0.1rem;
-            color: var(--deep-charcoal);
-            letter-spacing: 0.02em;
+        .grid-item:hover img {
+            transform: scale(1.04);
+            filter: grayscale(0);
         }
 
-        .post-handle {
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--terracotta-red);
+        .grid-item-label {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0.9rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .work-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            color: var(--deep-charcoal);
-        }
-
-        .work-artist {
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--terracotta-red);
-            margin-bottom: 1rem;
-        }
-
-        .work-description {
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: var(--warm-gray);
-            line-height: 1.4;
-            margin-bottom: 1rem;
-        }
-
-        .work-instagram {
-            font-size: 0.75rem;
-            margin-top: 0.5rem;
-            line-height: 1.6;
-            min-height: 1.6em;
-            opacity: 0.7;
-        }
-
-        .work-instagram a {
-            color: var(--warm-gray);
-            text-decoration: none;
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid transparent;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            padding: 0.2rem 0;
-        }
-
-        .work-instagram a:hover {
-            color: var(--khaki);
-            border-bottom: 1px solid var(--khaki);
+        .grid-item:hover .grid-item-label {
             opacity: 1;
         }
 
-        .work-instagram svg {
-            width: 12px;
-            height: 12px;
-            fill: currentColor;
-            flex-shrink: 0;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 5rem 0 2rem 0;
-            background: var(--cream-bg);
-        }
-
-        .about-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 3rem;
-        }
-
-        .about-editorial {
-            max-width: 620px;
+        .grid-item-label .t {
             font-family: 'Favorit', sans-serif;
-            font-size: 1.15rem;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--warm-off-white);
+        }
+
+        .grid-item-label .a {
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.78rem;
             font-weight: 300;
-            line-height: 1.75;
+            color: var(--terracotta-red);
+        }
+
+        .gallery-more {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 2rem;
+        }
+
+        .gallery-more a {
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.25s ease, opacity 0.25s ease;
+        }
+
+        .gallery-more a::after {
+            content: '→';
+            transition: transform 0.25s ease;
+        }
+
+        .gallery-more a:hover {
             color: var(--deep-charcoal);
+        }
+
+        .gallery-more a:hover::after {
+            transform: translateX(3px);
+        }
+
+        .loading {
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.95rem;
+            color: var(--warm-gray);
+            padding: 2rem 0;
         }
 
         /* ─── Newsletter Section ─────────────────────────────────── */
@@ -679,7 +531,6 @@
             padding: 0 3rem;
         }
 
-        /* C. Context label sits directly above the field row */
         .newsletter-label {
             display: block;
             font-family: 'Favorit', sans-serif;
@@ -695,7 +546,6 @@
             margin-bottom: 1.75rem;
         }
 
-        /* B. Input and button sit as two adjacent boxed elements */
         .newsletter-form {
             display: flex;
             align-items: stretch;
@@ -715,7 +565,6 @@
             font-weight: 300;
             outline: none;
             transition: border-color 0.3s ease;
-            /* D. Floating label: the label lifts on focus via sibling selector */
         }
 
         .newsletter-input:focus {
@@ -727,12 +576,10 @@
             transition: opacity 0.2s ease;
         }
 
-        /* D. Fade placeholder on focus so the context label above takes over */
         .newsletter-input:focus::placeholder {
             opacity: 0;
         }
 
-        /* E. Solid button with a color sweep that fills in on hover */
         .newsletter-button {
             position: relative;
             padding: 0.9rem 1.75rem;
@@ -779,7 +626,6 @@
             transform: scaleX(0);
         }
 
-        /* A. Inline success / error states */
         .newsletter-success,
         .newsletter-error {
             display: none;
@@ -817,20 +663,9 @@
         .footer-content {
             display: flex;
             justify-content: flex-start;
-            margin-bottom: 3rem;
             max-width: 1600px;
             margin: 0 auto 1.5rem auto;
             padding: 0 3rem;
-        }
-
-        .footer-section h4 {
-            font-family: 'Favorit', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 300;
-            margin-bottom: 2.5rem;
-            color: var(--deep-charcoal);
-            text-transform: none;
-            letter-spacing: -0.02em;
         }
 
         .footer-link {
@@ -883,48 +718,91 @@
             letter-spacing: 0.02em;
         }
 
-        /* Fullscreen Gallery */
-        .fullscreen-gallery {
+        /* Fullscreen lightbox, same pattern as spotlight-editorial-dummy */
+        .fullscreen-modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: none;
+            background: #000;
             z-index: 2000;
-            align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            align-items: center;
+            padding: 2rem;
         }
 
-        .fullscreen-gallery.active {
+        .fullscreen-modal.active {
             display: flex;
-            opacity: 1;
         }
 
         .fullscreen-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90vw;
+            max-height: 90vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
 
         .fullscreen-image {
-            max-width: 80%;
-            max-height: 80%;
+            max-width: 100%;
+            max-height: 65vh;
             object-fit: contain;
-            background: none !important;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .fullscreen-image.portrait {
-            max-width: 60%;
-            max-height: 95%;
+        .fullscreen-caption {
+            color: var(--warm-off-white);
+            text-align: center;
+            margin-top: 1.5rem;
+            max-width: 700px;
+            padding: 0 1rem;
+            max-height: 20vh;
+            overflow-y: auto;
+        }
+
+        .fullscreen-caption .caption-title {
+            font-family: 'Favorit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.35rem;
+        }
+
+        .fullscreen-caption .caption-artist {
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 0.9rem;
+            color: var(--terracotta-red);
+        }
+
+        .fullscreen-caption .caption-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--warm-gray);
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 300;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.75);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transition: background 0.2s ease;
+            z-index: 2001;
+        }
+
+        .close-modal:hover {
+            background: rgba(149, 57, 46, 0.9);
         }
 
         .fullscreen-nav {
@@ -935,7 +813,6 @@
             border: none;
             width: 50px;
             height: 50px;
-            border-radius: 0;
             font-size: 1.75rem;
             color: white;
             cursor: pointer;
@@ -946,51 +823,311 @@
             user-select: none;
             line-height: 1;
             padding: 0;
-            z-index: 10002;
+            z-index: 2001;
         }
 
         .fullscreen-nav:hover {
             background: rgba(149, 57, 46, 0.85);
-            color: white;
-            transform: translateY(-50%);
         }
 
-        .fullscreen-prev {
-            left: 1rem;
+        .fullscreen-prev { left: 1rem; }
+        .fullscreen-next { right: 1rem; }
+
+        /* Tablet Layout */
+        @media (min-width: 769px) and (max-width: 1279px) {
+            .hero-content {
+                flex-direction: column;
+                padding: 0 3rem;
+                align-items: flex-start;
+            }
+
+            .hero-text {
+                text-align: left;
+                width: 100%;
+            }
+
+            .hero-gallery {
+                width: 100%;
+            }
+
+            :root {
+                --block-gap: 3rem;
+            }
         }
 
-        .fullscreen-next {
-            right: 1rem;
+        /* Desktop Layout */
+        @media (min-width: 1280px) {
+            .hero-content {
+                flex-direction: column;
+                padding: 0 3rem;
+                align-items: flex-start;
+            }
+
+            .hero-text {
+                flex: none;
+                width: 100%;
+                max-width: 900px;
+                padding-top: 0;
+                text-align: left;
+            }
+
+            .hero-title {
+                text-align: left;
+                font-size: 2.2rem;
+                line-height: 1.25;
+                letter-spacing: -0.015em;
+            }
+            .hero-gallery {
+                width: 100%;
+                max-width: 1500px;
+            }
+
+            .hero {
+                padding-bottom: 1.5rem;
+            }
+
+            .hero-intro {
+                margin-top: 0;
+                margin-bottom: var(--title-body-gap);
+                max-width: 900px;
+            }
+            .hero-body {
+                margin-bottom: var(--block-gap);
+                max-width: 900px;
+            }
+            .newsletter-label {
+                font-size: 2.2rem;
+                line-height: 1.25;
+                letter-spacing: -0.015em;
+            }
+            :root {
+                --block-gap: 3rem;
+            }
         }
 
-        .fullscreen-close {
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 0;
+            }
+
+            .header-container {
+                padding: 0 1.5rem;
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
+
+            .logo {
+                text-align: center;
+                width: 100%;
+                margin-bottom: 0;
+            }
+
+            .nav-menu {
+                gap: 2rem;
+                justify-content: center;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            .hero {
+                padding-top: var(--page-top-mobile);
+                padding-bottom: 0;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                padding: 0 1.5rem;
+                max-width: 100%;
+                align-items: center;
+            }
+
+            .hero-text {
+                text-align: center;
+                padding: 0 0.5rem;
+                max-width: 100%;
+                overflow: hidden;
+                margin-bottom: 0;
+            }
+
+            .grid-view {
+                column-count: 2;
+                column-gap: 0.75rem;
+            }
+
+            .grid-item {
+                margin-bottom: 0.75rem;
+            }
+
+            .gallery-more {
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                margin-top: 0;
+                margin-bottom: 0;
+                line-height: 1.5;
+                font-weight: 300;
+                max-width: 100%;
+                padding: 0;
+                overflow-wrap: break-word;
+                hyphens: none;
+            }
+
+            .footer-content {
+                text-align: left;
+                padding: 0 2rem;
+            }
+
+            .footer-bottom {
+                text-align: left;
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .newsletter-content {
+                text-align: center;
+                padding: 0 2rem;
+            }
+
+            .newsletter-label {
+                text-align: center;
+                font-size: 2rem;
+            }
+
+            .newsletter-form {
+                max-width: 100%;
+                margin: 0 auto;
+                flex-direction: row;
+            }
+
+            .newsletter-input {
+                font-size: 0.95rem;
+                padding: 0.75rem 0.9rem;
+            }
+
+            .newsletter-button {
+                font-size: 0.95rem;
+                padding: 0.75rem 1.25rem;
+            }
+
+            .newsletter-success,
+            .newsletter-error {
+                text-align: center;
+                margin: 0 auto;
+                font-size: 0.95rem;
+                padding: 0.65rem 0;
+            }
+
+            .newsletter {
+                padding: 1.5rem 0 1.5rem 0;
+            }
+
+            .hero-intro,
+            .hero-body {
+                margin-bottom: var(--title-body-gap);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding-top: var(--page-top-small);
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .nav-menu a {
+                font-size: 1rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─── Scroll cue: fixed, follows the viewport, points to the newsletter below ─── */
+        .scroll-cue {
             position: fixed;
-            top: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.75);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 0;
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: white;
-            cursor: pointer;
-            transition: background 0.2s ease;
+            top: 7.5rem;
+            right: 3rem;
+            z-index: 50;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            line-height: 1;
-            z-index: 10001;
+            gap: 0.5rem;
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(44, 44, 44, 0.4);
+            opacity: 1;
+            transition: opacity 0.4s ease;
         }
 
-        .fullscreen-close:hover {
-            background: rgba(149, 57, 46, 0.9);
-            color: white;
-            transform: none;
+        .scroll-cue.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        /* Cookie Banner Styles */
+        .scroll-cue-line {
+            width: 1px;
+            height: 2.75rem;
+            background: rgba(44, 44, 44, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-cue-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--terracotta-red);
+            animation: scrollDrip 2.2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDrip {
+            0% { top: -100%; }
+            60% { top: 100%; }
+            100% { top: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .scroll-cue {
+                display: none;
+            }
+        }
+
+        /* Cookie Banner Styles (fallback banner, injected via JS if Silktide fails to load) */
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -1078,303 +1215,7 @@
             color: var(--warm-off-white);
         }
 
-        /* Tablet Layout */
-        @media (min-width: 769px) and (max-width: 1279px) {
-            .hero-content {
-                flex-direction: column;
-                padding: 0 3rem;
-                align-items: flex-start;
-            }
-
-            .hero-text {
-                text-align: left;
-                width: 100%;
-            }
-
-            .hero-gallery {
-                width: 100%;
-            }
-
-            .instagram-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            :root {
-                --block-gap: 3rem;
-            }
-        }
-
-        /* Desktop Layout */
-        @media (min-width: 1280px) {
-            .hero-content {
-                flex-direction: column;
-                padding: 0 3rem;
-                align-items: flex-start;
-            }
-
-            .hero-text {
-                flex: none;
-                width: 100%;
-                max-width: 900px;
-                padding-top: 0;
-                text-align: left;
-            }
-
-            .hero-title {
-                text-align: left;
-                font-size: 2.2rem;
-                line-height: 1.25;
-                letter-spacing: -0.015em;
-            }
-            .hero-gallery {
-                width: 100%;
-                max-width: 1500px;
-            }
-
-            .instagram-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .post-image {
-                height: 460px;
-            }
-
-            .about-container {
-                display: flex;
-                justify-content: flex-start;
-            }
-
-            .about-editorial {
-                text-align: left;
-                max-width: 760px;
-                margin: 0;
-            }
-
-            .hero {
-                padding-bottom: 1.5rem;
-            }
-
-            .about-section {
-                padding-top: 4rem;
-            }
-            .hero-intro {
-                margin-top: 0;
-                margin-bottom: var(--title-body-gap);
-                max-width: 900px;
-            }
-            .hero-body {
-                margin-bottom: var(--block-gap);
-                max-width: 900px;
-            }
-            .newsletter-label {
-                font-size: 2.2rem;
-                line-height: 1.25;
-                letter-spacing: -0.015em;
-            }
-            :root {
-                --block-gap: 3rem;
-            }
-        }
-
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .header {
-                padding: 1rem 0;
-            }
-
-            .header-container {
-                padding: 0 1.5rem;
-                flex-direction: column;
-                gap: 0.75rem;
-                align-items: center;
-            }
-
-            .logo {
-                text-align: center;
-                width: 100%;
-                margin-bottom: 0;
-            }
-
-            .nav-menu {
-                gap: 2rem;
-                justify-content: center;
-                width: 100%;
-                margin-top: 0;
-            }
-
-            .hero {
-                padding-top: var(--page-top-mobile);
-                padding-bottom: 0;
-            }
-
-            .hero-content {
-                flex-direction: column;
-                padding: 0 1.5rem;
-                max-width: 100%;
-                align-items: center;
-            }
-
-            .hero-text {
-                text-align: center;
-                padding: 0 0.5rem;
-                max-width: 100%;
-                overflow: hidden;
-                margin-bottom: 0;
-            }
-
-            .instagram-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                row-gap: 2rem;
-            }
-
-            .instagram-post:nth-child(n+3) {
-                display: none;
-            }
-
-            .post-image {
-                height: 400px;
-                margin-bottom: 1rem;
-            }
-
-            .image-overlay {
-                display: none !important;
-            }
-
-            .post-info {
-                display: block;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-                margin-top: 0;
-                margin-bottom: 0;
-                line-height: 1.5;
-                font-weight: 300;
-                max-width: 100%;
-                padding: 0;
-                overflow-wrap: break-word;
-                hyphens: none;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-header {
-                text-align: center;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .section-description {
-                font-size: 0.9rem;
-            }
-
-            .container {
-                padding: 0 2rem;
-            }
-
-            .about-container {
-                padding: 0 2rem;
-            }
-
-            .about-editorial {
-                font-size: 1.05rem;
-            }
-
-            .featured-work {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-                align-items: center;
-                padding: 0;
-            }
-
-            .work-image {
-                flex: none;
-                width: 100%;
-                max-width: 400px;
-                height: auto;
-                aspect-ratio: 1 / 1;
-                min-height: 300px;
-                max-height: 350px;
-                margin: 0;
-                padding: 10px;
-            }
-
-            .work-info {
-                padding: 0;
-                max-width: 400px;
-                width: 100%;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-
-            .work-title,
-            .work-artist,
-            .work-description {
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                hyphens: auto;
-            }
-
-            .carousel-indicators {
-                margin-top: 2rem;
-            }
-
-            .footer-content {
-                text-align: left;
-                padding: 0 2rem;
-            }
-
-            .footer-bottom {
-                text-align: left;
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-
-            .newsletter-content {
-                text-align: center;
-                padding: 0 2rem;
-            }
-
-            .newsletter-label {
-                text-align: center;
-                font-size: 2rem;
-            }
-
-            .newsletter-form {
-                max-width: 100%;
-                margin: 0 auto;
-                flex-direction: row;
-            }
-
-            .newsletter-input {
-                font-size: 0.95rem;
-                padding: 0.75rem 0.9rem;
-            }
-
-            .newsletter-button {
-                font-size: 0.95rem;
-                padding: 0.75rem 1.25rem;
-            }
-
-            .newsletter-success,
-            .newsletter-error {
-                text-align: center;
-                margin: 0 auto;
-                font-size: 0.95rem;
-                padding: 0.65rem 0;
-            }
-
-            .newsletter {
-                padding: 1.5rem 0 1.5rem 0;
-            }
-
             .cookie-banner {
                 padding: 1rem;
             }
@@ -1388,74 +1229,6 @@
             .cookie-actions {
                 justify-content: center;
                 width: 100%;
-            }
-
-            .fullscreen-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
-            }
-
-            .fullscreen-close {
-                width: 40px;
-                height: 40px;
-            }
-
-            .fullscreen-prev {
-                left: 0;
-            }
-
-            .fullscreen-next {
-                right: 0;
-            }
-            :root {
-                --block-gap: 3rem;
-            }
-
-            .hero-intro,
-            .hero-body {
-                margin-bottom: var(--title-body-gap);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding-top: var(--page-top-small);
-            }
-
-            .header-container {
-                padding: 0 1rem;
-            }
-
-            .logo {
-                font-size: 1.8rem;
-            }
-
-            .nav-menu {
-                gap: 1.5rem;
-            }
-
-            .nav-menu a {
-                font-size: 1rem;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
             }
         }
     </style>
@@ -1474,8 +1247,12 @@
         </div>
     </header>
 
+    <div class="scroll-cue" id="scrollCue">
+        <span>Scroll</span>
+        <span class="scroll-cue-line"></span>
+    </div>
+
     <!-- Hero Section -->
-    <!-- C. "Join us" line removed from here — it now lives above the form -->
     <section class="hero fade-in" id="hero">
         <div class="hero-content">
             <div class="hero-text hero-intro">
@@ -1493,8 +1270,11 @@
                 </p>
             </div>
             <div class="hero-gallery">
-                <div class="instagram-grid" id="instagramGrid">
-                    <!-- Grid will be populated dynamically from instagram-feed.json -->
+                <div class="grid-view" id="gridView">
+                    <div class="loading">Loading posts…</div>
+                </div>
+                <div class="gallery-more">
+                    <a href="/spotlight">See more on Spotlight</a>
                 </div>
             </div>
         </div>
@@ -1503,9 +1283,6 @@
     <!-- Newsletter Section -->
     <section class="newsletter" id="newsletter">
         <div class="newsletter-content">
-
-            <!-- A. AJAX form with inline feedback -->
-            <!-- C. Context label directly above the field — no gap between intent and action -->
             <label class="newsletter-label" for="newsletterEmail">
                 Newsletter
             </label>
@@ -1513,7 +1290,6 @@
                 Be the first to hear about elsewhere editions. Limited edition fine art prints coming soon.
             </p>
 
-            <!-- B. Single border wraps input + button as one visual unit -->
             <form class="newsletter-form" id="newsletterForm" novalidate>
                 <input
                     type="email"
@@ -1524,7 +1300,6 @@
                     required
                     autocomplete="email"
                 >
-                <!-- D. Placeholder fades on focus; label above provides the context instead -->
                 <button type="submit" class="newsletter-button" id="newsletterButton"><span>Join</span></button>
             </form>
 
@@ -1565,171 +1340,106 @@
         </div>
     </footer>
 
-    <!-- Fullscreen Gallery -->
-    <div class="fullscreen-gallery" id="fullscreenGallery">
+    <div class="fullscreen-modal" id="fullscreenModal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <button class="fullscreen-nav fullscreen-prev" id="prevBtn">‹</button>
+        <button class="fullscreen-nav fullscreen-next" id="nextBtn">›</button>
         <div class="fullscreen-content">
-            <img class="fullscreen-image" id="fullscreenImage" src="" alt="">
-            <button class="fullscreen-nav fullscreen-prev" id="fullscreenPrev">‹</button>
-            <button class="fullscreen-nav fullscreen-next" id="fullscreenNext">›</button>
-            <button class="fullscreen-close" id="fullscreenClose">×</button>
+            <img id="fullscreenImage" class="fullscreen-image" src="" alt="">
+            <div class="fullscreen-caption">
+                <div class="caption-title" id="captionTitle"></div>
+                <div class="caption-artist" id="captionArtist"></div>
+                <div class="caption-text" id="captionText"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        let galleryWorks = [];
-        let allPosts = [];
+        let posts = [];
+        let currentIndex = 0;
 
-        // Load gallery works from JSON
-        async function loadGalleryWorks() {
+        function shuffle(array) {
+            const result = array.slice();
+            for (let i = result.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [result[i], result[j]] = [result[j], result[i]];
+            }
+            return result;
+        }
+
+        async function loadPosts() {
+            const gridView = document.getElementById('gridView');
             try {
-                const response = await fetch('instagram-feed.json');
-                const data = await response.json();
-                allPosts = data.posts;
-                selectRandomWorks();
-                preloadImages();
-            } catch (error) {
-                console.error('Error loading gallery works:', error);
-                galleryWorks = [];
-            }
-        }
+                const res = await fetch('instagram-feed.json');
+                const data = await res.json();
+                const postsWithCaptions = (data.posts || []).filter(post => post.caption && post.caption.trim() !== '');
+                posts = shuffle(postsWithCaptions).slice(0, 8);
 
-        function selectRandomWorks() {
-            const postsWithCaptions = allPosts.filter(post => post.caption && post.caption.trim() !== '');
-            const shuffled = [...postsWithCaptions].sort(() => 0.5 - Math.random());
-            galleryWorks = shuffled.slice(0, 6).map(post => ({
-                image: post.cloudinary_cropped_url || post.cloudinary_url || post.image_url,
-                title: post.title || 'Untitled',
-                artist: post.artist,
-                artist_handle: post.artist_handle,
-                description: post.caption
-            }));
-            if (document.querySelector('.instagram-grid')) {
-                renderGrid();
-            }
-        }
+                gridView.innerHTML = posts.map((post, i) => `
+                    <div class="grid-item" data-index="${i}">
+                        <img src="${post.cloudinary_cropped_url || post.image_url}" alt="${post.title || post.caption.slice(0, 50)}" loading="lazy">
+                        <div class="grid-item-label">
+                            <div class="t">${post.title || 'Untitled'}</div>
+                            <div class="a">${post.artist || ''}</div>
+                        </div>
+                    </div>
+                `).join('');
 
-        function preloadImages() {
-            if (galleryWorks.length > 0) {
-                const firstImg = new Image();
-                firstImg.src = galleryWorks[0].image;
-            }
-            setTimeout(() => {
-                galleryWorks.slice(1).forEach(work => {
-                    const img = new Image();
-                    img.src = work.image;
+                document.querySelectorAll('.grid-item').forEach(el => {
+                    el.addEventListener('click', () => openFullscreen(parseInt(el.dataset.index, 10)));
                 });
-            }, 100);
-        }
-
-        function renderGrid() {
-            const grid = document.querySelector('.instagram-grid');
-            if (!grid || galleryWorks.length === 0) return;
-            grid.innerHTML = galleryWorks.map((work, index) => `
-                <div class="instagram-post">
-                    <div class="post-image" onclick="openFullscreen(${index})">
-                        <img src="${work.image}" alt="${work.title} by ${work.artist}" loading="lazy" decoding="async" onload="detectImageOrientation(this)">
-                    </div>
-                    <div class="post-info">
-                        <div class="post-title">${work.title}</div>
-                        <div class="post-handle">${work.artist}</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function detectImageOrientation(img) {
-            const container = img.closest('.post-image');
-            if (!container) return;
-            container.classList.remove('portrait', 'landscape', 'claudia-portrait');
-            const overlayTitle = container.querySelector('.overlay-title');
-            if (overlayTitle && overlayTitle.textContent === 'Metamorphosis') {
-                container.classList.add('claudia-portrait');
-                return;
-            }
-            if (img.naturalWidth > img.naturalHeight) {
-                container.classList.add('landscape');
-            } else {
-                container.classList.add('portrait');
+            } catch (err) {
+                gridView.innerHTML = '<div class="loading">Error loading posts. Please check instagram-feed.json file.</div>';
             }
         }
-
-        // Fullscreen Gallery
-        let currentFullscreenIndex = 0;
 
         function openFullscreen(index) {
-            currentFullscreenIndex = index;
-            const work = galleryWorks[index];
-            const fullscreenGallery = document.getElementById('fullscreenGallery');
-            const fullscreenImage = document.getElementById('fullscreenImage');
-            fullscreenImage.src = work.image;
-            fullscreenImage.alt = `${work.title} by ${work.artist}`;
-            fullscreenImage.onload = function() {
-                if (this.naturalHeight > this.naturalWidth) {
-                    this.classList.add('portrait');
-                } else {
-                    this.classList.remove('portrait');
-                }
-            };
-            fullscreenGallery.classList.add('active');
+            currentIndex = index;
+            renderFullscreen();
+            document.getElementById('fullscreenModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeFullscreen() {
-            document.getElementById('fullscreenGallery').classList.remove('active');
+            document.getElementById('fullscreenModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
+        function renderFullscreen() {
+            const post = posts[currentIndex];
+            document.getElementById('fullscreenImage').src = post.cloudinary_cropped_url || post.image_url;
+            document.getElementById('captionTitle').textContent = post.title || 'Untitled';
+            document.getElementById('captionArtist').textContent = post.artist || '';
+            document.getElementById('captionText').textContent = post.caption;
+        }
+
         function showPrevious() {
-            currentFullscreenIndex = (currentFullscreenIndex - 1 + galleryWorks.length) % galleryWorks.length;
-            const work = galleryWorks[currentFullscreenIndex];
-            const fullscreenImage = document.getElementById('fullscreenImage');
-            fullscreenImage.src = work.image;
-            fullscreenImage.alt = `${work.title} by ${work.artist}`;
-            fullscreenImage.onload = function() {
-                if (this.naturalHeight > this.naturalWidth) {
-                    this.classList.add('portrait');
-                } else {
-                    this.classList.remove('portrait');
-                }
-            };
+            currentIndex = (currentIndex - 1 + posts.length) % posts.length;
+            renderFullscreen();
         }
 
         function showNext() {
-            currentFullscreenIndex = (currentFullscreenIndex + 1) % galleryWorks.length;
-            const work = galleryWorks[currentFullscreenIndex];
-            const fullscreenImage = document.getElementById('fullscreenImage');
-            fullscreenImage.src = work.image;
-            fullscreenImage.alt = `${work.title} by ${work.artist}`;
-            fullscreenImage.onload = function() {
-                if (this.naturalHeight > this.naturalWidth) {
-                    this.classList.add('portrait');
-                } else {
-                    this.classList.remove('portrait');
-                }
-            };
+            currentIndex = (currentIndex + 1) % posts.length;
+            renderFullscreen();
         }
 
-        // A. AJAX newsletter submission
+        document.getElementById('closeModal').addEventListener('click', closeFullscreen);
+        document.getElementById('prevBtn').addEventListener('click', showPrevious);
+        document.getElementById('nextBtn').addEventListener('click', showNext);
+
+        document.getElementById('fullscreenModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeFullscreen();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('fullscreenModal').classList.contains('active')) return;
+            if (e.key === 'Escape') closeFullscreen();
+            if (e.key === 'ArrowLeft') showPrevious();
+            if (e.key === 'ArrowRight') showNext();
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
-            loadGalleryWorks();
-
-            // Fullscreen events
-            const fullscreenGallery = document.getElementById('fullscreenGallery');
-            document.getElementById('fullscreenClose').addEventListener('click', closeFullscreen);
-            document.getElementById('fullscreenPrev').addEventListener('click', showPrevious);
-            document.getElementById('fullscreenNext').addEventListener('click', showNext);
-
-            document.addEventListener('keydown', function(e) {
-                if (fullscreenGallery.classList.contains('active')) {
-                    if (e.key === 'Escape') closeFullscreen();
-                    if (e.key === 'ArrowLeft') showPrevious();
-                    if (e.key === 'ArrowRight') showNext();
-                }
-            });
-
-            fullscreenGallery.addEventListener('click', function(e) {
-                if (e.target === fullscreenGallery) closeFullscreen();
-            });
+            loadPosts();
 
             // Smooth scroll
             document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -1741,6 +1451,13 @@
                     }
                 });
             });
+
+            // Scroll cue: fixed in place while scrolling, only fades once the user nears the true bottom of the page
+            const scrollCue = document.getElementById('scrollCue');
+            window.addEventListener('scroll', () => {
+                const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 200;
+                scrollCue.classList.toggle('hidden', nearBottom);
+            }, { passive: true });
 
             // Newsletter AJAX submit
             const form = document.getElementById('newsletterForm');
@@ -1755,7 +1472,6 @@
                 const email = document.getElementById('newsletterEmail').value.trim();
                 if (!email) return;
 
-                // Loading state
                 buttonLabel.textContent = 'Sending…';
                 button.disabled = true;
                 successMsg.classList.remove('visible');
@@ -1772,7 +1488,6 @@
                     });
 
                     if (res.ok) {
-                        // Success: hide the form, show confirmation
                         form.style.display = 'none';
                         document.querySelector('.newsletter-label').style.opacity = '0.45';
                         successMsg.classList.add('visible');
@@ -1780,7 +1495,6 @@
                         throw new Error('Network response not ok');
                     }
                 } catch (err) {
-                    // Error: restore button, show error line
                     buttonLabel.textContent = 'Join';
                     button.disabled = false;
                     errorMsg.classList.add('visible');
