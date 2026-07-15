@@ -643,6 +643,21 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 2rem 0;
     }
 
+    .fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
     /* ─── Contact block, same markup/styles as spotlight.html / about.html ─── */
     .contact-section {
         max-width: 1600px;
@@ -827,8 +842,12 @@ document.addEventListener('DOMContentLoaded', function() {
         .intro {
             padding: 10rem 1.5rem 0;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             gap: 1rem;
+        }
+
+        .intro-text {
+            text-align: center;
         }
 
         .scroll-cue {
@@ -998,7 +1017,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </header>
 
-    <section class="intro">
+    <section class="intro fade-in">
         <div class="intro-text">
             <h1 class="page-title">Spotlight.</h1>
             <p class="page-subtitle">A running edit of work shared, pulled from <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere___collective</a></p>
