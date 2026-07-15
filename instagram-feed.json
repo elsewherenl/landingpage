@@ -320,6 +320,39 @@
       "caption": "",
       "permalink": "https://www.instagram.com/p/DVY7tszCFCX/",
       "timestamp": "02/03/2026"
+    },
+    {
+      "id": "30",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/CC%201.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131617/CC_putlzt.png",
+      "title": "Les Rochers Fauves",
+      "artist": "Clément Chapillon",
+      "artist_handle": "https://www.instagram.com/clemchap/",
+      "caption": "Islands and isolation. Contradictory feelings arising from the insularity of Amorgos, Cyclades.",
+      "permalink": "https://www.instagram.com/p/DWTjKCgCOXr/?img_index=1",
+      "timestamp": "25/03/2026"
+    },
+    {
+      "id": "31",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Uxio%201.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131779/Deriva_09-2_scovje.jpg",
+      "title": "Deriva",
+      "artist": "Uxío da Vila",
+      "artist_handle": "https://www.instagram.com/ux10/",
+      "caption": "Seen, but never fully revealed.",
+      "permalink": "https://www.instagram.com/p/DXXA18JCHDs/?img_index=1",
+      "timestamp": "20/04/2026"
+    },
+{
+      "id": "32",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Charline%20Cocset%201.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784132115/Charline_vdqz50.jpg",
+      "title": "Fugue Photographique",
+      "artist": "Charline Cocset",
+      "artist_handle": "https://www.instagram.com/charlinecocset.photographie/",
+      "caption": "Natural forms softened into atmosphere.",
+      "permalink": "https://www.instagram.com/p/DYCSKfHCJmz/?img_index=1",
+      "timestamp": "07/05/2026"
     }
 
   ]
