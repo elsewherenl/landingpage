@@ -73,44 +73,141 @@
     <link rel="preconnect" href="https://github.com" crossorigin>
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
 
-    <!-- Fonts -->
-    <style>
-        @font-face {
-            font-family: 'SuisseIntl';
-            src: url('fonts/SuisseIntl-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'SuisseIntl';
-            src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
-            font-weight: 500;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Favorit';
-            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Regular.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Favorit';
-            src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Light.woff2') format('woff2');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-    </style>
+<style>
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'Favorit';
+        src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'Favorit';
+        src: url('https://cdn.jsdelivr.net/npm/@typopro/web-favorit@3.7.5/TypoPRO-Favorit-Light.woff2') format('woff2');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+</style>
 
-    <!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
-    <script>
-        console.log('Checking cookie consent for GA...');
-        if (localStorage.getItem('analyticsConsent') === 'true') {
-            console.log('✅ Loading Google Analytics with user consent');
+<!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
+<script>
+    console.log('Checking cookie consent for GA...');
+    if (localStorage.getItem('analyticsConsent') === 'true') {
+        console.log('✅ Loading Google Analytics with user consent');
 
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NZVK7P7J3D');
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+        document.head.appendChild(script);
+
+    } else {
+        console.log('❌ Google Analytics blocked - no consent given');
+    }
+</script>
+
+<!-- FIXED: Correct file paths for Silktide -->
+<link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
+<script src="cookie-banner/silktide-consent-manager.js"></script>
+
+<!-- Cookie Banner Configuration -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if Silktide is loaded
+    if (typeof silktideCookieBannerManager !== 'undefined') {
+        // Use Silktide if available
+        silktideCookieBannerManager.updateCookieBannerConfig({
+            background: {
+                showBackground: true
+            },
+            cookieIcon: {
+                position: "bottomRight"
+            },
+            cookieTypes: [
+                {
+                    id: "necessary",
+                    name: "Necessary",
+                    description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+                    required: true,
+                    onAccept: function() {
+                        console.log('Necessary cookies accepted');
+                    }
+                },
+                {
+                    id: "analytics",
+                    name: "Analytics",
+                    description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+                    required: false,
+                    onAccept: function() {
+                        localStorage.setItem('analyticsConsent', 'true');
+                        if (typeof gtag !== 'undefined') {
+                            gtag('consent', 'update', {
+                                analytics_storage: 'granted',
+                            });
+                            dataLayer.push({
+                                'event': 'consent_accepted_analytics',
+                            });
+                        }
+                        loadAnalytics();
+                    },
+                    onReject: function() {
+                        localStorage.setItem('analyticsConsent', 'false');
+                        if (typeof gtag !== 'undefined') {
+                            gtag('consent', 'update', {
+                                analytics_storage: 'denied',
+                            });
+                        }
+                    }
+                }
+            ],
+            text: {
+                banner: {
+                    description: "<p>We use cookies to analyse site usage and improve your experience. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
+                    acceptAllButtonText: "OK",
+                    acceptAllButtonAccessibleLabel: "Accept all cookies",
+                    rejectNonEssentialButtonText: "Essential Only",
+                    rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
+                    preferencesButtonText: "Settings",
+                    preferencesButtonAccessibleLabel: "Cookie preferences"
+                },
+                preferences: {
+                    title: "Cookie Settings",
+                    description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
+                    creditLinkText: "",
+                    creditLinkAccessibleLabel: ""
+                }
+            },
+            position: {
+                banner: "bottomRight"
+            }
+        });
+    } else {
+        // Fallback: Custom cookie banner if Silktide fails to load
+        console.log('Silktide not available, using custom cookie banner');
+        initCustomCookieBanner();
+    }
+
+    function loadAnalytics() {
+        if (!window.dataLayer) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -121,848 +218,836 @@
             script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
             document.head.appendChild(script);
 
-        } else {
-            console.log('❌ Google Analytics blocked - no consent given');
+            console.log('✅ Analytics loaded via cookie banner');
         }
-    </script>
+    }
 
-    <!-- FIXED: Correct file paths for Silktide -->
-    <link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
-    <script src="cookie-banner/silktide-consent-manager.js"></script>
+    function initCustomCookieBanner() {
+        const cookieConsent = localStorage.getItem('cookieConsent');
 
-    <!-- Cookie Banner Configuration -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check if Silktide is loaded
-        if (typeof silktideCookieBannerManager !== 'undefined') {
-            // Use Silktide if available
-            silktideCookieBannerManager.updateCookieBannerConfig({
-                background: {
-                    showBackground: true
-                },
-                cookieIcon: {
-                    position: "bottomRight"
-                },
-                cookieTypes: [
-                    {
-                        id: "necessary",
-                        name: "Necessary",
-                        description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
-                        required: true,
-                        onAccept: function() {
-                            console.log('Necessary cookies accepted');
-                        }
-                    },
-                    {
-                        id: "analytics",
-                        name: "Analytics",
-                        description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
-                        required: false,
-                        onAccept: function() {
-                            localStorage.setItem('analyticsConsent', 'true');
-                            if (typeof gtag !== 'undefined') {
-                                gtag('consent', 'update', {
-                                    analytics_storage: 'granted',
-                                });
-                                dataLayer.push({
-                                    'event': 'consent_accepted_analytics',
-                                });
-                            }
-                            loadAnalytics();
-                        },
-                        onReject: function() {
-                            localStorage.setItem('analyticsConsent', 'false');
-                            if (typeof gtag !== 'undefined') {
-                                gtag('consent', 'update', {
-                                    analytics_storage: 'denied',
-                                });
-                            }
-                        }
-                    }
-                ],
-                text: {
-                    banner: {
-                        description: "<p>We use cookies to analyse site usage and improve your experience. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
-                        acceptAllButtonText: "OK",
-                        acceptAllButtonAccessibleLabel: "Accept all cookies",
-                        rejectNonEssentialButtonText: "Essential Only",
-                        rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
-                        preferencesButtonText: "Settings",
-                        preferencesButtonAccessibleLabel: "Cookie preferences"
-                    },
-                    preferences: {
-                        title: "Cookie Settings",
-                        description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
-                        creditLinkText: "",
-                        creditLinkAccessibleLabel: ""
-                    }
-                },
-                position: {
-                    banner: "bottomRight"
-                }
-            });
-        } else {
-            // Fallback: Custom cookie banner if Silktide fails to load
-            console.log('Silktide not available, using custom cookie banner');
-            initCustomCookieBanner();
-        }
-
-        function loadAnalytics() {
-            if (!window.dataLayer) {
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-NZVK7P7J3D');
-
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
-                document.head.appendChild(script);
-
-                console.log('✅ Analytics loaded via cookie banner');
-            }
-        }
-
-        function initCustomCookieBanner() {
-            const cookieConsent = localStorage.getItem('cookieConsent');
-
-            if (!cookieConsent) {
-                const banner = document.createElement('div');
-                banner.className = 'cookie-banner show';
-                banner.innerHTML = `
-                    <div class="cookie-content">
-                        <div class="cookie-text">
-                            We use cookies to analyse site usage and improve your experience.
-                            <a href="https://elsewherecollective.nl/cookie-policy" target="_blank" class="cookie-link">Cookie Policy</a>
-                        </div>
-                        <div class="cookie-actions">
-                            <button class="cookie-button" id="acceptCookies">Accept All</button>
-                            <span class="essential-link" id="essentialOnly">Essential Only</span>
-                        </div>
+        if (!cookieConsent) {
+            const banner = document.createElement('div');
+            banner.className = 'cookie-banner show';
+            banner.innerHTML = `
+                <div class="cookie-content">
+                    <div class="cookie-text">
+                        We use cookies to analyse site usage and improve your experience.
+                        <a href="https://elsewherecollective.nl/cookie-policy" target="_blank" class="cookie-link">Cookie Policy</a>
                     </div>
-                `;
-                document.body.appendChild(banner);
+                    <div class="cookie-actions">
+                        <button class="cookie-button" id="acceptCookies">Accept All</button>
+                        <span class="essential-link" id="essentialOnly">Essential Only</span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(banner);
 
-                document.getElementById('acceptCookies').onclick = function() {
-                    localStorage.setItem('cookieConsent', 'accepted');
-                    localStorage.setItem('analyticsConsent', 'true');
-                    banner.remove();
-                    loadAnalytics();
-                };
-
-                document.getElementById('essentialOnly').onclick = function() {
-                    localStorage.setItem('cookieConsent', 'essential');
-                    localStorage.setItem('analyticsConsent', 'false');
-                    banner.remove();
-                };
-            } else if (cookieConsent === 'accepted') {
+            document.getElementById('acceptCookies').onclick = function() {
+                localStorage.setItem('cookieConsent', 'accepted');
+                localStorage.setItem('analyticsConsent', 'true');
+                banner.remove();
                 loadAnalytics();
-            }
-        }
-    });
-    </script>
+            };
 
-    <style>
-        :root {
-            --cream-bg: #F3EFE9;
-            --deep-charcoal: #2C2C2C;
-            --warm-gray: #8A8580;
-            --warm-off-white: #FDFCF8;
-            --biscuit-gold: #D6B370;
-            --khaki: #C0B589;
-            --terracotta-red: #95392E;
+            document.getElementById('essentialOnly').onclick = function() {
+                localStorage.setItem('cookieConsent', 'essential');
+                localStorage.setItem('analyticsConsent', 'false');
+                banner.remove();
+            };
+        } else if (cookieConsent === 'accepted') {
+            loadAnalytics();
         }
+    }
+});
+</script>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<style>
+    :root {
+        --cream-bg: #F3EFE9;
+        --deep-charcoal: #2C2C2C;
+        --warm-gray: #8A8580;
+        --warm-off-white: #FDFCF8;
+        --terracotta-red: #95392E;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        font-family: 'Favorit', sans-serif;
+        background: var(--cream-bg);
+        color: var(--deep-charcoal);
+        line-height: 1.6;
+    }
+
+    /* ─── Header: identical alignment/type to the live site ─── */
+    .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(243, 239, 233, 0.92);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        padding: 1.5rem 0;
+    }
+
+    .header-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: var(--deep-charcoal);
+        text-decoration: none;
+        letter-spacing: 0.06em;
+        text-transform: lowercase;
+        cursor: pointer;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-menu a {
+        text-decoration: none;
+        color: rgba(44, 44, 44, 0.75);
+        font-weight: 300;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        transition: opacity 0.25s ease, color 0.25s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        color: var(--deep-charcoal);
+    }
+
+    /* ─── Intro: page title + subtitle, same classes/sizes as spotlight.html ─── */
+    .intro {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 7.25rem 3rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 2rem;
+    }
+
+    .intro-text {
+        max-width: 640px;
+    }
+
+    .page-title {
+        font-family: 'Favorit', sans-serif;
+        font-size: 2.1rem;
+        font-weight: 300;
+        line-height: 1.2;
+        margin: 0 0 1.5rem;
+        color: var(--deep-charcoal);
+        letter-spacing: -0.02em;
+    }
+
+    @media (min-width: 1280px) {
+        .page-title {
+            font-size: 2.2rem;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
         }
+    }
 
-        body {
-            font-family: 'Favorit', sans-serif;
-            background: var(--cream-bg);
-            color: var(--deep-charcoal);
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
+    .page-subtitle {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--warm-gray);
+        margin: 0;
+    }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(243, 239, 233, 0.92); /* softer paper feel */
-            backdrop-filter: blur(8px); /* reduced blur */
-            border-bottom: none; /* remove hard UI divider */
-            z-index: 1000;
-            padding: 1.5rem 0;
-        }
+    .page-subtitle a {
+        color: var(--terracotta-red);
+        text-decoration: none;
+        transition: opacity 0.25s ease, color 0.25s ease;
+    }
 
+    /* ─── Scroll cue: fixed so it follows the viewport as the user scrolls down ─── */
+    .scroll-cue {
+        position: fixed;
+        top: 7.5rem;
+        right: 3rem;
+        z-index: 50;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(44, 44, 44, 0.4);
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+
+    .scroll-cue.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .scroll-cue-line {
+        width: 1px;
+        height: 2.75rem;
+        background: rgba(44, 44, 44, 0.25);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .scroll-cue-line::after {
+        content: '';
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--terracotta-red);
+        animation: scrollDrip 2.2s ease-in-out infinite;
+    }
+
+    @keyframes scrollDrip {
+        0% { top: -100%; }
+        60% { top: 100%; }
+        100% { top: 100%; }
+    }
+
+    /* ─── View toggle: switches rail <-> grid, sits under the intro text ─── */
+    .view-toggle-row {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 1.5rem 3rem 1.5rem;
+    }
+
+    .view-toggle {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        font-family: 'SuisseIntl', sans-serif;
+    }
+
+    .view-toggle-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(44, 44, 44, 0.4);
+    }
+
+    .view-toggle-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .view-toggle-pill button {
+        appearance: none;
+        border: none;
+        background: none;
+        font-family: inherit;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        color: rgba(44, 44, 44, 0.45);
+        cursor: pointer;
+        padding: 0.25rem 0;
+        transition: color 0.25s ease;
+    }
+
+    .view-toggle-pill button:hover {
+        color: var(--deep-charcoal);
+    }
+
+    .view-toggle-pill button.active {
+        color: var(--deep-charcoal);
+    }
+
+    .view-toggle-pill .divider {
+        color: rgba(44, 44, 44, 0.25);
+        font-size: 0.85rem;
+    }
+
+    /* ─── Editorial rail: alternating scale, generous air, no card chrome ─── */
+    .rail {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 3rem 3rem 6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8vw;
+    }
+
+    .rail.hidden {
+        display: none;
+    }
+
+    .entry {
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .entry.is-reversed {
+        grid-template-columns: 5fr 7fr;
+    }
+
+    .entry.is-reversed .entry-figure {
+        order: 2;
+    }
+
+    .entry.is-reversed .entry-meta {
+        order: 1;
+    }
+
+    .entry-figure {
+        position: relative;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    /* Images keep their native proportions — no crop, no forced ratio —
+       but are always capped to fit inside the viewport, at any zoom level */
+    .entry-figure img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: min(640px, 100%);
+        max-height: 85vh;
+        filter: grayscale(0.15);
+        transition: filter 0.6s ease;
+    }
+
+    .entry.is-reversed .entry-figure img {
+        margin-left: auto;
+    }
+
+    .entry-figure:hover img {
+        filter: grayscale(0);
+    }
+
+    .entry-meta {
+        font-family: 'SuisseIntl', sans-serif;
+    }
+
+    /* Colors/weights matched to spotlight.html's .post-title / .post-handle / .post-caption */
+    .entry-title {
+        font-family: 'Favorit', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        margin: 0 0 0.3rem;
+        color: var(--deep-charcoal);
+    }
+
+    .entry-artist {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--terracotta-red);
+        margin-bottom: 1rem;
+    }
+
+    .entry-caption {
+        font-size: 0.95rem;
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--warm-gray);
+        max-width: 60ch;
+    }
+
+    /* ─── Grid / thumbnail view: dense uniform rows ─── */
+    /* Masonry via CSS columns — each image keeps its native aspect ratio, no cropping */
+    .grid-view {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 3rem 3rem 6rem;
+        display: none;
+        column-count: 4;
+        column-gap: 1.5rem;
+    }
+
+    .grid-view.active {
+        display: block;
+    }
+
+    .grid-item {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        background: rgba(44, 44, 44, 0.04);
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+    }
+
+    .grid-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        filter: grayscale(0.15);
+        transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .grid-item:hover img {
+        transform: scale(1.04);
+        filter: grayscale(0);
+    }
+
+    .grid-item-label {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0.75rem 0.9rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .grid-item:hover .grid-item-label {
+        opacity: 1;
+    }
+
+    .grid-item-label .t {
+        font-family: 'Favorit', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--warm-off-white);
+    }
+
+    .grid-item-label .a {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 300;
+        color: var(--terracotta-red);
+    }
+
+    .loading {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.95rem;
+        color: var(--warm-gray);
+        padding: 2rem 0;
+    }
+
+    /* ─── Contact block, same markup/styles as spotlight.html / about.html ─── */
+    .contact-section {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 3rem 6rem;
+    }
+
+    .contact-section h2 {
+        font-family: 'Favorit', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        margin: 0 0 1rem;
+        color: var(--deep-charcoal);
+    }
+
+    .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .contact-links a {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--warm-gray);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.3s ease, opacity 0.3s ease;
+        line-height: 1.6;
+    }
+
+    .contact-links a:hover {
+        color: var(--deep-charcoal);
+        opacity: 0.85;
+    }
+
+    /* ─── Fullscreen lightbox, same interaction pattern as spotlight.html ─── */
+    .fullscreen-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .fullscreen-modal.active {
+        display: flex;
+    }
+
+    .fullscreen-content {
+        max-width: 90vw;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fullscreen-image {
+        max-width: 100%;
+        max-height: 65vh;
+        object-fit: contain;
+    }
+
+    .fullscreen-caption {
+        color: var(--warm-off-white);
+        text-align: center;
+        margin-top: 1.5rem;
+        max-width: 700px;
+        padding: 0 1rem;
+        max-height: 20vh;
+        overflow-y: auto;
+    }
+
+    .fullscreen-caption .caption-title {
+        font-family: 'Favorit', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.35rem;
+    }
+
+    .fullscreen-caption .caption-artist {
+        font-size: 0.95rem;
+        font-weight: 300;
+        margin-bottom: 0.9rem;
+        color: var(--terracotta-red);
+    }
+
+    .fullscreen-caption .caption-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: var(--warm-gray);
+    }
+
+    .close-modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 300;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.75);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        transition: background 0.2s ease;
+        z-index: 2001;
+    }
+
+    .close-modal:hover {
+        background: rgba(149, 57, 46, 0.9);
+    }
+
+    .fullscreen-nav {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        width: 50px;
+        height: 50px;
+        font-size: 1.75rem;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        line-height: 1;
+        padding: 0;
+        z-index: 2001;
+    }
+
+    .fullscreen-nav:hover {
+        background: rgba(149, 57, 46, 0.85);
+    }
+
+    .fullscreen-prev { left: 1rem; }
+    .fullscreen-next { right: 1rem; }
+
+    /* ─── Mobile ─── */
+    @media (max-width: 860px) {
         .header-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 0 1.5rem;
         }
 
         .logo {
-            font-family: 'SuisseIntl', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 500;
-            color: var(--deep-charcoal);
-            text-decoration: none;
-            letter-spacing: 0.06em;
-            text-transform: lowercase;
-            cursor: pointer;
-            transition: opacity 0.3s ease, letter-spacing 0.3s ease;
-        }
-
-        .logo:hover {
-            opacity: 1;
-            letter-spacing: 0.06em;
-            transform: none;
+            font-size: 1.6rem;
         }
 
         .nav-menu {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: rgba(44,44,44,0.75);
-            font-weight: 300;
-            font-size: 1.05rem;
-            letter-spacing: 0.04em;
-            border-bottom: none;
-            transition: opacity 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            opacity: 0.5;
-            color: var(--deep-charcoal);
-        }
-
-        .main {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 7.25rem 3rem 2rem 3rem;
-        }
-
-        .page-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 2.1rem;
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--deep-charcoal);
-            letter-spacing: -0.02em;
-        }
-        @media (min-width: 1280px) {
-            .page-title {
-                font-size: 2.2rem;
-                line-height: 1.25;
-                letter-spacing: -0.015em;
-            }
-        }
-
-        .page-subtitle {
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--warm-gray);
-            margin-bottom: 3rem;
-        }
-
-        /* Contact block, matching about.html */
-        .text-block h2 {
-            font-family: 'Favorit', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 300;
-            letter-spacing: 0.02em;
-            margin-bottom: 1rem;
-            color: var(--deep-charcoal);
-        }
-
-        .contact-block {
-            margin-top: 3rem;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-top: 0;
-        }
-
-        .contact-links a {
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--warm-gray);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-            transition: color 0.3s ease, opacity 0.3s ease;
-            line-height: 1.6;
-        }
-
-        .contact-links a:hover {
-            color: var(--deep-charcoal);
-            opacity: 0.85;
-        }
-
-        .ig-handle {
-            color: var(--terracotta-red);
-            text-decoration: none;
-            transition: opacity 0.25s ease, color 0.25s ease;
-        }
-
-        .ig-handle:hover {
-            color: var(--deep-charcoal);
-            opacity: 0.6;
-        }
-
-        /* 2x2 Grid Layout */
-        .instagram-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
         }
 
-        .instagram-post {
-            width: 100%;
+        .nav-menu a {
+            font-size: 0.95rem;
         }
 
-        .post-image {
-            width: 100%;
-            height: 600px;
-            background: white;
-            padding: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            cursor: pointer;
-            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            will-change: transform;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .post-image:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .post-image img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            display: block;
-            object-fit: contain;
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            display: flex;
+        .intro {
+            padding: 10rem 1.5rem 0;
             flex-direction: column;
-            justify-content: flex-end;
             align-items: flex-start;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
-            text-align: left;
+            gap: 1rem;
         }
 
-        .post-image:hover .image-overlay {
-            opacity: 1;
+        .scroll-cue {
+            flex-direction: row;
+            gap: 0.6rem;
         }
 
-        .overlay-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            color: var(--warm-off-white);
-            margin-bottom: 0.2rem;
-            text-align: left;
-            text-transform: none;
+        .scroll-cue-line {
+            width: 2.75rem;
+            height: 1px;
         }
 
-        .overlay-artist {
-            font-size: 0.95rem;
-            font-weight: 300;
-            color: var(--terracotta-red);
-            text-align: left;
-        }
-
-        .post-info {
-            display: none;
-            text-align: left;
-            margin-top: 0.4rem;
-            padding: 0;
-            min-height: auto;
-        }
-
-        .post-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 0.1rem;
-            color: var(--deep-charcoal);
-            text-transform: none;
-            letter-spacing: 0.02em;
-            text-align: left;
-        }
-
-        .post-handle {
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--terracotta-red);
-            margin-bottom: 0;
-            text-align: left;
-        }
-
-        .post-caption {
-            font-size: 0.95rem;
-            font-weight: 300;
-            color: var(--warm-gray);
-            line-height: 1.6;
-            margin-bottom: 0.8rem;
-            text-align: center;
-        }
-
-        .post-link {
-            font-size: 0.9rem;
-            color: var(--deep-charcoal);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-block;
-        }
-
-        .post-link:hover {
-            color: var(--khaki);
-            border-bottom: 1px solid var(--khaki);
-        }
-
-        /* Fullscreen Modal */
-        .fullscreen-modal {
-            display: none;
-            position: fixed;
+        .scroll-cue-line::after {
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
+            left: -100%;
+            animation-name: scrollDripHorizontal;
         }
 
-        .fullscreen-modal.active {
-            display: flex;
+        @keyframes scrollDripHorizontal {
+            0% { left: -100%; }
+            60% { left: 100%; }
+            100% { left: 100%; }
         }
 
-        .fullscreen-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .view-toggle-row {
+            padding: 1.25rem 1.5rem 1.25rem;
         }
 
-        .fullscreen-image {
+        .rail {
+            padding: 2rem 1.5rem 4rem;
+            gap: 3.5rem;
+        }
+
+        .entry,
+        .entry.is-reversed {
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+
+        .entry.is-reversed .entry-figure,
+        .entry.is-reversed .entry-meta {
+            order: initial;
+        }
+
+        .entry-figure img,
+        .entry.is-reversed .entry-figure img {
             max-width: 100%;
-            max-height: 70vh;
-            object-fit: contain;
+            margin-left: 0;
         }
 
-        .fullscreen-caption {
-            color: var(--warm-off-white);
-            text-align: center;
-            margin-top: 1.5rem;
-            max-width: 700px;
-            padding: 0 1rem;
-            max-height: 20vh;
-            overflow-y: auto;
+        .entry-title {
+            font-size: 1.3rem;
         }
 
-        .fullscreen-caption .caption-title {
-            font-family: 'Favorit', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            margin-bottom: 0.35rem;
-            text-transform: none;
+        .grid-view {
+            padding: 2rem 1.5rem 4rem;
+            column-count: 2;
+            column-gap: 0.75rem;
         }
 
-        .fullscreen-caption .caption-artist {
-            font-size: 0.95rem;
-            font-weight: 300;
-            margin-bottom: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            color: var(--terracotta-red);
+        .grid-item {
+            margin-bottom: 0.75rem;
         }
 
-        .fullscreen-caption .caption-artist a {
-            color: var(--terracotta-red);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: opacity 0.25s ease, color 0.25s ease;
+        .contact-section {
+            padding: 0 1.5rem 4rem;
         }
 
-        .fullscreen-caption .caption-artist a:hover {
-            color: var(--warm-off-white);
-            opacity: 0.85;
-        }
-        .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fullscreen-caption .caption-artist svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        .fullscreen-caption .caption-text {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--warm-gray);
-            text-align: center;
-        }
-
-        .close-modal {
-            position: fixed;
-            top: 0;
-            right: 0;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 300;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.75);
-            width: 50px;
-            height: 50px;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            transition: background 0.2s ease;
-            z-index: 10001;
-        }
-
-        .close-modal:hover {
-            background: rgba(149, 57, 46, 0.9);
-        }
-
-        .fullscreen-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 0;
-            font-size: 1.75rem;
-            color: white;
-            cursor: pointer;
-            transition: background 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            user-select: none;
-            line-height: 1;
-            padding: 0;
-            z-index: 10002;
-        }
-
-        .fullscreen-nav:hover {
-            background: rgba(149, 57, 46, 0.85);
-            transform: translateY(-50%);
-        }
-
-        .fullscreen-prev {
-            left: 1rem;
-        }
-
-        .fullscreen-next {
-            right: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 1rem 0;
-            }
-            .header-container {
-                padding: 0 1.5rem;
-                flex-direction: column;
-                gap: 0.75rem;
-                align-items: center;
-            }
-            .logo {
-                text-align: center;
-                width: 100%;
-                margin-bottom: 0;
-            }
-            .nav-menu {
-                gap: 2rem;
-                justify-content: center;
-                width: 100%;
-                margin-top: 0;
-            }
-            .main {
-                padding: 10rem 1.5rem 3rem 1.5rem;
-                text-align: center;
-            }
-            .page-title {
-                font-size: 1.9rem;
-                margin-bottom: 0.75rem;
-                margin-top: 0;
-                text-align: center;
-            }
-            .page-subtitle {
-                margin-bottom: 3rem;
-                text-align: center;
-            }
-            .instagram-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            .image-overlay {
-                display: none !important;
-            }
-            .post-info {
-                display: block;
-                text-align: left;
-                margin-top: 0.4rem;
-                padding: 0;
-                min-height: auto;
-            }
-            .fullscreen-caption {
-                margin-top: 1rem;
-                max-height: 25vh;
-            }
-            .fullscreen-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
-            }
-            .close-modal {
-                width: 40px;
-                height: 40px;
-            }
-            .fullscreen-prev {
-                left: 0;
-            }
-            .fullscreen-next {
-                right: 0;
-            }
-
-            .cookie-banner {
-                padding: 1rem;
-            }
-
-            .cookie-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .cookie-actions {
-                justify-content: center;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main {
-                padding: 9rem 1.5rem 3rem 1.5rem;
-            }
-            .logo {
-                font-size: 1.8rem;
-            }
-            .nav-menu {
-                gap: 1.5rem;
-            }
-            .nav-menu a {
-                font-size: 1rem;
-            }
-        }
-
-        /* Loading state */
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            font-size: 1.2rem;
-            color: var(--warm-gray);
-        }
-
-        /* Loading skeleton animation for faster perceived load */
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-
-        .post-image img[loading="lazy"] {
-            min-height: 400px;
-            background: white;
-        }
-
-        /* Cookie Banner Styles */
         .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--deep-charcoal);
-            color: var(--warm-off-white);
-            padding: 1rem 2rem;
-            z-index: 10000;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: all 0.4s ease;
-            display: none;
-        }
-
-        .cookie-banner.show {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
+            padding: 1rem;
         }
 
         .cookie-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .cookie-text {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: var(--warm-off-white);
-            line-height: 1.4;
-        }
-
-        .cookie-link {
-            color: var(--khaki);
-            text-decoration: none;
-            border-bottom: 1px solid var(--khaki);
-            margin-left: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .cookie-link:hover {
-            color: var(--warm-off-white);
-            border-bottom-color: var(--warm-off-white);
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
         }
 
         .cookie-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-shrink: 0;
+            justify-content: center;
+            width: 100%;
         }
+    }
 
-        .cookie-button {
-            background: var(--khaki);
-            color: var(--deep-charcoal);
-            border: none;
-            padding: 0.6rem 1.25rem;
-            font-family: 'Favorit', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    /* Cookie Banner Styles (fallback banner, injected via JS if Silktide fails to load) */
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--deep-charcoal);
+        color: var(--warm-off-white);
+        padding: 1rem 2rem;
+        z-index: 10000;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: all 0.4s ease;
+        display: none;
+    }
 
-        .cookie-button:hover {
-            background: var(--sage-green);
-            color: white;
-            transform: translateY(-1px);
-        }
+    .cookie-banner.show {
+        opacity: 1;
+        transform: translateY(0);
+        display: block;
+    }
 
-        .essential-link {
-            color: rgba(253, 252, 248, 0.7);
-            font-size: 0.8rem;
-            text-decoration: underline;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+    .cookie-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
 
-        .essential-link:hover {
-            color: var(--warm-off-white);
-        }
-    </style>
+    .cookie-text {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--warm-off-white);
+        line-height: 1.4;
+    }
+
+    .cookie-link {
+        color: var(--khaki, #C0B589);
+        text-decoration: none;
+        border-bottom: 1px solid var(--khaki, #C0B589);
+        margin-left: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .cookie-link:hover {
+        color: var(--warm-off-white);
+        border-bottom-color: var(--warm-off-white);
+    }
+
+    .cookie-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+
+    .cookie-button {
+        background: var(--khaki, #C0B589);
+        color: var(--deep-charcoal);
+        border: none;
+        padding: 0.6rem 1.25rem;
+        font-family: 'Favorit', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .cookie-button:hover {
+        background: var(--sage-green, #A8B5A0);
+        color: white;
+        transform: translateY(-1px);
+    }
+
+    .essential-link {
+        color: rgba(253, 252, 248, 0.7);
+        font-size: 0.8rem;
+        text-decoration: underline;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .essential-link:hover {
+        color: var(--warm-off-white);
+    }
+</style>
 </head>
 <body>
+
     <header class="header">
         <div class="header-container">
             <a href="/" class="logo">elsewhere collective</a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="/about">About</a></li>
-                    <li><a href="/spotlight">Spotlight</a></li>
+                    <li><a href="/spotlight" class="active">Spotlight</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="main fade-in">
-        <h1 class="page-title">Spotlight.</h1>
-        <p class="page-subtitle">A selection of posts from our Instagram feed <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" class="ig-handle" rel="noopener">@elsewhere___collective</a> </p>
-
-        <div id="instagram-grid" class="instagram-grid">
-            <div class="loading">Loading posts...</div>
+    <section class="intro">
+        <div class="intro-text">
+            <h1 class="page-title">Spotlight.</h1>
+            <p class="page-subtitle">A running edit of work shared, pulled from <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere___collective</a></p>
         </div>
+        <div class="scroll-cue" id="scrollCue">
+            <span>Scroll</span>
+            <span class="scroll-cue-line"></span>
+        </div>
+    </section>
 
-        <section class="text-block contact-block">
-            <h2>Contact</h2>
-            <div class="contact-links">
-                <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
-                <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere___collective</a>
+    <div class="view-toggle-row">
+        <div class="view-toggle">
+            <span class="view-toggle-label">View</span>
+            <div class="view-toggle-pill">
+                <button type="button" id="gridBtn" class="active">Grid</button>
+                <span class="divider">/</span>
+                <button type="button" id="railBtn">Editorial</button>
             </div>
-        </section>
+        </div>
+    </div>
+
+    <main class="rail hidden" id="rail">
+        <div class="loading">Loading posts…</div>
     </main>
 
+    <div class="grid-view active" id="gridView"></div>
+
+    <section class="contact-section">
+        <h2>Contact</h2>
+        <div class="contact-links">
+            <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
+            <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere___collective</a>
+        </div>
+    </section>
+
     <div class="fullscreen-modal" id="fullscreenModal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <button class="fullscreen-nav fullscreen-prev" onclick="showPrevious()">‹</button>
-        <button class="fullscreen-nav fullscreen-next" onclick="showNext()">›</button>
+        <span class="close-modal" id="closeModal">&times;</span>
+        <button class="fullscreen-nav fullscreen-prev" id="prevBtn">‹</button>
+        <button class="fullscreen-nav fullscreen-next" id="nextBtn">›</button>
         <div class="fullscreen-content">
             <img id="fullscreenImage" class="fullscreen-image" src="" alt="">
-            <div class="fullscreen-caption" id="fullscreenCaption">
+            <div class="fullscreen-caption">
                 <div class="caption-title" id="captionTitle"></div>
                 <div class="caption-artist" id="captionArtist"></div>
                 <div class="caption-text" id="captionText"></div>
@@ -971,151 +1056,130 @@
     </div>
 
     <script>
-        let instagramPosts = [];
-        let currentFullscreenIndex = 0;
+        let posts = [];
+        let currentIndex = 0;
 
-        // Load Instagram posts from JSON
-        async function loadInstagramPosts() {
-            try {
-                const response = await fetch('instagram-feed.json');
-                const data = await response.json();
-
-                // Sort posts by timestamp (newest first)
-                // Parse DD/MM/YYYY format correctly
-                instagramPosts = data.posts.sort((a, b) => {
-                    const parseDate = (dateStr) => {
-                        const [day, month, year] = dateStr.split('/');
-                        return new Date(year, month - 1, day);
-                    };
-                    return parseDate(b.timestamp) - parseDate(a.timestamp);
-                });
-
-                renderPosts();
-            } catch (error) {
-                document.getElementById('instagram-grid').innerHTML =
-                    '<div class="loading">Error loading posts. Please check instagram-feed.json file.</div>';
-                console.error('Error loading Instagram posts:', error);
+        function shuffle(array) {
+            const result = array.slice();
+            for (let i = result.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [result[i], result[j]] = [result[j], result[i]];
             }
+            return result;
         }
 
-        // Render posts to the grid (show only 12 most recent)
-        function renderPosts() {
-            const grid = document.getElementById('instagram-grid');
+        async function loadPosts() {
+            const rail = document.getElementById('rail');
+            const gridView = document.getElementById('gridView');
+            try {
+                const res = await fetch('instagram-feed.json');
+                const data = await res.json();
+                posts = shuffle(data.posts || []);
 
-            if (instagramPosts.length === 0) {
-                grid.innerHTML = '<div class="loading">No posts found.</div>';
-                return;
-            }
+                rail.innerHTML = posts.map((post, i) => `
+                    <article class="entry ${i % 2 === 1 ? 'is-reversed' : ''}">
+                        <figure class="entry-figure" data-index="${i}">
+                            <img src="${post.cloudinary_cropped_url || post.image_url}" alt="${post.title || post.caption.slice(0, 50)}" loading="lazy">
+                        </figure>
+                        <div class="entry-meta">
+                            <h2 class="entry-title">${post.title || 'Untitled'}</h2>
+                            <div class="entry-artist">${post.artist || ''}</div>
+                            <p class="entry-caption">${post.caption}</p>
+                        </div>
+                    </article>
+                `).join('');
 
-            // Only show 16 most recent posts for faster loading
-            const postsToShow = instagramPosts.slice(0, 16);
-
-            grid.innerHTML = postsToShow.map((post, index) => `
-                <article class="instagram-post">
-                    <div class="post-image" onclick="openFullscreen(${index})">
-                        <img src="${post.cloudinary_cropped_url || post.cloudinary_url || post.image_url}" alt="${post.title || post.caption.substring(0, 50)}" loading="lazy" decoding="async">
-                        <div class="image-overlay">
-                            <div class="overlay-title">${post.title || 'Untitled'}</div>
-                            <div class="overlay-artist">${post.artist || ''}</div>
+                gridView.innerHTML = posts.map((post, i) => `
+                    <div class="grid-item" data-index="${i}">
+                        <img src="${post.cloudinary_cropped_url || post.image_url}" alt="${post.title || post.caption.slice(0, 50)}" loading="lazy">
+                        <div class="grid-item-label">
+                            <div class="t">${post.title || 'Untitled'}</div>
+                            <div class="a">${post.artist || ''}</div>
                         </div>
                     </div>
-                    <div class="post-info">
-                        <div class="post-title">${post.title || 'Untitled'}</div>
-                        <div class="post-handle">${post.artist || ''}</div>
-                    </div>
-                </article>
-            `).join('');
+                `).join('');
+
+                document.querySelectorAll('.entry-figure, .grid-item').forEach(el => {
+                    el.addEventListener('click', () => openFullscreen(parseInt(el.dataset.index, 10)));
+                });
+            } catch (err) {
+                rail.innerHTML = '<div class="loading">Error loading posts. Please check instagram-feed.json file.</div>';
+            }
         }
 
-        // Open fullscreen modal
         function openFullscreen(index) {
-            currentFullscreenIndex = index;
-            const post = instagramPosts[currentFullscreenIndex];
-
-            document.getElementById('fullscreenImage').src = post.cloudinary_cropped_url || post.cloudinary_url || post.image_url;
-            document.getElementById('captionTitle').textContent = post.title || 'Untitled';
-
-            // Create artist link with Instagram icon
-            const artistElement = document.getElementById('captionArtist');
-            if (post.artist && post.artist_handle) {
-                artistElement.innerHTML = `
-                    <a href="${post.artist_handle}" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        ${post.artist}
-                    </a>
-                `;
-            } else {
-                artistElement.textContent = post.artist || '';
-            }
-
-            document.getElementById('captionText').textContent = post.caption;
+            currentIndex = index;
+            renderFullscreen();
             document.getElementById('fullscreenModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Close modal
-        function closeModal() {
+        function closeFullscreen() {
             document.getElementById('fullscreenModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Show previous post
-        function showPrevious() {
-            currentFullscreenIndex = (currentFullscreenIndex - 1 + instagramPosts.length) % instagramPosts.length;
-            updateFullscreenContent();
-        }
-
-        // Show next post
-        function showNext() {
-            currentFullscreenIndex = (currentFullscreenIndex + 1) % instagramPosts.length;
-            updateFullscreenContent();
-        }
-
-        // Update fullscreen content
-        function updateFullscreenContent() {
-            const post = instagramPosts[currentFullscreenIndex];
-
-            document.getElementById('fullscreenImage').src = post.cloudinary_cropped_url || post.cloudinary_url || post.image_url;
+        function renderFullscreen() {
+            const post = posts[currentIndex];
+            document.getElementById('fullscreenImage').src = post.cloudinary_cropped_url || post.image_url;
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
-
-            // Update artist link with Instagram icon
-            const artistElement = document.getElementById('captionArtist');
-            if (post.artist && post.artist_handle) {
-                artistElement.innerHTML = `
-                    <a href="${post.artist_handle}" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        ${post.artist}
-                    </a>
-                `;
-            } else {
-                artistElement.textContent = post.artist || '';
-            }
-
+            document.getElementById('captionArtist').textContent = post.artist || '';
             document.getElementById('captionText').textContent = post.caption;
         }
 
-        // Modal close on background click
-        document.getElementById('fullscreenModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+        function showPrevious() {
+            currentIndex = (currentIndex - 1 + posts.length) % posts.length;
+            renderFullscreen();
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % posts.length;
+            renderFullscreen();
+        }
+
+        document.getElementById('closeModal').addEventListener('click', closeFullscreen);
+        document.getElementById('prevBtn').addEventListener('click', showPrevious);
+        document.getElementById('nextBtn').addEventListener('click', showNext);
+
+        document.getElementById('fullscreenModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeFullscreen();
         });
 
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (document.getElementById('fullscreenModal').classList.contains('active')) {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowLeft') showPrevious();
-                if (e.key === 'ArrowRight') showNext();
-            }
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('fullscreenModal').classList.contains('active')) return;
+            if (e.key === 'Escape') closeFullscreen();
+            if (e.key === 'ArrowLeft') showPrevious();
+            if (e.key === 'ArrowRight') showNext();
         });
 
-        // Load posts on page load
-        loadInstagramPosts();
+        const railBtn = document.getElementById('railBtn');
+        const gridBtn = document.getElementById('gridBtn');
+        const rail = document.getElementById('rail');
+        const gridView = document.getElementById('gridView');
+
+        gridBtn.addEventListener('click', () => {
+            rail.classList.add('hidden');
+            gridView.classList.add('active');
+            gridBtn.classList.add('active');
+            railBtn.classList.remove('active');
+        });
+
+        railBtn.addEventListener('click', () => {
+            rail.classList.remove('hidden');
+            gridView.classList.remove('active');
+            railBtn.classList.add('active');
+            gridBtn.classList.remove('active');
+        });
+
+        // Fixed in place while scrolling; only fades once the user nears the true bottom of the page
+        const scrollCue = document.getElementById('scrollCue');
+        window.addEventListener('scroll', () => {
+            const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 200;
+            scrollCue.classList.toggle('hidden', nearBottom);
+        }, { passive: true });
+
+        loadPosts();
     </script>
+
 </body>
 </html>
