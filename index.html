@@ -273,6 +273,7 @@
             --warm-gray: #8A8580;
             --warm-off-white: #FDFCF8;
             --biscuit-gold: #D6B370;
+            --khaki: #C0B589;
             --terracotta-red: #95392E;
             --sage-green: #A8B5A0;
             --soft-terracotta: #C4A394;
@@ -631,8 +632,8 @@
         }
 
         .work-instagram a:hover {
-            color: var(--biscuit-gold);
-            border-bottom: 1px solid var(--biscuit-gold);
+            color: var(--khaki);
+            border-bottom: 1px solid var(--khaki);
             opacity: 1;
         }
 
@@ -690,32 +691,35 @@
             margin-bottom: var(--title-body-gap);
         }
 
-        /* B. Single bottom border wraps input + button as one unit */
-        .newsletter-form {
-            display: flex;
-            align-items: center;
-            gap: 0;
-            max-width: 450px;
-            margin: 0;
-            border-bottom: 0.5px solid rgba(44, 44, 44, 0.12);
-            transition: border-color 0.3s ease;
+        .newsletter-content .hero-tagline {
+            margin-bottom: 1.75rem;
         }
 
-        .newsletter-form:focus-within {
-            border-bottom-color: rgba(44, 44, 44, 0.35);
+        /* B. Input and button sit as two adjacent boxed elements */
+        .newsletter-form {
+            display: flex;
+            align-items: stretch;
+            gap: 0.75rem;
+            max-width: 450px;
+            margin: 0.5rem 0 0 0;
         }
 
         .newsletter-input {
             flex: 1;
-            padding: 0.75rem 0;
-            border: none;
+            padding: 0.9rem 1.1rem;
+            border: 0.5px solid rgba(44, 44, 44, 0.2);
             background: transparent;
             color: var(--deep-charcoal);
             font-family: 'Favorit', sans-serif;
             font-size: 1rem;
             font-weight: 300;
             outline: none;
+            transition: border-color 0.3s ease;
             /* D. Floating label: the label lifts on focus via sibling selector */
+        }
+
+        .newsletter-input:focus {
+            border-color: rgba(44, 44, 44, 0.5);
         }
 
         .newsletter-input::placeholder {
@@ -728,33 +732,51 @@
             opacity: 0;
         }
 
+        /* E. Solid button with a color sweep that fills in on hover */
         .newsletter-button {
-            padding: 0.75rem 0 0.75rem 1rem;
-            background: transparent;
-            border: none;
-            color: var(--deep-charcoal);
+            position: relative;
+            padding: 0.9rem 1.75rem;
+            background: var(--deep-charcoal);
+            border: 0.5px solid var(--deep-charcoal);
+            color: var(--cream-bg);
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
             font-weight: 400;
             cursor: pointer;
             letter-spacing: 0.02em;
-            transition: opacity 0.25s ease;
             white-space: nowrap;
             flex-shrink: 0;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .newsletter-button span {
+            position: relative;
+            z-index: 1;
         }
 
         .newsletter-button::before {
-            content: '→ ';
-            opacity: 0.5;
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--terracotta-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+            z-index: 0;
         }
 
-        .newsletter-button:hover {
-            opacity: 0.55;
+        .newsletter-button:hover::before {
+            transform: scaleX(1);
         }
 
         .newsletter-button:disabled {
             opacity: 0.4;
             cursor: default;
+        }
+
+        .newsletter-button:disabled::before {
+            transform: scaleX(0);
         }
 
         /* A. Inline success / error states */
@@ -1007,9 +1029,9 @@
         }
 
         .cookie-link {
-            color: var(--biscuit-gold);
+            color: var(--khaki);
             text-decoration: none;
-            border-bottom: 1px solid var(--biscuit-gold);
+            border-bottom: 1px solid var(--khaki);
             margin-left: 0.5rem;
             transition: all 0.3s ease;
         }
@@ -1027,7 +1049,7 @@
         }
 
         .cookie-button {
-            background: var(--biscuit-gold);
+            background: var(--khaki);
             color: var(--deep-charcoal);
             border: none;
             padding: 0.6rem 1.25rem;
@@ -1333,12 +1355,12 @@
 
             .newsletter-input {
                 font-size: 0.95rem;
-                padding: 0.65rem 0;
+                padding: 0.75rem 0.9rem;
             }
 
             .newsletter-button {
                 font-size: 0.95rem;
-                padding: 0.65rem 0 0.65rem 0.9rem;
+                padding: 0.75rem 1.25rem;
             }
 
             .newsletter-success,
@@ -1503,7 +1525,7 @@
                     autocomplete="email"
                 >
                 <!-- D. Placeholder fades on focus; label above provides the context instead -->
-                <button type="submit" class="newsletter-button" id="newsletterButton">Join</button>
+                <button type="submit" class="newsletter-button" id="newsletterButton"><span>Join</span></button>
             </form>
 
             <p class="newsletter-success" id="newsletterSuccess">
@@ -1723,6 +1745,7 @@
             // Newsletter AJAX submit
             const form = document.getElementById('newsletterForm');
             const button = document.getElementById('newsletterButton');
+            const buttonLabel = button.querySelector('span');
             const successMsg = document.getElementById('newsletterSuccess');
             const errorMsg = document.getElementById('newsletterError');
 
@@ -1733,7 +1756,7 @@
                 if (!email) return;
 
                 // Loading state
-                button.textContent = 'Sending…';
+                buttonLabel.textContent = 'Sending…';
                 button.disabled = true;
                 successMsg.classList.remove('visible');
                 errorMsg.classList.remove('visible');
@@ -1758,7 +1781,7 @@
                     }
                 } catch (err) {
                     // Error: restore button, show error line
-                    button.textContent = 'Join';
+                    buttonLabel.textContent = 'Join';
                     button.disabled = false;
                     errorMsg.classList.add('visible');
                 }
