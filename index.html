@@ -1379,7 +1379,7 @@
                 const res = await fetch('instagram-feed.json');
                 const data = await res.json();
                 const postsWithCaptions = (data.posts || []).filter(post => post.caption && post.caption.trim() !== '');
-                posts = shuffle(postsWithCaptions).slice(0, 8);
+                posts = shuffle(postsWithCaptions).slice(0, 12);
 
                 gridView.innerHTML = posts.map((post, i) => `
                     <div class="grid-item" data-index="${i}">
