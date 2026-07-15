@@ -797,16 +797,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* ─── Mobile ─── */
     @media (max-width: 860px) {
+        .header {
+            padding: 1rem 0;
+        }
+
         .header-container {
             padding: 0 1.5rem;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
         }
 
         .logo {
             font-size: 1.6rem;
+            text-align: center;
+            width: 100%;
         }
 
         .nav-menu {
             gap: 1.5rem;
+            justify-content: center;
+            width: 100%;
         }
 
         .nav-menu a {
@@ -821,25 +832,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .scroll-cue {
-            flex-direction: row;
-            gap: 0.6rem;
-        }
-
-        .scroll-cue-line {
-            width: 2.75rem;
-            height: 1px;
-        }
-
-        .scroll-cue-line::after {
-            top: 0;
-            left: -100%;
-            animation-name: scrollDripHorizontal;
-        }
-
-        @keyframes scrollDripHorizontal {
-            0% { left: -100%; }
-            60% { left: 100%; }
-            100% { left: 100%; }
+            display: none;
         }
 
         .view-toggle-row {
