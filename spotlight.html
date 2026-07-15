@@ -269,6 +269,7 @@
             --warm-gray: #8A8580;
             --warm-off-white: #FDFCF8;
             --biscuit-gold: #D6B370;
+            --khaki: #C0B589;
             --terracotta-red: #95392E;
         }
 
@@ -374,6 +375,42 @@
             font-weight: 300;
             color: var(--warm-gray);
             margin-bottom: 3rem;
+        }
+
+        /* Contact block, matching about.html */
+        .text-block h2 {
+            font-family: 'Favorit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+            color: var(--deep-charcoal);
+        }
+
+        .contact-block {
+            margin-top: 3rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 0;
+        }
+
+        .contact-links a {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease, opacity 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .contact-links a:hover {
+            color: var(--deep-charcoal);
+            opacity: 0.85;
         }
 
         .ig-handle {
@@ -514,8 +551,8 @@
         }
 
         .post-link:hover {
-            color: var(--biscuit-gold);
-            border-bottom: 1px solid var(--biscuit-gold);
+            color: var(--khaki);
+            border-bottom: 1px solid var(--khaki);
         }
 
         /* Fullscreen Modal */
@@ -839,9 +876,9 @@
         }
 
         .cookie-link {
-            color: var(--biscuit-gold);
+            color: var(--khaki);
             text-decoration: none;
-            border-bottom: 1px solid var(--biscuit-gold);
+            border-bottom: 1px solid var(--khaki);
             margin-left: 0.5rem;
             transition: all 0.3s ease;
         }
@@ -859,7 +896,7 @@
         }
 
         .cookie-button {
-            background: var(--biscuit-gold);
+            background: var(--khaki);
             color: var(--deep-charcoal);
             border: none;
             padding: 0.6rem 1.25rem;
@@ -909,6 +946,14 @@
         <div id="instagram-grid" class="instagram-grid">
             <div class="loading">Loading posts...</div>
         </div>
+
+        <section class="text-block contact-block">
+            <h2>Contact</h2>
+            <div class="contact-links">
+                <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
+                <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere___collective</a>
+            </div>
+        </section>
     </main>
 
     <div class="fullscreen-modal" id="fullscreenModal">
