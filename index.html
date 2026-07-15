@@ -1358,6 +1358,12 @@
         let posts = [];
         let currentIndex = 0;
 
+        // Resize/compress Cloudinary images to the width they're actually displayed at
+        function optimizedUrl(url, width) {
+            if (!url || !url.includes('res.cloudinary.com')) return url;
+            return url.replace('/upload/', `/upload/w_${width},q_auto,f_auto/`);
+        }
+
         function shuffle(array) {
             const result = array.slice();
             for (let i = result.length - 1; i > 0; i--) {
@@ -1377,7 +1383,7 @@
 
                 gridView.innerHTML = posts.map((post, i) => `
                     <div class="grid-item" data-index="${i}">
-                        <img src="${post.cloudinary_cropped_url || post.image_url}" alt="${post.title || post.caption.slice(0, 50)}" loading="lazy">
+                        <img src="${optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url}" alt="${post.title || post.caption.slice(0, 50)}" loading="${i < 4 ? 'eager' : 'lazy'}">
                         <div class="grid-item-label">
                             <div class="t">${post.title || 'Untitled'}</div>
                             <div class="a">${post.artist || ''}</div>
@@ -1407,7 +1413,7 @@
 
         function renderFullscreen() {
             const post = posts[currentIndex];
-            document.getElementById('fullscreenImage').src = post.cloudinary_cropped_url || post.image_url;
+            document.getElementById('fullscreenImage').src = optimizedUrl(post.cloudinary_cropped_url, 1600) || post.image_url;
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
             document.getElementById('captionArtist').textContent = post.artist || '';
             document.getElementById('captionText').textContent = post.caption;
