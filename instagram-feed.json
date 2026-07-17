@@ -187,8 +187,7 @@
       "permalink": "https://www.instagram.com/p/DQ6mRIXiL4Z/?img_index=2",
       "timestamp": "11/11/2025"
     },
-
-{
+    {
       "id": "18",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Nicola%20Cappellari%201.jpg?raw=true",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199631/Nicola_C_fkdi2u.jpg",
@@ -199,8 +198,7 @@
       "permalink": "https://www.instagram.com/p/DRCO7ihiNSS/?img_index=1",
       "timestamp": "14/11/2025"
     },
-
-{
+    {
       "id": "19",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/PW%203.jpg?raw=true",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg",
@@ -211,8 +209,7 @@
       "permalink": "https://www.instagram.com/p/DRSPtvRCEsr/?img_index=1",
       "timestamp": "20/11/2025"
     },
-
-{
+    {
       "id": "20",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/251125%20Ignacio%20Infanti.jpg?raw=true",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199621/Ignacio_I_xunjea.jpg",
@@ -323,50 +320,17 @@
     },
     {
       "id": "30",
-      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/CC%201.jpg?raw=true",
-      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131617/CC_putlzt.png",
-      "title": "Les Rochers Fauves",
-      "artist": "Clément Chapillon",
-      "artist_handle": "https://www.instagram.com/clemchap/",
-      "caption": "Islands and isolation. Contradictory feelings arising from the insularity of Amorgos, Cyclades.",
-      "permalink": "https://www.instagram.com/p/DWTjKCgCOXr/?img_index=1",
-      "timestamp": "25/03/2026"
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Peak%20Oil.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784284234/Peak_Oil_vtosji.webp",
+      "title": "Peak Oil",
+      "artist": "Geert Goiris",
+      "artist_handle": "https://www.instagram.com/geertgoiris4/",
+      "caption": "",
+      "permalink": "https://www.instagram.com/p/DV0naXFiKkO/?img_index=4",
+      "timestamp": "13/03/2026"
     },
     {
       "id": "31",
-      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Uxio%201.jpg?raw=true",
-      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131779/Deriva_09-2_scovje.jpg",
-      "title": "Deriva",
-      "artist": "Uxío da Vila",
-      "artist_handle": "https://www.instagram.com/ux10/",
-      "caption": "Seen, but never fully revealed.",
-      "permalink": "https://www.instagram.com/p/DXXA18JCHDs/?img_index=1",
-      "timestamp": "20/04/2026"
-    },
-{
-      "id": "32",
-      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Charline%20Cocset%201.jpg?raw=true",
-      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784132115/Charline_vdqz50.jpg",
-      "title": "Fugue Photographique",
-      "artist": "Charline Cocset",
-      "artist_handle": "https://www.instagram.com/charlinecocset.photographie/",
-      "caption": "Natural forms softened into atmosphere.",
-      "permalink": "https://www.instagram.com/p/DYCSKfHCJmz/?img_index=1",
-      "timestamp": "07/05/2026"
-    },
-{
-      "id": "33",
-      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Uzma.jpg?raw=true",
-      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784198216/Uzma_fw4kxn.jpg",
-      "title": "Abandon",
-      "artist": "Uzma Mohsin",
-      "artist_handle": "https://www.instagram.com/_uzma.mohsin_/",
-      "caption": "Natural forms softened into atmosphere.",
-      "permalink": "https://www.instagram.com/p/DaiOW9xDkxL/?img_index=1",
-      "timestamp": "08/07/2026"
-    },
-{
-      "id": "34",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/lakeside+copy%202.jpg?raw=true",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784198482/lakeside_copy_2_g4ecul.jpg",
       "title": "The Lake",
@@ -377,7 +341,29 @@
       "timestamp": "20/03/2026"
     },
     {
-      "id": "35",
+      "id": "32",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/CC%201.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131617/CC_putlzt.png",
+      "title": "Les Rochers Fauves",
+      "artist": "Clément Chapillon",
+      "artist_handle": "https://www.instagram.com/clemchap/",
+      "caption": "Islands and isolation. Contradictory feelings arising from the insularity of Amorgos, Cyclades.",
+      "permalink": "https://www.instagram.com/p/DWTjKCgCOXr/?img_index=1",
+      "timestamp": "25/03/2026"
+    },
+    {
+      "id": "33",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/You%20cant%20enter%20the%20same%20river%20twice.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg",
+      "title": "You can’t enter the same river twice",
+      "artist": "Francisco Gonzalez Camacho",
+      "artist_handle": "https://www.instagram.com/frangccom/",
+      "caption": "Everything flows. Forms shift, never quite settling.",
+      "permalink": "https://www.instagram.com/p/DWjLm56iF-U/?img_index=3",
+      "timestamp": "31/03/2026"
+    },
+    {
+      "id": "34",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Henry%20Bourne%20Tangiers.jpg?raw=true",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg",
       "title": "Morocco",
@@ -388,15 +374,26 @@
       "timestamp": "13/04/2026"
     },
     {
+      "id": "35",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Uxio%201.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131779/Deriva_09-2_scovje.jpg",
+      "title": "Deriva",
+      "artist": "Uxío da Vila",
+      "artist_handle": "https://www.instagram.com/ux10/",
+      "caption": "Seen, but never fully revealed.",
+      "permalink": "https://www.instagram.com/p/DXXA18JCHDs/?img_index=1",
+      "timestamp": "20/04/2026"
+    },
+    {
       "id": "36",
-      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Peak%20Oil.jpg?raw=true",
-      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784284234/Peak_Oil_vtosji.webp",
-      "title": "Peak Oil",
-      "artist": "Geert Goiris",
-      "artist_handle": "https://www.instagram.com/geertgoiris4/",
-      "caption": "",
-      "permalink": "https://www.instagram.com/p/DV0naXFiKkO/?img_index=4",
-      "timestamp": "13/03/2026"
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Charline%20Cocset%201.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784132115/Charline_vdqz50.jpg",
+      "title": "Fugue Photographique",
+      "artist": "Charline Cocset",
+      "artist_handle": "https://www.instagram.com/charlinecocset.photographie/",
+      "caption": "Natural forms softened into atmosphere.",
+      "permalink": "https://www.instagram.com/p/DYCSKfHCJmz/?img_index=1",
+      "timestamp": "07/05/2026"
     },
     {
       "id": "37",
@@ -408,6 +405,17 @@
       "caption": "On the impermanence of beauty.",
       "permalink": "https://www.instagram.com/p/DaCvSAYDtvc/?img_index=4",
       "timestamp": "26/06/2026"
+    },
+    {
+      "id": "38",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Uzma.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784198216/Uzma_fw4kxn.jpg",
+      "title": "Abandon",
+      "artist": "Uzma Mohsin",
+      "artist_handle": "https://www.instagram.com/_uzma.mohsin_/",
+      "caption": "What remains after we leave. Residue, absence, and the traces left behind.",
+      "permalink": "https://www.instagram.com/p/DaiOW9xDkxL/?img_index=1",
+      "timestamp": "08/07/2026"
     }
   ]
 }
