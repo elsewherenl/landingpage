@@ -397,6 +397,17 @@
       "caption": "",
       "permalink": "https://www.instagram.com/p/DV0naXFiKkO/?img_index=4",
       "timestamp": "13/03/2026"
+    },
+    {
+      "id": "37",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Gideon%20Tsang.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784291911/Gideon_Tsang_g3pply.jpg",
+      "title": "Because We Fall",
+      "artist": "Gideon Tsang",
+      "artist_handle": "https://www.instagram.com/gideontsang/",
+      "caption": "On the impermanence of beauty.",
+      "permalink": "https://www.instagram.com/p/DaCvSAYDtvc/?img_index=4",
+      "timestamp": "26/06/2026"
     }
   ]
 }
