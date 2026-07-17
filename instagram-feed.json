@@ -375,7 +375,28 @@
       "caption": "Memory and imagination blur together.",
       "permalink": "https://www.instagram.com/p/DWGrjqniIAY/?img_index=6",
       "timestamp": "20/03/2026"
+    },
+    {
+      "id": "35",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Henry%20Bourne%20Tangiers.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg",
+      "title": "Morocco",
+      "artist": "Henry Bourne",
+      "artist_handle": "https://www.instagram.com/henrybourne/",
+      "caption": "",
+      "permalink": "https://www.instagram.com/p/DXE8x5giHaR/?img_index=2",
+      "timestamp": "13/04/2026"
+    },
+    {
+      "id": "36",
+      "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Peak%20Oil.jpg?raw=true",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784284234/Peak_Oil_vtosji.webp",
+      "title": "Peak Oil",
+      "artist": "Geert Goiris",
+      "artist_handle": "https://www.instagram.com/geertgoiris4/",
+      "caption": "",
+      "permalink": "https://www.instagram.com/p/DV0naXFiKkO/?img_index=4",
+      "timestamp": "13/03/2026"
     }
-
   ]
 }
