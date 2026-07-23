@@ -439,15 +439,14 @@
 
         .grid-item {
             position: relative;
-            overflow: hidden;
             cursor: pointer;
-            background: rgba(44, 44, 44, 0.04);
         }
 
         .grid-item img {
             width: 100%;
             height: auto;
             display: block;
+            background: rgba(44, 44, 44, 0.04);
             filter: grayscale(0.15);
             transition: transform 0.5s ease, filter 0.5s ease;
         }
@@ -458,32 +457,24 @@
         }
 
         .grid-item-label {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 0.75rem 0.9rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .grid-item:hover .grid-item-label {
-            opacity: 1;
+            padding-top: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
         }
 
         .grid-item-label .t {
             font-family: 'Favorit', sans-serif;
             font-size: 0.95rem;
             font-weight: 400;
-            color: var(--warm-off-white);
+            color: var(--deep-charcoal);
         }
 
         .grid-item-label .a {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.78rem;
             font-weight: 300;
-            color: var(--terracotta-red);
+            color: var(--warm-gray);
         }
 
         .gallery-more {
