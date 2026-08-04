@@ -416,9 +416,8 @@
       "caption": "What remains after we leave. Residue, absence, and the traces left behind.",
       "permalink": "https://www.instagram.com/p/DaiOW9xDkxL/?img_index=1",
       "timestamp": "08/07/2026"
-    }
-},
-
+    },
+    {
       "id": "39",
       "image_url": "https://github.com/elsewherenl/artistcards/blob/main/cloudinary/Jesula%20Toussaint%20Visser,%20Drafted%20-%20Elsewhere%20Collective%20%202.jpg?raw=true",
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg",
@@ -430,3 +429,4 @@
       "timestamp": "24/07/2026"
     }
   ]
+}
