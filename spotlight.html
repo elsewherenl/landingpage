@@ -1251,17 +1251,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Builds the Theme toggle pill from whatever theme values are present in the
         // JSON — add a "theme" field to a post and its value shows up here automatically.
-        // "In Between" (untagged posts) is always pinned last, after the curated themes.
+        // UNTAGGED_THEME posts have no button of their own; they only surface under "All".
         function buildThemeToggle(allPosts) {
             const pill = document.getElementById('themeTogglePill');
-            const themes = [...new Set(allPosts.map(p => p.theme || UNTAGGED_THEME))];
+            const themes = [...new Set(allPosts.map(p => p.theme || UNTAGGED_THEME))]
+                .filter(t => t !== UNTAGGED_THEME);
 
             if (themes.length === 0) {
                 document.getElementById('themeToggleRow').style.display = 'none';
                 return;
             }
-
-            themes.sort((a, b) => (a === UNTAGGED_THEME) - (b === UNTAGGED_THEME));
 
             pill.innerHTML = [
                 `<button type="button" class="active" data-theme="All">All</button>`,
