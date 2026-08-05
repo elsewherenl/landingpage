@@ -1278,18 +1278,27 @@
                 Be the first to hear about elsewhere editions. Limited edition fine art prints coming soon.
             </p>
 
-            <form class="newsletter-form" id="newsletterForm" novalidate>
+            <form
+                class="newsletter-form"
+                id="newsletterForm"
+                action="https://assets.mailerlite.com/jsonp/2556020/forms/194893785895798150/subscribe"
+                method="post"
+                target="ml-hidden-iframe"
+            >
                 <input
                     type="email"
                     id="newsletterEmail"
-                    name="email"
+                    name="fields[email]"
                     class="newsletter-input"
                     placeholder="Your email"
                     required
                     autocomplete="email"
                 >
+                <input type="hidden" name="ml-submit" value="1">
+                <input type="hidden" name="anticsrf" value="true">
                 <button type="submit" class="newsletter-button" id="newsletterButton"><span>Join</span></button>
             </form>
+            <iframe name="ml-hidden-iframe" style="display:none"></iframe>
 
             <p class="newsletter-success" id="newsletterSuccess">
                 You are in. Welcome! We will be in touch.
@@ -1508,46 +1517,33 @@
                 scrollCue.classList.toggle('hidden', nearBottom);
             }, { passive: true });
 
-            // Newsletter AJAX submit
+            // Newsletter submit (MailerLite via hidden iframe, avoids CORS/JSONP issues)
             const form = document.getElementById('newsletterForm');
             const button = document.getElementById('newsletterButton');
             const buttonLabel = button.querySelector('span');
             const successMsg = document.getElementById('newsletterSuccess');
             const errorMsg = document.getElementById('newsletterError');
 
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
+            form.addEventListener('submit', function(e) {
                 const email = document.getElementById('newsletterEmail').value.trim();
-                if (!email) return;
+                if (!email) {
+                    e.preventDefault();
+                    return;
+                }
 
-                buttonLabel.textContent = 'Sending…';
+                buttonLabel.textContent = 'Joining...';
                 button.disabled = true;
                 successMsg.classList.remove('visible');
                 errorMsg.classList.remove('visible');
 
-                try {
-                    const res = await fetch('https://formspree.io/f/mzzgebky', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ email })
-                    });
-
-                    if (res.ok) {
-                        form.style.display = 'none';
-                        document.querySelector('.newsletter-label').style.opacity = '0.45';
-                        successMsg.classList.add('visible');
-                    } else {
-                        throw new Error('Network response not ok');
-                    }
-                } catch (err) {
-                    buttonLabel.textContent = 'Join';
-                    button.disabled = false;
-                    errorMsg.classList.add('visible');
-                }
+                // Form submits natively to the hidden iframe; we can't read the
+                // cross-origin response, so show success optimistically once
+                // MailerLite has had time to respond.
+                setTimeout(function() {
+                    form.style.display = 'none';
+                    document.querySelector('.newsletter-label').style.opacity = '0.45';
+                    successMsg.classList.add('visible');
+                }, 800);
             });
         });
     </script>
