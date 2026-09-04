@@ -173,6 +173,7 @@
                                 });
                             }
                             loadAnalytics();
+                            window.__maybeShowNlSticky && window.__maybeShowNlSticky();
                         },
                         onReject: function() {
                             localStorage.setItem('analyticsConsent', 'false');
@@ -181,6 +182,7 @@
                                     analytics_storage: 'denied',
                                 });
                             }
+                            window.__maybeShowNlSticky && window.__maybeShowNlSticky();
                         }
                     }
                 ],
@@ -252,18 +254,79 @@
                     localStorage.setItem('analyticsConsent', 'true');
                     banner.remove();
                     loadAnalytics();
+                    window.__maybeShowNlSticky && window.__maybeShowNlSticky();
                 };
 
                 document.getElementById('essentialOnly').onclick = function() {
                     localStorage.setItem('cookieConsent', 'essential');
                     localStorage.setItem('analyticsConsent', 'false');
                     banner.remove();
+                    window.__maybeShowNlSticky && window.__maybeShowNlSticky();
                 };
             } else if (cookieConsent === 'accepted') {
                 loadAnalytics();
             }
         }
     });
+    </script>
+
+    <!-- Mobile sticky newsletter bar: consent + scroll-depth gating. Defined early
+         (before the cookie-banner scripts run) so their onAccept/onReject callbacks
+         above, and Silktide's own callbacks below, can call window.__maybeShowNlSticky
+         once a consent choice is made without needing the visitor to scroll again. -->
+    <script>
+        (function() {
+            function hasConsentDecision() {
+                return localStorage.getItem('silktideCookieBanner_InitialChoice') !== null
+                    || localStorage.getItem('cookieConsent') !== null;
+            }
+            // True while either the Silktide banner or the fallback custom banner is
+            // actually on screen — checked live via the DOM rather than a flag, since
+            // either banner can appear/disappear independently of a consent decision
+            // (e.g. reopened via Settings).
+            function isBannerVisible() {
+                if (document.querySelector('.silktide-banner')) return true;
+                const fallback = document.querySelector('.cookie-banner');
+                return !!(fallback && fallback.classList.contains('show'));
+            }
+            function showBar() {
+                const bar = document.getElementById('nlSticky');
+                if (!bar) return;
+                bar.hidden = false;
+                requestAnimationFrame(() => bar.classList.add('visible'));
+                window.removeEventListener('scroll', maybeShowSticky);
+            }
+            let timeElapsed = false;
+            // The inline band is hidden on mobile (see .newsletter display:none), so
+            // the sticky bar is mobile's only capture point — it must not depend
+            // solely on the visitor interacting with the consent banner. Shown once
+            // BOTH the scroll-depth gate is satisfied AND (a consent decision exists
+            // OR 10s have passed), and never while a banner is actually on screen —
+            // if one is up when a trigger fires, it's retried shortly after so the
+            // two never compete for the visitor's attention at once.
+            function maybeShowSticky() {
+                if (window.innerWidth > 768) return;
+                if (localStorage.getItem('ec_subscribed') === '1') return;
+                if (localStorage.getItem('ec_newsletter_dismissed') === '1') return;
+                if (!hasConsentDecision() && !timeElapsed) return;
+                const scrolledEnough = window.scrollY + window.innerHeight >= document.body.scrollHeight * 0.5;
+                if (!scrolledEnough) return;
+                if (isBannerVisible()) {
+                    setTimeout(maybeShowSticky, 1000);
+                    return;
+                }
+                showBar();
+            }
+            window.__maybeShowNlSticky = maybeShowSticky;
+            // Attached unconditionally rather than gated on the load-time viewport
+            // width: maybeShowSticky()'s own width check is sufficient, and a desktop
+            // visitor who narrows their window below 768px should still get the bar.
+            window.addEventListener('scroll', maybeShowSticky, { passive: true });
+            setTimeout(function() {
+                timeElapsed = true;
+                maybeShowSticky();
+            }, 10000);
+        })();
     </script>
 
     <style>
@@ -278,7 +341,7 @@
             --sage-green: #A8B5A0;
             --soft-terracotta: #C4A394;
             --page-top-desktop: 7.25rem;
-            --page-top-mobile: 10rem;
+            --page-top-mobile: 6rem;
             --page-top-small: 9rem;
             --title-body-gap: 1.5rem;
             --block-gap: 1.6rem;
@@ -518,16 +581,15 @@
 
         /* ─── Newsletter Section ─────────────────────────────────── */
         .newsletter {
-            padding: 0.25rem 0 1.5rem 0;
+            padding: 0.5rem 0 2rem 0;
+            border-top: 1px solid rgba(44, 44, 44, 0.12);
+            border-bottom: 1px solid rgba(44, 44, 44, 0.12);
             background: var(--cream-bg);
             color: var(--deep-charcoal);
         }
 
         .newsletter-content {
             text-align: left;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 3rem;
         }
 
         .newsletter-label {
@@ -541,8 +603,16 @@
             margin-bottom: var(--title-body-gap);
         }
 
+        .newsletter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
         .newsletter-content .hero-tagline {
-            margin-bottom: 1.75rem;
+            margin-bottom: 0;
+            max-width: 500px;
         }
 
         .newsletter-form {
@@ -550,7 +620,13 @@
             align-items: stretch;
             gap: 0.75rem;
             max-width: 450px;
-            margin: 0.5rem 0 0 0;
+            width: 100%;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .newsletter-form[hidden] {
+            display: none;
         }
 
         .newsletter-input {
@@ -568,6 +644,11 @@
 
         .newsletter-input:focus {
             border-color: rgba(44, 44, 44, 0.5);
+        }
+
+        .newsletter-input:focus-visible {
+            outline: 2px solid var(--deep-charcoal);
+            outline-offset: 2px;
         }
 
         .newsletter-input::placeholder {
@@ -623,6 +704,23 @@
 
         .newsletter-button:disabled::before {
             transform: scaleX(0);
+        }
+
+        .newsletter-button:focus-visible {
+            outline: 2px solid var(--terracotta-red);
+            outline-offset: 2px;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         .newsletter-success,
@@ -912,21 +1010,18 @@
 
             .header-container {
                 padding: 0 1.5rem;
-                flex-direction: column;
-                gap: 0.75rem;
+                flex-direction: row;
+                justify-content: space-between;
                 align-items: center;
             }
 
             .logo {
-                text-align: center;
-                width: 100%;
+                font-size: 1.6rem;
                 margin-bottom: 0;
             }
 
             .nav-menu {
-                gap: 2rem;
-                justify-content: center;
-                width: 100%;
+                gap: 1.25rem;
                 margin-top: 0;
             }
 
@@ -985,42 +1080,10 @@
                 padding-right: 2rem;
             }
 
-            .newsletter-content {
-                text-align: center;
-                padding: 0 2rem;
-            }
-
-            .newsletter-label {
-                text-align: center;
-                font-size: 2rem;
-            }
-
-            .newsletter-form {
-                max-width: 100%;
-                margin: 0 auto;
-                flex-direction: row;
-            }
-
-            .newsletter-input {
-                font-size: 0.95rem;
-                padding: 0.75rem 0.9rem;
-            }
-
-            .newsletter-button {
-                font-size: 0.95rem;
-                padding: 0.75rem 1.25rem;
-            }
-
-            .newsletter-success,
-            .newsletter-error {
-                text-align: center;
-                margin: 0 auto;
-                font-size: 0.95rem;
-                padding: 0.65rem 0;
-            }
-
+            /* Inline newsletter band is desktop-only — the mobile sticky bar
+               (see .nl-sticky rules) is the sole mobile capture point. */
             .newsletter {
-                padding: 1.5rem 0 1.5rem 0;
+                display: none;
             }
 
             .hero-intro,
@@ -1030,16 +1093,8 @@
         }
 
         @media (max-width: 480px) {
-            .hero {
-                padding-top: var(--page-top-small);
-            }
-
             .header-container {
                 padding: 0 1rem;
-            }
-
-            .logo {
-                font-size: 1.8rem;
             }
 
             .nav-menu {
@@ -1229,6 +1284,137 @@
                 width: 100%;
             }
         }
+
+        /* ─── Mobile sticky newsletter bar ──────────────────────────── */
+        @media (max-width: 768px) {
+            .nl-sticky {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 900;
+                background: var(--deep-charcoal);
+                color: var(--cream-bg);
+                /* Extra right padding keeps content clear of Silktide's persistent
+                   60px bottomRight cookie icon (z-index 99999, always on top). */
+                padding: 1rem 5.5rem 1rem 1.25rem;
+                transform: translateY(100%);
+                transition: transform 0.35s ease;
+            }
+
+            .nl-sticky.visible {
+                transform: translateY(0);
+            }
+
+            .nl-sticky-collapsed {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+
+            .nl-sticky-collapsed[hidden] {
+                display: none;
+            }
+
+            .nl-sticky-text {
+                display: flex;
+                flex-direction: column;
+                gap: 0.15rem;
+            }
+
+            .nl-sticky-heading {
+                font-family: 'SuisseIntl', sans-serif;
+                font-size: 1.1rem;
+                font-weight: 400;
+                color: var(--cream-bg);
+            }
+
+            .nl-sticky-sub {
+                font-size: 0.8rem;
+                font-weight: 300;
+                color: rgba(253, 252, 248, 0.7);
+            }
+
+            .nl-sticky-join {
+                background: var(--cream-bg);
+                color: var(--deep-charcoal);
+                border: none;
+                padding: 0.6rem 1.25rem;
+                font-family: 'SuisseIntl', sans-serif;
+                font-size: 0.9rem;
+                cursor: pointer;
+            }
+
+            .nl-sticky-dismiss {
+                position: absolute;
+                top: 0.4rem;
+                right: 0.5rem;
+                background: none;
+                border: none;
+                color: var(--cream-bg);
+                font-size: 1.25rem;
+                cursor: pointer;
+                padding: 0.4rem;
+            }
+
+            .nl-sticky-form {
+                display: flex;
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+
+            .nl-sticky-form[hidden] {
+                display: none;
+            }
+
+            .nl-sticky .newsletter-success,
+            .nl-sticky .newsletter-error {
+                margin: 0;
+                color: var(--cream-bg);
+            }
+
+            .nl-sticky .newsletter-error {
+                color: var(--soft-terracotta);
+            }
+
+            /* .newsletter-input's default border/text colors are tuned for the
+               light cream background — override for the dark sticky bar. */
+            .nl-sticky .newsletter-input {
+                border-color: rgba(253, 252, 248, 0.35);
+                color: var(--cream-bg);
+            }
+
+            .nl-sticky .newsletter-input::placeholder {
+                color: rgba(253, 252, 248, 0.5);
+            }
+
+            .nl-sticky .newsletter-input:focus {
+                border-color: var(--cream-bg);
+            }
+
+            .nl-sticky .newsletter-input:focus-visible {
+                outline-color: var(--cream-bg);
+            }
+
+            .nl-sticky-join:focus-visible,
+            .nl-sticky-dismiss:focus-visible {
+                outline: 2px solid var(--cream-bg);
+                outline-offset: 2px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .nl-sticky {
+                transition: none;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .nl-sticky {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1261,9 +1447,57 @@
                     Photography that explores broad themes of how we live, ourselves, and our place in the world.
                 </p>
                 <p class="hero-tagline">
-                    Chosen for atmosphere, subtlety, and perspective.
+                    Work with atmosphere and invites contemplation rather than certainty.
                 </p>
             </div>
+
+            <!-- Newsletter Section -->
+            <section class="newsletter" id="newsletter">
+                <div class="newsletter-content js-nl-instance">
+                    <h2 class="newsletter-label">
+                        First look
+                    </h2>
+                    <div class="newsletter-row">
+                        <p class="hero-tagline">
+                            New artists, selected works, and first access to elsewhere editions.
+                        </p>
+
+                        <form
+                            class="js-nl-form newsletter-form"
+                            data-source="inline"
+                            action="https://assets.mailerlite.com/jsonp/2556020/forms/194893785895798150/subscribe"
+                            method="post"
+                            target="ml-iframe-inline"
+                        >
+                            <label for="nl-email-inline" class="visually-hidden">Email address</label>
+                            <input
+                                type="email"
+                                id="nl-email-inline"
+                                name="fields[email]"
+                                class="js-nl-email newsletter-input"
+                                placeholder="Your email"
+                                required
+                                autocomplete="email"
+                                inputmode="email"
+                            >
+                            <input type="hidden" name="fields[ec_source]" value="inline">
+                            <input type="hidden" name="ml-submit" value="1">
+                            <input type="hidden" name="anticsrf" value="true">
+                            <button type="submit" class="js-nl-button newsletter-button"><span>Join</span></button>
+                        </form>
+                    </div>
+                    <iframe name="ml-iframe-inline" style="display:none"></iframe>
+
+                    <p class="js-nl-success newsletter-success" role="status" aria-live="polite">
+                        Thank you for joining. We will keep you updated on new artists, selected works and elsewhere editions.
+                    </p>
+                    <p class="js-nl-error newsletter-error" role="status" aria-live="polite">
+                        Something went wrong. Please try again or email us at hello@elsewherecollective.nl
+                    </p>
+
+                </div>
+            </section>
+
             <div class="hero-gallery">
                 <div class="grid-view" id="gridView">
                 <!-- GENERATED:GRID:START (generated by generate.js from instagram-feed.json — do not edit by hand) -->
@@ -1272,9 +1506,9 @@
                     
                         <article class="grid-item" data-index="0">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" alt="Farewell to Elders — photograph by Mahmoud Khatab" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" alt="Farewell to Elders — photograph by Mahmoud Khatab" width="500" height="750" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Farewell to Elders</h2>
+                                    <h3 class="t">Farewell to Elders</h3>
                                     <p class="a">Mahmoud Khatab</p>
                                 </figcaption>
                             </figure>
@@ -1282,9 +1516,9 @@
                     
                         <article class="grid-item" data-index="7">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg" alt="Metamorphosis — photograph by Claudia Fuggetti" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg" alt="Metamorphosis — photograph by Claudia Fuggetti" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Metamorphosis</h2>
+                                    <h3 class="t">Metamorphosis</h3>
                                     <p class="a">Claudia Fuggetti</p>
                                 </figcaption>
                             </figure>
@@ -1295,9 +1529,9 @@
                     
                         <article class="grid-item" data-index="1">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg" alt="Somewhere in Africa — photograph by Brigitte Bourger" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg" alt="Somewhere in Africa — photograph by Brigitte Bourger" width="500" height="390" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Somewhere in Africa</h2>
+                                    <h3 class="t">Somewhere in Africa</h3>
                                     <p class="a">Brigitte Bourger</p>
                                 </figcaption>
                             </figure>
@@ -1305,9 +1539,9 @@
                     
                         <article class="grid-item" data-index="6">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg" alt="Of All The Wild Paths — photograph by Claire Amaouche" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg" alt="Of All The Wild Paths — photograph by Claire Amaouche" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Of All The Wild Paths</h2>
+                                    <h3 class="t">Of All The Wild Paths</h3>
                                     <p class="a">Claire Amaouche</p>
                                 </figcaption>
                             </figure>
@@ -1315,9 +1549,9 @@
                     
                         <article class="grid-item" data-index="9">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg" alt="Between Sakura — photograph by Nick Meek" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg" alt="Between Sakura — photograph by Nick Meek" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Between Sakura</h2>
+                                    <h3 class="t">Between Sakura</h3>
                                     <p class="a">Nick Meek</p>
                                 </figcaption>
                             </figure>
@@ -1328,9 +1562,9 @@
                     
                         <article class="grid-item" data-index="2">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png" alt="Teoswa — photograph by Yimin Chen" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png" alt="Teoswa — photograph by Yimin Chen" width="500" height="380" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Teoswa</h2>
+                                    <h3 class="t">Teoswa</h3>
                                     <p class="a">Yimin Chen</p>
                                 </figcaption>
                             </figure>
@@ -1338,9 +1572,9 @@
                     
                         <article class="grid-item" data-index="4">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg" alt="Book of Days — photograph by Alvin Ng" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg" alt="Book of Days — photograph by Alvin Ng" width="500" height="640" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Book of Days</h2>
+                                    <h3 class="t">Book of Days</h3>
                                     <p class="a">Alvin Ng</p>
                                 </figcaption>
                             </figure>
@@ -1348,9 +1582,9 @@
                     
                         <article class="grid-item" data-index="10">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg" alt="Wird — photograph by Bruno Hadjih" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg" alt="Wird — photograph by Bruno Hadjih" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Wird</h2>
+                                    <h3 class="t">Wird</h3>
                                     <p class="a">Bruno Hadjih</p>
                                 </figcaption>
                             </figure>
@@ -1361,9 +1595,9 @@
                     
                         <article class="grid-item" data-index="3">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" alt="The Cube — photograph by Orestis Ilias" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" alt="The Cube — photograph by Orestis Ilias" width="500" height="380" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">The Cube</h2>
+                                    <h3 class="t">The Cube</h3>
                                     <p class="a">Orestis Ilias</p>
                                 </figcaption>
                             </figure>
@@ -1371,9 +1605,9 @@
                     
                         <article class="grid-item" data-index="5">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg" alt="Torre San Giovanni — photograph by Murray Ballard" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg" alt="Torre San Giovanni — photograph by Murray Ballard" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Torre San Giovanni</h2>
+                                    <h3 class="t">Torre San Giovanni</h3>
                                     <p class="a">Murray Ballard</p>
                                 </figcaption>
                             </figure>
@@ -1381,9 +1615,9 @@
                     
                         <article class="grid-item" data-index="8">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg" alt="The Vastness — photograph by Kim Woo Young" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg" alt="The Vastness — photograph by Kim Woo Young" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">The Vastness</h2>
+                                    <h3 class="t">The Vastness</h3>
                                     <p class="a">Kim Woo Young</p>
                                 </figcaption>
                             </figure>
@@ -1391,9 +1625,9 @@
                     
                         <article class="grid-item" data-index="11">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" alt="Rhodanie — photograph by Bertrand Stofleth" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" alt="Rhodanie — photograph by Bertrand Stofleth" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">Rhodanie</h2>
+                                    <h3 class="t">Rhodanie</h3>
                                     <p class="a">Bertrand Stofleth</p>
                                 </figcaption>
                             </figure>
@@ -1402,52 +1636,11 @@
                 </div>
                 <!-- GENERATED:GRID:END -->
                 </div>
+                <script type="application/json" id="gridData">[{"title":"Farewell to Elders","artist":"Mahmoud Khatab","caption":"I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised. To be taken away from everything else they crossed the Nile with. I made my greetings to everything else that bid their farewell, to kings and queens who already departed, who only chose to be buried south of here, who only chose to be carried across the west bank of the Nile, who chose to be buried into the afterlife. Who saw the intimate writings on their walls something only their souls will recognise and recall in their coming rebirth.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Mahmoud_K_ullxu7.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/Mahmoud%20Kehtab,%20Farewell%20to%20Elders.jpg?raw=true","width":500,"height":750},{"title":"Somewhere in Africa","artist":"Brigitte Bourger","caption":"Figures in motion - from a series on lives by the sea.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199617/Brigitte_B_xgukvf.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/Brigitte%20Bourger.png?raw=true","width":500,"height":390},{"title":"Teoswa","artist":"Yimin Chen","caption":"Born in the steel labyrinth of Shenzhen, I felt little belonging to its restless skyline. Instead, I was drawn to the villages where human warmth lingers, where fading traditions still breathe. Teoswa is a journey into the ancestral echoes of his mother's hometown - the Teochew region of Guangdong - and an intimate search for the meaning of home.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765200002/Yimin_Chen_ujhcpr.png","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Teoswa%201.jpg?raw=true","width":500,"height":380},{"title":"The Cube","artist":"Orestis Ilias","caption":"Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871784/Orestis_The_Cube_jzcv1z.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Orestis%20Ilias%2C%20The%20Cube%2015.08.25.jpg?raw=true","width":500,"height":380},{"title":"Book of Days","artist":"Alvin Ng","caption":"Through the alchemy of hand-manipulated photographs, I breathe life into ancient verses, revealing their profound essence and forging a harmonious fusion of ancient wisdom and contemporary vision. Inspired by Ovid's Book of Days, Alvin's works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871725/Alvin_Ng_rgjrcu.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Book%20of%20Days%201.jpg?raw=true","width":500,"height":640},{"title":"Torre San Giovanni","artist":"Murray Ballard","caption":"A wreck of a migrant boat in Salento, southern Italy. From Ballard's series Ghosts in the Field, exploring how the region is being reshaped by an ecological crisis, tourism, and old local folklore, this work speaks to today's societal issues where leisure and crisis can sit alongside each other.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199629/Murray_Ballard_izgkrk.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Murray%20Ballard%2021.08.25.jpg?raw=true","width":500,"height":390},{"title":"Of All The Wild Paths","artist":"Claire Amaouche","caption":"I wandered from place to place, from solitude to solitude, trying to grasp their hidden essence. Little by little, it seemed to me that it was not nature itself - eternal, wild, impenetrable - that I was drawing near, but the shifting reflection of my own drifting, and the void at the heart of my existence. Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Claire_A_w9zurb.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Claire%20Amaouche%201.jpg?raw=true","width":500,"height":390},{"title":"Metamorphosis","artist":"Claudia Fuggetti","caption":"Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity. Throughout the series, Claudia plays with perceptions of reality and fiction. The use of colour, perspective and intervention creates ambiguity that encourages new relationships with nature to emerge.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199624/Claudia_F_l7qt8w.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/1.%20Cardi.jpg?raw=true","width":500,"height":750},{"title":"The Vastness","artist":"Kim Woo Young","caption":"The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199630/Kim_Woo_Young_nzvp01.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Kim%20Woo%20Young%201%20Lower%20Res.jpg?raw=true","width":500,"height":390},{"title":"Between Sakura","artist":"Nick Meek","caption":"Visiting nature","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199631/Nick_Meek_ddu2op.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Nick%20Meek%201.jpg?raw=true","width":500,"height":390},{"title":"Wird","artist":"Bruno Hadjih","caption":"The wird is a Sufi invocation of incantations and prayers to reach the hal, a temporary state where the self dissolves into divine presence. Hadjih's colours and movements move away from a documentary approach to capture that feeling, and make the mystical appear closer.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199618/bruno-hadjih_1_dzuk5k.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bruno%20%231.jpg?raw=true","width":500,"height":390},{"title":"Rhodanie","artist":"Bertrand Stofleth","caption":"Walking the Rhône river from source to sea, Stofleth finds the small and everyday along its grand course.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199621/Betrand_Stofleth_1_2_instli.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bertrand%20Stofleth%201.jpg?raw=true","width":500,"height":390}]</script>
                 <div class="gallery-more">
                     <a href="/spotlight">See more on Spotlight</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter" id="newsletter">
-        <div class="newsletter-content">
-            <label class="newsletter-label" for="newsletterEmail">
-                Newsletter
-            </label>
-            <p class="hero-tagline">
-                Be the first to hear about elsewhere editions. Limited edition fine art prints coming soon.
-            </p>
-
-            <form
-                class="newsletter-form"
-                id="newsletterForm"
-                action="https://assets.mailerlite.com/jsonp/2556020/forms/194893785895798150/subscribe"
-                method="post"
-                target="ml-hidden-iframe"
-            >
-                <input
-                    type="email"
-                    id="newsletterEmail"
-                    name="fields[email]"
-                    class="newsletter-input"
-                    placeholder="Your email"
-                    required
-                    autocomplete="email"
-                >
-                <input type="hidden" name="ml-submit" value="1">
-                <input type="hidden" name="anticsrf" value="true">
-                <button type="submit" class="newsletter-button" id="newsletterButton"><span>Join</span></button>
-            </form>
-            <iframe name="ml-hidden-iframe" style="display:none"></iframe>
-
-            <p class="newsletter-success" id="newsletterSuccess">
-                You are in. Welcome! We will be in touch.
-            </p>
-            <p class="newsletter-error" id="newsletterError">
-                Something went wrong. Please try again or email us at hello@elsewherecollective.nl
-            </p>
-
         </div>
     </section>
 
@@ -1492,6 +1685,49 @@
         </div>
     </div>
 
+    <!-- Mobile sticky newsletter bar (≤768px only) -->
+    <div class="nl-sticky js-nl-instance" id="nlSticky" role="complementary" aria-label="Newsletter signup" hidden>
+        <button class="nl-sticky-dismiss" id="nlStickyDismiss" aria-label="Dismiss">&times;</button>
+        <div class="nl-sticky-collapsed" id="nlStickyCollapsed">
+            <div class="nl-sticky-text">
+                <span class="nl-sticky-heading">First look</span>
+                <span class="nl-sticky-sub">New artists, selected works, and first access to elsewhere editions.</span>
+            </div>
+            <button class="nl-sticky-join" id="nlStickyJoin">Join</button>
+        </div>
+        <form
+            class="js-nl-form nl-sticky-form"
+            data-source="sticky"
+            hidden
+            action="https://assets.mailerlite.com/jsonp/2556020/forms/194893785895798150/subscribe"
+            method="post"
+            target="ml-iframe-sticky"
+        >
+            <label for="nl-email-sticky" class="visually-hidden">Email address</label>
+            <input
+                type="email"
+                id="nl-email-sticky"
+                name="fields[email]"
+                class="js-nl-email newsletter-input"
+                placeholder="Your email"
+                required
+                autocomplete="email"
+                inputmode="email"
+            >
+            <input type="hidden" name="fields[ec_source]" value="sticky">
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+            <button type="submit" class="js-nl-button newsletter-button"><span>Join</span></button>
+        </form>
+        <iframe name="ml-iframe-sticky" style="display:none"></iframe>
+        <p class="js-nl-success newsletter-success" role="status" aria-live="polite">
+            Thank you for joining. We will keep you updated on new artists, selected works and elsewhere editions.
+        </p>
+        <p class="js-nl-error newsletter-error" role="status" aria-live="polite">
+            Something went wrong. Please try again or email us at hello@elsewherecollective.nl
+        </p>
+    </div>
+
     <script>
         let posts = [];
         let currentIndex = 0;
@@ -1519,26 +1755,6 @@
             const title = (post.title || '').trim();
             const artist = (post.artist || '').trim();
             return title ? `${title} — photograph by ${artist}` : `Photograph by ${artist}`;
-        }
-
-        function shuffle(array) {
-            const result = array.slice();
-            for (let i = result.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [result[i], result[j]] = [result[j], result[i]];
-            }
-            return result;
-        }
-
-        // Reads natural width/height for an image without waiting on the real
-        // <img> tag, so the grid can be packed before anything is painted.
-        function probeAspectRatio(src) {
-            return new Promise(resolve => {
-                const probe = new Image();
-                probe.onload = () => resolve(probe.naturalWidth / probe.naturalHeight || 1);
-                probe.onerror = () => resolve(1);
-                probe.src = src;
-            });
         }
 
         function columnCountForWidth(width) {
@@ -1571,9 +1787,9 @@
                     ${col.map(({ post, i }) => `
                         <article class="grid-item" data-index="${i}">
                             <figure>
-                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)}" alt="${escapeHtml(altText(post))}" loading="${i < 4 ? 'eager' : 'lazy'}">
+                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)}" alt="${escapeHtml(altText(post))}" width="${post.width || ''}" height="${post.height || ''}" loading="${i < 4 ? 'eager' : 'lazy'}">
                                 <figcaption class="grid-item-label">
-                                    <h2 class="t">${post.title || 'Untitled'}</h2>
+                                    <h3 class="t">${post.title || 'Untitled'}</h3>
                                     <p class="a">${post.artist || ''}</p>
                                 </figcaption>
                             </figure>
@@ -1589,21 +1805,18 @@
 
         // The grid's initial markup is pre-rendered at build time (generate.js) from
         // instagram-feed.json, so crawlers that don't run JS still see real content.
-        // This just re-fetches the same data to power the lightbox and the
-        // resize-driven column re-pack — it no longer builds the DOM from scratch.
-        async function loadPosts() {
+        // This reads the same 12 posts back out of the inline #gridData script (no
+        // fetch, no reshuffle) to power the lightbox and the resize-driven column
+        // re-pack — it no longer builds the DOM from scratch.
+        function loadPosts() {
             const gridView = document.getElementById('gridView');
             try {
-                const res = await fetch('instagram-feed.json');
-                const data = await res.json();
-                const postsWithCaptions = (data.posts || []).filter(post => post.caption && post.caption.trim() !== '');
-                posts = shuffle(postsWithCaptions).slice(0, 12);
-
-                const items = await Promise.all(posts.map(async (post, i) => ({
+                posts = JSON.parse(document.getElementById('gridData').textContent);
+                const items = posts.map((post, i) => ({
                     post,
                     i,
-                    aspectRatio: await probeAspectRatio(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)
-                })));
+                    aspectRatio: (post.width && post.height) ? post.width / post.height : 1
+                }));
 
                 renderGrid(gridView, items);
 
@@ -1677,41 +1890,107 @@
                 });
             });
 
-            // Scroll cue: fixed in place while scrolling, only fades once the user nears the true bottom of the page
+            // Scroll cue: visible on load, fades permanently on the visitor's first
+            // scroll past 150px — it points at content that's now above the fold, so
+            // it's a one-shot cue rather than a fixture that persists for the page.
             const scrollCue = document.getElementById('scrollCue');
             window.addEventListener('scroll', () => {
-                const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 200;
-                scrollCue.classList.toggle('hidden', nearBottom);
+                if (window.scrollY > 150) {
+                    scrollCue.classList.add('hidden');
+                }
             }, { passive: true });
 
-            // Newsletter submit (MailerLite via hidden iframe, avoids CORS/JSONP issues)
-            const form = document.getElementById('newsletterForm');
-            const button = document.getElementById('newsletterButton');
-            const buttonLabel = button.querySelector('span');
-            const successMsg = document.getElementById('newsletterSuccess');
-            const errorMsg = document.getElementById('newsletterError');
+            // Newsletter submit (MailerLite via hidden iframe, avoids CORS/JSONP issues).
+            // Each .js-nl-form instance (inline band, mobile sticky bar, ...) is bound
+            // independently and scoped to its own iframe/success/error elements, so
+            // multiple instances can coexist without cross-triggering each other.
+            document.querySelectorAll('.js-nl-form').forEach(function(form) {
+                const source = form.dataset.source;
+                const emailInput = form.querySelector('.js-nl-email');
+                const button = form.querySelector('.js-nl-button');
+                const buttonLabel = button.querySelector('span');
+                const originalLabel = buttonLabel.textContent;
+                const instance = form.closest('.js-nl-instance');
+                const successMsg = instance.querySelector('.js-nl-success');
+                const errorMsg = instance.querySelector('.js-nl-error');
+                const iframe = document.getElementsByName(form.target)[0];
+                let submitted = false;
+                let responseTimer = null;
 
-            form.addEventListener('submit', function(e) {
-                const email = document.getElementById('newsletterEmail').value.trim();
-                if (!email) {
-                    e.preventDefault();
-                    return;
-                }
-
-                buttonLabel.textContent = 'Joining...';
-                button.disabled = true;
-                successMsg.classList.remove('visible');
-                errorMsg.classList.remove('visible');
-
-                // Form submits natively to the hidden iframe; we can't read the
-                // cross-origin response, so show success optimistically once
-                // MailerLite has had time to respond.
-                setTimeout(function() {
-                    form.style.display = 'none';
-                    document.querySelector('.newsletter-label').style.opacity = '0.45';
+                // The iframe fires an implicit `load` for its initial about:blank
+                // document before any submission happens — the `submitted` flag
+                // distinguishes that from a real post-submit response.
+                //
+                // KNOWN LIMITATION: `load` fires for any response the iframe receives,
+                // including a MailerLite error page or a 4xx/5xx status — there's no
+                // way to inspect the cross-origin response body/status from here. A
+                // rejected submission therefore still shows success, sets
+                // ec_subscribed = '1', and permanently suppresses the sticky bar for
+                // that visitor. Fixing this needs a same-origin API proxy in front of
+                // MailerLite (so the response can be read) and is out of scope here —
+                // documented so it isn't rediscovered later as a mystery bug.
+                iframe.addEventListener('load', function() {
+                    if (!submitted) return;
+                    submitted = false;
+                    clearTimeout(responseTimer);
+                    form.hidden = true;
                     successMsg.classList.add('visible');
-                }, 800);
+                    localStorage.setItem('ec_subscribed', '1');
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'newsletter_signup', { method: source });
+                    }
+                });
+
+                form.addEventListener('submit', function() {
+                    const email = emailInput.value.trim();
+                    if (!email) return;
+
+                    submitted = true;
+                    button.disabled = true;
+                    buttonLabel.textContent = 'Joining';
+                    successMsg.classList.remove('visible');
+                    errorMsg.classList.remove('visible');
+
+                    // Form submits natively to the hidden iframe; we can't read the
+                    // cross-origin response, so treat no response within 8s as failure.
+                    responseTimer = setTimeout(function() {
+                        submitted = false;
+                        errorMsg.classList.add('visible');
+                        button.disabled = false;
+                        buttonLabel.textContent = originalLabel;
+                    }, 8000);
+                });
             });
+
+            // Mobile sticky bar: collapsed "Join" reveals the form and focuses the
+            // field (no visible input in the collapsed state); dismiss hides it
+            // permanently for this visitor.
+            const nlStickyJoin = document.getElementById('nlStickyJoin');
+            if (nlStickyJoin) {
+                nlStickyJoin.addEventListener('click', function() {
+                    document.getElementById('nlStickyCollapsed').hidden = true;
+                    const stickyForm = document.querySelector('.nl-sticky .js-nl-form');
+                    stickyForm.hidden = false;
+                    stickyForm.querySelector('.js-nl-email').focus();
+                });
+            }
+
+            const nlStickyDismiss = document.getElementById('nlStickyDismiss');
+            if (nlStickyDismiss) {
+                nlStickyDismiss.addEventListener('click', function() {
+                    localStorage.setItem('ec_newsletter_dismissed', '1');
+                    const bar = document.getElementById('nlSticky');
+                    // Focus can be on the dismiss button itself, or on the email field
+                    // if the bar was expanded first — bar.hidden is about to hide
+                    // whichever ancestor currently holds it, so blur whatever that is
+                    // before hiding, rather than assuming it's this button.
+                    if (bar.contains(document.activeElement)) {
+                        document.activeElement.blur();
+                    }
+                    bar.classList.remove('visible');
+                    bar.hidden = true;
+                });
+            }
         });
     </script>
 </body>
