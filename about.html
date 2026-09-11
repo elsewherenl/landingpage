@@ -621,21 +621,21 @@
 
     .header-container {
         padding: 0 1.5rem;
-        flex-direction: column;
-        gap: 0.75rem;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
     }
 
     .logo {
-        text-align: center;
-        width: 100%;
+        text-align: left;
+        width: auto;
         margin-bottom: 0;
     }
 
     .nav-menu {
-        gap: 2rem;
-        justify-content: center;
-        width: 100%;
+        gap: 1.25rem;
+        justify-content: flex-end;
+        width: auto;
         margin-top: 0;
     }
 
@@ -644,13 +644,13 @@
         padding: var(--page-top-mobile) 1.5rem 4rem; /* Increased from 8rem to 10rem and side padding reduced */
         grid-template-columns: 1fr;
         gap: 3rem;
-        text-align: center; /* Center all text on mobile */
+        text-align: left;
     }
 
     .text-block h1 {
         font-size: 2rem;
         margin-top: 0; /* Remove any extra margin */
-        text-align: center; /* Center title on mobile */
+        text-align: left;
     }
 
     .mobile-break {
@@ -658,15 +658,15 @@
     }
 
     .text-block h2 {
-        text-align: center; /* Center section headings on mobile */
+        text-align: left;
     }
 
     .text-block p {
-        text-align: center; /* Center paragraphs on mobile */
+        text-align: left;
     }
 
     .location {
-        text-align: center; /* Center location on mobile */
+        text-align: left;
     }
 
     .image-column {
@@ -676,7 +676,7 @@
 
     .image-placeholder {
         max-width: 400px;
-        margin: 0 auto;
+        margin: 0;
     }
 
     .cookie-banner {
@@ -718,11 +718,11 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="/" class="logo">elsewhere collective</a>
+            <a href="/" class="logo">elsewhere</a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="/about">About</a></li>
-                    <li><a href="/spotlight">Spotlight</a></li>
+                    <li><a href="/spotlight">Gallery</a></li>
                 </ul>
             </nav>
         </div>
@@ -733,7 +733,7 @@
         <div class="text-column">
             <section class="text-block">
                 <h1>A curated gallery for contemporary photography.</h1>
-                <p class="subtitle">elsewhere collective is a curated gallery championing emerging photographers alongside selected established voices.</p>
+                <p class="subtitle">elsewhere is a curated gallery championing emerging photographers alongside selected established voices.</p>
                 <p class="subtitle">In a world of endless images, where algorithmic discovery can make everything feel increasingly similar and disposable, we believe in the value of selection, context, and a point of view.</p>
                 <p class="subtitle">We are interested in photography that explores how we live, the human condition, and our place in the world. Work that holds attention and invites contemplation rather than certainty.</p>
                 <p class="subtitle">Our curation centres on three recurring themes:</p>
