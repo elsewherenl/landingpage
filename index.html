@@ -270,63 +270,12 @@
     });
     </script>
 
-    <!-- Mobile sticky newsletter bar: consent + scroll-depth gating. Defined early
-         (before the cookie-banner scripts run) so their onAccept/onReject callbacks
-         above, and Silktide's own callbacks below, can call window.__maybeShowNlSticky
-         once a consent choice is made without needing the visitor to scroll again. -->
+    <!-- Mobile sticky newsletter bar is disabled — the inline newsletter band
+         (see .newsletter) is shown on mobile now, same as desktop. This stub is
+         kept because the cookie-banner callbacks below still call
+         window.__maybeShowNlSticky. -->
     <script>
-        (function() {
-            function hasConsentDecision() {
-                return localStorage.getItem('silktideCookieBanner_InitialChoice') !== null
-                    || localStorage.getItem('cookieConsent') !== null;
-            }
-            // True while either the Silktide banner or the fallback custom banner is
-            // actually on screen — checked live via the DOM rather than a flag, since
-            // either banner can appear/disappear independently of a consent decision
-            // (e.g. reopened via Settings).
-            function isBannerVisible() {
-                if (document.querySelector('.silktide-banner')) return true;
-                const fallback = document.querySelector('.cookie-banner');
-                return !!(fallback && fallback.classList.contains('show'));
-            }
-            function showBar() {
-                const bar = document.getElementById('nlSticky');
-                if (!bar) return;
-                bar.hidden = false;
-                requestAnimationFrame(() => bar.classList.add('visible'));
-                window.removeEventListener('scroll', maybeShowSticky);
-            }
-            let timeElapsed = false;
-            // The inline band is hidden on mobile (see .newsletter display:none), so
-            // the sticky bar is mobile's only capture point — it must not depend
-            // solely on the visitor interacting with the consent banner. Shown once
-            // BOTH the scroll-depth gate is satisfied AND (a consent decision exists
-            // OR 10s have passed), and never while a banner is actually on screen —
-            // if one is up when a trigger fires, it's retried shortly after so the
-            // two never compete for the visitor's attention at once.
-            function maybeShowSticky() {
-                if (window.innerWidth > 768) return;
-                if (localStorage.getItem('ec_subscribed') === '1') return;
-                if (localStorage.getItem('ec_newsletter_dismissed') === '1') return;
-                if (!hasConsentDecision() && !timeElapsed) return;
-                const scrolledEnough = window.scrollY + window.innerHeight >= document.body.scrollHeight * 0.5;
-                if (!scrolledEnough) return;
-                if (isBannerVisible()) {
-                    setTimeout(maybeShowSticky, 1000);
-                    return;
-                }
-                showBar();
-            }
-            window.__maybeShowNlSticky = maybeShowSticky;
-            // Attached unconditionally rather than gated on the load-time viewport
-            // width: maybeShowSticky()'s own width check is sufficient, and a desktop
-            // visitor who narrows their window below 768px should still get the bar.
-            window.addEventListener('scroll', maybeShowSticky, { passive: true });
-            setTimeout(function() {
-                timeElapsed = true;
-                maybeShowSticky();
-            }, 10000);
-        })();
+        window.__maybeShowNlSticky = function() {};
     </script>
 
     <style>
@@ -341,7 +290,7 @@
             --sage-green: #A8B5A0;
             --soft-terracotta: #C4A394;
             --page-top-desktop: 7.25rem;
-            --page-top-mobile: 10rem;
+            --page-top-mobile: 7rem;
             --page-top-small: 9rem;
             --title-body-gap: 1.5rem;
             --block-gap: 1.6rem;
@@ -1083,10 +1032,8 @@
                 padding-right: 2rem;
             }
 
-            /* Inline newsletter band is desktop-only — the mobile sticky bar
-               (see .nl-sticky rules) is the sole mobile capture point. */
-            .newsletter {
-                display: none;
+            .newsletter-content {
+                max-width: 100%;
             }
 
             .hero-intro {
@@ -1241,136 +1188,6 @@
             }
         }
 
-        /* ─── Mobile sticky newsletter bar ──────────────────────────── */
-        @media (max-width: 768px) {
-            .nl-sticky {
-                position: fixed;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                z-index: 900;
-                background: var(--deep-charcoal);
-                color: var(--cream-bg);
-                /* Extra right padding keeps content clear of Silktide's persistent
-                   60px bottomRight cookie icon (z-index 99999, always on top). */
-                padding: 1rem 5.5rem 1rem 1.25rem;
-                transform: translateY(100%);
-                transition: transform 0.35s ease;
-            }
-
-            .nl-sticky.visible {
-                transform: translateY(0);
-            }
-
-            .nl-sticky-collapsed {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-            }
-
-            .nl-sticky-collapsed[hidden] {
-                display: none;
-            }
-
-            .nl-sticky-text {
-                display: flex;
-                flex-direction: column;
-                gap: 0.15rem;
-            }
-
-            .nl-sticky-heading {
-                font-family: 'SuisseIntl', sans-serif;
-                font-size: 1.1rem;
-                font-weight: 400;
-                color: var(--cream-bg);
-            }
-
-            .nl-sticky-sub {
-                font-size: 0.8rem;
-                font-weight: 300;
-                color: rgba(253, 252, 248, 0.7);
-            }
-
-            .nl-sticky-join {
-                background: var(--cream-bg);
-                color: var(--deep-charcoal);
-                border: none;
-                padding: 0.6rem 1.25rem;
-                font-family: 'SuisseIntl', sans-serif;
-                font-size: 0.9rem;
-                cursor: pointer;
-            }
-
-            .nl-sticky-dismiss {
-                position: absolute;
-                top: 0.4rem;
-                right: 0.5rem;
-                background: none;
-                border: none;
-                color: var(--cream-bg);
-                font-size: 1.25rem;
-                cursor: pointer;
-                padding: 0.4rem;
-            }
-
-            .nl-sticky-form {
-                display: flex;
-                flex-direction: column;
-                gap: 0.6rem;
-            }
-
-            .nl-sticky-form[hidden] {
-                display: none;
-            }
-
-            .nl-sticky .newsletter-success,
-            .nl-sticky .newsletter-error {
-                margin: 0;
-                color: var(--cream-bg);
-            }
-
-            .nl-sticky .newsletter-error {
-                color: var(--soft-terracotta);
-            }
-
-            /* .newsletter-input's default border/text colors are tuned for the
-               light cream background — override for the dark sticky bar. */
-            .nl-sticky .newsletter-input {
-                border-color: rgba(253, 252, 248, 0.35);
-                color: var(--cream-bg);
-            }
-
-            .nl-sticky .newsletter-input::placeholder {
-                color: rgba(253, 252, 248, 0.5);
-            }
-
-            .nl-sticky .newsletter-input:focus {
-                border-color: var(--cream-bg);
-            }
-
-            .nl-sticky .newsletter-input:focus-visible {
-                outline-color: var(--cream-bg);
-            }
-
-            .nl-sticky-join:focus-visible,
-            .nl-sticky-dismiss:focus-visible {
-                outline: 2px solid var(--cream-bg);
-                outline-offset: 2px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .nl-sticky {
-                transition: none;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .nl-sticky {
-                display: none !important;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1637,49 +1454,6 @@
         </div>
     </div>
 
-    <!-- Mobile sticky newsletter bar (≤768px only) -->
-    <div class="nl-sticky js-nl-instance" id="nlSticky" role="complementary" aria-label="Newsletter signup" hidden>
-        <button class="nl-sticky-dismiss" id="nlStickyDismiss" aria-label="Dismiss">&times;</button>
-        <div class="nl-sticky-collapsed" id="nlStickyCollapsed">
-            <div class="nl-sticky-text">
-                <span class="nl-sticky-heading">First look</span>
-                <span class="nl-sticky-sub">New artists, selected works, and first access to elsewhere editions.</span>
-            </div>
-            <button class="nl-sticky-join" id="nlStickyJoin">Join</button>
-        </div>
-        <form
-            class="js-nl-form nl-sticky-form"
-            data-source="sticky"
-            hidden
-            action="https://assets.mailerlite.com/jsonp/2556020/forms/194893785895798150/subscribe"
-            method="post"
-            target="ml-iframe-sticky"
-        >
-            <label for="nl-email-sticky" class="visually-hidden">Email address</label>
-            <input
-                type="email"
-                id="nl-email-sticky"
-                name="fields[email]"
-                class="js-nl-email newsletter-input"
-                placeholder="Your email"
-                required
-                autocomplete="email"
-                inputmode="email"
-            >
-            <input type="hidden" name="fields[ec_source]" value="sticky">
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
-            <button type="submit" class="js-nl-button newsletter-button"><span>Join</span></button>
-        </form>
-        <iframe name="ml-iframe-sticky" style="display:none"></iframe>
-        <p class="js-nl-success newsletter-success" role="status" aria-live="polite">
-            Thank you for joining. You are on the list!
-        </p>
-        <p class="js-nl-error newsletter-error" role="status" aria-live="polite">
-            Something went wrong. Please try again or email us at hello@elsewherecollective.nl
-        </p>
-    </div>
-
     <script>
         let posts = [];
         let currentIndex = 0;
@@ -1903,36 +1677,6 @@
                     }, 8000);
                 });
             });
-
-            // Mobile sticky bar: collapsed "Join" reveals the form and focuses the
-            // field (no visible input in the collapsed state); dismiss hides it
-            // permanently for this visitor.
-            const nlStickyJoin = document.getElementById('nlStickyJoin');
-            if (nlStickyJoin) {
-                nlStickyJoin.addEventListener('click', function() {
-                    document.getElementById('nlStickyCollapsed').hidden = true;
-                    const stickyForm = document.querySelector('.nl-sticky .js-nl-form');
-                    stickyForm.hidden = false;
-                    stickyForm.querySelector('.js-nl-email').focus();
-                });
-            }
-
-            const nlStickyDismiss = document.getElementById('nlStickyDismiss');
-            if (nlStickyDismiss) {
-                nlStickyDismiss.addEventListener('click', function() {
-                    localStorage.setItem('ec_newsletter_dismissed', '1');
-                    const bar = document.getElementById('nlSticky');
-                    // Focus can be on the dismiss button itself, or on the email field
-                    // if the bar was expanded first — bar.hidden is about to hide
-                    // whichever ancestor currently holds it, so blur whatever that is
-                    // before hiding, rather than assuming it's this button.
-                    if (bar.contains(document.activeElement)) {
-                        document.activeElement.blur();
-                    }
-                    bar.classList.remove('visible');
-                    bar.hidden = true;
-                });
-            }
 
             const cookiePreferencesLink = document.getElementById('cookiePreferencesLink');
             if (cookiePreferencesLink) {
