@@ -341,7 +341,7 @@
             --sage-green: #A8B5A0;
             --soft-terracotta: #C4A394;
             --page-top-desktop: 7.25rem;
-            --page-top-mobile: 6rem;
+            --page-top-mobile: 10rem;
             --page-top-small: 9rem;
             --title-body-gap: 1.5rem;
             --block-gap: 1.6rem;
@@ -464,8 +464,18 @@
         }
 
         .hero-body {
-            margin-bottom: var(--block-gap);
+            margin-bottom: 0;
             max-width: 760px;
+        }
+
+        .hero-signup {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            max-width: 760px;
+        }
+
+        .hero-tagline-emphasis {
+            color: var(--deep-charcoal);
         }
 
         .hero-gallery {
@@ -581,10 +591,8 @@
 
         /* ─── Newsletter Section ─────────────────────────────────── */
         .newsletter {
-            margin-top: -2rem;
-            padding: 1rem 0 2rem 0;
-            border-top: 1px solid rgba(44, 44, 44, 0.12);
-            border-bottom: 1px solid rgba(44, 44, 44, 0.12);
+            margin-top: 0;
+            padding: 0 0 1.5rem 0;
             background: var(--cream-bg);
             color: var(--deep-charcoal);
         }
@@ -593,34 +601,19 @@
             text-align: left;
         }
 
-        .newsletter-label {
-            display: block;
-            font-family: 'SuisseIntl', sans-serif;
-            font-size: 2.1rem;
-            font-weight: 300;
-            color: var(--deep-charcoal);
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            margin-bottom: var(--title-body-gap);
-        }
-
         .newsletter-row {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .newsletter-content .hero-tagline {
-            margin-bottom: 0;
-            max-width: 500px;
+            align-items: baseline;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
         }
 
         .newsletter-form {
             display: flex;
-            align-items: stretch;
-            gap: 0.75rem;
-            max-width: 450px;
+            align-items: flex-end;
+            gap: 1.25rem;
+            max-width: 320px;
             width: 100%;
             margin: 0;
             flex-shrink: 0;
@@ -632,8 +625,9 @@
 
         .newsletter-input {
             flex: 1;
-            padding: 0.9rem 1.1rem;
-            border: 1px solid rgba(44, 44, 44, 0.2);
+            padding: 0.3rem 0;
+            border: none;
+            border-bottom: 1px solid rgba(44, 44, 44, 0.3);
             background: transparent;
             color: var(--deep-charcoal);
             font-family: 'SuisseIntl', sans-serif;
@@ -644,7 +638,7 @@
         }
 
         .newsletter-input:focus {
-            border-color: rgba(44, 44, 44, 0.5);
+            border-color: rgba(44, 44, 44, 0.7);
         }
 
         .newsletter-input:focus-visible {
@@ -663,48 +657,29 @@
 
         .newsletter-button {
             position: relative;
-            padding: 0.9rem 1.75rem;
-            background: var(--deep-charcoal);
-            border: 0.5px solid var(--deep-charcoal);
-            color: var(--cream-bg);
+            padding: 0.3rem 0;
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--deep-charcoal);
+            color: var(--deep-charcoal);
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 500;
             cursor: pointer;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
             white-space: nowrap;
             flex-shrink: 0;
-            overflow: hidden;
-            isolation: isolate;
+            transition: color 0.25s ease, border-color 0.25s ease;
         }
 
-        .newsletter-button span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .newsletter-button::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--terracotta-red);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.35s ease;
-            z-index: 0;
-        }
-
-        .newsletter-button:hover::before {
-            transform: scaleX(1);
+        .newsletter-button:hover {
+            color: var(--terracotta-red);
+            border-color: var(--terracotta-red);
         }
 
         .newsletter-button:disabled {
             opacity: 0.4;
             cursor: default;
-        }
-
-        .newsletter-button:disabled::before {
-            transform: scaleX(0);
         }
 
         .newsletter-button:focus-visible {
@@ -814,6 +789,32 @@
             font-weight: 300;
             color: rgba(44, 44, 44, 0.4);
             letter-spacing: 0.02em;
+        }
+
+        .footer-bottom-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-preferences-link {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(44, 44, 44, 0.4);
+            letter-spacing: 0.02em;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: rgba(44, 44, 44, 0.25);
+            font-family: 'SuisseIntl', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .cookie-preferences-link:hover {
+            color: var(--deep-charcoal);
         }
 
         /* Fullscreen lightbox, same pattern as spotlight-editorial-dummy */
@@ -949,7 +950,7 @@
             }
 
             :root {
-                --block-gap: 3rem;
+                --block-gap: 1.5rem;
             }
         }
 
@@ -990,16 +991,16 @@
                 max-width: 900px;
             }
             .hero-body {
-                margin-bottom: var(--block-gap);
+                margin-bottom: 0;
                 max-width: 900px;
             }
-            .newsletter-label {
-                font-size: 2.2rem;
-                line-height: 1.25;
-                letter-spacing: -0.015em;
+            .hero-signup {
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+                max-width: 900px;
             }
             :root {
-                --block-gap: 3rem;
+                --block-gap: 1.5rem;
             }
         }
 
@@ -1035,12 +1036,12 @@
                 flex-direction: column;
                 padding: 0 1.5rem;
                 max-width: 100%;
-                align-items: center;
+                align-items: flex-start;
             }
 
             .hero-text {
-                text-align: center;
-                padding: 0 0.5rem;
+                text-align: left;
+                padding: 0;
                 max-width: 100%;
                 overflow: hidden;
                 margin-bottom: 0;
@@ -1059,15 +1060,16 @@
             }
 
             .hero-title {
-                font-size: 2rem;
+                font-size: 1.9rem;
                 margin-top: 0;
                 margin-bottom: 0;
-                line-height: 1.5;
+                line-height: 1.25;
                 font-weight: 300;
                 max-width: 100%;
                 padding: 0;
                 overflow-wrap: break-word;
                 hyphens: none;
+                text-align: left;
             }
 
             .footer-content {
@@ -1087,9 +1089,17 @@
                 display: none;
             }
 
-            .hero-intro,
-            .hero-body {
+            .hero-intro {
                 margin-bottom: var(--title-body-gap);
+            }
+
+            .hero-body {
+                margin-bottom: 0;
+            }
+
+            .hero-signup {
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
             }
         }
 
@@ -1123,61 +1133,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        /* ─── Scroll cue: fixed, follows the viewport, points to the newsletter below ─── */
-        .scroll-cue {
-            position: fixed;
-            top: 7.5rem;
-            right: 3rem;
-            z-index: 50;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'SuisseIntl', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: rgba(44, 44, 44, 0.4);
-            opacity: 1;
-            transition: opacity 0.4s ease;
-        }
-
-        .scroll-cue.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .scroll-cue-line {
-            width: 1px;
-            height: 2.75rem;
-            background: rgba(44, 44, 44, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scroll-cue-line::after {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--terracotta-red);
-            animation: scrollDrip 2.2s ease-in-out infinite;
-        }
-
-        @keyframes scrollDrip {
-            0% { top: -100%; }
-            60% { top: 100%; }
-            100% { top: 100%; }
-        }
-
-        @media (max-width: 768px) {
-            .scroll-cue {
-                display: none;
             }
         }
 
@@ -1422,7 +1377,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="/" class="logo">elsewhere collective</a>
+            <a href="/" class="logo">elsewhere</a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="/about">About</a></li>
@@ -1432,11 +1387,6 @@
         </div>
     </header>
 
-    <div class="scroll-cue" id="scrollCue">
-        <span>Scroll</span>
-        <span class="scroll-cue-line"></span>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero fade-in" id="hero">
         <div class="hero-content">
@@ -1445,24 +1395,22 @@
             </div>
             <div class="hero-text hero-body">
                 <p class="hero-tagline">
-                    Photography that explores broad themes of how we live, ourselves, and our place in the world.
+                    Photography that explores how we live, ourselves, and our place in the world.
                 </p>
                 <p class="hero-tagline">
-                    Work with atmosphere and invites contemplation rather than certainty.
+                    Work with atmosphere that invites contemplation rather than certainty.
+                </p>
+            </div>
+            <div class="hero-text hero-signup">
+                <p class="hero-tagline">
+                    <span class="hero-tagline-emphasis">First access to elsewhere editions.</span> New artists and selected works, shared as they arrive.
                 </p>
             </div>
 
             <!-- Newsletter Section -->
             <section class="newsletter" id="newsletter">
                 <div class="newsletter-content js-nl-instance">
-                    <h2 class="newsletter-label">
-                        First look
-                    </h2>
                     <div class="newsletter-row">
-                        <p class="hero-tagline">
-                            New artists, selected works, and first access to elsewhere editions.
-                        </p>
-
                         <form
                             class="js-nl-form newsletter-form"
                             data-source="inline"
@@ -1484,13 +1432,13 @@
                             <input type="hidden" name="fields[ec_source]" value="inline">
                             <input type="hidden" name="ml-submit" value="1">
                             <input type="hidden" name="anticsrf" value="true">
-                            <button type="submit" class="js-nl-button newsletter-button"><span>Join</span></button>
+                            <button type="submit" class="js-nl-button newsletter-button"><span>Join →</span></button>
                         </form>
                     </div>
                     <iframe name="ml-iframe-inline" style="display:none"></iframe>
 
                     <p class="js-nl-success newsletter-success" role="status" aria-live="polite">
-                        Thank you for joining. We will keep you updated on new artists, selected works and elsewhere editions.
+                        Thank you for joining. You are on the list!
                     </p>
                     <p class="js-nl-error newsletter-error" role="status" aria-live="polite">
                         Something went wrong. Please try again or email us at hello@elsewherecollective.nl
@@ -1668,7 +1616,10 @@
         </div>
 
         <div class="footer-bottom">
-            <p>© 2026</p>
+            <div class="footer-bottom-row">
+                <p>© 2026</p>
+                <button type="button" class="cookie-preferences-link" id="cookiePreferencesLink">Cookie Preferences</button>
+            </div>
         </div>
     </footer>
 
@@ -1722,7 +1673,7 @@
         </form>
         <iframe name="ml-iframe-sticky" style="display:none"></iframe>
         <p class="js-nl-success newsletter-success" role="status" aria-live="polite">
-            Thank you for joining. We will keep you updated on new artists, selected works and elsewhere editions.
+            Thank you for joining. You are on the list!
         </p>
         <p class="js-nl-error newsletter-error" role="status" aria-live="polite">
             Something went wrong. Please try again or email us at hello@elsewherecollective.nl
@@ -1891,16 +1842,6 @@
                 });
             });
 
-            // Scroll cue: visible on load, fades permanently on the visitor's first
-            // scroll past 150px — it points at content that's now above the fold, so
-            // it's a one-shot cue rather than a fixture that persists for the page.
-            const scrollCue = document.getElementById('scrollCue');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 150) {
-                    scrollCue.classList.add('hidden');
-                }
-            }, { passive: true });
-
             // Newsletter submit (MailerLite via hidden iframe, avoids CORS/JSONP issues).
             // Each .js-nl-form instance (inline band, mobile sticky bar, ...) is bound
             // independently and scoped to its own iframe/success/error elements, so
@@ -1990,6 +1931,18 @@
                     }
                     bar.classList.remove('visible');
                     bar.hidden = true;
+                });
+            }
+
+            const cookiePreferencesLink = document.getElementById('cookiePreferencesLink');
+            if (cookiePreferencesLink) {
+                cookiePreferencesLink.addEventListener('click', function() {
+                    if (typeof silktideCookieBannerManager !== 'undefined' && silktideCookieBannerManager.showPreferences) {
+                        silktideCookieBannerManager.showPreferences();
+                    } else {
+                        const banner = document.querySelector('.cookie-banner');
+                        if (banner) banner.classList.add('show');
+                    }
                 });
             }
         });
