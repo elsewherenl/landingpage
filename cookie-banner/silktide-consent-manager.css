@@ -12,7 +12,7 @@
 #silktide-wrapper {
               --focus: 0 0 0 2px #ffffff, 0 0 0 4px #000000, 0 0 0 6px #ffffff;
               --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
-              --fontFamily: 'Favorit', Helvetica Neue, Segoe UI, Arial, sans-serif;
+              --fontFamily: 'SuisseIntl', Helvetica Neue, Segoe UI, Arial, sans-serif;
               --primaryColor: #A8493D;
               --backgroundColor: #2c2c2c;
               --textColor: #fdfcf8;
@@ -243,6 +243,49 @@
   align-items: center;
   justify-content: space-between;
   flex-grow: 1;
+}
+
+/* Desktop: a more compact consent bar (width, spacing, type, buttons) */
+@media (min-width: 769px) {
+  #silktide-banner {
+    padding: 20px;
+    width: 420px;
+  }
+
+  #silktide-banner .preferences,
+  #silktide-banner p {
+    font-size: 14px;
+  }
+
+  #silktide-banner .preferences {
+    padding: 8px 0px;
+  }
+
+  #silktide-banner p {
+    line-height: 20px;
+    margin: 0px 0px 10px;
+  }
+
+  #silktide-banner a.silktide-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  #silktide-banner .actions,
+  #silktide-banner .actions-row {
+    gap: 10px;
+  }
+
+  #silktide-banner .actions {
+    margin-top: 14px;
+  }
+
+  #silktide-banner .st-button {
+    padding: 8px 14px;
+    font-size: 12px;
+    line-height: 18px;
+    white-space: nowrap;
+  }
 }
 
 /* --------------------------------
