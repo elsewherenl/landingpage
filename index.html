@@ -100,6 +100,13 @@
             font-style: normal;
             font-display: swap;
         }
+        @font-face {
+            font-family: 'SuisseIntl';
+            src: url('fonts/SuisseIntl-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
     </style>
 
     <!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
@@ -351,7 +358,7 @@
         .nav-menu a {
             text-decoration: none;
             color: rgba(44,44,44,0.75);
-            font-weight: 400;
+            font-weight: 300;
             font-size: 1.05rem;
             letter-spacing: 0.04em;
             border-bottom: none;
@@ -393,7 +400,7 @@
         .hero-title {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 2.1rem;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 1.2;
             margin-bottom: 0;
             color: var(--deep-charcoal);
@@ -426,7 +433,7 @@
 
         .hero-tagline {
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             color: rgba(44, 44, 44, 0.65);
             line-height: 1.6;
             margin-bottom: 0.4rem;
@@ -481,14 +488,14 @@
         .grid-item-label .t {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.95rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--deep-charcoal);
         }
 
         .grid-item-label .a {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.78rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-gray);
         }
 
@@ -501,7 +508,7 @@
         .gallery-more a {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.95rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-gray);
             text-decoration: none;
             letter-spacing: 0.02em;
@@ -574,7 +581,7 @@
             color: var(--deep-charcoal);
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             outline: none;
             transition: border-color 0.3s ease;
         }
@@ -646,7 +653,7 @@
             display: none;
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 1.6;
             padding: 0.75rem 0;
             max-width: 450px;
@@ -688,7 +695,7 @@
             align-items: center;
             gap: 0.6rem;
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-gray);
             text-decoration: none;
             line-height: 1.8;
@@ -711,6 +718,13 @@
             opacity: 0.7;
         }
 
+        /* Tightens the handle's triple underscore into one continuous mark,
+           pulled in close to "elsewhere" and "collective" on both sides */
+        .ig-handle-dash {
+            letter-spacing: -0.22em;
+            margin: 0 -0.12em;
+        }
+
         .footer-section {
             display: flex;
             flex-direction: column;
@@ -728,7 +742,7 @@
 
         .footer-bottom p {
             font-size: 0.9rem;
-            font-weight: 400;
+            font-weight: 300;
             color: rgba(44, 44, 44, 0.4);
             letter-spacing: 0.02em;
         }
@@ -742,7 +756,7 @@
 
         .cookie-preferences-link {
             font-size: 0.9rem;
-            font-weight: 400;
+            font-weight: 300;
             color: rgba(44, 44, 44, 0.4);
             letter-spacing: 0.02em;
             background: none;
@@ -805,14 +819,14 @@
         .fullscreen-caption .caption-title {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1.05rem;
-            font-weight: 400;
+            font-weight: 300;
             letter-spacing: 0.02em;
             margin-bottom: 0.35rem;
         }
 
         .fullscreen-caption .caption-artist {
             font-size: 0.95rem;
-            font-weight: 400;
+            font-weight: 300;
             margin-bottom: 0.9rem;
             color: var(--terracotta-red);
         }
@@ -829,7 +843,7 @@
             right: 0;
             color: white;
             font-size: 1.5rem;
-            font-weight: 400;
+            font-weight: 300;
             cursor: pointer;
             background: rgba(0, 0, 0, 0.75);
             width: 50px;
@@ -1006,7 +1020,7 @@
                 margin-top: 0;
                 margin-bottom: 0;
                 line-height: 1.25;
-                font-weight: 400;
+                font-weight: 300;
                 max-width: 100%;
                 padding: 0;
                 overflow-wrap: break-word;
@@ -1105,7 +1119,7 @@
 
         .cookie-text {
             font-size: 0.9rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-off-white);
             line-height: 1.4;
         }
@@ -1416,7 +1430,7 @@
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/>
                         <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
                     </svg>
-                    @elsewhere___collective
+                    @elsewhere<span class="ig-handle-dash">___</span>collective
                 </a>
             </div>
         </div>

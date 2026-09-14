@@ -93,6 +93,13 @@
             font-style: normal;
             font-display: swap;
         }
+        @font-face {
+            font-family: 'SuisseIntl';
+            src: url('fonts/SuisseIntl-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
     </style>
 
     <!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
@@ -329,7 +336,7 @@
         .nav-menu a {
             text-decoration: none;
             color: rgba(44,44,44,0.75);
-            font-weight: 400;
+            font-weight: 300;
             font-size: 1.05rem;
             letter-spacing: 0.04em;
             border-bottom: none;
@@ -362,7 +369,7 @@
         .text-block h1 {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 2.1rem;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 1.2;
             margin-bottom: var(--title-body-gap);
             color: var(--deep-charcoal);
@@ -384,7 +391,7 @@
         .text-block h2 {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1.15rem;
-            font-weight: 400;
+            font-weight: 300;
             letter-spacing: 0.02em;
             margin-bottom: 1rem;
             color: var(--deep-charcoal);
@@ -396,7 +403,7 @@
 
         .text-block p {
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-gray);
             line-height: 1.6;
             margin-bottom: 0.8rem;
@@ -404,7 +411,7 @@
 
         .text-block .subtitle {
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 1.6;
             color: rgba(44, 44, 44, 0.65);
             max-width: 760px;
@@ -429,7 +436,7 @@
             display: block;
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--deep-charcoal);
             margin-bottom: 0.2rem;
         }
@@ -437,7 +444,7 @@
         .theme-description {
             display: block;
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 1.6;
             color: rgba(44, 44, 44, 0.65);
         }
@@ -451,7 +458,7 @@
         
         .location {
             font-size: 0.95rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-gray);
             margin-top: 0.5rem;
         }
@@ -465,7 +472,7 @@
 
         .contact-links a {
             font-size: 1rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-gray);
             text-decoration: none;
             letter-spacing: 0.02em;
@@ -476,6 +483,13 @@
         .contact-links a:hover {
             color: var(--deep-charcoal);
             opacity: 0.85;
+        }
+
+        /* Tightens the handle's triple underscore into one continuous mark,
+           pulled in close to "elsewhere" and "collective" on both sides */
+        .ig-handle-dash {
+            letter-spacing: -0.22em;
+            margin: 0 -0.12em;
         }
 
         /* Right Column - Images */
@@ -551,7 +565,7 @@
 
         .cookie-text {
             font-size: 0.9rem;
-            font-weight: 400;
+            font-weight: 300;
             color: var(--warm-off-white);
             line-height: 1.4;
         }
@@ -752,7 +766,7 @@
                 <h2>Contact</h2>
                 <div class="contact-links">
                     <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
-                    <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere___collective</a>
+                    <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a>
                 </div>
             </section>
         </div>

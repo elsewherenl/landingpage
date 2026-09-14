@@ -653,6 +653,13 @@
         font-style: normal;
         font-display: swap;
     }
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Light.woff2') format('woff2');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
 </style>
 
 <!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
@@ -873,7 +880,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .nav-menu a {
         text-decoration: none;
         color: rgba(44, 44, 44, 0.75);
-        font-weight: 400;
+        font-weight: 300;
         font-size: 1.05rem;
         letter-spacing: 0.04em;
         transition: opacity 0.25s ease, color 0.25s ease;
@@ -902,7 +909,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .page-title {
         font-family: 'SuisseIntl', sans-serif;
         font-size: 2.1rem;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 1.2;
         margin: 0 0 1.5rem;
         color: var(--deep-charcoal);
@@ -919,7 +926,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .page-subtitle {
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 300;
         color: var(--warm-gray);
         margin: 0;
     }
@@ -930,54 +937,11 @@ document.addEventListener('DOMContentLoaded', function() {
         transition: opacity 0.25s ease, color 0.25s ease;
     }
 
-    /* ─── Scroll cue: fixed so it follows the viewport as the user scrolls down ─── */
-    .scroll-cue {
-        position: fixed;
-        top: 7.5rem;
-        right: 3rem;
-        z-index: 50;
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: 'SuisseIntl', sans-serif;
-        font-size: 0.75rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: rgba(44, 44, 44, 0.4);
-        opacity: 1;
-        transition: opacity 0.4s ease;
-    }
-
-    .scroll-cue.hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .scroll-cue-line {
-        width: 1px;
-        height: 2.75rem;
-        background: rgba(44, 44, 44, 0.25);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .scroll-cue-line::after {
-        content: '';
-        position: absolute;
-        top: -100%;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--terracotta-red);
-        animation: scrollDrip 2.2s ease-in-out infinite;
-    }
-
-    @keyframes scrollDrip {
-        0% { top: -100%; }
-        60% { top: 100%; }
-        100% { top: 100%; }
+    /* Tightens the handle's triple underscore into one continuous mark,
+       pulled in close to "elsewhere" and "collective" on both sides */
+    .ig-handle-dash {
+        letter-spacing: -0.22em;
+        margin: 0 -0.12em;
     }
 
     /* ─── View toggle: switches rail <-> grid, sits under the intro text ─── */
@@ -1100,7 +1064,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .entry-title {
         font-family: 'SuisseIntl', sans-serif;
         font-size: 1.6rem;
-        font-weight: 400;
+        font-weight: 300;
         letter-spacing: 0.02em;
         margin: 0 0 0.3rem;
         color: var(--deep-charcoal);
@@ -1108,14 +1072,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .entry-artist {
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 300;
         color: var(--terracotta-red);
         margin-bottom: 1rem;
     }
 
     .entry-caption {
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 1.6;
         color: rgba(44, 44, 44, 0.65);
         max-width: 60ch;
@@ -1180,7 +1144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         margin: 0;
         font-family: 'SuisseIntl', sans-serif;
         font-size: 0.95rem;
-        font-weight: 400;
+        font-weight: 300;
         color: var(--deep-charcoal);
     }
 
@@ -1188,7 +1152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         margin: 0;
         font-family: 'SuisseIntl', sans-serif;
         font-size: 0.78rem;
-        font-weight: 400;
+        font-weight: 300;
         color: var(--warm-gray);
     }
 
@@ -1224,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .contact-section h2 {
         font-family: 'SuisseIntl', sans-serif;
         font-size: 1.15rem;
-        font-weight: 400;
+        font-weight: 300;
         letter-spacing: 0.02em;
         margin: 0 0 1rem;
         color: var(--deep-charcoal);
@@ -1238,7 +1202,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .contact-links a {
         font-size: 1rem;
-        font-weight: 400;
+        font-weight: 300;
         color: var(--warm-gray);
         text-decoration: none;
         letter-spacing: 0.02em;
@@ -1297,14 +1261,14 @@ document.addEventListener('DOMContentLoaded', function() {
     .fullscreen-caption .caption-title {
         font-family: 'SuisseIntl', sans-serif;
         font-size: 1.05rem;
-        font-weight: 400;
+        font-weight: 300;
         letter-spacing: 0.02em;
         margin-bottom: 0.35rem;
     }
 
     .fullscreen-caption .caption-artist {
         font-size: 0.95rem;
-        font-weight: 400;
+        font-weight: 300;
         margin-bottom: 0.9rem;
         color: var(--terracotta-red);
     }
@@ -1321,7 +1285,7 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 0;
         color: white;
         font-size: 1.5rem;
-        font-weight: 400;
+        font-weight: 300;
         cursor: pointer;
         background: rgba(0, 0, 0, 0.75);
         width: 50px;
@@ -1405,8 +1369,8 @@ document.addEventListener('DOMContentLoaded', function() {
             text-align: left;
         }
 
-        .scroll-cue {
-            display: none;
+        .page-title {
+            font-size: 2rem;
         }
 
         .view-toggle-row {
@@ -1515,7 +1479,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .cookie-text {
         font-size: 0.9rem;
-        font-weight: 400;
+        font-weight: 300;
         color: var(--warm-off-white);
         line-height: 1.4;
     }
@@ -1589,11 +1553,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="intro fade-in">
         <div class="intro-text">
             <h1 class="page-title">Gallery.</h1>
-            <p class="page-subtitle">A running edit of work shared on <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere___collective</a></p>
-        </div>
-        <div class="scroll-cue" id="scrollCue">
-            <span>Scroll</span>
-            <span class="scroll-cue-line"></span>
+            <p class="page-subtitle">A selection of contemporary photography shared on <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a></p>
         </div>
     </section>
 
@@ -2419,7 +2379,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
         <h2>Contact</h2>
         <div class="contact-links">
             <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
-            <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere___collective</a>
+            <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a>
         </div>
     </section>
 
@@ -2631,13 +2591,6 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             railBtn.classList.add('active');
             gridBtn.classList.remove('active');
         });
-
-        // Fixed in place while scrolling; only fades once the user nears the true bottom of the page
-        const scrollCue = document.getElementById('scrollCue');
-        window.addEventListener('scroll', () => {
-            const nearBottom = window.scrollY + window.innerHeight > document.body.scrollHeight - 200;
-            scrollCue.classList.toggle('hidden', nearBottom);
-        }, { passive: true });
 
         loadPosts();
     </script>
