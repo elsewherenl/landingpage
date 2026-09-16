@@ -720,6 +720,19 @@
         font-size: 1rem;
     }
 }
+
+        /* Custom cursor: black circle */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="black"/></svg>') 12 12, auto;
+        }
+
+        *, *::before, *::after {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="black"/></svg>') 12 12, auto !important;
+        }
+
+        a, button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="black"/></svg>') 12 12, pointer !important;
+        }
     </style>
 </head>
 <body>
