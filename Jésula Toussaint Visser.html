@@ -376,59 +376,6 @@
         max-width: 46ch;
     }
 
-    /* Selected Recognition */
-    .recognition-section {
-        margin-top: 7rem;
-    }
-
-    .recognition-header {
-        margin-bottom: 2.5rem;
-    }
-
-    .recognition-header h2 {
-        font-weight: 400;
-        font-size: 1.7rem;
-        letter-spacing: -0.005em;
-    }
-
-    .recognition-empty {
-        border: 1px dashed var(--hairline);
-        padding: 3rem 2rem;
-        text-align: center;
-        color: var(--warm-gray);
-        font-size: 0.95rem;
-        font-weight: 300;
-        max-width: 46ch;
-    }
-
-    .recognition-list {
-        list-style: none;
-        max-width: 640px;
-    }
-
-    .recognition-list li {
-        display: flex;
-        gap: 1.5rem;
-        padding: 1rem 0;
-        border-top: 1px solid var(--hairline);
-        font-size: 0.95rem;
-        font-weight: 300;
-    }
-
-    .recognition-list li:last-child {
-        border-bottom: 1px solid var(--hairline);
-    }
-
-    .recognition-year {
-        flex: 0 0 3.5rem;
-        color: var(--soft-terracotta);
-        font-weight: 400;
-    }
-
-    .recognition-venue {
-        color: var(--deep-charcoal);
-    }
-
     .works-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -520,6 +467,20 @@
     }
 
     @media (max-width: 768px) {
+        .header-container {
+            padding: 0 1rem;
+        }
+        .logo {
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+        }
+        .nav-menu {
+            gap: 0.6rem;
+        }
+        .nav-menu a {
+            font-size: 0.75rem;
+            letter-spacing: 0.01em;
+        }
         .page {
             padding: var(--page-top-mobile) 1.5rem 5rem;
         }
@@ -548,6 +509,21 @@
         }
         .work-card.is-secondary {
             margin-top: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header-container {
+            padding: 0 0.85rem;
+        }
+        .logo {
+            font-size: 1.05rem;
+        }
+        .nav-menu {
+            gap: 0.5rem;
+        }
+        .nav-menu a {
+            font-size: 0.7rem;
         }
     }
 
@@ -691,174 +667,7 @@
         }
 </style>
 </head>
-<body class="gate-locked">
-<style>
-    /* Private preview gate (Artists section) */
-    #privateGate {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--cream-bg, #F3EFE9);
-        padding: 1.5rem;
-    }
-
-    #privateGate .gate-box {
-        max-width: 380px;
-        width: 100%;
-        text-align: center;
-    }
-
-    #privateGate h1 {
-        font-family: 'SuisseIntl', sans-serif;
-        font-weight: 400;
-        font-size: 1.5rem;
-        letter-spacing: -0.005em;
-        color: var(--deep-charcoal, #2C2C2C);
-        margin-bottom: 0.75rem;
-        text-align: left;
-    }
-
-    #privateGate p {
-        font-family: 'SuisseIntl', sans-serif;
-        font-weight: 300;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: var(--warm-gray, #8A8580);
-        margin-bottom: 2rem;
-        text-align: left;
-    }
-
-    #privateGate form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    #privateGate input[type="password"] {
-        font-family: 'SuisseIntl', sans-serif;
-        font-size: 0.95rem;
-        font-weight: 300;
-        padding: 0.85rem 1rem;
-        border: 1px solid rgba(44, 44, 44, 0.25);
-        background: var(--warm-off-white, #FDFCF8);
-        color: var(--deep-charcoal, #2C2C2C);
-        text-align: center;
-        letter-spacing: 0.05em;
-    }
-
-    #privateGate input[type="password"]:focus {
-        outline: none;
-        border-color: var(--soft-terracotta, #C4A394);
-    }
-
-    #privateGate button {
-        font-family: 'SuisseIntl', sans-serif;
-        font-size: 0.85rem;
-        font-weight: 400;
-        letter-spacing: 0.03em;
-        padding: 0.85rem 1.4rem;
-        border: 1px solid var(--deep-charcoal, #2C2C2C);
-        background: transparent;
-        color: var(--deep-charcoal, #2C2C2C);
-        cursor: pointer;
-        transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    #privateGate button:hover {
-        background: var(--deep-charcoal, #2C2C2C);
-        color: var(--warm-off-white, #FDFCF8);
-    }
-
-    #privateGate .gate-error {
-        font-family: 'SuisseIntl', sans-serif;
-        font-size: 0.85rem;
-        font-weight: 300;
-        color: #95392E;
-        min-height: 1.2em;
-        margin-top: -0.5rem;
-        text-align: center;
-    }
-
-    #privateGate .gate-close {
-        display: block;
-        margin-top: 1.5rem;
-        text-align: center;
-        font-family: 'SuisseIntl', sans-serif;
-        font-size: 0.85rem;
-        font-weight: 300;
-        letter-spacing: 0.02em;
-        color: var(--warm-gray, #8A8580);
-        text-decoration: none;
-        transition: color 0.3s ease, opacity 0.3s ease;
-    }
-
-    #privateGate .gate-close:hover {
-        color: var(--deep-charcoal, #2C2C2C);
-        opacity: 0.8;
-    }
-
-    body.gate-locked > *:not(#privateGate) {
-        display: none !important;
-    }
-</style>
-
-<div id="privateGate">
-    <div class="gate-box">
-        <h1>Private preview</h1>
-        <p>The collection is currently invitation only.</p>
-        <form id="gateForm" autocomplete="off">
-            <input type="password" id="gatePassword" name="password" placeholder="Password" autocomplete="off" required>
-            <p class="gate-error" id="gateError"></p>
-            <button type="submit">Enter</button>
-        </form>
-        <a href="/" class="gate-close">&larr; Close and return to elsewhere</a>
-    </div>
-</div>
-
-<script>
-(function () {
-    var STORAGE_KEY = 'ecArtistsAccess';
-    var PASSWORD_HASH = '355cf750e11efa1f1fa3446a058643a25f55002e806196d7267186c73e6233ec';
-
-    function sha256(message) {
-        var msgBuffer = new TextEncoder().encode(message);
-        return crypto.subtle.digest('SHA-256', msgBuffer).then(function (hashBuffer) {
-            var hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-        });
-    }
-
-    function unlock() {
-        document.body.classList.remove('gate-locked');
-        var gate = document.getElementById('privateGate');
-        if (gate) gate.remove();
-    }
-
-    if (sessionStorage.getItem(STORAGE_KEY) === '1') {
-        unlock();
-        return;
-    }
-
-    document.getElementById('gateForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var input = document.getElementById('gatePassword');
-        var errorEl = document.getElementById('gateError');
-        sha256(input.value).then(function (hash) {
-            if (hash === PASSWORD_HASH) {
-                sessionStorage.setItem(STORAGE_KEY, '1');
-                unlock();
-            } else {
-                errorEl.textContent = 'Incorrect password.';
-                input.value = '';
-                input.focus();
-            }
-        });
-    });
-})();
-</script>
+<body>
 
 <header class="header">
     <div class="header-container">
@@ -936,20 +745,6 @@
                 <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Drafted&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Drafted%22%20by%20J%C3%A9sula%20Toussaint%20Visser.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
             </article>
         </div>
-    </section>
-
-    <section class="recognition-section" id="recognition">
-        <div class="recognition-header">
-            <h2>Selected Recognition</h2>
-        </div>
-
-        <ul class="recognition-list">
-            <li><span class="recognition-year">2026</span><span class="recognition-venue">Hungry Eyes Art Fair, Amsterdam</span></li>
-            <li><span class="recognition-year">2025</span><span class="recognition-venue">Studio des Bouvrie, Naarden</span></li>
-            <li><span class="recognition-year">2024</span><span class="recognition-venue">Studio des Bouvrie, Naarden</span></li>
-            <li><span class="recognition-year">2024</span><span class="recognition-venue">Weekend Break Festival, Groningen</span></li>
-            <li><span class="recognition-year">2023</span><span class="recognition-venue">Haute Photographie, Amsterdam</span></li>
-        </ul>
     </section>
 
 </div>

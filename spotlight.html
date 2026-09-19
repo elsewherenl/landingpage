@@ -1332,7 +1332,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .header-container {
-            padding: 0 1.5rem;
+            padding: 0 1rem;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
@@ -1341,16 +1341,19 @@ document.addEventListener('DOMContentLoaded', function() {
         .logo {
             text-align: left;
             width: auto;
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
         }
 
         .nav-menu {
-            gap: 1.25rem;
+            gap: 0.6rem;
             justify-content: flex-end;
             width: auto;
         }
 
         .nav-menu a {
-            font-size: 0.95rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.01em;
         }
 
         .intro {
@@ -1422,16 +1425,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     @media (max-width: 480px) {
+        .header-container {
+            padding: 0 0.85rem;
+        }
+
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.05rem;
         }
 
         .nav-menu {
-            gap: 1.5rem;
+            gap: 0.5rem;
         }
 
         .nav-menu a {
-            font-size: 1rem;
+            font-size: 0.7rem;
         }
     }
 
