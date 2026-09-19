@@ -515,9 +515,9 @@
     // repo. Same image used for "work" and "portrait" layers as a
     // stand-in — swap in real work-shot / portrait pairs once available.
     const DRAFT_ARTISTS = [
-        { name: "Andrea Rosselli", role: "", slug: "andrea-rosselli", work: "andrearosselli.jpg", portrait: "andrearosselli.jpg" },
-        { name: "Mitsutaka Tsuryu", role: "", slug: "mitsutaka-tsuryu", work: "images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg", portrait: "images/mitsutaka-tsuryu/Mitsutaka Bio.jpg" },
-        { name: "Jésula Toussaint Visser", role: "", slug: "jesula-toussaint-visser", work: "images/jesula/Jesula Lucent Shadows.jpg", portrait: "images/jesula/Jesula Imperceptible.jpg" },
+        { name: "Andrea Rosselli", role: "", slug: "andrea-rosselli", href: null, work: "andrearosselli.jpg", portrait: "andrearosselli.jpg" },
+        { name: "Mitsutaka Tsuryu", role: "", slug: "mitsutaka-tsuryu", href: "Mitsutaka Tsuryu.html", work: "images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg", portrait: "images/mitsutaka-tsuryu/Mitsutaka Bio.jpg" },
+        { name: "Jésula Toussaint Visser", role: "", slug: "jesula-toussaint-visser", href: "Jésula Toussaint Visser.html", work: "images/jesula/Jesula Lucent Shadows.jpg", portrait: "images/jesula/Jesula Imperceptible.jpg" },
     ];
 
     function escapeHtml(str) {
@@ -533,7 +533,7 @@
         const grid = document.getElementById('artistsGrid');
         grid.innerHTML = DRAFT_ARTISTS.map(artist => `
             <li class="artist-tile">
-                <a href="#" onclick="return false;">
+                <a ${artist.href ? `href="${encodeURI(artist.href)}"` : 'href="#" onclick="return false;" aria-disabled="true"'}>
                     <div class="thumb-wrapper">
                         <img class="thumb-work" src="${escapeHtml(artist.work)}" alt="Work by ${escapeHtml(artist.name)}" loading="lazy" decoding="async">
                     </div>
