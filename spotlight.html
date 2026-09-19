@@ -997,14 +997,18 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 0.85rem;
     }
 
-    /* ─── Editorial rail: alternating scale, generous air, no card chrome ─── */
+    /* ─── Editorial rail: asymmetric two-up rhythm, tighter air, no card chrome ───
+       Entries flow two-per-row via CSS columns-style grid placement, alternating
+       which side runs large vs. small so the rail reads as a considered editorial
+       spread rather than a single-file scroll — while keeping more work visible
+       in the viewport at once. */
     .rail {
         max-width: 1600px;
         margin: 0 auto;
         padding: 3rem 3rem 6rem;
-        display: flex;
-        flex-direction: column;
-        gap: 8vw;
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        gap: 3rem 3rem;
     }
 
     .rail.hidden {
@@ -1012,22 +1016,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .entry {
-        display: grid;
-        grid-template-columns: 7fr 5fr;
-        gap: 4rem;
-        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
     }
 
     .entry.is-reversed {
-        grid-template-columns: 5fr 7fr;
-    }
-
-    .entry.is-reversed .entry-figure {
-        order: 2;
-    }
-
-    .entry.is-reversed .entry-meta {
-        order: 1;
+        margin-top: 6rem;
     }
 
     .entry-figure {
@@ -1037,19 +1032,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* Images keep their native proportions — no crop, no forced ratio —
-       but are always capped to fit inside the viewport, at any zoom level */
+       but are always capped so two columns' worth stay visible together */
     .entry-figure img {
         display: block;
         width: auto;
         height: auto;
-        max-width: min(640px, 100%);
-        max-height: 85vh;
+        max-width: 100%;
+        max-height: 62vh;
         filter: grayscale(0.15);
         transition: filter 0.6s ease;
     }
 
     .entry.is-reversed .entry-figure img {
-        margin-left: auto;
+        max-height: 46vh;
     }
 
     .entry-figure:hover img {
@@ -1378,25 +1373,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .rail {
+            grid-template-columns: 1fr;
             padding: 2rem 1.5rem 4rem;
             gap: 3.5rem;
         }
 
-        .entry,
         .entry.is-reversed {
-            grid-template-columns: 1fr;
-            gap: 0.4rem;
-        }
-
-        .entry.is-reversed .entry-figure,
-        .entry.is-reversed .entry-meta {
-            order: initial;
+            margin-top: 0;
         }
 
         .entry-figure img,
         .entry.is-reversed .entry-figure img {
             max-width: 100%;
-            margin-left: 0;
+            max-height: none;
         }
 
         .entry-title {
@@ -1556,7 +1545,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <nav>
                 <ul class="nav-menu">
                     <li><a href="/about">About</a></li>
-                    <li><a href="/artistspage.html">Artists</a></li>
+                    <li><a href="/artists">Artists</a></li>
                     <li><a href="/spotlight" class="active">Gallery</a></li>
                 </ul>
             </nav>

@@ -15,7 +15,10 @@
                 "/home": "/index.html",
                 "/about": "/about.html",
                 "/spotlight": "/spotlight.html",
-                "/cookie-policy": "/cookie-policy.html"
+                "/cookie-policy": "/cookie-policy.html",
+                "/artists": "/artistspage.html",
+                "/mitsutaka": "/Mitsutaka Tsuryu.html",
+                "/jesula": "/Jésula Toussaint Visser.html"
             };
 
             if (cleanPath === "/spotlights") {
@@ -34,7 +37,7 @@
                 return;
             }
 
-            fetch(targetFile)
+            fetch(encodeURI(targetFile))
                 .then(function(response) {
                     if (!response.ok) {
                         throw new Error("Route target not found");
