@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Primary Meta Tags -->
+<title>artists | elsewhere collective</title>
+<meta name="description" content="artists and works available to buy through elsewhere collective — a curated roster of emerging and established photographers.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="keywords" content="photographers for sale, buy photography Amsterdam, emerging photographers, contemporary photography artists, photography collective, art discovery">
+
+<!-- Canonical URL -->
+<!-- Not yet linked into nav or sitemap.xml — page is still in draft, gitignored locally. Update/verify this block before it goes live. -->
+<link rel="canonical" href="https://elsewherecollective.nl/artists">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://elsewherecollective.nl/artists">
+<meta property="og:title" content="artists | elsewhere collective">
+<meta property="og:description" content="artists and works available to buy through elsewhere collective — a curated roster of emerging and established photographers.">
+<meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://elsewherecollective.nl/artists">
+<meta property="twitter:title" content="artists | elsewhere collective">
+<meta property="twitter:description" content="artists and works available to buy through elsewhere collective — a curated roster of emerging and established photographers.">
+<meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<!-- Fonts -->
+<style>
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Light.woff2') format('woff2');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+</style>
+
+<style>
+    /* ================================================
+       DRAFT ARTISTS PAGE — local prototype only.
+       Not linked into nav, not wired to sheet data.
+
+       Reference: wonderingpeople.com/blogs/artists —
+       two-image hover swap (work shot -> portrait) with
+       the name accenting on hover. Re-implemented from
+       scratch in our own markup/CSS and brand tokens.
+       ================================================ */
+
+    :root {
+        --cream-bg: #F3EFE9;
+        --deep-charcoal: #2C2C2C;
+        --warm-gray: #8A8580;
+        --warm-off-white: #FDFCF8;
+        --biscuit-gold: #D6B370;
+        --khaki: #C0B589;
+        --sage-green: #A8B5A0;
+        --soft-terracotta: #C4A394;
+        --page-top-desktop: 7.25rem;
+        --page-top-mobile: 7rem;
+        --page-top-small: 9rem;
+
+        --artists-col-min: 420px;
+        --artists-gutter-x: 4rem;
+        --artists-gutter-y: 6rem;
+        --artists-ratio: 4 / 5;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'SuisseIntl', sans-serif;
+        background: var(--cream-bg);
+        color: var(--deep-charcoal);
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    /* Header — matches about.html / spotlight.html */
+    .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(243, 239, 233, 0.92);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        padding: 1.5rem 0;
+    }
+
+    .header-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: var(--deep-charcoal);
+        text-decoration: none;
+        letter-spacing: 0.06em;
+        text-transform: lowercase;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+    }
+
+    .nav-menu a {
+        text-decoration: none;
+        color: rgba(44, 44, 44, 0.75);
+        font-weight: 300;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+        opacity: 0.5;
+        color: var(--deep-charcoal);
+    }
+
+    /* Hero */
+    .artists-hero {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: var(--page-top-desktop) 3rem 3rem;
+    }
+
+    .artists-hero .eyebrow {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 300;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--soft-terracotta);
+        margin-bottom: 1rem;
+    }
+
+    .artists-hero h1 {
+        font-family: 'SuisseIntl', sans-serif;
+        font-weight: 300;
+        font-size: 2.1rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin: 0 0 1.5rem;
+        color: var(--deep-charcoal);
+        max-width: 16ch;
+    }
+
+    @media (min-width: 1280px) {
+        .artists-hero h1 {
+            font-size: 2.2rem;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+        }
+    }
+
+    .artists-hero p {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--warm-gray);
+        max-width: 46ch;
+    }
+
+    /* Grid — same outer box model as .artists-hero (max-width/margin/side
+       padding) so the two never drift apart; .ec-grid narrows only the
+       columns themselves, from the same fixed left edge. */
+    .artists-grid {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 1rem 3rem 8rem;
+    }
+
+    .ec-grid {
+        max-width: 1600px;
+        margin: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--artists-col-min), 1fr));
+        column-gap: var(--artists-gutter-x);
+        row-gap: var(--artists-gutter-y);
+    }
+
+    .artist-tile a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .artist-tile a:focus-visible {
+        outline: 2px solid var(--deep-charcoal);
+        outline-offset: 6px;
+    }
+
+    .artist-tile .thumb-wrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: var(--artists-ratio);
+        overflow: hidden;
+        background: var(--warm-gray);
+    }
+
+    .artist-tile .thumb-wrapper img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .artist-tile .artist-caption {
+        margin-top: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+    }
+
+    .artist-tile .artist-name {
+        display: block;
+        font-size: 1.4rem;
+        font-weight: 300;
+        letter-spacing: -0.005em;
+        color: var(--deep-charcoal);
+        transition: color 0.3s ease;
+    }
+
+    .artist-tile .artist-role {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 300;
+        letter-spacing: 0.04em;
+        color: var(--warm-gray);
+        white-space: nowrap;
+    }
+
+    .artist-tile a:hover .artist-name,
+    .artist-tile a:focus-visible .artist-name {
+        color: var(--soft-terracotta);
+    }
+
+    @media (max-width: 700px) {
+        :root {
+            --artists-col-min: 220px;
+            --artists-gutter-x: 1.5rem;
+            --artists-gutter-y: 2.75rem;
+        }
+
+        .header {
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            padding: 0 1.5rem;
+        }
+
+        .nav-menu {
+            gap: 1.25rem;
+        }
+
+        .artists-hero {
+            padding: var(--page-top-mobile) 1.5rem 2.5rem;
+        }
+
+        .artists-grid {
+            padding: 0.5rem 1.5rem 5rem;
+        }
+    }
+
+        /* Custom cursor: terracotta red circle */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, auto;
+        }
+
+        *, *::before, *::after {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, auto !important;
+        }
+
+        a, button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, pointer !important;
+        }
+</style>
+</head>
+<body class="gate-locked">
+<style>
+    /* Private preview gate (Artists section) */
+    #privateGate {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--cream-bg, #F3EFE9);
+        padding: 1.5rem;
+    }
+
+    #privateGate .gate-box {
+        max-width: 380px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #privateGate h1 {
+        font-family: 'SuisseIntl', sans-serif;
+        font-weight: 400;
+        font-size: 1.5rem;
+        letter-spacing: -0.005em;
+        color: var(--deep-charcoal, #2C2C2C);
+        margin-bottom: 0.75rem;
+        text-align: left;
+    }
+
+    #privateGate p {
+        font-family: 'SuisseIntl', sans-serif;
+        font-weight: 300;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--warm-gray, #8A8580);
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    #privateGate form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #privateGate input[type="password"] {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 300;
+        padding: 0.85rem 1rem;
+        border: 1px solid rgba(44, 44, 44, 0.25);
+        background: var(--warm-off-white, #FDFCF8);
+        color: var(--deep-charcoal, #2C2C2C);
+        text-align: center;
+        letter-spacing: 0.05em;
+    }
+
+    #privateGate input[type="password"]:focus {
+        outline: none;
+        border-color: var(--soft-terracotta, #C4A394);
+    }
+
+    #privateGate button {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        padding: 0.85rem 1.4rem;
+        border: 1px solid var(--deep-charcoal, #2C2C2C);
+        background: transparent;
+        color: var(--deep-charcoal, #2C2C2C);
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    #privateGate button:hover {
+        background: var(--deep-charcoal, #2C2C2C);
+        color: var(--warm-off-white, #FDFCF8);
+    }
+
+    #privateGate .gate-error {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: #95392E;
+        min-height: 1.2em;
+        margin-top: -0.5rem;
+        text-align: center;
+    }
+
+    #privateGate .gate-close {
+        display: block;
+        margin-top: 1.5rem;
+        text-align: center;
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        color: var(--warm-gray, #8A8580);
+        text-decoration: none;
+        transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    #privateGate .gate-close:hover {
+        color: var(--deep-charcoal, #2C2C2C);
+        opacity: 0.8;
+    }
+
+    body.gate-locked > *:not(#privateGate) {
+        display: none !important;
+    }
+</style>
+
+<div id="privateGate">
+    <div class="gate-box">
+        <h1>Private preview</h1>
+        <p>The collection is currently invitation only.</p>
+        <form id="gateForm" autocomplete="off">
+            <input type="password" id="gatePassword" name="password" placeholder="Password" autocomplete="off" required>
+            <p class="gate-error" id="gateError"></p>
+            <button type="submit">Enter</button>
+        </form>
+        <a href="/" class="gate-close">&larr; Close and return to elsewhere</a>
+    </div>
+</div>
+
+<script>
+(function () {
+    var STORAGE_KEY = 'ecArtistsAccess';
+    var PASSWORD_HASH = '355cf750e11efa1f1fa3446a058643a25f55002e806196d7267186c73e6233ec';
+
+    function sha256(message) {
+        var msgBuffer = new TextEncoder().encode(message);
+        return crypto.subtle.digest('SHA-256', msgBuffer).then(function (hashBuffer) {
+            var hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+        });
+    }
+
+    function unlock() {
+        document.body.classList.remove('gate-locked');
+        var gate = document.getElementById('privateGate');
+        if (gate) gate.remove();
+    }
+
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+        unlock();
+        return;
+    }
+
+    document.getElementById('gateForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = document.getElementById('gatePassword');
+        var errorEl = document.getElementById('gateError');
+        sha256(input.value).then(function (hash) {
+            if (hash === PASSWORD_HASH) {
+                sessionStorage.setItem(STORAGE_KEY, '1');
+                unlock();
+            } else {
+                errorEl.textContent = 'Incorrect password.';
+                input.value = '';
+                input.focus();
+            }
+        });
+    });
+})();
+</script>
+
+<header class="header">
+    <div class="header-container">
+        <a href="/" class="logo">elsewhere</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/about">About</a></li>
+                <li><a href="/artistspage.html" class="active">Artists</a></li>
+                <li><a href="/spotlight">Gallery</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="artists-hero fade-in">
+    <h1>Artists</h1>
+    <p>Artists and works available to buy through elsewhere.</p>
+</div>
+
+<div class="artists-grid">
+    <ul class="ec-grid" id="artistsGrid">
+        <!-- Tiles are placeholder data, rendered client-side below. -->
+    </ul>
+</div>
+
+<script>
+    // Placeholder roster — using local sample images already in the
+    // repo. Same image used for "work" and "portrait" layers as a
+    // stand-in — swap in real work-shot / portrait pairs once available.
+    const DRAFT_ARTISTS = [
+        { name: "Andrea Rosselli", role: "", slug: "andrea-rosselli", work: "andrearosselli.jpg", portrait: "andrearosselli.jpg" },
+        { name: "Mitsutaka Tsuryu", role: "", slug: "mitsutaka-tsuryu", work: "images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg", portrait: "images/mitsutaka-tsuryu/Mitsutaka Bio.jpg" },
+        { name: "Jésula Toussaint Visser", role: "", slug: "jesula-toussaint-visser", work: "images/jesula/Jesula Lucent Shadows.jpg", portrait: "images/jesula/Jesula Imperceptible.jpg" },
+    ];
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function renderArtists() {
+        const grid = document.getElementById('artistsGrid');
+        grid.innerHTML = DRAFT_ARTISTS.map(artist => `
+            <li class="artist-tile">
+                <a href="#" onclick="return false;">
+                    <div class="thumb-wrapper">
+                        <img class="thumb-work" src="${escapeHtml(artist.work)}" alt="Work by ${escapeHtml(artist.name)}" loading="lazy" decoding="async">
+                    </div>
+                    <div class="artist-caption">
+                        <span class="artist-name">${escapeHtml(artist.name)}</span>
+                        <span class="artist-role">${escapeHtml(artist.role)}</span>
+                    </div>
+                </a>
+            </li>
+        `).join('');
+    }
+
+    renderArtists();
+</script>
+</body>
+</html>
