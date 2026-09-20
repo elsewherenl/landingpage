@@ -492,8 +492,20 @@ document.addEventListener('DOMContentLoaded', function() {
     .works-grid {
         display: grid;
         grid-template-columns: 1.5fr 1fr;
+        grid-template-rows: auto auto;
         gap: 3.5rem;
         align-items: start;
+    }
+
+    .work-card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 2;
+    }
+
+    .work-caption {
+        display: flex;
+        flex-direction: column;
     }
 
     .work-card.is-lead figure {
@@ -637,6 +649,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .works-grid {
             grid-template-columns: 1fr;
+            grid-template-rows: none;
+        }
+        .work-card {
+            display: block;
+            grid-row: auto;
         }
         .work-card.is-secondary {
             margin-top: 0;
@@ -1127,22 +1144,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" data-title="Unoccupied" tabindex="0" role="button" aria-label="View Unoccupied fullscreen">
                     <img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu" loading="lazy" decoding="async">
                 </figure>
-                <h3 class="work-title">Unoccupied</h3>
-                <p class="work-year">&nbsp;</p>
-                <p class="work-meta">60 &times; 100 cm<br>Hahnem&uuml;hle Fine Art Print<br>Edition of 10</p>
-                <p class="work-price">&euro;750</p>
-                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Unoccupied&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Unoccupied%22%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                <div class="work-caption">
+                    <h3 class="work-title">Unoccupied</h3>
+                    <p class="work-year">&nbsp;</p>
+                    <p class="work-meta">60 &times; 100 cm<br>Hahnem&uuml;hle Fine Art Print<br>Edition of 10</p>
+                    <p class="work-price">&euro;750</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Unoccupied&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Unoccupied%22%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
             </article>
 
             <article class="work-card is-secondary">
                 <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka Tsuryu Behind the Veil Card.jpg" data-title="Behind the Veil" tabindex="0" role="button" aria-label="View Behind the Veil fullscreen">
                     <img src="images/mitsutaka-tsuryu/Mitsutaka Tsuryu Behind the Veil Card.jpg" alt="Behind the Veil, by Mitsutaka Tsuryu" loading="lazy" decoding="async">
                 </figure>
-                <h3 class="work-title">Behind the Veil</h3>
-                <p class="work-year">&nbsp;</p>
-                <p class="work-meta">60 &times; 60 cm<br>Hahnem&uuml;hle Fine Art Print<br>Edition of 10</p>
-                <p class="work-price">&euro;550</p>
-                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Behind%20the%20Veil&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Behind%20the%20Veil%22%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                <div class="work-caption">
+                    <h3 class="work-title">Behind the Veil</h3>
+                    <p class="work-year">&nbsp;</p>
+                    <p class="work-meta">60 &times; 60 cm<br>Hahnem&uuml;hle Fine Art Print<br>Edition of 10</p>
+                    <p class="work-price">&euro;550</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Behind%20the%20Veil&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Behind%20the%20Veil%22%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
             </article>
         </div>
     </section>

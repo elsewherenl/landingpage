@@ -521,8 +521,20 @@ document.addEventListener('DOMContentLoaded', function() {
     .works-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
         gap: 6rem;
         align-items: start;
+    }
+
+    .work-card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 2;
+    }
+
+    .work-caption {
+        display: flex;
+        flex-direction: column;
     }
 
     .work-card.is-lead figure,
@@ -648,6 +660,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .works-grid {
             grid-template-columns: 1fr;
+            grid-template-rows: none;
+        }
+        .work-card {
+            display: block;
+            grid-row: auto;
         }
         .work-card.is-secondary {
             margin-top: 0;
@@ -1133,22 +1150,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 <figure class="lightbox-trigger" data-full="images/jesula/Jesula Lucent Shadows.jpg" data-title="Lucent Shadows" tabindex="0" role="button" aria-label="View Lucent Shadows fullscreen">
                     <img src="images/jesula/Jesula Lucent Shadows.jpg" alt="Lucent Shadows, by Jésula Toussaint Visser" loading="lazy" decoding="async">
                 </figure>
-                <h3 class="work-title">Lucent Shadows</h3>
-                <p class="work-year">&nbsp;</p>
-                <p class="work-meta">73 &times; 110 cm<br>Fabriano Artistico Watercolour 310 gsm<br>Edition of 5</p>
-                <p class="work-price">&euro;2,000</p>
-                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Lucent%20Shadows&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Lucent%20Shadows%22%20by%20J%C3%A9sula%20Toussaint%20Visser.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                <div class="work-caption">
+                    <h3 class="work-title">Lucent Shadows</h3>
+                    <p class="work-year">&nbsp;</p>
+                    <p class="work-meta">73 &times; 110 cm<br>Fabriano Artistico Watercolour 310 gsm<br>Edition of 5</p>
+                    <p class="work-price">&euro;2,000</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Lucent%20Shadows&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Lucent%20Shadows%22%20by%20J%C3%A9sula%20Toussaint%20Visser.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
             </article>
 
             <article class="work-card is-secondary">
                 <figure class="lightbox-trigger" data-full="images/jesula/Jesula Drafted.jpg" data-title="Drafted" tabindex="0" role="button" aria-label="View Drafted fullscreen">
                     <img src="images/jesula/Jesula Drafted.jpg" alt="Drafted, by Jésula Toussaint Visser" loading="lazy" decoding="async">
                 </figure>
-                <h3 class="work-title">Drafted</h3>
-                <p class="work-year">&nbsp;</p>
-                <p class="work-meta">73 &times; 110 cm<br>Fabriano Artistico Watercolour 310 gsm<br>Edition of 5</p>
-                <p class="work-price">&euro;1,850</p>
-                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Drafted&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Drafted%22%20by%20J%C3%A9sula%20Toussaint%20Visser.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                <div class="work-caption">
+                    <h3 class="work-title">Drafted</h3>
+                    <p class="work-year">&nbsp;</p>
+                    <p class="work-meta">73 &times; 110 cm<br>Fabriano Artistico Watercolour 310 gsm<br>Edition of 5</p>
+                    <p class="work-price">&euro;1,850</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Drafted&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Drafted%22%20by%20J%C3%A9sula%20Toussaint%20Visser.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
             </article>
         </div>
     </section>

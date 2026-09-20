@@ -494,8 +494,20 @@ document.addEventListener('DOMContentLoaded', function() {
     .works-grid {
         display: grid;
         grid-template-columns: 1.5fr 1fr;
+        grid-template-rows: auto auto;
         gap: 3.5rem;
         align-items: start;
+    }
+
+    .work-card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 2;
+    }
+
+    .work-caption {
+        display: flex;
+        flex-direction: column;
     }
 
     .work-card figure {
@@ -629,6 +641,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .works-grid {
             grid-template-columns: 1fr;
+            grid-template-rows: none;
+        }
+        .work-card {
+            display: block;
+            grid-row: auto;
         }
         .work-card.is-secondary {
             margin-top: 0;
@@ -1119,22 +1136,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled.png" data-title="Lorem Ipsum" tabindex="0" role="button" aria-label="View Lorem Ipsum fullscreen">
                     <img src="images/andrea rosselli/Untitled.png" alt="Lorem Ipsum, by Andrea Rosselli" loading="lazy" decoding="async">
                 </figure>
-                <h3 class="work-title">Lorem Ipsum</h3>
-                <p class="work-year">&nbsp;</p>
-                <p class="work-meta">Silver gelatin print<br>20 &times; 30 cm<br>Edition of 5</p>
-                <p class="work-price">&euro;450</p>
-                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Lorem%20Ipsum&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Lorem%20Ipsum%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                <div class="work-caption">
+                    <h3 class="work-title">Lorem Ipsum</h3>
+                    <p class="work-year">&nbsp;</p>
+                    <p class="work-meta">Silver gelatin print<br>20 &times; 30 cm<br>Edition of 5</p>
+                    <p class="work-price">&euro;450</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Lorem%20Ipsum&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Lorem%20Ipsum%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
             </article>
 
             <article class="work-card is-secondary">
                 <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled, 2026.png" data-title="Dolor Sit" tabindex="0" role="button" aria-label="View Dolor Sit fullscreen">
                     <img src="images/andrea rosselli/Untitled, 2026.png" alt="Dolor Sit, by Andrea Rosselli" loading="lazy" decoding="async">
                 </figure>
-                <h3 class="work-title">Dolor Sit</h3>
-                <p class="work-year">&nbsp;</p>
-                <p class="work-meta">Silver gelatin print, FB paper, selenium toned<br>12 &times; 12 cm<br>Edition of 10</p>
-                <p class="work-price">&euro;530</p>
-                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Dolor%20Sit&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Dolor%20Sit%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                <div class="work-caption">
+                    <h3 class="work-title">Dolor Sit</h3>
+                    <p class="work-year">&nbsp;</p>
+                    <p class="work-meta">Silver gelatin print, FB paper, selenium toned<br>12 &times; 12 cm<br>Edition of 10</p>
+                    <p class="work-price">&euro;530</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Dolor%20Sit&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Dolor%20Sit%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
             </article>
         </div>
     </section>
