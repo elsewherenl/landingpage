@@ -30,6 +30,16 @@ function optimizedUrl(url, width) {
     return url.replace('/upload/', `/upload/w_${width},q_auto,f_auto/`);
 }
 
+// Builds a srcset string offering the same image at several Cloudinary-resized
+// widths, so the browser can pick the smallest one that still covers its actual
+// rendered size (accounting for pixel density) instead of always downloading the
+// single largest variant. Returns '' for non-Cloudinary URLs since there's nothing
+// to rewrite (the plain src/image_url fallback already covers that case).
+function srcsetUrls(url, widths) {
+    if (!url || !url.includes('res.cloudinary.com')) return '';
+    return widths.map(w => `${optimizedUrl(url, w)} ${w}w`).join(', ');
+}
+
 // Alt text convention: "[Title] — photograph by [Artist]", falling back to
 // "Photograph by [Artist]" when the title is missing/empty (null, "", whitespace-only).
 // A literal "Untitled" title is treated as a deliberate, real title — not a gap — so it
@@ -113,7 +123,7 @@ function packIntoColumns(items, columnCount) {
     return columns;
 }
 
-function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCount }) {
+function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCount, mobileBreakpoint }) {
     const items = posts.map((post, i) => ({
         post,
         i,
@@ -127,7 +137,7 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
                     ${col.map(({ post, i, dims }) => `
                         <article class="grid-item" data-index="${i}">
                             <figure>
-                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, imageWidth) || post.image_url)}" alt="${escapeHtml(altText(post))}" width="${dims ? dims.width : ''}" height="${dims ? dims.height : ''}" loading="${i < 4 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}>
+                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, imageWidth) || post.image_url)}"${srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]) ? ` srcset="${escapeHtml(srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]))}" sizes="(max-width: ${mobileBreakpoint}px) 45vw, 22vw"` : ''} alt="${escapeHtml(altText(post))}" width="${dims ? dims.width : ''}" height="${dims ? dims.height : ''}" loading="${i < 4 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}>
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">${escapeHtml(post.title || 'Untitled')}</h3>
                                     <p class="a">${escapeHtml(post.artist || '')}</p>
@@ -308,7 +318,7 @@ async function main() {
     const homeAspectRatios = homePosts.map(ratioOf);
     const homeDimensions = homeAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
 
-    const homeGridHtml = renderGridHtml(homePosts, homeAspectRatios, homeDimensions, { imageWidth: 500, columnCount: 4 });
+    const homeGridHtml = renderGridHtml(homePosts, homeAspectRatios, homeDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 768 });
     indexHtml = replaceBlock(indexHtml, 'GRID', homeGridHtml);
 
     const gridData = homePosts.map((post, i) => {
@@ -333,7 +343,7 @@ async function main() {
     const allAspectRatios = allPosts.map(ratioOf);
     const allDimensions = allAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
     const railHtml = renderRailHtml(allPosts);
-    const gridHtml = renderGridHtml(allPosts, allAspectRatios, allDimensions, { imageWidth: 500, columnCount: 4 });
+    const gridHtml = renderGridHtml(allPosts, allAspectRatios, allDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 860 });
     spotlightHtml = replaceBlock(spotlightHtml, 'RAIL', railHtml);
     spotlightHtml = replaceBlock(spotlightHtml, 'GRID', gridHtml);
     const spotlightJsonLd = buildSpotlightJsonLd(allPosts);
