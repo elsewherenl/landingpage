@@ -2514,20 +2514,38 @@ Working exclusively with analog methods, process and result sit in balance.</p>
         // <img> for no visual benefit, which is a real layout-shift/CLS cost. The full
         // fetch+probe+rebuild only runs once an actual resize changes the column count.
         async function loadPosts() {
-            const rail = document.getElementById('rail');
             const gridView = document.getElementById('gridView');
             try {
+                const res = await fetch('instagram-feed.json');
+                const data = await res.json();
+                posts = data.posts || [];
+
+                // Click listeners are wired only after posts is populated, so a click
+                // can never land while posts is still the empty array it was declared
+                // with (which would otherwise silently no-op in openFullscreen).
                 wireGridClicks(gridView);
                 document.querySelectorAll('.entry-figure').forEach(el => {
                     el.addEventListener('click', () => openFullscreen(parseInt(el.dataset.index, 10)));
                 });
 
-                const res = await fetch('instagram-feed.json');
-                const data = await res.json();
-                posts = data.posts || [];
-
-                let lastColumnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
+                // generate.js always pre-renders the grid/rail with 4 columns regardless
+                // of viewport, so lastColumnCount must start at 4 (matching the DOM)
+                // rather than the live viewport width — otherwise a mobile page load
+                // never rebuilds to the correct column count until a resize crosses a
+                // breakpoint, since the current-vs-last comparison never sees a mismatch.
+                let lastColumnCount = 4;
                 let items = null;
+
+                const initialColumnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
+                if (initialColumnCount !== lastColumnCount) {
+                    lastColumnCount = initialColumnCount;
+                    items = await Promise.all(posts.map(async (post, i) => ({
+                        post,
+                        i,
+                        aspectRatio: await probeAspectRatio(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)
+                    })));
+                    renderGrid(gridView, items);
+                }
 
                 let resizeTimer;
                 window.addEventListener('resize', () => {

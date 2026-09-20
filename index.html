@@ -1583,7 +1583,17 @@
                 // no visual benefit. Just wire up the lightbox on the existing DOM;
                 // only rebuild when a resize actually changes the column count.
                 wireGridClicks(gridView);
-                let lastColumnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
+                // generate.js always pre-renders the grid with 4 columns regardless of
+                // viewport, so lastColumnCount must start at 4 (matching the DOM) rather
+                // than the live viewport width — otherwise a mobile page load never
+                // rebuilds to the correct column count until a resize crosses a
+                // breakpoint, since the current-vs-last comparison never sees a mismatch.
+                let lastColumnCount = 4;
+                const initialColumnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
+                if (initialColumnCount !== lastColumnCount) {
+                    lastColumnCount = initialColumnCount;
+                    renderGrid(gridView, items);
+                }
 
                 let resizeTimer;
                 window.addEventListener('resize', () => {
