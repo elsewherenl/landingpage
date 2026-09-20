@@ -55,7 +55,7 @@
             },
             "mainEntity": {
                 "@type": "ItemList",
-                "numberOfItems": 39,
+                "numberOfItems": 41,
                 "itemListElement": [
                     {
                         "@type": "ListItem",
@@ -602,6 +602,34 @@
                             "image": "https://res.cloudinary.com/dt8k6zzy8/image/upload/w_1600,q_auto,f_auto/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg",
                             "description": "A self-portrait of becoming. An imagined version of the self before it takes shape."
                         }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 40,
+                        "item": {
+                            "@type": "Photograph",
+                            "name": "Ashes of the Arabian's Pearl",
+                            "creator": {
+                                "@type": "Person",
+                                "name": "Valentin Valette"
+                            },
+                            "image": "https://res.cloudinary.com/dt8k6zzy8/image/upload/w_1600,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg",
+                            "description": "Exploring the dynamics of economic development in Oman, through those who build the nation and those it is built for."
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 41,
+                        "item": {
+                            "@type": "Photograph",
+                            "name": "Tibetan Country Doctor",
+                            "creator": {
+                                "@type": "Person",
+                                "name": "Jake Homovich"
+                            },
+                            "image": "https://res.cloudinary.com/dt8k6zzy8/image/upload/w_1600,q_auto,f_auto/v1789929947/Jake_H_dctbae.jpg",
+                            "description": "Tibetan Country Doctor is a long-term documentary project developed through collaboration with Zhaba Gyatso, a rural Tibetan doctor practising in western Sichuan's Garzê Tibetan Autonomous Prefecture. The photographs are annotated by Gyatso, bringing his own experiences and reflections to the work. Far from county hospitals and formal medical infrastructure, the project documents the everyday realities of providing healthcare across remote villages, monasteries and pastoral settlements."
+                        }
                     }
                 ]
             }
@@ -949,6 +977,9 @@ document.addEventListener('DOMContentLoaded', function() {
         max-width: 1600px;
         margin: 0 auto;
         padding: 1.5rem 3rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
     }
 
     .view-toggle {
@@ -958,11 +989,57 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: 'SuisseIntl', sans-serif;
     }
 
+    .theme-filter {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+        font-family: 'SuisseIntl', sans-serif;
+    }
+
+    .theme-filter .view-toggle-label {
+        padding-top: 0.25rem;
+    }
+
+    .theme-filter-pill {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.35rem 1.1rem;
+    }
+
+    .theme-filter-btn {
+        appearance: none;
+        border: none;
+        background: none;
+        font-family: inherit;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        color: rgba(44, 44, 44, 0.45);
+        cursor: pointer;
+        padding: 0.25rem 0;
+        transition: color 0.25s ease;
+    }
+
+    .theme-filter-btn:hover {
+        color: var(--deep-charcoal);
+    }
+
+    .theme-filter-btn.active {
+        color: var(--terracotta-red);
+    }
+
+    .grid-item.theme-hidden,
+    .entry.theme-hidden {
+        display: none;
+    }
+
     .view-toggle-label {
         font-size: 0.75rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: rgba(44, 44, 44, 0.4);
+        flex-shrink: 0;
+        min-width: 4.5rem;
     }
 
     .view-toggle-pill {
@@ -1068,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .entry-artist {
         font-size: 1rem;
         font-weight: 300;
-        color: var(--terracotta-red);
+        color: var(--warm-gray);
         margin-bottom: 1rem;
     }
 
@@ -1196,7 +1273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.85;
     }
 
-    /* ─── Fullscreen lightbox, same interaction pattern as spotlight.html ─── */
+    /* ─── Fullscreen lightbox — cream "print viewing" treatment ─── */
     .fullscreen-modal {
         display: none;
         position: fixed;
@@ -1204,11 +1281,11 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 0;
         width: 100%;
         height: 100%;
-        background: #000;
+        background: var(--cream-bg);
         z-index: 2000;
         justify-content: center;
         align-items: center;
-        padding: 2rem;
+        padding: clamp(2rem, 8vh, 6rem) clamp(2rem, 10vw, 8rem);
     }
 
     .fullscreen-modal.active {
@@ -1216,85 +1293,106 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .fullscreen-content {
-        max-width: 90vw;
-        max-height: 90vh;
+        max-width: 100%;
+        max-height: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        overflow-y: auto;
     }
 
     .fullscreen-image {
         max-width: 100%;
-        max-height: 65vh;
+        max-height: min(70vh, calc(100vh - clamp(9rem, 24vh, 14rem)));
+        width: auto;
+        height: auto;
         object-fit: contain;
+        box-shadow: 0 1px 2px rgba(44, 44, 44, 0.06);
+        flex-shrink: 0;
+        align-self: center;
     }
 
     .fullscreen-caption {
-        color: var(--warm-off-white);
-        text-align: center;
-        margin-top: 1.5rem;
-        max-width: 700px;
-        padding: 0 1rem;
-        max-height: 20vh;
-        overflow-y: auto;
+        color: var(--deep-charcoal);
+        text-align: left;
+        align-self: center;
+        margin-top: 1.25rem;
+        width: 100%;
+        max-width: var(--fullscreen-image-width, 480px);
+        padding: 0;
     }
 
     .fullscreen-caption .caption-title {
         font-family: 'SuisseIntl', sans-serif;
-        font-size: 1.05rem;
+        font-size: 0.85rem;
         font-weight: 300;
-        letter-spacing: 0.02em;
-        margin-bottom: 0.35rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 0.3rem;
+        color: var(--deep-charcoal);
     }
 
     .fullscreen-caption .caption-artist {
-        font-size: 0.95rem;
+        font-size: 0.8rem;
         font-weight: 300;
-        margin-bottom: 0.9rem;
-        color: var(--terracotta-red);
+        letter-spacing: 0.02em;
+        margin-bottom: 0;
+        color: var(--warm-gray);
     }
 
     .fullscreen-caption .caption-text {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 300;
         line-height: 1.6;
+        letter-spacing: 0.01em;
+        margin-top: 0.6rem;
         color: var(--warm-gray);
+        /* SuisseIntl's lightest real weight is 300 (no true lighter face exists);
+           opacity stands in for weight to read quieter than the artist line. */
+        opacity: 0.75;
+        max-height: 4.8em;
+        overflow-y: auto;
     }
 
     .close-modal {
         position: fixed;
-        top: 0;
-        right: 0;
-        color: white;
-        font-size: 1.5rem;
+        top: clamp(1.25rem, 3vh, 2rem);
+        right: clamp(1.25rem, 3vw, 2rem);
+        color: var(--deep-charcoal);
+        font-size: 1.1rem;
         font-weight: 300;
         cursor: pointer;
-        background: rgba(0, 0, 0, 0.75);
-        width: 50px;
-        height: 50px;
+        background: none;
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
         line-height: 1;
-        transition: background 0.2s ease;
+        opacity: 0.55;
+        transition: opacity 0.2s ease;
         z-index: 2001;
     }
 
     .close-modal:hover {
-        background: rgba(149, 57, 46, 0.9);
+        opacity: 1;
+        background: none;
     }
 
     .fullscreen-nav {
         position: fixed;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.5);
+        background: none;
         border: none;
-        width: 50px;
-        height: 50px;
-        font-size: 1.75rem;
-        color: white;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+        font-weight: 300;
+        color: var(--deep-charcoal);
         cursor: pointer;
-        transition: background 0.2s ease;
+        opacity: 0.4;
+        transition: opacity 0.2s ease;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1305,11 +1403,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .fullscreen-nav:hover {
-        background: rgba(149, 57, 46, 0.85);
+        opacity: 1;
+        background: none;
+        color: var(--terracotta-red);
     }
 
-    .fullscreen-prev { left: 1rem; }
-    .fullscreen-next { right: 1rem; }
+    .fullscreen-prev { left: clamp(0.5rem, 2vw, 1.5rem); }
+    .fullscreen-next { right: clamp(0.5rem, 2vw, 1.5rem); }
+
+    @media (max-width: 860px) {
+        .fullscreen-modal {
+            padding: 1.25rem;
+        }
+
+        .fullscreen-image {
+            max-height: calc(100vh - 9rem);
+        }
+
+        .fullscreen-nav {
+            width: 36px;
+            height: 36px;
+            font-size: 1.25rem;
+        }
+
+        .fullscreen-prev { left: 0.25rem; }
+        .fullscreen-next { right: 0.25rem; }
+    }
 
     /* ─── Mobile ─── */
     @media (max-width: 860px) {
@@ -1549,7 +1668,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="intro">
         <div class="intro-text">
             <h1 class="page-title">Gallery</h1>
-            <p class="page-subtitle">A selection of contemporary photography shared on <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a></p>
+            <p class="page-subtitle">Contemporary photography curated by elsewhere.<br>Follow the ongoing selection on <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a></p>
         </div>
     </section>
 
@@ -1562,12 +1681,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button type="button" id="railBtn">Editorial</button>
             </div>
         </div>
+        <div class="theme-filter">
+            <span class="view-toggle-label">Themes</span>
+            <div class="theme-filter-pill" id="themeFilter">
+                <button type="button" class="theme-filter-btn active" data-theme="">All</button>
+                <button type="button" class="theme-filter-btn" data-theme="Cultural Exchange">Cultural Exchange</button>
+                <button type="button" class="theme-filter-btn" data-theme="Natural Worlds">Natural Worlds</button>
+                <button type="button" class="theme-filter-btn" data-theme="Inner Life">Inner Life</button>
+            </div>
+        </div>
     </div>
 
     <div class="rail hidden" id="rail">
     <!-- GENERATED:RAIL:START (generated by generate.js from instagram-feed.json — do not edit by hand) -->
                 
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="0">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" alt="Farewell to Elders — photograph by Mahmoud Khatab" loading="lazy">
                         </figure>
@@ -1577,7 +1705,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised. To be taken away from everything else they crossed the Nile with. I made my greetings to everything else that bid their farewell, to kings and queens who already departed, who only chose to be buried south of here, who only chose to be carried across the west bank of the Nile, who chose to be buried into the afterlife. Who saw the intimate writings on their walls something only their souls will recognise and recall in their coming rebirth.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Natural Worlds">
                         <figure class="entry-figure" data-index="1">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg" alt="Somewhere in Africa — photograph by Brigitte Bourger" loading="lazy">
                         </figure>
@@ -1587,7 +1715,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Figures in motion - from a series on lives by the sea.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="2">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png" alt="Teoswa — photograph by Yimin Chen" loading="lazy">
                         </figure>
@@ -1597,7 +1725,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Born in the steel labyrinth of Shenzhen, I felt little belonging to its restless skyline. Instead, I was drawn to the villages where human warmth lingers, where fading traditions still breathe. Teoswa is a journey into the ancestral echoes of his mother&#39;s hometown - the Teochew region of Guangdong - and an intimate search for the meaning of home.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="">
                         <figure class="entry-figure" data-index="3">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" alt="The Cube — photograph by Orestis Ilias" loading="lazy">
                         </figure>
@@ -1607,7 +1735,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Raw marble from Pedeli&#39;s Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="">
                         <figure class="entry-figure" data-index="4">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg" alt="Book of Days — photograph by Alvin Ng" loading="lazy">
                         </figure>
@@ -1617,7 +1745,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Through the alchemy of hand-manipulated photographs, I breathe life into ancient verses, revealing their profound essence and forging a harmonious fusion of ancient wisdom and contemporary vision. Inspired by Ovid&#39;s Book of Days, Alvin&#39;s works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="">
                         <figure class="entry-figure" data-index="5">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg" alt="Torre San Giovanni — photograph by Murray Ballard" loading="lazy">
                         </figure>
@@ -1627,7 +1755,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">A wreck of a migrant boat in Salento, southern Italy. From Ballard&#39;s series Ghosts in the Field, exploring how the region is being reshaped by an ecological crisis, tourism, and old local folklore, this work speaks to today&#39;s societal issues where leisure and crisis can sit alongside each other.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Inner Life">
                         <figure class="entry-figure" data-index="6">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg" alt="Of All The Wild Paths — photograph by Claire Amaouche" loading="lazy">
                         </figure>
@@ -1637,7 +1765,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">I wandered from place to place, from solitude to solitude, trying to grasp their hidden essence. Little by little, it seemed to me that it was not nature itself - eternal, wild, impenetrable - that I was drawing near, but the shifting reflection of my own drifting, and the void at the heart of my existence. Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Natural Worlds">
                         <figure class="entry-figure" data-index="7">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199622/Fabio_P_je0job.jpg" alt="Transitions — photograph by Fabio Pelinga" loading="lazy">
                         </figure>
@@ -1647,7 +1775,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption"></p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="">
                         <figure class="entry-figure" data-index="8">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg" alt="Metamorphosis — photograph by Claudia Fuggetti" loading="lazy">
                         </figure>
@@ -1657,7 +1785,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity. Throughout the series, Claudia plays with perceptions of reality and fiction. The use of colour, perspective and intervention creates ambiguity that encourages new relationships with nature to emerge.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Natural Worlds">
                         <figure class="entry-figure" data-index="9">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg" alt="The Vastness — photograph by Kim Woo Young" loading="lazy">
                         </figure>
@@ -1667,7 +1795,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="10">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg" alt="Between Sakura — photograph by Nick Meek" loading="lazy">
                         </figure>
@@ -1677,7 +1805,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Visiting nature</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="11">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg" alt="Wird — photograph by Bruno Hadjih" loading="lazy">
                         </figure>
@@ -1687,7 +1815,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">The wird is a Sufi invocation of incantations and prayers to reach the hal, a temporary state where the self dissolves into divine presence. Hadjih&#39;s colours and movements move away from a documentary approach to capture that feeling, and make the mystical appear closer.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="12">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" alt="Rhodanie — photograph by Bertrand Stofleth" loading="lazy">
                         </figure>
@@ -1697,7 +1825,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Walking the Rhône river from source to sea, Stofleth finds the small and everyday along its grand course.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="13">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg" alt="The Yellow River — photograph by Zhang Kechun" loading="lazy">
                         </figure>
@@ -1707,7 +1835,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Change and permanence along one of civilisation&#39;s great rivers.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="14">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199627/Miriam_Stanke_hyalte.jpg" alt="Bakhtiari - Nomads of Iran — photograph by Miriam Stanke" loading="lazy">
                         </figure>
@@ -1717,7 +1845,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Crossing the Zagros with the Bakhtiari was a glimpse into a way of life where movement is both necessity and freedom, a life guided by trust and a deep harmony with the land. Walking with the Bakhtiari as they make their annual journey between the plains of Khuzestan in Iran and the high summer pastures.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Natural Worlds">
                         <figure class="entry-figure" data-index="15">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg" alt="Abstract landscapes, Central Italy — photograph by Kevin Scali" loading="lazy">
                         </figure>
@@ -1727,7 +1855,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Oak and poppies in a blur of colour and movement.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="16">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199633/Parth_Gupta_hedarq.jpg" alt="Terra Firma — photograph by Parth Gupta" loading="lazy">
                         </figure>
@@ -1737,7 +1865,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Morning walks in Gurgaon, India, where the city absorbs the surrounding countryside.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="">
                         <figure class="entry-figure" data-index="17">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199631/Nicola_C_fkdi2u.jpg" alt="Schleswig-Holstein — photograph by Nicola Cappellari" loading="lazy">
                         </figure>
@@ -1747,7 +1875,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Before the sea.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="18">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" alt="Restricted Images — photograph by Patrick Waterhouse" loading="lazy">
                         </figure>
@@ -1757,7 +1885,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Working with Warlpiri artists in Central Australia, Patrick&#39;s black and white photographs of them are transformed through their traditional dot painting.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="">
                         <figure class="entry-figure" data-index="19">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199621/Ignacio_I_xunjea.jpg" alt="Untitled — photograph by Ignacio Infanti" loading="lazy">
                         </figure>
@@ -1767,7 +1895,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption"></p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Natural Worlds">
                         <figure class="entry-figure" data-index="20">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg" alt="In Light Years — photograph by Andrew Owen" loading="lazy">
                         </figure>
@@ -1777,7 +1905,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Fire and snow are testament to nature&#39;s power in California&#39;s extreme weather this decade.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Natural Worlds">
                         <figure class="entry-figure" data-index="21">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png" alt="Hold A Flower in the Palm of Your Hand — photograph by Mario Wong" loading="lazy">
                         </figure>
@@ -1787,7 +1915,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Microcosm and macrocosm. Inspired by the Buddhist phrase &quot;One Flower, One World&quot;, Mario focuses on the inherent harmony and balance found in nature.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="">
                         <figure class="entry-figure" data-index="22">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1768231596/605076172_902499548774008_2595803509451508759_n-3_d25l92.jpg" alt="Untitled — photograph by Stéphanie Coudray" loading="lazy">
                         </figure>
@@ -1797,7 +1925,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption"></p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Inner Life">
                         <figure class="entry-figure" data-index="23">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1768568918/Emilien_Chamaillard_poache.jpg" alt="After Summer Passes By — photograph by Emilien Chamaillard" loading="lazy">
                         </figure>
@@ -1807,7 +1935,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption"></p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="24">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1771252360/Stefan_G_Bike_Garage_io91sr.jpg" alt="Italia on the road — photograph by Stefan Giftthaler" loading="lazy">
                         </figure>
@@ -1817,7 +1945,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Travels through the Baroque.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Inner Life">
                         <figure class="entry-figure" data-index="25">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg" alt="I AM NOT HERE — photograph by Antonio Rosato" loading="lazy">
                         </figure>
@@ -1827,7 +1955,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Antonio explores the way detachment and alienation shape how we see. The familiar becomes altered and uncertain.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Inner Life">
                         <figure class="entry-figure" data-index="26">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1771871847/Luca_O_amlsk2.jpg" alt="Half Remembered, Half Imagined — photograph by Luca Ortis" loading="lazy">
                         </figure>
@@ -1837,7 +1965,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="entry-caption">Cloud Hidden. Working in cyanotype, landscapes are not precisely reproduced but shaped by chance and the act of making.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Inner Life">
                         <figure class="entry-figure" data-index="27">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1772204531/Viktor_Kostenko_iqtj9y.webp" alt="Photograph by Viktor Kostenko" loading="lazy">
                         </figure>
@@ -1849,7 +1977,7 @@ document.addEventListener('DOMContentLoaded', function() {
 Working exclusively with analog methods, process and result sit in balance.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="">
                         <figure class="entry-figure" data-index="28">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1772540617/14005_-_Pisa_2023_hqe9yl.jpg" alt="Untitled — photograph by Andrea Rosselli" loading="lazy">
                         </figure>
@@ -1859,7 +1987,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption"></p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="29">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784284234/Peak_Oil_vtosji.webp" alt="Peak Oil — photograph by Geert Goiris" loading="lazy">
                         </figure>
@@ -1869,7 +1997,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption"></p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Inner Life">
                         <figure class="entry-figure" data-index="30">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784198482/lakeside_copy_2_g4ecul.jpg" alt="The Lake — photograph by Alyssa Warren" loading="lazy">
                         </figure>
@@ -1879,7 +2007,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption">Memory and imagination blur together.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Cultural Exchange">
                         <figure class="entry-figure" data-index="31">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784131617/CC_putlzt.png" alt="Les Rochers Fauves — photograph by Clément Chapillon" loading="lazy">
                         </figure>
@@ -1889,7 +2017,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption">Islands and isolation. Contradictory feelings arising from the insularity of Amorgos, Cyclades.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Inner Life">
                         <figure class="entry-figure" data-index="32">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg" alt="You can’t enter the same river twice — photograph by Francisco Gonzalez Camacho" loading="lazy">
                         </figure>
@@ -1899,7 +2027,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption">Everything flows. Forms shift, never quite settling.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="">
                         <figure class="entry-figure" data-index="33">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg" alt="Morocco — photograph by Henry Bourne" loading="lazy">
                         </figure>
@@ -1909,7 +2037,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption"></p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Inner Life">
                         <figure class="entry-figure" data-index="34">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg" alt="Deriva — photograph by Uxío da Vila" loading="lazy">
                         </figure>
@@ -1919,7 +2047,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption">Seen, but never fully revealed.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Natural Worlds">
                         <figure class="entry-figure" data-index="35">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg" alt="Fugue Photographique — photograph by Charline Cocset" loading="lazy">
                         </figure>
@@ -1929,7 +2057,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption">Natural forms softened into atmosphere.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="">
                         <figure class="entry-figure" data-index="36">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784291911/Gideon_Tsang_g3pply.jpg" alt="Because We Fall — photograph by Gideon Tsang" loading="lazy">
                         </figure>
@@ -1939,7 +2067,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption">On the impermanence of beauty.</p>
                         </div>
                     </article>
-                    <article class="entry is-reversed">
+                    <article class="entry is-reversed" data-theme="Inner Life">
                         <figure class="entry-figure" data-index="37">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg" alt="Abandon — photograph by Uzma Mohsin" loading="lazy">
                         </figure>
@@ -1949,7 +2077,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <p class="entry-caption">What remains after we leave. Residue, absence, and the traces left behind.</p>
                         </div>
                     </article>
-                    <article class="entry ">
+                    <article class="entry " data-theme="Inner Life">
                         <figure class="entry-figure" data-index="38">
                             <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg" alt="Drafted — photograph by Jésula Toussaint Visser" loading="lazy">
                         </figure>
@@ -1957,6 +2085,26 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             <h2 class="entry-title">Drafted</h2>
                             <p class="entry-artist">Jésula Toussaint Visser</p>
                             <p class="entry-caption">A self-portrait of becoming. An imagined version of the self before it takes shape.</p>
+                        </div>
+                    </article>
+                    <article class="entry is-reversed" data-theme="Cultural Exchange">
+                        <figure class="entry-figure" data-index="39">
+                            <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg" alt="Ashes of the Arabian&#39;s Pearl — photograph by Valentin Valette" loading="lazy">
+                        </figure>
+                        <div class="entry-meta">
+                            <h2 class="entry-title">Ashes of the Arabian&#39;s Pearl</h2>
+                            <p class="entry-artist">Valentin Valette</p>
+                            <p class="entry-caption">Exploring the dynamics of economic development in Oman, through those who build the nation and those it is built for.</p>
+                        </div>
+                    </article>
+                    <article class="entry " data-theme="Cultural Exchange">
+                        <figure class="entry-figure" data-index="40">
+                            <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_800,q_auto,f_auto/v1789929947/Jake_H_dctbae.jpg" alt="Tibetan Country Doctor — photograph by Jake Homovich" loading="lazy">
+                        </figure>
+                        <div class="entry-meta">
+                            <h2 class="entry-title">Tibetan Country Doctor</h2>
+                            <p class="entry-artist">Jake Homovich</p>
+                            <p class="entry-caption">Tibetan Country Doctor is a long-term documentary project developed through collaboration with Zhaba Gyatso, a rural Tibetan doctor practising in western Sichuan&#39;s Garzê Tibetan Autonomous Prefecture. The photographs are annotated by Gyatso, bringing his own experiences and reflections to the work. Far from county hospitals and formal medical infrastructure, the project documents the everyday realities of providing healthcare across remote villages, monasteries and pastoral settlements.</p>
                         </div>
                     </article>
                 <!-- GENERATED:RAIL:END -->
@@ -1967,7 +2115,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                 
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="0">
+                        <article class="grid-item" data-index="0" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Farewell to Elders — photograph by Mahmoud Khatab" width="500" height="750" loading="eager" fetchpriority="high">
                                 <figcaption class="grid-item-label">
@@ -1977,7 +2125,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="7">
+                        <article class="grid-item" data-index="7" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199622/Fabio_P_je0job.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199622/Fabio_P_je0job.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199622/Fabio_P_je0job.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199622/Fabio_P_je0job.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199622/Fabio_P_je0job.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Transitions — photograph by Fabio Pelinga" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1987,7 +2135,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="11">
+                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Wird — photograph by Bruno Hadjih" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1997,7 +2145,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="15">
+                        <article class="grid-item" data-index="15" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Abstract landscapes, Central Italy — photograph by Kevin Scali" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2007,7 +2155,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="19">
+                        <article class="grid-item" data-index="19" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Ignacio_I_xunjea.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199621/Ignacio_I_xunjea.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199621/Ignacio_I_xunjea.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Ignacio_I_xunjea.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199621/Ignacio_I_xunjea.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Untitled — photograph by Ignacio Infanti" width="500" height="500" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2017,7 +2165,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="23">
+                        <article class="grid-item" data-index="23" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1768568918/Emilien_Chamaillard_poache.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1768568918/Emilien_Chamaillard_poache.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1768568918/Emilien_Chamaillard_poache.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1768568918/Emilien_Chamaillard_poache.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1768568918/Emilien_Chamaillard_poache.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="After Summer Passes By — photograph by Emilien Chamaillard" width="500" height="630" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2027,7 +2175,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="30">
+                        <article class="grid-item" data-index="30" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198482/lakeside_copy_2_g4ecul.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784198482/lakeside_copy_2_g4ecul.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784198482/lakeside_copy_2_g4ecul.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198482/lakeside_copy_2_g4ecul.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784198482/lakeside_copy_2_g4ecul.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="The Lake — photograph by Alyssa Warren" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2037,7 +2185,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="32">
+                        <article class="grid-item" data-index="32" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="You can’t enter the same river twice — photograph by Francisco Gonzalez Camacho" width="500" height="370" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2047,7 +2195,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="36">
+                        <article class="grid-item" data-index="36" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784291911/Gideon_Tsang_g3pply.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784291911/Gideon_Tsang_g3pply.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784291911/Gideon_Tsang_g3pply.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784291911/Gideon_Tsang_g3pply.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784291911/Gideon_Tsang_g3pply.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Because We Fall — photograph by Gideon Tsang" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2057,10 +2205,20 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
+                        <article class="grid-item" data-index="40" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929947/Jake_H_dctbae.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1789929947/Jake_H_dctbae.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1789929947/Jake_H_dctbae.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929947/Jake_H_dctbae.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1789929947/Jake_H_dctbae.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Tibetan Country Doctor — photograph by Jake Homovich" width="500" height="730" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Tibetan Country Doctor</h3>
+                                    <p class="a">Jake Homovich</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="1">
+                        <article class="grid-item" data-index="1" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Somewhere in Africa — photograph by Brigitte Bourger" width="500" height="390" loading="eager">
                                 <figcaption class="grid-item-label">
@@ -2070,7 +2228,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="6">
+                        <article class="grid-item" data-index="6" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Of All The Wild Paths — photograph by Claire Amaouche" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2080,7 +2238,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="9">
+                        <article class="grid-item" data-index="9" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="The Vastness — photograph by Kim Woo Young" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2090,7 +2248,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="12">
+                        <article class="grid-item" data-index="12" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Rhodanie — photograph by Bertrand Stofleth" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2100,7 +2258,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="16">
+                        <article class="grid-item" data-index="16" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Parth_Gupta_hedarq.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/Parth_Gupta_hedarq.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/Parth_Gupta_hedarq.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Parth_Gupta_hedarq.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/Parth_Gupta_hedarq.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Terra Firma — photograph by Parth Gupta" width="500" height="500" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2110,7 +2268,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="20">
+                        <article class="grid-item" data-index="20" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="In Light Years — photograph by Andrew Owen" width="500" height="400" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2120,7 +2278,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="24">
+                        <article class="grid-item" data-index="24" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771252360/Stefan_G_Bike_Garage_io91sr.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1771252360/Stefan_G_Bike_Garage_io91sr.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1771252360/Stefan_G_Bike_Garage_io91sr.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771252360/Stefan_G_Bike_Garage_io91sr.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1771252360/Stefan_G_Bike_Garage_io91sr.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Italia on the road — photograph by Stefan Giftthaler" width="500" height="400" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2130,7 +2288,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="28">
+                        <article class="grid-item" data-index="28" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1772540617/14005_-_Pisa_2023_hqe9yl.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1772540617/14005_-_Pisa_2023_hqe9yl.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1772540617/14005_-_Pisa_2023_hqe9yl.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1772540617/14005_-_Pisa_2023_hqe9yl.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1772540617/14005_-_Pisa_2023_hqe9yl.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Untitled — photograph by Andrea Rosselli" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2140,7 +2298,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="34">
+                        <article class="grid-item" data-index="34" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Deriva — photograph by Uxío da Vila" width="500" height="700" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2150,7 +2308,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="38">
+                        <article class="grid-item" data-index="38" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1785853977/Jesula_Toussaint_Visser_Drafted_-_Elsewhere_Collective_2smaller_ty9lsm.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Drafted — photograph by Jésula Toussaint Visser" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2163,7 +2321,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="2">
+                        <article class="grid-item" data-index="2" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Teoswa — photograph by Yimin Chen" width="500" height="380" loading="eager">
                                 <figcaption class="grid-item-label">
@@ -2173,7 +2331,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="4">
+                        <article class="grid-item" data-index="4" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Book of Days — photograph by Alvin Ng" width="500" height="640" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2183,7 +2341,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="10">
+                        <article class="grid-item" data-index="10" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Between Sakura — photograph by Nick Meek" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2193,7 +2351,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="13">
+                        <article class="grid-item" data-index="13" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="The Yellow River — photograph by Zhang Kechun" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2203,7 +2361,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="17">
+                        <article class="grid-item" data-index="17" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nicola_C_fkdi2u.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199631/Nicola_C_fkdi2u.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199631/Nicola_C_fkdi2u.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nicola_C_fkdi2u.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199631/Nicola_C_fkdi2u.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Schleswig-Holstein — photograph by Nicola Cappellari" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2213,7 +2371,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="21">
+                        <article class="grid-item" data-index="21" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Hold A Flower in the Palm of Your Hand — photograph by Mario Wong" width="500" height="320" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2223,7 +2381,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="25">
+                        <article class="grid-item" data-index="25" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="I AM NOT HERE — photograph by Antonio Rosato" width="500" height="340" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2233,7 +2391,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="27">
+                        <article class="grid-item" data-index="27" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1772204531/Viktor_Kostenko_iqtj9y.webp" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1772204531/Viktor_Kostenko_iqtj9y.webp 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1772204531/Viktor_Kostenko_iqtj9y.webp 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1772204531/Viktor_Kostenko_iqtj9y.webp 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1772204531/Viktor_Kostenko_iqtj9y.webp 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Photograph by Viktor Kostenko" width="500" height="500" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2243,7 +2401,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="31">
+                        <article class="grid-item" data-index="31" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131617/CC_putlzt.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784131617/CC_putlzt.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784131617/CC_putlzt.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131617/CC_putlzt.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784131617/CC_putlzt.png 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Les Rochers Fauves — photograph by Clément Chapillon" width="500" height="400" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2253,7 +2411,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="35">
+                        <article class="grid-item" data-index="35" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Fugue Photographique — photograph by Charline Cocset" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2263,10 +2421,20 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
+                        <article class="grid-item" data-index="39" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Ashes of the Arabian&#39;s Pearl — photograph by Valentin Valette" width="500" height="630" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Ashes of the Arabian&#39;s Pearl</h3>
+                                    <p class="a">Valentin Valette</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="3">
+                        <article class="grid-item" data-index="3" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="The Cube — photograph by Orestis Ilias" width="500" height="380" loading="eager">
                                 <figcaption class="grid-item-label">
@@ -2276,7 +2444,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="5">
+                        <article class="grid-item" data-index="5" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Torre San Giovanni — photograph by Murray Ballard" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2286,7 +2454,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="8">
+                        <article class="grid-item" data-index="8" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Metamorphosis — photograph by Claudia Fuggetti" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2296,7 +2464,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="14">
+                        <article class="grid-item" data-index="14" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199627/Miriam_Stanke_hyalte.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199627/Miriam_Stanke_hyalte.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199627/Miriam_Stanke_hyalte.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199627/Miriam_Stanke_hyalte.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199627/Miriam_Stanke_hyalte.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Bakhtiari - Nomads of Iran — photograph by Miriam Stanke" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2306,7 +2474,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="18">
+                        <article class="grid-item" data-index="18" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Restricted Images — photograph by Patrick Waterhouse" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2316,7 +2484,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="22">
+                        <article class="grid-item" data-index="22" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1768231596/605076172_902499548774008_2595803509451508759_n-3_d25l92.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1768231596/605076172_902499548774008_2595803509451508759_n-3_d25l92.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1768231596/605076172_902499548774008_2595803509451508759_n-3_d25l92.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1768231596/605076172_902499548774008_2595803509451508759_n-3_d25l92.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1768231596/605076172_902499548774008_2595803509451508759_n-3_d25l92.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Untitled — photograph by Stéphanie Coudray" width="500" height="330" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2326,7 +2494,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="26">
+                        <article class="grid-item" data-index="26" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771871847/Luca_O_amlsk2.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1771871847/Luca_O_amlsk2.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1771871847/Luca_O_amlsk2.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771871847/Luca_O_amlsk2.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1771871847/Luca_O_amlsk2.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Half Remembered, Half Imagined — photograph by Luca Ortis" width="500" height="380" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2336,7 +2504,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="29">
+                        <article class="grid-item" data-index="29" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784284234/Peak_Oil_vtosji.webp" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784284234/Peak_Oil_vtosji.webp 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784284234/Peak_Oil_vtosji.webp 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784284234/Peak_Oil_vtosji.webp 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784284234/Peak_Oil_vtosji.webp 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Peak Oil — photograph by Geert Goiris" width="500" height="500" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2346,7 +2514,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="33">
+                        <article class="grid-item" data-index="33" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784283832/Henry_Bourne_Tangiers_ggblr1.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Morocco — photograph by Henry Bourne" width="500" height="670" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2356,7 +2524,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="37">
+                        <article class="grid-item" data-index="37" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 750w" sizes="(max-width: 860px) 45vw, 22vw" alt="Abandon — photograph by Uzma Mohsin" width="500" height="500" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -2396,6 +2564,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
     <script>
         let posts = [];
         let currentIndex = 0;
+        const activeThemes = new Set();
 
         // Resize/compress Cloudinary images to the width they're actually displayed at
         function optimizedUrl(url, width) {
@@ -2479,7 +2648,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             gridView.innerHTML = columns.map(col => `
                 <div class="grid-col">
                     ${col.map(({ post, i }) => `
-                        <article class="grid-item" data-index="${i}">
+                        <article class="grid-item" data-index="${i}" data-theme="${escapeHtml(post.theme || '')}">
                             <figure>
                                 <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)}"${srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]) ? ` srcset="${escapeHtml(srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]))}" sizes="(max-width: 860px) 45vw, 22vw"` : ''} alt="${escapeHtml(altText(post))}" loading="${i < 4 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}>
                                 <figcaption class="grid-item-label">
@@ -2493,6 +2662,21 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             `).join('');
 
             wireGridClicks(gridView);
+            applyThemeFilter();
+        }
+
+        // Theme filter is a pure show/hide over whichever markup is already in the DOM
+        // (pre-rendered by generate.js, or rebuilt by renderGrid on resize) — it never
+        // re-fetches or re-packs the masonry grid. Untagged posts (no data-theme) stay
+        // visible under every filter, including when specific themes are active, so
+        // nothing vanishes from the gallery just because it hasn't been tagged yet.
+        // activeThemes is empty for "All" (everything visible) rather than a special case.
+        function applyThemeFilter() {
+            document.querySelectorAll('#gridView .grid-item, #rail .entry').forEach(el => {
+                const itemTheme = el.dataset.theme || '';
+                const matches = activeThemes.size === 0 || !itemTheme || activeThemes.has(itemTheme);
+                el.classList.toggle('theme-hidden', !matches);
+            });
         }
 
         function wireGridClicks(gridView) {
@@ -2585,7 +2769,19 @@ Working exclusively with analog methods, process and result sit in balance.</p>
 
         function renderFullscreen() {
             const post = posts[currentIndex];
-            document.getElementById('fullscreenImage').src = optimizedUrl(post.cloudinary_cropped_url, 1600) || post.image_url;
+            const img = document.getElementById('fullscreenImage');
+            const content = document.querySelector('.fullscreen-content');
+
+            // The caption's max-width must track the image's own rendered width so it
+            // lines up flush with the image's left edge instead of the wider centered
+            // column — read it after each load since it varies with image aspect ratio.
+            const syncCaptionWidth = () => {
+                content.style.setProperty('--fullscreen-image-width', img.clientWidth + 'px');
+            };
+            img.onload = syncCaptionWidth;
+            img.src = optimizedUrl(post.cloudinary_cropped_url, 1600) || post.image_url;
+            if (img.complete) syncCaptionWidth();
+
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
             document.getElementById('captionArtist').textContent = post.artist || '';
             document.getElementById('captionText').textContent = post.caption;
@@ -2633,6 +2829,42 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             gridView.classList.remove('active');
             railBtn.classList.add('active');
             gridBtn.classList.remove('active');
+        });
+
+        // Themes support multi-select: a touch device has no modifier key, so every tap
+        // toggles that theme in/out of the active set. A mouse/trackpad device keeps a
+        // plain click as single-select (replace) and reserves Cmd/Ctrl+click for
+        // toggling into a multi-select set, matching familiar file-picker conventions.
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+        function updateThemeButtonStates() {
+            themeFilter.querySelectorAll('.theme-filter-btn').forEach(b => {
+                const isAll = b.dataset.theme === '';
+                b.classList.toggle('active', isAll ? activeThemes.size === 0 : activeThemes.has(b.dataset.theme));
+            });
+        }
+
+        const themeFilter = document.getElementById('themeFilter');
+        themeFilter.addEventListener('click', (e) => {
+            const btn = e.target.closest('.theme-filter-btn');
+            if (!btn) return;
+            const theme = btn.dataset.theme;
+
+            if (theme === '') {
+                activeThemes.clear();
+            } else if (isTouchDevice || e.metaKey || e.ctrlKey) {
+                if (activeThemes.has(theme)) {
+                    activeThemes.delete(theme);
+                } else {
+                    activeThemes.add(theme);
+                }
+            } else {
+                activeThemes.clear();
+                activeThemes.add(theme);
+            }
+
+            updateThemeButtonStates();
+            applyThemeFilter();
         });
 
         loadPosts();

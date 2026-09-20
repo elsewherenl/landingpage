@@ -680,10 +680,11 @@ document.addEventListener('DOMContentLoaded', function() {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(20, 19, 18, 0.96);
+            background: var(--cream-bg);
             z-index: 2000;
             justify-content: center;
             align-items: center;
+            padding: clamp(2rem, 8vh, 6rem) clamp(2rem, 10vw, 8rem);
         }
 
         .lightbox.active {
@@ -692,21 +693,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .lightbox-stage {
             position: relative;
-            width: 75vw;
-            height: 75vh;
+            max-width: 100%;
+            max-height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto;
         }
 
         .lightbox-stage img {
             max-width: 100%;
-            max-height: calc(75vh - 3.5rem);
+            max-height: min(70vh, calc(100vh - clamp(9rem, 24vh, 14rem)));
             width: auto;
             height: auto;
             object-fit: contain;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+            align-self: center;
+            box-shadow: 0 1px 2px rgba(44, 44, 44, 0.06);
             opacity: 0;
             transform: scale(0.98);
             transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -719,82 +721,96 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .lightbox-caption {
             margin-top: 1.25rem;
-            color: var(--warm-off-white);
-            font-size: 0.9rem;
+            color: var(--deep-charcoal);
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.85rem;
             font-weight: 300;
-            letter-spacing: 0.02em;
-            text-align: center;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-align: left;
+            align-self: center;
+            width: 100%;
+            max-width: var(--lightbox-image-width, 480px);
         }
 
         .lightbox-close {
             position: fixed;
-            top: 1.75rem;
-            right: 2rem;
-            width: 46px;
-            height: 46px;
+            top: clamp(1.25rem, 3vh, 2rem);
+            right: clamp(1.25rem, 3vw, 2rem);
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(253, 252, 248, 0.35);
-            border-radius: 50%;
-            background: transparent;
-            color: var(--warm-off-white);
-            font-size: 1.4rem;
+            border: none;
+            border-radius: 0;
+            background: none;
+            color: var(--deep-charcoal);
+            font-size: 1.1rem;
             font-weight: 300;
             line-height: 1;
             cursor: pointer;
-            transition: background 0.25s ease, border-color 0.25s ease;
+            opacity: 0.55;
+            transition: opacity 0.2s ease;
             z-index: 2001;
         }
 
         .lightbox-close:hover {
-            background: #95392E;
-            border-color: #95392E;
+            background: none;
+            border-color: transparent;
+            opacity: 1;
         }
 
         .lightbox-nav {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(253, 252, 248, 0.35);
-            border-radius: 50%;
-            background: transparent;
-            color: var(--warm-off-white);
-            font-size: 1.3rem;
+            border: none;
+            border-radius: 0;
+            background: none;
+            color: var(--deep-charcoal);
+            font-size: 1.5rem;
             font-weight: 300;
             line-height: 1;
             cursor: pointer;
             user-select: none;
-            transition: background 0.25s ease, border-color 0.25s ease;
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
             z-index: 2001;
         }
 
         .lightbox-nav:hover {
-            background: #95392E;
-            border-color: #95392E;
+            background: none;
+            border-color: transparent;
+            opacity: 1;
+            color: var(--terracotta-red);
         }
 
-        .lightbox-prev { left: 1.5rem; }
-        .lightbox-next { right: 1.5rem; }
+        .lightbox-prev { left: clamp(0.5rem, 2vw, 1.5rem); }
+        .lightbox-next { right: clamp(0.5rem, 2vw, 1.5rem); }
 
         @media (max-width: 768px) {
-            .lightbox-stage {
-                width: 92vw;
-                height: 80vh;
+            .lightbox {
+                padding: 1.25rem;
+            }
+
+            .lightbox-stage img {
+                max-height: calc(100vh - 9rem);
             }
 
             .lightbox-nav {
-                width: 40px;
-                height: 40px;
+                width: 36px;
+                height: 36px;
+                font-size: 1.25rem;
             }
 
-            .lightbox-prev { left: 0.75rem; }
-            .lightbox-next { right: 0.75rem; }
+            .lightbox-prev { left: 0.25rem; }
+            .lightbox-next { right: 0.25rem; }
         }
 
         /* Custom cursor: terracotta red circle */
@@ -1179,6 +1195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 (function () {
     var lightbox = document.getElementById('lightbox');
+    var lightboxStage = document.querySelector('.lightbox-stage');
     var lightboxImage = document.getElementById('lightboxImage');
     var lightboxCaption = document.getElementById('lightboxCaption');
     var closeBtn = document.getElementById('lightboxClose');
@@ -1187,12 +1204,20 @@ document.addEventListener('DOMContentLoaded', function() {
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.lightbox-trigger'));
     var currentIndex = 0;
 
+    // The caption's max-width tracks the image's own rendered width so it lines
+    // up flush with the image's left edge instead of the wider centered stage.
+    function syncCaptionWidth() {
+        lightboxStage.style.setProperty('--lightbox-image-width', lightboxImage.clientWidth + 'px');
+    }
+
     function renderLightbox() {
         var trigger = triggers[currentIndex];
         lightboxImage.classList.remove('is-visible');
+        lightboxImage.onload = syncCaptionWidth;
         lightboxImage.src = trigger.getAttribute('data-full');
         lightboxImage.alt = trigger.getAttribute('data-title') || '';
         lightboxCaption.textContent = trigger.getAttribute('data-title') || '';
+        if (lightboxImage.complete) syncCaptionWidth();
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
                 lightboxImage.classList.add('is-visible');

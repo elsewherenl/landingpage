@@ -784,11 +784,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            background: var(--cream-bg);
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: clamp(2rem, 8vh, 6rem) clamp(2rem, 10vw, 8rem);
         }
 
         .fullscreen-modal.active {
@@ -796,85 +796,106 @@
         }
 
         .fullscreen-content {
-            max-width: 90vw;
-            max-height: 90vh;
+            max-width: 100%;
+            max-height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
+            overflow-y: auto;
         }
 
         .fullscreen-image {
             max-width: 100%;
-            max-height: 65vh;
+            max-height: min(70vh, calc(100vh - clamp(9rem, 24vh, 14rem)));
+            width: auto;
+            height: auto;
             object-fit: contain;
+            align-self: center;
+            box-shadow: 0 1px 2px rgba(44, 44, 44, 0.06);
+            flex-shrink: 0;
         }
 
         .fullscreen-caption {
-            color: var(--warm-off-white);
-            text-align: center;
-            margin-top: 1.5rem;
-            max-width: 700px;
-            padding: 0 1rem;
-            max-height: 20vh;
-            overflow-y: auto;
+            color: var(--deep-charcoal);
+            text-align: left;
+            align-self: center;
+            margin-top: 1.25rem;
+            width: 100%;
+            max-width: var(--fullscreen-image-width, 480px);
+            padding: 0;
         }
 
         .fullscreen-caption .caption-title {
             font-family: 'SuisseIntl', sans-serif;
-            font-size: 1.05rem;
+            font-size: 0.85rem;
             font-weight: 300;
-            letter-spacing: 0.02em;
-            margin-bottom: 0.35rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+            color: var(--deep-charcoal);
         }
 
         .fullscreen-caption .caption-artist {
-            font-size: 0.95rem;
+            font-size: 0.8rem;
             font-weight: 300;
-            margin-bottom: 0.9rem;
-            color: var(--terracotta-red);
+            letter-spacing: 0.02em;
+            margin-bottom: 0;
+            color: var(--warm-gray);
         }
 
         .fullscreen-caption .caption-text {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 300;
             line-height: 1.6;
+            letter-spacing: 0.01em;
+            margin-top: 0.6rem;
             color: var(--warm-gray);
+            /* SuisseIntl's lightest real weight is 300 (no true lighter face exists);
+               opacity stands in for weight to read quieter than the artist line. */
+            opacity: 0.75;
+            max-height: 4.8em;
+            overflow-y: auto;
         }
 
         .close-modal {
             position: fixed;
-            top: 0;
-            right: 0;
-            color: white;
-            font-size: 1.5rem;
+            top: clamp(1.25rem, 3vh, 2rem);
+            right: clamp(1.25rem, 3vw, 2rem);
+            color: var(--deep-charcoal);
+            font-size: 1.1rem;
             font-weight: 300;
             cursor: pointer;
-            background: rgba(0, 0, 0, 0.75);
-            width: 50px;
-            height: 50px;
+            background: none;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             line-height: 1;
-            transition: background 0.2s ease;
+            opacity: 0.55;
+            transition: opacity 0.2s ease;
             z-index: 2001;
         }
 
         .close-modal:hover {
-            background: rgba(149, 57, 46, 0.9);
+            opacity: 1;
+            background: none;
         }
 
         .fullscreen-nav {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: none;
             border: none;
-            width: 50px;
-            height: 50px;
-            font-size: 1.75rem;
-            color: white;
+            width: 44px;
+            height: 44px;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--deep-charcoal);
             cursor: pointer;
-            transition: background 0.2s ease;
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -885,11 +906,32 @@
         }
 
         .fullscreen-nav:hover {
-            background: rgba(149, 57, 46, 0.85);
+            opacity: 1;
+            background: none;
+            color: var(--terracotta-red);
         }
 
-        .fullscreen-prev { left: 1rem; }
-        .fullscreen-next { right: 1rem; }
+        .fullscreen-prev { left: clamp(0.5rem, 2vw, 1.5rem); }
+        .fullscreen-next { right: clamp(0.5rem, 2vw, 1.5rem); }
+
+        @media (max-width: 860px) {
+            .fullscreen-modal {
+                padding: 1.25rem;
+            }
+
+            .fullscreen-image {
+                max-height: calc(100vh - 9rem);
+            }
+
+            .fullscreen-nav {
+                width: 36px;
+                height: 36px;
+                font-size: 1.25rem;
+            }
+
+            .fullscreen-prev { left: 0.25rem; }
+            .fullscreen-next { right: 0.25rem; }
+        }
 
         /* Tablet Layout */
         @media (min-width: 769px) and (max-width: 1279px) {
@@ -1289,7 +1331,7 @@
                 
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="0">
+                        <article class="grid-item" data-index="0" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Farewell to Elders — photograph by Mahmoud Khatab" width="500" height="750" loading="eager" fetchpriority="high">
                                 <figcaption class="grid-item-label">
@@ -1299,7 +1341,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="7">
+                        <article class="grid-item" data-index="7" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Metamorphosis — photograph by Claudia Fuggetti" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1312,7 +1354,7 @@
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="1">
+                        <article class="grid-item" data-index="1" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Somewhere in Africa — photograph by Brigitte Bourger" width="500" height="390" loading="eager">
                                 <figcaption class="grid-item-label">
@@ -1322,7 +1364,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="6">
+                        <article class="grid-item" data-index="6" data-theme="Inner Life">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Of All The Wild Paths — photograph by Claire Amaouche" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1332,7 +1374,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="9">
+                        <article class="grid-item" data-index="9" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199631/Nick_Meek_ddu2op.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Between Sakura — photograph by Nick Meek" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1345,7 +1387,7 @@
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="2">
+                        <article class="grid-item" data-index="2" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Teoswa — photograph by Yimin Chen" width="500" height="380" loading="eager">
                                 <figcaption class="grid-item-label">
@@ -1355,7 +1397,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="4">
+                        <article class="grid-item" data-index="4" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Book of Days — photograph by Alvin Ng" width="500" height="640" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1365,7 +1407,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="10">
+                        <article class="grid-item" data-index="10" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Wird — photograph by Bruno Hadjih" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1378,7 +1420,7 @@
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="3">
+                        <article class="grid-item" data-index="3" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Cube — photograph by Orestis Ilias" width="500" height="380" loading="eager">
                                 <figcaption class="grid-item-label">
@@ -1388,7 +1430,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="5">
+                        <article class="grid-item" data-index="5" data-theme="">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199629/Murray_Ballard_izgkrk.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Torre San Giovanni — photograph by Murray Ballard" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1398,7 +1440,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="8">
+                        <article class="grid-item" data-index="8" data-theme="Natural Worlds">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Vastness — photograph by Kim Woo Young" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1408,7 +1450,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="11">
+                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Rhodanie — photograph by Bertrand Stofleth" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1421,7 +1463,7 @@
                 </div>
                 <!-- GENERATED:GRID:END -->
                 </div>
-                <script type="application/json" id="gridData">[{"title":"Farewell to Elders","artist":"Mahmoud Khatab","caption":"I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised. To be taken away from everything else they crossed the Nile with. I made my greetings to everything else that bid their farewell, to kings and queens who already departed, who only chose to be buried south of here, who only chose to be carried across the west bank of the Nile, who chose to be buried into the afterlife. Who saw the intimate writings on their walls something only their souls will recognise and recall in their coming rebirth.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Mahmoud_K_ullxu7.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/Mahmoud%20Kehtab,%20Farewell%20to%20Elders.jpg?raw=true","width":500,"height":750},{"title":"Somewhere in Africa","artist":"Brigitte Bourger","caption":"Figures in motion - from a series on lives by the sea.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199617/Brigitte_B_xgukvf.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/Brigitte%20Bourger.png?raw=true","width":500,"height":390},{"title":"Teoswa","artist":"Yimin Chen","caption":"Born in the steel labyrinth of Shenzhen, I felt little belonging to its restless skyline. Instead, I was drawn to the villages where human warmth lingers, where fading traditions still breathe. Teoswa is a journey into the ancestral echoes of his mother's hometown - the Teochew region of Guangdong - and an intimate search for the meaning of home.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765200002/Yimin_Chen_ujhcpr.png","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Teoswa%201.jpg?raw=true","width":500,"height":380},{"title":"The Cube","artist":"Orestis Ilias","caption":"Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871784/Orestis_The_Cube_jzcv1z.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Orestis%20Ilias%2C%20The%20Cube%2015.08.25.jpg?raw=true","width":500,"height":380},{"title":"Book of Days","artist":"Alvin Ng","caption":"Through the alchemy of hand-manipulated photographs, I breathe life into ancient verses, revealing their profound essence and forging a harmonious fusion of ancient wisdom and contemporary vision. Inspired by Ovid's Book of Days, Alvin's works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871725/Alvin_Ng_rgjrcu.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Book%20of%20Days%201.jpg?raw=true","width":500,"height":640},{"title":"Torre San Giovanni","artist":"Murray Ballard","caption":"A wreck of a migrant boat in Salento, southern Italy. From Ballard's series Ghosts in the Field, exploring how the region is being reshaped by an ecological crisis, tourism, and old local folklore, this work speaks to today's societal issues where leisure and crisis can sit alongside each other.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199629/Murray_Ballard_izgkrk.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Murray%20Ballard%2021.08.25.jpg?raw=true","width":500,"height":390},{"title":"Of All The Wild Paths","artist":"Claire Amaouche","caption":"I wandered from place to place, from solitude to solitude, trying to grasp their hidden essence. Little by little, it seemed to me that it was not nature itself - eternal, wild, impenetrable - that I was drawing near, but the shifting reflection of my own drifting, and the void at the heart of my existence. Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Claire_A_w9zurb.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Claire%20Amaouche%201.jpg?raw=true","width":500,"height":390},{"title":"Metamorphosis","artist":"Claudia Fuggetti","caption":"Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity. Throughout the series, Claudia plays with perceptions of reality and fiction. The use of colour, perspective and intervention creates ambiguity that encourages new relationships with nature to emerge.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199624/Claudia_F_l7qt8w.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/1.%20Cardi.jpg?raw=true","width":500,"height":750},{"title":"The Vastness","artist":"Kim Woo Young","caption":"The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199630/Kim_Woo_Young_nzvp01.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Kim%20Woo%20Young%201%20Lower%20Res.jpg?raw=true","width":500,"height":390},{"title":"Between Sakura","artist":"Nick Meek","caption":"Visiting nature","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199631/Nick_Meek_ddu2op.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Nick%20Meek%201.jpg?raw=true","width":500,"height":390},{"title":"Wird","artist":"Bruno Hadjih","caption":"The wird is a Sufi invocation of incantations and prayers to reach the hal, a temporary state where the self dissolves into divine presence. Hadjih's colours and movements move away from a documentary approach to capture that feeling, and make the mystical appear closer.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199618/bruno-hadjih_1_dzuk5k.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bruno%20%231.jpg?raw=true","width":500,"height":390},{"title":"Rhodanie","artist":"Bertrand Stofleth","caption":"Walking the Rhône river from source to sea, Stofleth finds the small and everyday along its grand course.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199621/Betrand_Stofleth_1_2_instli.jpg","image_url":"https://github.com/elsewherenl/artistcards/blob/main/instagram-posts/Bertrand%20Stofleth%201.jpg?raw=true","width":500,"height":390}]</script>
+                <script type="application/json" id="gridData">[{"title":"Farewell to Elders","artist":"Mahmoud Khatab","caption":"I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised. To be taken away from everything else they crossed the Nile with. I made my greetings to everything else that bid their farewell, to kings and queens who already departed, who only chose to be buried south of here, who only chose to be carried across the west bank of the Nile, who chose to be buried into the afterlife. Who saw the intimate writings on their walls something only their souls will recognise and recall in their coming rebirth.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Mahmoud_K_ullxu7.jpg","width":500,"height":750},{"title":"Somewhere in Africa","artist":"Brigitte Bourger","caption":"Figures in motion - from a series on lives by the sea.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199617/Brigitte_B_xgukvf.jpg","width":500,"height":390},{"title":"Teoswa","artist":"Yimin Chen","caption":"Born in the steel labyrinth of Shenzhen, I felt little belonging to its restless skyline. Instead, I was drawn to the villages where human warmth lingers, where fading traditions still breathe. Teoswa is a journey into the ancestral echoes of his mother's hometown - the Teochew region of Guangdong - and an intimate search for the meaning of home.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765200002/Yimin_Chen_ujhcpr.png","width":500,"height":380},{"title":"The Cube","artist":"Orestis Ilias","caption":"Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871784/Orestis_The_Cube_jzcv1z.jpg","width":500,"height":380},{"title":"Book of Days","artist":"Alvin Ng","caption":"Through the alchemy of hand-manipulated photographs, I breathe life into ancient verses, revealing their profound essence and forging a harmonious fusion of ancient wisdom and contemporary vision. Inspired by Ovid's Book of Days, Alvin's works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871725/Alvin_Ng_rgjrcu.jpg","width":500,"height":640},{"title":"Torre San Giovanni","artist":"Murray Ballard","caption":"A wreck of a migrant boat in Salento, southern Italy. From Ballard's series Ghosts in the Field, exploring how the region is being reshaped by an ecological crisis, tourism, and old local folklore, this work speaks to today's societal issues where leisure and crisis can sit alongside each other.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199629/Murray_Ballard_izgkrk.jpg","width":500,"height":390},{"title":"Of All The Wild Paths","artist":"Claire Amaouche","caption":"I wandered from place to place, from solitude to solitude, trying to grasp their hidden essence. Little by little, it seemed to me that it was not nature itself - eternal, wild, impenetrable - that I was drawing near, but the shifting reflection of my own drifting, and the void at the heart of my existence. Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Claire_A_w9zurb.jpg","width":500,"height":390},{"title":"Metamorphosis","artist":"Claudia Fuggetti","caption":"Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity. Throughout the series, Claudia plays with perceptions of reality and fiction. The use of colour, perspective and intervention creates ambiguity that encourages new relationships with nature to emerge.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199624/Claudia_F_l7qt8w.jpg","width":500,"height":750},{"title":"The Vastness","artist":"Kim Woo Young","caption":"The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199630/Kim_Woo_Young_nzvp01.jpg","width":500,"height":390},{"title":"Between Sakura","artist":"Nick Meek","caption":"Visiting nature","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199631/Nick_Meek_ddu2op.jpg","width":500,"height":390},{"title":"Wird","artist":"Bruno Hadjih","caption":"The wird is a Sufi invocation of incantations and prayers to reach the hal, a temporary state where the self dissolves into divine presence. Hadjih's colours and movements move away from a documentary approach to capture that feeling, and make the mystical appear closer.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199618/bruno-hadjih_1_dzuk5k.jpg","width":500,"height":390},{"title":"Rhodanie","artist":"Bertrand Stofleth","caption":"Walking the Rhône river from source to sea, Stofleth finds the small and everyday along its grand course.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199621/Betrand_Stofleth_1_2_instli.jpg","width":500,"height":390}]</script>
                 <div class="gallery-more">
                     <a href="/spotlight">Explore Gallery</a>
                 </div>
@@ -1626,7 +1668,19 @@
 
         function renderFullscreen() {
             const post = posts[currentIndex];
-            document.getElementById('fullscreenImage').src = optimizedUrl(post.cloudinary_cropped_url, 1600) || post.image_url;
+            const img = document.getElementById('fullscreenImage');
+            const content = document.querySelector('.fullscreen-content');
+
+            // The caption's max-width must track the image's own rendered width so it
+            // lines up flush with the image's left edge instead of the wider centered
+            // column — read it after each load since it varies with image aspect ratio.
+            const syncCaptionWidth = () => {
+                content.style.setProperty('--fullscreen-image-width', img.clientWidth + 'px');
+            };
+            img.onload = syncCaptionWidth;
+            img.src = optimizedUrl(post.cloudinary_cropped_url, 1600) || post.image_url;
+            if (img.complete) syncCaptionWidth();
+
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
             document.getElementById('captionArtist').textContent = post.artist || '';
             document.getElementById('captionText').textContent = post.caption;

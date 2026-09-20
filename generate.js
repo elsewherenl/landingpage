@@ -135,7 +135,7 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
     return columns.map(col => `
                 <div class="grid-col">
                     ${col.map(({ post, i, dims }) => `
-                        <article class="grid-item" data-index="${i}">
+                        <article class="grid-item" data-index="${i}" data-theme="${escapeHtml(post.theme || '')}">
                             <figure>
                                 <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, imageWidth) || post.image_url)}"${srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]) ? ` srcset="${escapeHtml(srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]))}" sizes="(max-width: ${mobileBreakpoint}px) 45vw, 22vw"` : ''} alt="${escapeHtml(altText(post))}" width="${dims ? dims.width : ''}" height="${dims ? dims.height : ''}" loading="${i < 4 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}>
                                 <figcaption class="grid-item-label">
@@ -150,7 +150,7 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
 
 function renderRailHtml(posts) {
     return posts.map((post, i) => `
-                    <article class="entry ${i % 2 === 1 ? 'is-reversed' : ''}">
+                    <article class="entry ${i % 2 === 1 ? 'is-reversed' : ''}" data-theme="${escapeHtml(post.theme || '')}">
                         <figure class="entry-figure" data-index="${i}">
                             <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 800) || post.image_url)}" alt="${escapeHtml(altText(post))}" loading="lazy">
                         </figure>
