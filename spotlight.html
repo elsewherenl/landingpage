@@ -947,6 +947,10 @@ document.addEventListener('DOMContentLoaded', function() {
         letter-spacing: -0.02em;
     }
 
+    .page-title-break {
+        display: none;
+    }
+
     @media (min-width: 1280px) {
         .page-title {
             font-size: 2.2rem;
@@ -1514,6 +1518,10 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 2rem;
         }
 
+        .page-title-break {
+            display: block;
+        }
+
         .view-toggle-row {
             padding: 1.25rem 1.5rem 1.25rem;
         }
@@ -1705,7 +1713,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <main>
     <section class="intro">
         <div class="intro-text">
-            <h1 class="page-title">Photography selected by elsewhere.</h1>
+            <h1 class="page-title">Photography selected<br class="page-title-break"> by elsewhere.</h1>
             <p class="page-subtitle">Follow our regular curation on <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a></p>
         </div>
     </section>

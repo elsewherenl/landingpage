@@ -610,8 +610,44 @@
             color: var(--warm-off-white);
         }
 
+/* Back-to-top: mobile only (long single-column scroll makes it useful there;
+   desktop's two-column layout is short enough that it isn't). Fades in once
+   the page has scrolled past one viewport height, fades out near the top. */
+.back-to-top {
+    display: none;
+}
+
        /* Mobile Responsive */
 @media (max-width: 768px) {
+    .back-to-top {
+        display: flex;
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.25rem;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        background: #95392E;
+        color: var(--warm-off-white);
+        font-size: 1.2rem;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+        z-index: 1500;
+        box-shadow: 0 2px 8px rgba(44, 44, 44, 0.2);
+    }
+
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
     .header {
         padding: 1rem 0;
     }
@@ -791,5 +827,19 @@
             <div class="image-placeholder"></div>
         </div>
     </main>
+
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+    <script>
+        // Back-to-top (mobile only): fades in once scrolled past one viewport
+        // height, scrolls smoothly to the top on click.
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > window.innerHeight);
+        }, { passive: true });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
