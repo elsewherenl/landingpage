@@ -10,15 +10,12 @@
             const fallbackPath = "/home";
             const spotlightPath = "/spotlight";
 
-            // Map clean URLs to physical files.
+            // Map clean URLs to physical files. Most clean URLs (/about, /spotlight,
+            // /cookie-policy, /artists, /mitsutaka, /jesula) now resolve directly via
+            // GitHub Pages' extensionless-file fallback since the filenames match —
+            // this table is only needed for paths GitHub Pages can't resolve itself.
             const routes = {
-                "/home": "/index.html",
-                "/about": "/about.html",
-                "/spotlight": "/spotlight.html",
-                "/cookie-policy": "/cookie-policy.html",
-                "/artists": "/artistspage.html",
-                "/mitsutaka": "/Mitsutaka Tsuryu.html",
-                "/jesula": "/Jésula Toussaint Visser.html"
+                "/home": "/index.html"
             };
 
             if (cleanPath === "/spotlights") {
