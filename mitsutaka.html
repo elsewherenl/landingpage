@@ -622,7 +622,7 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 1rem 0;
         }
         .header-container {
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
         .logo {
             font-size: 1.3rem;
@@ -666,7 +666,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     @media (max-width: 480px) {
         .header-container {
-            padding: 0 0.85rem;
+            padding: 0 1.5rem;
         }
         .logo {
             font-size: 1.2rem;
@@ -734,7 +734,6 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 0.04em;
-            text-transform: uppercase;
             text-align: left;
             align-self: center;
             width: 100%;
@@ -1279,6 +1278,24 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) closeLightbox();
     });
+
+    // Swipe left/right to navigate on touch devices, mirroring the arrow buttons.
+    // Only treated as a swipe once horizontal movement clearly dominates vertical
+    // (so a scroll/drag doesn't accidentally flip the image).
+    var touchStartX = 0;
+    var touchStartY = 0;
+
+    lightbox.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', function (e) {
+        var deltaX = e.changedTouches[0].clientX - touchStartX;
+        var deltaY = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY) * 1.5) return;
+        if (deltaX < 0) showNext(); else showPrevious();
+    }, { passive: true });
 
     document.addEventListener('keydown', function (e) {
         if (!lightbox.classList.contains('active')) return;

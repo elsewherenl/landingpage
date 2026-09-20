@@ -830,7 +830,6 @@
             font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 0.04em;
-            text-transform: uppercase;
             margin-bottom: 0.3rem;
             color: var(--deep-charcoal);
         }
@@ -1015,7 +1014,7 @@
             }
 
             .header-container {
-                padding: 0 1rem;
+                padding: 0 1.5rem;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
@@ -1113,7 +1112,7 @@
 
         @media (max-width: 480px) {
             .header-container {
-                padding: 0 0.85rem;
+                padding: 0 1.5rem;
             }
 
             .logo {
@@ -1703,6 +1702,27 @@
         document.getElementById('fullscreenModal').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) closeFullscreen();
         });
+
+        // Swipe left/right to navigate on touch devices, mirroring the arrow buttons.
+        // Only treated as a swipe once horizontal movement clearly dominates vertical
+        // (so a scroll/drag on a long caption doesn't accidentally flip the image).
+        (() => {
+            const modal = document.getElementById('fullscreenModal');
+            let touchStartX = 0;
+            let touchStartY = 0;
+
+            modal.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].clientX;
+                touchStartY = e.changedTouches[0].clientY;
+            }, { passive: true });
+
+            modal.addEventListener('touchend', (e) => {
+                const deltaX = e.changedTouches[0].clientX - touchStartX;
+                const deltaY = e.changedTouches[0].clientY - touchStartY;
+                if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY) * 1.5) return;
+                if (deltaX < 0) showNext(); else showPrevious();
+            }, { passive: true });
+        })();
 
         document.addEventListener('keydown', (e) => {
             if (!document.getElementById('fullscreenModal').classList.contains('active')) return;

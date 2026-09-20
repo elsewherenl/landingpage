@@ -106,6 +106,44 @@ function dimensionsForRatio(ratio, servingWidth) {
     return { width: servingWidth, height: Math.round(servingWidth / ratio) };
 }
 
+// Deterministic string hash (djb2) used to seed the rail's shuffle — stable across
+// builds as long as post ids don't change, so re-running generate.js with the same
+// instagram-feed.json produces byte-identical output (writeIfChanged stays a no-op).
+function seedFromString(str) {
+    let hash = 5381;
+    for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) + hash + str.charCodeAt(i)) >>> 0;
+    }
+    return hash;
+}
+
+// Mulberry32: a small deterministic PRNG. Given the same seed it produces the same
+// sequence every time, unlike Math.random() — required so the rail's shuffled order
+// doesn't change on every generate.js run and defeat writeIfChanged's diffing.
+function mulberry32(seed) {
+    let a = seed;
+    return function () {
+        a |= 0; a = (a + 0x6D2B79F5) | 0;
+        let t = Math.imul(a ^ (a >>> 15), 1 | a);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+// Returns a shuffled copy of items (Fisher-Yates) using a PRNG seeded from the ids of
+// all items combined, so the editorial rail reads in a different, deliberately varied
+// order from the grid's fixed JSON order — but the same different order every build,
+// not a fresh shuffle on every page load or generate.js run.
+function seededShuffle(items, seedKey) {
+    const rand = mulberry32(seedFromString(seedKey));
+    const result = items.slice();
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+}
+
 // Mirrors packIntoColumns() in the client JS: shortest-column masonry using each
 // post's aspect ratio, so the build-time pack matches what the client renders on
 // first paint (before any resize-triggered re-pack runs).
@@ -148,10 +186,14 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
                 </div>`).join('');
 }
 
-function renderRailHtml(posts) {
+// posts may be in a different order from the client's fetched instagram-feed.json
+// array (see seededShuffle) — originalIndexOf maps each post back to its index in
+// that array, since data-index is what openFullscreen() uses to look the post up
+// client-side (posts[index]) and must stay correct regardless of display order.
+function renderRailHtml(posts, originalIndexOf) {
     return posts.map((post, i) => `
                     <article class="entry ${i % 2 === 1 ? 'is-reversed' : ''}" data-theme="${escapeHtml(post.theme || '')}">
-                        <figure class="entry-figure" data-index="${i}">
+                        <figure class="entry-figure" data-index="${originalIndexOf(post)}">
                             <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 800) || post.image_url)}" alt="${escapeHtml(altText(post))}" loading="lazy">
                         </figure>
                         <div class="entry-meta">
@@ -337,12 +379,18 @@ async function main() {
 
     const indexChanged = writeIfChanged(indexPath, indexHtml);
 
-    // spotlight.html: full rail (editorial) + grid views, all posts, JSON order.
+    // spotlight.html: grid view uses instagram-feed.json's own order (matches the
+    // JSON-LD ItemList below and what the client fetches back out of the JSON file).
+    // The editorial rail is deliberately shown in a different order — a seeded shuffle,
+    // stable across builds — so the two views don't feel like the same list twice;
+    // JSON-LD intentionally stays tied to the grid's order, not the rail's.
     const spotlightPath = path.join(ROOT, 'spotlight.html');
     let spotlightHtml = fs.readFileSync(spotlightPath, 'utf8');
     const allAspectRatios = allPosts.map(ratioOf);
     const allDimensions = allAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
-    const railHtml = renderRailHtml(allPosts);
+    const railSeedKey = allPosts.map(p => p.id).join(',');
+    const railPosts = seededShuffle(allPosts, railSeedKey);
+    const railHtml = renderRailHtml(railPosts, post => allPosts.indexOf(post));
     const gridHtml = renderGridHtml(allPosts, allAspectRatios, allDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 860 });
     spotlightHtml = replaceBlock(spotlightHtml, 'RAIL', railHtml);
     spotlightHtml = replaceBlock(spotlightHtml, 'GRID', gridHtml);
