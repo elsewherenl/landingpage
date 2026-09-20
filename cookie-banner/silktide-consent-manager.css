@@ -538,15 +538,15 @@
   right: 10px;
 }
 
-/* Hidden on mobile — the persistent reopen-preferences icon competes with the
-   lightbox close/nav controls and other bottom-right UI on small screens. The
-   banner itself (and its Settings link) still lets a visitor manage consent;
-   this only removes the floating icon shown after the banner is dismissed.
+/* Hidden everywhere — the persistent reopen-preferences icon competes with the
+   lightbox close/nav controls and other bottom-right UI at every screen size.
+   index.html has its own "Cookie Preferences" footer link that reopens
+   silktideCookieBannerManager.showPreferences() instead; the other pages
+   currently have no equivalent, so a visitor there who dismisses the banner
+   has no in-page way to reopen it until that's added elsewhere too.
    !important is needed since the JS sets display:flex as an inline style. */
-@media (max-width: 768px) {
-  #silktide-cookie-icon {
-    display: none !important;
-  }
+#silktide-cookie-icon {
+  display: none !important;
 }
 
 #silktide-cookie-icon svg {
