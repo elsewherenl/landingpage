@@ -370,7 +370,12 @@ async function main() {
     const indexPath = path.join(ROOT, 'index.html');
     let indexHtml = fs.readFileSync(indexPath, 'utf8');
     const homePostsSelected = allPosts.filter(p => p.caption && p.caption.trim() !== '').slice(0, 12);
-    const homePosts = seededShuffle(homePostsSelected, 'home-grid:' + homePostsSelected.map(p => p.id).join(','));
+    // Seed includes today's date (not just post ids) so re-running generate.js on a
+    // different day gives a visibly different homepage order even when the post set
+    // hasn't changed — still deterministic for any given day (re-running today is a
+    // no-op via writeIfChanged), just not frozen indefinitely.
+    const homeSeedKey = 'home-grid:' + isoDate(new Date()) + ':' + homePostsSelected.map(p => p.id).join(',');
+    const homePosts = seededShuffle(homePostsSelected, homeSeedKey);
     const homeAspectRatios = homePosts.map(ratioOf);
     const homeDimensions = homeAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
 
