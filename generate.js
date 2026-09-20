@@ -161,10 +161,22 @@ function packIntoColumns(items, columnCount) {
     return columns;
 }
 
-function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCount, mobileBreakpoint }) {
+// posts, aspectRatios, and dimensions must all be in the same (possibly shuffled)
+// display order — dims/aspectRatio are looked up positionally within that order,
+// since that's what's actually being packed and rendered at each grid position.
+// originalIndexOf maps a post back to its index in the client's fetched
+// instagram-feed.json array; data-index uses that mapping (not the display
+// position) since openFullscreen() looks posts up client-side as posts[index].
+// Defaults to the identity mapping (posts[i] -> i) when the display order already
+// matches the fetch order, e.g. index.html's #gridData is built from this same
+// shuffled array, so no remapping is needed there.
+function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCount, mobileBreakpoint }, originalIndexOf) {
+    const indexOf = originalIndexOf || ((post, i) => i);
     const items = posts.map((post, i) => ({
         post,
-        i,
+        dataIndex: indexOf(post, i),
+        isEarly: i < 4,
+        isFirst: i === 0,
         dims: dimensions[i] || null,
         aspectRatio: aspectRatios[i] || 1
     }));
@@ -172,10 +184,10 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
 
     return columns.map(col => `
                 <div class="grid-col">
-                    ${col.map(({ post, i, dims }) => `
-                        <article class="grid-item" data-index="${i}" data-theme="${escapeHtml(post.theme || '')}">
+                    ${col.map(({ post, dataIndex, isEarly, isFirst, dims }) => `
+                        <article class="grid-item" data-index="${dataIndex}" data-theme="${escapeHtml(post.theme || '')}">
                             <figure>
-                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, imageWidth) || post.image_url)}"${srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]) ? ` srcset="${escapeHtml(srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]))}" sizes="(max-width: ${mobileBreakpoint}px) 45vw, 22vw"` : ''} alt="${escapeHtml(altText(post))}" width="${dims ? dims.width : ''}" height="${dims ? dims.height : ''}" loading="${i < 4 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}>
+                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, imageWidth) || post.image_url)}"${srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]) ? ` srcset="${escapeHtml(srcsetUrls(post.cloudinary_cropped_url, [250, 375, 500, 750]))}" sizes="(max-width: ${mobileBreakpoint}px) 45vw, 22vw"` : ''} alt="${escapeHtml(altText(post))}" width="${dims ? dims.width : ''}" height="${dims ? dims.height : ''}" loading="${isEarly ? 'eager' : 'lazy'}"${isFirst ? ' fetchpriority="high"' : ''}>
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">${escapeHtml(post.title || 'Untitled')}</h3>
                                     <p class="a">${escapeHtml(post.artist || '')}</p>
@@ -349,14 +361,16 @@ async function main() {
     }));
     const ratioOf = post => aspectRatioByPostId[post.id] || 1;
 
-    // index.html: homepage preview grid — first 12 posts with a non-empty caption,
-    // matching the client JS's filter (postsWithCaptions). Fixed order (no shuffle)
-    // so the build is deterministic and matches what the client reads back out of
-    // #gridData (no re-fetch/re-shuffle client-side any more). Single container,
-    // packed via the usual shortest-column masonry algorithm across all 12 items.
+    // index.html: homepage preview grid — the same first 12 posts with a non-empty
+    // caption every build (deterministic selection), but shuffled into a different
+    // display order each time generate.js runs (seeded, so re-running with unchanged
+    // data reproduces the same order — writeIfChanged stays a no-op). #gridData is
+    // derived from this same shuffled array, so the client's lightbox/resize-repack
+    // stays in sync with what's actually rendered.
     const indexPath = path.join(ROOT, 'index.html');
     let indexHtml = fs.readFileSync(indexPath, 'utf8');
-    const homePosts = allPosts.filter(p => p.caption && p.caption.trim() !== '').slice(0, 12);
+    const homePostsSelected = allPosts.filter(p => p.caption && p.caption.trim() !== '').slice(0, 12);
+    const homePosts = seededShuffle(homePostsSelected, 'home-grid:' + homePostsSelected.map(p => p.id).join(','));
     const homeAspectRatios = homePosts.map(ratioOf);
     const homeDimensions = homeAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
 
@@ -379,19 +393,27 @@ async function main() {
 
     const indexChanged = writeIfChanged(indexPath, indexHtml);
 
-    // spotlight.html: grid view uses instagram-feed.json's own order (matches the
-    // JSON-LD ItemList below and what the client fetches back out of the JSON file).
-    // The editorial rail is deliberately shown in a different order — a seeded shuffle,
-    // stable across builds — so the two views don't feel like the same list twice;
-    // JSON-LD intentionally stays tied to the grid's order, not the rail's.
+    // spotlight.html: both the grid and the editorial rail are shown in their own
+    // seeded shuffle — stable across builds, and deliberately different from each
+    // other so the two views don't feel like the same list twice. The JSON-LD
+    // ItemList intentionally stays in instagram-feed.json's own order regardless
+    // (a shuffled display order isn't meaningful for structured data to "match").
+    // Each view's data-index is remapped back to allPosts' order, since that's the
+    // order the client gets from fetching instagram-feed.json fresh.
     const spotlightPath = path.join(ROOT, 'spotlight.html');
     let spotlightHtml = fs.readFileSync(spotlightPath, 'utf8');
-    const allAspectRatios = allPosts.map(ratioOf);
-    const allDimensions = allAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
-    const railSeedKey = allPosts.map(p => p.id).join(',');
+    const originalIndexOf = post => allPosts.indexOf(post);
+
+    const railSeedKey = 'rail:' + allPosts.map(p => p.id).join(',');
     const railPosts = seededShuffle(allPosts, railSeedKey);
-    const railHtml = renderRailHtml(railPosts, post => allPosts.indexOf(post));
-    const gridHtml = renderGridHtml(allPosts, allAspectRatios, allDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 860 });
+    const railHtml = renderRailHtml(railPosts, originalIndexOf);
+
+    const gridSeedKey = 'grid:' + allPosts.map(p => p.id).join(',');
+    const gridPosts = seededShuffle(allPosts, gridSeedKey);
+    const gridAspectRatios = gridPosts.map(ratioOf);
+    const gridDimensions = gridAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
+    const gridHtml = renderGridHtml(gridPosts, gridAspectRatios, gridDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 860 }, originalIndexOf);
+
     spotlightHtml = replaceBlock(spotlightHtml, 'RAIL', railHtml);
     spotlightHtml = replaceBlock(spotlightHtml, 'GRID', gridHtml);
     const spotlightJsonLd = buildSpotlightJsonLd(allPosts);

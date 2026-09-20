@@ -538,6 +538,17 @@
   right: 10px;
 }
 
+/* Hidden on mobile — the persistent reopen-preferences icon competes with the
+   lightbox close/nav controls and other bottom-right UI on small screens. The
+   banner itself (and its Settings link) still lets a visitor manage consent;
+   this only removes the floating icon shown after the banner is dismissed.
+   !important is needed since the JS sets display:flex as an inline style. */
+@media (max-width: 768px) {
+  #silktide-cookie-icon {
+    display: none !important;
+  }
+}
+
 #silktide-cookie-icon svg {
   fill: var(--cookieIconBackgroundColor);
 }
