@@ -1549,8 +1549,8 @@
                             <figure>
                                 <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)}" alt="${escapeHtml(altText(post))}" width="${post.width || ''}" height="${post.height || ''}" loading="${i < 4 ? 'eager' : 'lazy'}">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">${post.title || 'Untitled'}</h3>
-                                    <p class="a">${post.artist || ''}</p>
+                                    <h3 class="t">${escapeHtml(post.title || 'Untitled')}</h3>
+                                    <p class="a">${escapeHtml(post.artist || '')}</p>
                                 </figcaption>
                             </figure>
                         </article>
