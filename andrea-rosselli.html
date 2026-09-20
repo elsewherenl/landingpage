@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Primary Meta Tags -->
+<title>Andrea Rosselli | elsewhere collective</title>
+<meta name="description" content="Andrea Rosselli — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Available works through elsewhere collective.">
+<meta name="robots" content="index, follow">
+
+<!-- Password-gated Artists section page. Indexed so the title/description/OG shell is discoverable, but bio/portfolio content is hidden behind the client-side gate (see body.gate-locked below) until unlocked — crawlers will only ever see the gate, not the real content. -->
+<link rel="canonical" href="https://elsewherecollective.nl/andrea-rosselli">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://elsewherecollective.nl/andrea-rosselli">
+<meta property="og:title" content="Andrea Rosselli | elsewhere collective">
+<meta property="og:description" content="Andrea Rosselli — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Available works through elsewhere collective.">
+<meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://elsewherecollective.nl/andrea-rosselli">
+<meta property="twitter:title" content="Andrea Rosselli | elsewhere collective">
+<meta property="twitter:description" content="Andrea Rosselli — Lorem ipsum dolor sit amet, consectetur adipiscing elit. Available works through elsewhere collective.">
+<meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<!-- CONDITIONAL GOOGLE ANALYTICS - Only loads with user consent -->
+<script>
+    if (localStorage.getItem('analyticsConsent') === 'true') {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NZVK7P7J3D');
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+        document.head.appendChild(script);
+    }
+</script>
+
+<link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
+<script src="cookie-banner/silktide-consent-manager.js"></script>
+
+<!-- Cookie Banner Configuration -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof silktideCookieBannerManager !== 'undefined') {
+        silktideCookieBannerManager.updateCookieBannerConfig({
+            background: {
+                showBackground: true
+            },
+            cookieIcon: {
+                position: "bottomRight"
+            },
+            cookieTypes: [
+                {
+                    id: "necessary",
+                    name: "Necessary",
+                    description: "<p>These cookies are necessary for the website to function properly and cannot be switched off. They help with things like logging in and setting your privacy preferences.</p>",
+                    required: true,
+                    onAccept: function() {}
+                },
+                {
+                    id: "analytics",
+                    name: "Analytics",
+                    description: "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>",
+                    required: false,
+                    onAccept: function() {
+                        localStorage.setItem('analyticsConsent', 'true');
+                        if (typeof gtag !== 'undefined') {
+                            gtag('consent', 'update', {
+                                analytics_storage: 'granted',
+                            });
+                            dataLayer.push({
+                                'event': 'consent_accepted_analytics',
+                            });
+                        }
+                        loadAnalytics();
+                    },
+                    onReject: function() {
+                        localStorage.setItem('analyticsConsent', 'false');
+                        if (typeof gtag !== 'undefined') {
+                            gtag('consent', 'update', {
+                                analytics_storage: 'denied',
+                            });
+                        }
+                    }
+                }
+            ],
+            text: {
+                banner: {
+                    description: "<p>We use cookies to analyse site usage and improve your experience. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
+                    acceptAllButtonText: "OK",
+                    acceptAllButtonAccessibleLabel: "Accept all cookies",
+                    rejectNonEssentialButtonText: "Essential Only",
+                    rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
+                    preferencesButtonText: "Settings",
+                    preferencesButtonAccessibleLabel: "Cookie preferences"
+                },
+                preferences: {
+                    title: "Cookie Settings",
+                    description: "<p>Choose which cookies you'd like to enable. Essential cookies are required for the site to function and cannot be disabled.</p>",
+                    creditLinkText: "",
+                    creditLinkAccessibleLabel: ""
+                }
+            },
+            position: {
+                banner: "bottomRight"
+            }
+        });
+    } else {
+        initCustomCookieBanner();
+    }
+
+    function loadAnalytics() {
+        if (!window.dataLayer) {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NZVK7P7J3D');
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+            document.head.appendChild(script);
+        }
+    }
+
+    function initCustomCookieBanner() {
+        const cookieConsent = localStorage.getItem('cookieConsent');
+
+        if (!cookieConsent) {
+            const banner = document.createElement('div');
+            banner.className = 'cookie-banner show';
+            banner.innerHTML = `
+                <div class="cookie-content">
+                    <div class="cookie-text">
+                        We use cookies to analyse site usage and improve your experience.
+                        <a href="https://elsewherecollective.nl/cookie-policy" target="_blank" class="cookie-link">Cookie Policy</a>
+                    </div>
+                    <div class="cookie-actions">
+                        <button class="cookie-button" id="acceptCookies">Accept All</button>
+                        <span class="essential-link" id="essentialOnly">Essential Only</span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(banner);
+
+            document.getElementById('acceptCookies').onclick = function() {
+                localStorage.setItem('cookieConsent', 'accepted');
+                localStorage.setItem('analyticsConsent', 'true');
+                banner.remove();
+                loadAnalytics();
+            };
+
+            document.getElementById('essentialOnly').onclick = function() {
+                localStorage.setItem('cookieConsent', 'essential');
+                localStorage.setItem('analyticsConsent', 'false');
+                banner.remove();
+            };
+        } else if (cookieConsent === 'accepted') {
+            loadAnalytics();
+        }
+    }
+});
+</script>
+
+<!-- Fonts -->
+<style>
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'SuisseIntl';
+        src: url('fonts/SuisseIntl-Light.woff2') format('woff2');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+</style>
+
+<style>
+    /* ================================================
+       DRAFT ARTIST TEMPLATE — local prototype only.
+       Not linked into nav, not wired to real data.
+
+       Single-artist detail page reached from artists.html
+       tiles. Placeholder content/images below (Andrea Rosselli)
+       stand in for the eventual per-artist data source — same
+       spirit as generate.js driving index.html/spotlight.html
+       from instagram-feed.json, but not yet built. Lorem ipsum
+       copy throughout — swap for real bio/statement/quote before
+       this page goes live.
+
+       Deliberately close to the rest of the site's language — cream,
+       SuisseIntl throughout, hairline rules, asymmetric editorial
+       grids — rather than a distinct "magazine" skin bolted on.
+       ================================================ */
+
+    :root {
+        --cream-bg: #F3EFE9;
+        --deep-charcoal: #2C2C2C;
+        --warm-gray: #8A8580;
+        --warm-off-white: #FDFCF8;
+        --biscuit-gold: #D6B370;
+        --khaki: #C0B589;
+        --sage-green: #A8B5A0;
+        --soft-terracotta: #C4A394;
+        --hairline: rgba(44, 44, 44, 0.14);
+        --page-top-desktop: 7.25rem;
+        --page-top-mobile: 7rem;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'SuisseIntl', sans-serif;
+        background: var(--cream-bg);
+        color: var(--deep-charcoal);
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    /* Header — matches about.html / spotlight.html / artists.html */
+    .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(243, 239, 233, 0.92);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        padding: 1.5rem 0;
+    }
+
+    .header-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 2.2rem;
+        font-weight: 500;
+        color: var(--deep-charcoal);
+        text-decoration: none;
+        letter-spacing: 0.06em;
+        text-transform: lowercase;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+    }
+
+    .nav-menu a {
+        text-decoration: none;
+        color: rgba(44, 44, 44, 0.75);
+        font-weight: 300;
+        font-size: 1.05rem;
+        letter-spacing: 0.04em;
+        transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+        opacity: 0.5;
+        color: var(--deep-charcoal);
+    }
+
+    /* Shell */
+    .page {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: var(--page-top-desktop) 3rem 8rem;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: var(--warm-gray);
+        font-size: 0.9rem;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .back-link:hover {
+        color: var(--deep-charcoal);
+        opacity: 0.8;
+    }
+
+    /* Intro: name/blurb column + hero image */
+    .intro {
+        display: grid;
+        grid-template-columns: minmax(280px, 380px) 1fr;
+        gap: 3.5rem;
+        margin-top: 2.5rem;
+        align-items: stretch;
+    }
+
+    .intro-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .artist-name {
+        font-weight: 300;
+        font-size: 3.6rem;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: var(--deep-charcoal);
+        margin-bottom: 1.25rem;
+    }
+
+    .artist-location {
+        font-size: 0.85rem;
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--soft-terracotta);
+        margin-bottom: 2rem;
+    }
+
+    .artist-statement {
+        font-weight: 300;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--deep-charcoal);
+        max-width: 24ch;
+    }
+
+    .hero-frame {
+        position: relative;
+        overflow: hidden;
+        background: var(--warm-gray);
+        min-height: 460px;
+    }
+
+    .hero-frame img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .hero-caption {
+        position: absolute;
+        right: 1.5rem;
+        bottom: 1.25rem;
+        color: var(--warm-off-white);
+        font-size: 0.85rem;
+        font-weight: 300;
+        letter-spacing: 0.03em;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+    }
+
+    /* About section */
+    .about-section {
+        display: grid;
+        grid-template-columns: 1fr 1.35fr 0.85fr;
+        gap: 3rem;
+        margin-top: 6rem;
+        align-items: center;
+    }
+
+    .about-portrait,
+    .about-detail {
+        position: relative;
+        overflow: hidden;
+        background: var(--warm-gray);
+        aspect-ratio: 4 / 5;
+    }
+
+    .about-portrait img,
+    .about-detail img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .about-detail-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .about-note {
+        font-size: 0.85rem;
+        font-weight: 300;
+        line-height: 1.5;
+        color: var(--warm-gray);
+        max-width: 26ch;
+    }
+
+    .about-copy h2 {
+        font-weight: 400;
+        font-size: 1.7rem;
+        letter-spacing: -0.005em;
+        margin-bottom: 0.75rem;
+    }
+
+    .about-copy h2::after {
+        content: '';
+        display: block;
+        width: 2rem;
+        height: 1px;
+        background: var(--deep-charcoal);
+        opacity: 0.25;
+        margin-top: 0.75rem;
+    }
+
+    .about-copy p {
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: rgba(44, 44, 44, 0.85);
+        max-width: 52ch;
+        margin-bottom: 1.1rem;
+    }
+
+    .about-quote {
+        margin-top: 1.75rem;
+        padding-top: 1.75rem;
+        border-top: 1px solid var(--hairline);
+    }
+
+    .about-quote blockquote {
+        font-weight: 300;
+        font-size: 1.3rem;
+        line-height: 1.4;
+        color: var(--deep-charcoal);
+        margin-bottom: 0.75rem;
+    }
+
+    .about-quote cite {
+        font-style: normal;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--warm-gray);
+    }
+
+    /* Available works */
+    .works-section {
+        margin-top: 7rem;
+    }
+
+    .works-header {
+        margin-bottom: 2.5rem;
+    }
+
+    .works-header h2 {
+        font-weight: 400;
+        font-size: 1.7rem;
+        letter-spacing: -0.005em;
+    }
+
+    .works-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 3.5rem;
+        align-items: start;
+    }
+
+    .work-card.is-secondary {
+        margin-top: 4.5rem;
+    }
+
+    .work-card figure {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 1.1rem;
+    }
+
+    .work-card img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .work-card:hover img {
+        transform: scale(1.03);
+    }
+
+    .work-title {
+        font-size: 1.05rem;
+        font-weight: 400;
+        margin-bottom: 0.15rem;
+    }
+
+    .work-year {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: var(--warm-gray);
+        margin-bottom: 0.9rem;
+    }
+
+    .work-meta {
+        border-top: 1px solid var(--hairline);
+        padding-top: 0.75rem;
+        font-size: 0.82rem;
+        font-weight: 300;
+        color: rgba(44, 44, 44, 0.7);
+        line-height: 1.65;
+        margin-bottom: 1rem;
+    }
+
+    .work-price {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+
+    .enquire-btn {
+        display: inline-block;
+        padding: 0.65rem 1rem;
+        text-align: left;
+        border: 1px solid var(--deep-charcoal);
+        background: transparent;
+        color: var(--deep-charcoal);
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .enquire-btn:hover {
+        background: var(--deep-charcoal);
+        color: var(--warm-off-white);
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+        .about-section {
+            grid-template-columns: 1fr 1fr;
+        }
+        .about-detail-wrap {
+            grid-column: span 2;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .about-detail {
+            width: 220px;
+            flex-shrink: 0;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .intro {
+            grid-template-columns: 1fr;
+        }
+        .hero-frame {
+            min-height: 320px;
+            order: -1;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .header {
+            padding: 1rem 0;
+        }
+        .header-container {
+            padding: 0 1rem;
+        }
+        .logo {
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+        }
+        .nav-menu {
+            gap: 0.6rem;
+        }
+        .nav-menu a {
+            font-size: 0.75rem;
+            letter-spacing: 0.01em;
+        }
+        .page {
+            padding: var(--page-top-mobile) 1.5rem 5rem;
+        }
+        .artist-name {
+            font-size: 2.4rem;
+        }
+        .about-section {
+            grid-template-columns: 1fr;
+        }
+        .about-detail-wrap {
+            grid-column: span 1;
+            flex-direction: column;
+        }
+        .about-detail {
+            width: 100%;
+        }
+        .works-grid {
+            grid-template-columns: 1fr;
+        }
+        .work-card.is-secondary {
+            margin-top: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header-container {
+            padding: 0 0.85rem;
+        }
+        .logo {
+            font-size: 1.05rem;
+        }
+        .nav-menu {
+            gap: 0.5rem;
+        }
+        .nav-menu a {
+            font-size: 0.7rem;
+        }
+    }
+
+        /* Work images: clickable into fullscreen gallery lightbox */
+        .work-card figure {
+            cursor: pointer;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 19, 18, 0.96);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-stage {
+            position: relative;
+            width: 75vw;
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-stage img {
+            max-width: 100%;
+            max-height: calc(75vh - 3.5rem);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lightbox.active .lightbox-stage img.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .lightbox-caption {
+            margin-top: 1.25rem;
+            color: var(--warm-off-white);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1.75rem;
+            right: 2rem;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(253, 252, 248, 0.35);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--warm-off-white);
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.25s ease, border-color 0.25s ease;
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            background: #95392E;
+            border-color: #95392E;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(253, 252, 248, 0.35);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--warm-off-white);
+            font-size: 1.3rem;
+            font-weight: 300;
+            line-height: 1;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.25s ease, border-color 0.25s ease;
+            z-index: 2001;
+        }
+
+        .lightbox-nav:hover {
+            background: #95392E;
+            border-color: #95392E;
+        }
+
+        .lightbox-prev { left: 1.5rem; }
+        .lightbox-next { right: 1.5rem; }
+
+        @media (max-width: 768px) {
+            .lightbox-stage {
+                width: 92vw;
+                height: 80vh;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-prev { left: 0.75rem; }
+            .lightbox-next { right: 0.75rem; }
+        }
+
+        /* Custom cursor: terracotta red circle */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, auto;
+        }
+
+        *, *::before, *::after {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, auto !important;
+        }
+
+        a, button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, pointer !important;
+        }
+
+        /* Fallback cookie banner (shown only if Silktide fails to load) */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--deep-charcoal);
+            color: var(--warm-off-white);
+            padding: 1rem 2rem;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+            display: none;
+        }
+
+        .cookie-banner.show {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .cookie-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .cookie-text {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--warm-off-white);
+            line-height: 1.4;
+        }
+
+        .cookie-link {
+            color: var(--khaki);
+            text-decoration: none;
+            border-bottom: 1px solid var(--khaki);
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-link:hover {
+            color: var(--warm-off-white);
+            border-bottom-color: var(--warm-off-white);
+        }
+
+        .cookie-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .cookie-button {
+            background: var(--khaki);
+            color: var(--deep-charcoal);
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 2px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .cookie-button:hover {
+            opacity: 0.85;
+        }
+
+        .essential-link {
+            font-size: 0.85rem;
+            color: rgba(253, 252, 248, 0.7);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .essential-link:hover {
+            color: var(--warm-off-white);
+        }
+
+        @media (max-width: 768px) {
+            .cookie-banner {
+                padding: 1rem;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+</style>
+</head>
+<body class="gate-locked">
+<style>
+    /* Private preview gate (Artists section) */
+    #privateGate {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--cream-bg, #F3EFE9);
+        padding: 1.5rem;
+    }
+
+    #privateGate .gate-box {
+        max-width: 380px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #privateGate h1 {
+        font-family: 'SuisseIntl', sans-serif;
+        font-weight: 400;
+        font-size: 1.5rem;
+        letter-spacing: -0.005em;
+        color: var(--deep-charcoal, #2C2C2C);
+        margin-bottom: 0.75rem;
+        text-align: left;
+    }
+
+    #privateGate p {
+        font-family: 'SuisseIntl', sans-serif;
+        font-weight: 300;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--warm-gray, #8A8580);
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    #privateGate form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #privateGate input[type="password"] {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 300;
+        padding: 0.85rem 1rem;
+        border: 1px solid rgba(44, 44, 44, 0.25);
+        background: var(--warm-off-white, #FDFCF8);
+        color: var(--deep-charcoal, #2C2C2C);
+        text-align: center;
+        letter-spacing: 0.05em;
+    }
+
+    #privateGate input[type="password"]:focus {
+        outline: none;
+        border-color: var(--soft-terracotta, #C4A394);
+    }
+
+    #privateGate button {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        padding: 0.85rem 1.4rem;
+        border: 1px solid var(--deep-charcoal, #2C2C2C);
+        background: transparent;
+        color: var(--deep-charcoal, #2C2C2C);
+        cursor: pointer;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    #privateGate button:hover {
+        background: var(--deep-charcoal, #2C2C2C);
+        color: var(--warm-off-white, #FDFCF8);
+    }
+
+    #privateGate .gate-error {
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: #95392E;
+        min-height: 1.2em;
+        margin-top: -0.5rem;
+        text-align: center;
+    }
+
+    #privateGate .gate-close {
+        display: block;
+        margin-top: 1.5rem;
+        text-align: center;
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        color: var(--warm-gray, #8A8580);
+        text-decoration: none;
+        transition: color 0.3s ease, opacity 0.3s ease;
+    }
+
+    #privateGate .gate-close:hover {
+        color: var(--deep-charcoal, #2C2C2C);
+        opacity: 0.8;
+    }
+
+    body.gate-locked > *:not(#privateGate) {
+        display: none !important;
+    }
+</style>
+
+<div id="privateGate">
+    <div class="gate-box">
+        <h1>Private preview</h1>
+        <p>The collection is currently invitation only.</p>
+        <form id="gateForm" autocomplete="off">
+            <input type="password" id="gatePassword" name="password" placeholder="Password" autocomplete="off" required>
+            <p class="gate-error" id="gateError"></p>
+            <button type="submit">Enter</button>
+        </form>
+        <a href="/" class="gate-close">&larr; Close and return to elsewhere</a>
+    </div>
+</div>
+
+<script>
+(function () {
+    var STORAGE_KEY = 'ecArtistsAccess';
+    var PASSWORD_HASH = '355cf750e11efa1f1fa3446a058643a25f55002e806196d7267186c73e6233ec';
+
+    function sha256(message) {
+        var msgBuffer = new TextEncoder().encode(message);
+        return crypto.subtle.digest('SHA-256', msgBuffer).then(function (hashBuffer) {
+            var hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+        });
+    }
+
+    function unlock() {
+        document.body.classList.remove('gate-locked');
+        var gate = document.getElementById('privateGate');
+        if (gate) gate.remove();
+    }
+
+    if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+        unlock();
+        return;
+    }
+
+    document.getElementById('gateForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = document.getElementById('gatePassword');
+        var errorEl = document.getElementById('gateError');
+        sha256(input.value).then(function (hash) {
+            if (hash === PASSWORD_HASH) {
+                sessionStorage.setItem(STORAGE_KEY, '1');
+                unlock();
+            } else {
+                errorEl.textContent = 'Incorrect password.';
+                input.value = '';
+                input.focus();
+            }
+        });
+    });
+})();
+</script>
+
+<header class="header">
+    <div class="header-container">
+        <a href="/" class="logo">elsewhere</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/about">About</a></li>
+                <li><a href="/artists">Artists</a></li>
+                <li><a href="/spotlight">Gallery</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="page">
+
+    <a href="/artists" class="back-link">&larr; All artists</a>
+
+    <section class="intro">
+        <div class="intro-copy">
+            <h1 class="artist-name">Andrea<br>Rosselli</h1>
+            <p class="artist-location">Lorem, Ipsum</p>
+            <p class="artist-statement">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div class="hero-frame">
+            <img src="images/andrea rosselli/Cantu, 2021.png" alt="Cantu, 2021 — by Andrea Rosselli" loading="lazy" decoding="async">
+            <span class="hero-caption">Cantu, 2021</span>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="about-portrait">
+            <img src="images/andrea rosselli/Untitled, 2024.png" alt="Untitled, 2024 — by Andrea Rosselli" loading="lazy" decoding="async">
+        </div>
+
+        <div class="about-copy">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+            <div class="about-quote">
+                <blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.&rdquo;</blockquote>
+                <cite>Andrea Rosselli</cite>
+            </div>
+        </div>
+
+        <div class="about-detail-wrap">
+            <div class="about-detail">
+                <img src="images/andrea rosselli/Andrea 1.png" alt="Untitled — by Andrea Rosselli" loading="lazy" decoding="async">
+            </div>
+        </div>
+    </section>
+
+    <section class="works-section" id="works">
+        <div class="works-header">
+            <h2>Available works</h2>
+        </div>
+
+        <div class="works-grid">
+            <article class="work-card is-lead">
+                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled.png" data-title="Lorem Ipsum" tabindex="0" role="button" aria-label="View Lorem Ipsum fullscreen">
+                    <img src="images/andrea rosselli/Untitled.png" alt="Lorem Ipsum, by Andrea Rosselli" loading="lazy" decoding="async">
+                </figure>
+                <h3 class="work-title">Lorem Ipsum</h3>
+                <p class="work-year">&nbsp;</p>
+                <p class="work-meta">Silver gelatin print<br>20 &times; 30 cm<br>Edition of 5</p>
+                <p class="work-price">&euro;450</p>
+                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Lorem%20Ipsum&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Lorem%20Ipsum%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+            </article>
+
+            <article class="work-card is-secondary">
+                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled, 2026.png" data-title="Dolor Sit" tabindex="0" role="button" aria-label="View Dolor Sit fullscreen">
+                    <img src="images/andrea rosselli/Untitled, 2026.png" alt="Dolor Sit, by Andrea Rosselli" loading="lazy" decoding="async">
+                </figure>
+                <h3 class="work-title">Dolor Sit</h3>
+                <p class="work-year">&nbsp;</p>
+                <p class="work-meta">Silver gelatin print, FB paper, selenium toned<br>12 &times; 12 cm<br>Edition of 10</p>
+                <p class="work-price">&euro;530</p>
+                <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Dolor%20Sit&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Dolor%20Sit%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+            </article>
+        </div>
+    </section>
+
+</div>
+
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous work">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next work">&#8250;</button>
+    <div class="lightbox-stage">
+        <img id="lightboxImage" src="" alt="">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+</div>
+
+<script>
+(function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImage = document.getElementById('lightboxImage');
+    var lightboxCaption = document.getElementById('lightboxCaption');
+    var closeBtn = document.getElementById('lightboxClose');
+    var prevBtn = document.getElementById('lightboxPrev');
+    var nextBtn = document.getElementById('lightboxNext');
+    var triggers = Array.prototype.slice.call(document.querySelectorAll('.lightbox-trigger'));
+    var currentIndex = 0;
+
+    function renderLightbox() {
+        var trigger = triggers[currentIndex];
+        lightboxImage.classList.remove('is-visible');
+        lightboxImage.src = trigger.getAttribute('data-full');
+        lightboxImage.alt = trigger.getAttribute('data-title') || '';
+        lightboxCaption.textContent = trigger.getAttribute('data-title') || '';
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                lightboxImage.classList.add('is-visible');
+            });
+        });
+    }
+
+    function openLightbox(index) {
+        currentIndex = index;
+        renderLightbox();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxImage.classList.remove('is-visible');
+        document.body.style.overflow = '';
+    }
+
+    function showPrevious() {
+        currentIndex = (currentIndex - 1 + triggers.length) % triggers.length;
+        renderLightbox();
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % triggers.length;
+        renderLightbox();
+    }
+
+    triggers.forEach(function (trigger, index) {
+        trigger.addEventListener('click', function () { openLightbox(index); });
+        trigger.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(index);
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', showPrevious);
+    nextBtn.addEventListener('click', showNext);
+
+    // Hide nav arrows entirely when there's nothing to page between
+    if (triggers.length < 2) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    }
+
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrevious();
+        if (e.key === 'ArrowRight') showNext();
+    });
+})();
+</script>
+</body>
+</html>
