@@ -1555,6 +1555,10 @@
     <script>
         let posts = [];
         let currentIndex = 0;
+        // Touch devices have no meaningful "click the image to navigate" gesture (a
+        // tap is naturally just "look at this", and swipe already handles nav) —
+        // used to gate the image-click navigation added below.
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
         // Resize/compress Cloudinary images to the width they're actually displayed at
         function optimizedUrl(url, width) {
@@ -1739,6 +1743,17 @@
 
         document.getElementById('fullscreenModal').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) closeFullscreen();
+        });
+
+        // Desktop only: clicking the image itself navigates — left half goes to the
+        // previous photo, right half to the next — mirroring the arrow buttons without
+        // requiring them to be aimed at. Skipped on touch devices, where a tap on the
+        // image is more naturally just "look at this" and swipe already handles nav.
+        document.getElementById('fullscreenImage').addEventListener('click', (e) => {
+            if (isTouchDevice) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const clickedLeftHalf = (e.clientX - rect.left) < rect.width / 2;
+            if (clickedLeftHalf) showPrevious(); else showNext();
         });
 
         // Swipe left/right to navigate on touch devices, mirroring the arrow buttons.

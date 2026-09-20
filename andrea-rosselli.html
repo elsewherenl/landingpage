@@ -1202,6 +1202,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var nextBtn = document.getElementById('lightboxNext');
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.lightbox-trigger'));
     var currentIndex = 0;
+    // Touch devices have no meaningful "click the image to navigate" gesture (a tap
+    // is naturally just "look at this", and swipe already handles nav) — used to
+    // gate the image-click navigation added below.
+    var isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
     // The caption's max-width tracks the image's own rendered width so it lines
     // up flush with the image's left edge instead of the wider centered stage.
@@ -1269,6 +1273,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) closeLightbox();
+    });
+
+    // Desktop only: clicking the image itself navigates — left half goes to the
+    // previous work, right half to the next — mirroring the arrow buttons without
+    // requiring them to be aimed at. Skipped on touch devices, where a tap on the
+    // image is more naturally just "look at this" and swipe already handles nav.
+    lightboxImage.addEventListener('click', function (e) {
+        if (isTouchDevice) return;
+        var rect = e.currentTarget.getBoundingClientRect();
+        var clickedLeftHalf = (e.clientX - rect.left) < rect.width / 2;
+        if (clickedLeftHalf) { showPrevious(); } else { showNext(); }
     });
 
     // Swipe left/right to navigate on touch devices, mirroring the arrow buttons.

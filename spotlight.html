@@ -2613,6 +2613,10 @@ Working exclusively with analog methods, process and result sit in balance.</p>
         let posts = [];
         let currentIndex = 0;
         const activeThemes = new Set();
+        // Touch devices have no modifier key and no meaningful "click the image to
+        // navigate" gesture (a tap is naturally just "look at this", and swipe already
+        // handles nav) — used to gate both the image-click nav and theme multi-select.
+        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
         // Populated once posts is fetched — the full set of grid items (post +
         // shuffled display index + real aspect ratio), used both for resize-driven
         // re-packs and for re-packing a filtered subset so a theme filter doesn't
@@ -2905,6 +2909,17 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             if (e.target === e.currentTarget) closeFullscreen();
         });
 
+        // Desktop only: clicking the image itself navigates — left half goes to the
+        // previous photo, right half to the next — mirroring the arrow buttons without
+        // requiring them to be aimed at. Skipped on touch devices, where a tap on the
+        // image is more naturally just "look at this" and swipe already handles nav.
+        document.getElementById('fullscreenImage').addEventListener('click', (e) => {
+            if (isTouchDevice) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const clickedLeftHalf = (e.clientX - rect.left) < rect.width / 2;
+            if (clickedLeftHalf) showPrevious(); else showNext();
+        });
+
         // Swipe left/right to navigate on touch devices, mirroring the arrow buttons.
         // Only treated as a swipe once horizontal movement clearly dominates vertical
         // (so a scroll/drag on a long caption doesn't accidentally flip the image).
@@ -2951,12 +2966,6 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             railBtn.classList.add('active');
             gridBtn.classList.remove('active');
         });
-
-        // Themes support multi-select: a touch device has no modifier key, so every tap
-        // toggles that theme in/out of the active set. A mouse/trackpad device keeps a
-        // plain click as single-select (replace) and reserves Cmd/Ctrl+click for
-        // toggling into a multi-select set, matching familiar file-picker conventions.
-        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
         function updateThemeButtonStates() {
             themeFilter.querySelectorAll('.theme-filter-btn').forEach(b => {
