@@ -127,7 +127,7 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
                     ${col.map(({ post, i, dims }) => `
                         <article class="grid-item" data-index="${i}">
                             <figure>
-                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, imageWidth) || post.image_url)}" alt="${escapeHtml(altText(post))}" width="${dims ? dims.width : ''}" height="${dims ? dims.height : ''}" loading="${i < 4 ? 'eager' : 'lazy'}">
+                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, imageWidth) || post.image_url)}" alt="${escapeHtml(altText(post))}" width="${dims ? dims.width : ''}" height="${dims ? dims.height : ''}" loading="${i < 4 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}>
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">${escapeHtml(post.title || 'Untitled')}</h3>
                                     <p class="a">${escapeHtml(post.artist || '')}</p>

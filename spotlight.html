@@ -684,8 +684,8 @@
 </script>
 
 <!-- FIXED: Correct file paths for Silktide -->
-<link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css">
-<script src="cookie-banner/silktide-consent-manager.js"></script>
+<link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css" media="print" onload="this.media='all'">
+<script src="cookie-banner/silktide-consent-manager.js" defer></script>
 
 <!-- Cookie Banner Configuration -->
 <script>
@@ -1548,7 +1548,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <main>
     <section class="intro">
         <div class="intro-text">
-            <h1 class="page-title">Gallery.</h1>
+            <h1 class="page-title">Gallery</h1>
             <p class="page-subtitle">A selection of contemporary photography shared on <a href="https://www.instagram.com/elsewhere___collective/" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a></p>
         </div>
     </section>
@@ -1969,7 +1969,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                     
                         <article class="grid-item" data-index="0">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" alt="Farewell to Elders — photograph by Mahmoud Khatab" width="500" height="750" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" alt="Farewell to Elders — photograph by Mahmoud Khatab" width="500" height="750" loading="eager" fetchpriority="high">
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">Farewell to Elders</h3>
                                     <p class="a">Mahmoud Khatab</p>
@@ -2472,7 +2472,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                     ${col.map(({ post, i }) => `
                         <article class="grid-item" data-index="${i}">
                             <figure>
-                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)}" alt="${escapeHtml(altText(post))}" loading="${i < 4 ? 'eager' : 'lazy'}">
+                                <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)}" alt="${escapeHtml(altText(post))}" loading="${i < 4 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}>
                                 <figcaption class="grid-item-label">
                                     <h2 class="t">${escapeHtml(post.title || 'Untitled')}</h2>
                                     <p class="a">${escapeHtml(post.artist || '')}</p>
