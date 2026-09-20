@@ -1552,7 +1552,11 @@
                 </div>
             `).join('');
 
-            document.querySelectorAll('.grid-item').forEach(el => {
+            wireGridClicks(gridView);
+        }
+
+        function wireGridClicks(gridView) {
+            gridView.querySelectorAll('.grid-item').forEach(el => {
                 el.addEventListener('click', () => openFullscreen(parseInt(el.dataset.index, 10)));
             });
         }
@@ -1572,12 +1576,24 @@
                     aspectRatio: (post.width && post.height) ? post.width / post.height : 1
                 }));
 
-                renderGrid(gridView, items);
+                // The pre-rendered markup already has the right images in the right
+                // columns for the viewport width generate.js built it for — rebuilding
+                // the grid on every load (even when nothing needs to change) tears down
+                // and recreates every <img>, which is a real layout-shift/CLS cost for
+                // no visual benefit. Just wire up the lightbox on the existing DOM;
+                // only rebuild when a resize actually changes the column count.
+                wireGridClicks(gridView);
+                let lastColumnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
 
                 let resizeTimer;
                 window.addEventListener('resize', () => {
                     clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => renderGrid(gridView, items), 150);
+                    resizeTimer = setTimeout(() => {
+                        const columnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
+                        if (columnCount === lastColumnCount) return;
+                        lastColumnCount = columnCount;
+                        renderGrid(gridView, items);
+                    }, 150);
                 });
             } catch (err) {
                 // Pre-rendered markup is already in the DOM; leave it in place on error
@@ -1586,6 +1602,7 @@
         }
 
         function openFullscreen(index) {
+            if (!posts[index]) return;
             currentIndex = index;
             renderFullscreen();
             document.getElementById('fullscreenModal').classList.add('active');

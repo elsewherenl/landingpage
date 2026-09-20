@@ -2492,7 +2492,11 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                 </div>
             `).join('');
 
-            document.querySelectorAll('.grid-item').forEach(el => {
+            wireGridClicks(gridView);
+        }
+
+        function wireGridClicks(gridView) {
+            gridView.querySelectorAll('.grid-item').forEach(el => {
                 el.addEventListener('click', () => openFullscreen(parseInt(el.dataset.index, 10)));
             });
         }
@@ -2501,31 +2505,46 @@ Working exclusively with analog methods, process and result sit in balance.</p>
         // instagram-feed.json, in the JSON's own order, so crawlers that don't run JS
         // still see real titles/artists/captions instead of "Loading posts…". This
         // function re-fetches the same data to wire up the lightbox and the
-        // resize-driven grid re-pack — it no longer builds the DOM from scratch.
+        // resize-driven grid re-pack.
+        //
+        // The pre-rendered grid is already correct for the viewport generate.js built
+        // it for, so on load we only wire up click listeners on the existing DOM —
+        // fetching instagram-feed.json, probing every image's aspect ratio, and
+        // rebuilding the whole grid immediately on load tears down and recreates every
+        // <img> for no visual benefit, which is a real layout-shift/CLS cost. The full
+        // fetch+probe+rebuild only runs once an actual resize changes the column count.
         async function loadPosts() {
             const rail = document.getElementById('rail');
             const gridView = document.getElementById('gridView');
             try {
-                const res = await fetch('instagram-feed.json');
-                const data = await res.json();
-                posts = data.posts || [];
-
+                wireGridClicks(gridView);
                 document.querySelectorAll('.entry-figure').forEach(el => {
                     el.addEventListener('click', () => openFullscreen(parseInt(el.dataset.index, 10)));
                 });
 
-                const items = await Promise.all(posts.map(async (post, i) => ({
-                    post,
-                    i,
-                    aspectRatio: await probeAspectRatio(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)
-                })));
+                const res = await fetch('instagram-feed.json');
+                const data = await res.json();
+                posts = data.posts || [];
 
-                renderGrid(gridView, items);
+                let lastColumnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
+                let items = null;
 
                 let resizeTimer;
                 window.addEventListener('resize', () => {
                     clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(() => renderGrid(gridView, items), 150);
+                    resizeTimer = setTimeout(async () => {
+                        const columnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
+                        if (columnCount === lastColumnCount) return;
+                        lastColumnCount = columnCount;
+                        if (!items) {
+                            items = await Promise.all(posts.map(async (post, i) => ({
+                                post,
+                                i,
+                                aspectRatio: await probeAspectRatio(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)
+                            })));
+                        }
+                        renderGrid(gridView, items);
+                    }, 150);
                 });
             } catch (err) {
                 // Pre-rendered markup is already in the DOM; leave it in place on error
@@ -2534,6 +2553,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
         }
 
         function openFullscreen(index) {
+            if (!posts[index]) return;
             currentIndex = index;
             renderFullscreen();
             document.getElementById('fullscreenModal').classList.add('active');
