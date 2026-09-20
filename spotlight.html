@@ -2605,6 +2605,11 @@ Working exclusively with analog methods, process and result sit in balance.</p>
         let posts = [];
         let currentIndex = 0;
         const activeThemes = new Set();
+        // Populated once posts is fetched — the full set of grid items (post +
+        // shuffled display index + real aspect ratio), used both for resize-driven
+        // re-packs and for re-packing a filtered subset so a theme filter doesn't
+        // leave one column short while others stay full (see applyThemeFilter).
+        let gridItems = null;
 
         // Resize/compress Cloudinary images to the width they're actually displayed at
         function optimizedUrl(url, width) {
@@ -2734,21 +2739,33 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             `).join('');
 
             wireGridClicks(gridView);
-            applyThemeFilter();
         }
 
-        // Theme filter is a pure show/hide over whichever markup is already in the DOM
-        // (pre-rendered by generate.js, or rebuilt by renderGrid on resize) — it never
-        // re-fetches or re-packs the masonry grid. Untagged posts (no data-theme) stay
-        // visible under every filter, including when specific themes are active, so
-        // nothing vanishes from the gallery just because it hasn't been tagged yet.
-        // activeThemes is empty for "All" (everything visible) rather than a special case.
-        function applyThemeFilter() {
-            document.querySelectorAll('#gridView .grid-item, #rail .entry').forEach(el => {
-                const itemTheme = el.dataset.theme || '';
-                const matches = activeThemes.size === 0 || !itemTheme || activeThemes.has(itemTheme);
-                el.classList.toggle('theme-hidden', !matches);
+        function itemMatchesFilter(theme) {
+            return activeThemes.size === 0 || !theme || activeThemes.has(theme);
+        }
+
+        // The rail is a single flowing column, so hiding non-matching entries in place
+        // never leaves uneven whitespace — a plain show/hide is enough there. The grid
+        // is different: it's pre-packed into fixed columns (see packIntoColumns), so
+        // hiding items in place removes a different number from each column and leaves
+        // the short column's remainder of the row blank beside the taller ones. The
+        // grid is therefore re-packed from scratch over just the matching items every
+        // time the filter changes, rather than show/hidden in place. Untagged posts
+        // (no data-theme) stay visible under every filter, including a specific theme,
+        // so nothing vanishes from the gallery just because it hasn't been tagged yet.
+        async function applyThemeFilter() {
+            document.querySelectorAll('#rail .entry').forEach(el => {
+                el.classList.toggle('theme-hidden', !itemMatchesFilter(el.dataset.theme || ''));
             });
+
+            const gridView = document.getElementById('gridView');
+            if (!gridView) return;
+            if (!gridItems) {
+                gridItems = await buildGridItems();
+            }
+            const visibleItems = gridItems.filter(({ post }) => itemMatchesFilter(post.theme || ''));
+            renderGrid(gridView, visibleItems);
         }
 
         function wireGridClicks(gridView) {
@@ -2769,6 +2786,18 @@ Working exclusively with analog methods, process and result sit in balance.</p>
         // rebuilding the whole grid immediately on load tears down and recreates every
         // <img> for no visual benefit, which is a real layout-shift/CLS cost. The full
         // fetch+probe+rebuild only runs once an actual resize changes the column count.
+        // Matches generate.js's grid shuffle exactly (same seed key), so a
+        // resize-triggered rebuild shows the same order the server pre-rendered.
+        async function buildGridItems() {
+            const gridSeedKey = 'grid:' + posts.map(p => p.id).join(',');
+            const shuffledPosts = seededShuffle(posts, gridSeedKey);
+            return Promise.all(shuffledPosts.map(async post => ({
+                post,
+                i: posts.indexOf(post),
+                aspectRatio: await probeAspectRatio(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)
+            })));
+        }
+
         async function loadPosts() {
             const gridView = document.getElementById('gridView');
             try {
@@ -2790,26 +2819,12 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                 // never rebuilds to the correct column count until a resize crosses a
                 // breakpoint, since the current-vs-last comparison never sees a mismatch.
                 let lastColumnCount = 4;
-                let items = null;
-
-                // Matches generate.js's grid shuffle exactly (same seed key), so a
-                // resize-triggered rebuild shows the same order the server pre-rendered.
-                const gridSeedKey = 'grid:' + posts.map(p => p.id).join(',');
-                const shuffledPosts = seededShuffle(posts, gridSeedKey);
-
-                async function buildItems() {
-                    return Promise.all(shuffledPosts.map(async post => ({
-                        post,
-                        i: posts.indexOf(post),
-                        aspectRatio: await probeAspectRatio(optimizedUrl(post.cloudinary_cropped_url, 500) || post.image_url)
-                    })));
-                }
 
                 const initialColumnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
                 if (initialColumnCount !== lastColumnCount) {
                     lastColumnCount = initialColumnCount;
-                    items = await buildItems();
-                    renderGrid(gridView, items);
+                    gridItems = await buildGridItems();
+                    renderGrid(gridView, gridItems);
                 }
 
                 let resizeTimer;
@@ -2819,10 +2834,10 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                         const columnCount = columnCountForWidth(gridView.clientWidth || window.innerWidth);
                         if (columnCount === lastColumnCount) return;
                         lastColumnCount = columnCount;
-                        if (!items) {
-                            items = await buildItems();
+                        if (!gridItems) {
+                            gridItems = await buildGridItems();
                         }
-                        renderGrid(gridView, items);
+                        renderGrid(gridView, gridItems);
                     }, 150);
                 });
             } catch (err) {
