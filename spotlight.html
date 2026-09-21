@@ -1432,42 +1432,43 @@ document.addEventListener('DOMContentLoaded', function() {
         .fullscreen-next { right: 0.25rem; }
     }
 
-    /* Back-to-top: mobile only (long single-column scroll makes it useful there;
-       desktop's grid is short enough that it isn't). Fades in once the page has
-       scrolled past one viewport height, fades out near the top. */
+    /* Back-to-top: all breakpoints. Fades in once the page has scrolled past
+       one viewport height, fades out near the top. Right offset mirrors the
+       header container (max-width 1600px, 3rem side padding) so the button
+       lines up under "Gallery" in the nav even past the container's cap. */
     .back-to-top {
-        display: none;
+        display: flex;
+        position: fixed;
+        bottom: 1.5rem;
+        right: max(3rem, calc((100vw - 1600px) / 2 + 3rem));
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        background: var(--terracotta-red);
+        color: var(--warm-off-white);
+        font-size: 1.2rem;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+        z-index: 1500;
+        box-shadow: 0 2px 8px rgba(44, 44, 44, 0.2);
+    }
+
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
     /* ─── Mobile ─── */
     @media (max-width: 860px) {
         .back-to-top {
-            display: flex;
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.25rem;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: none;
-            background: var(--terracotta-red);
-            color: var(--warm-off-white);
-            font-size: 1.2rem;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-            z-index: 1500;
-            box-shadow: 0 2px 8px rgba(44, 44, 44, 0.2);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            right: 1.5rem;
         }
 
         .header {

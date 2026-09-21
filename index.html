@@ -1008,12 +1008,14 @@
         }
 
         /* Back-to-top: all breakpoints. Fades in once the page has scrolled past
-           one viewport height, fades out near the top. */
+           one viewport height, fades out near the top. Right offset mirrors the
+           header container (max-width 1600px, 3rem side padding) so the button
+           lines up under "Gallery" in the nav even past the container's cap. */
         .back-to-top {
             display: flex;
             position: fixed;
             bottom: 1.5rem;
-            right: 1.25rem;
+            right: max(3rem, calc((100vw - 1600px) / 2 + 3rem));
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -1040,6 +1042,10 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .back-to-top {
+                right: 1.5rem;
+            }
+
             .header {
                 padding: 1rem 0;
             }
