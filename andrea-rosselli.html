@@ -812,17 +812,45 @@ document.addEventListener('DOMContentLoaded', function() {
             .lightbox-next { right: 0.25rem; }
         }
 
-        /* Custom cursor: terracotta red circle */
+        /* Custom cursor: terracotta red circle that grows smoothly over
+           interactive elements. Rendered as a DOM dot (not a native cursor
+           image) since native cursors can't be transitioned. */
         body {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, auto;
+            cursor: none;
         }
 
         *, *::before, *::after {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, auto !important;
+            cursor: none !important;
         }
 
-        a, button {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%2395392E"/></svg>') 12 12, pointer !important;
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #95392E;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.18s ease, height 0.18s ease;
+            will-change: width, height;
+        }
+
+        .cursor-dot.is-hovering {
+            width: 22px;
+            height: 22px;
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            body, *, *::before, *::after {
+                cursor: auto !important;
+            }
+
+            .cursor-dot {
+                display: none;
+            }
         }
 
         /* Fallback cookie banner (shown only if Silktide fails to load) */
@@ -924,6 +952,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 </head>
 <body class="gate-locked">
+    <div class="cursor-dot" id="cursorDot"></div>
 <style>
     /* Private preview gate (Artists section) */
     #privateGate {
@@ -1312,5 +1341,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })();
 </script>
+    <script>
+        // Custom cursor dot: follows the pointer and grows smoothly over
+        // interactive elements. Skipped entirely on touch/coarse-pointer
+        // devices via the (hover: none) media query above.
+        (function() {
+            const dot = document.getElementById('cursorDot');
+            if (!dot || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+            window.addEventListener('mousemove', (e) => {
+                dot.style.left = e.clientX + 'px';
+                dot.style.top = e.clientY + 'px';
+            });
+
+            document.addEventListener('mouseover', (e) => {
+                const interactive = e.target.closest('a, button, [role="button"], input, textarea, select, label[for], summary');
+                dot.classList.toggle('is-hovering', !!interactive);
+            });
+        })();
+    </script>
 </body>
 </html>
