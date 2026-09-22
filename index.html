@@ -788,7 +788,7 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            padding: clamp(2rem, 8vh, 6rem) clamp(2rem, 10vw, 8rem);
+            padding: clamp(1.5rem, 6vh, 4.5rem) clamp(2rem, 10vw, 8rem);
         }
 
         .fullscreen-modal.active {
@@ -806,7 +806,7 @@
 
         .fullscreen-image {
             max-width: 100%;
-            max-height: min(70vh, calc(100vh - clamp(9rem, 24vh, 14rem)));
+            max-height: min(60vh, calc(100vh - clamp(13rem, 32vh, 18rem)));
             width: auto;
             height: auto;
             object-fit: contain;
@@ -819,7 +819,7 @@
             color: var(--deep-charcoal);
             text-align: left;
             align-self: center;
-            margin-top: 1.25rem;
+            margin-top: clamp(1.75rem, 4vh, 2.75rem);
             width: 100%;
             max-width: var(--fullscreen-image-width, 480px);
             padding: 0;
@@ -852,8 +852,6 @@
             /* SuisseIntl's lightest real weight is 300 (no true lighter face exists);
                opacity stands in for weight to read quieter than the artist line. */
             opacity: 0.75;
-            max-height: 4.8em;
-            overflow-y: auto;
         }
 
         .close-modal {
@@ -1289,8 +1287,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: var(--terracotta-red);
             pointer-events: none;
@@ -1301,8 +1299,8 @@
         }
 
         .cursor-dot.is-hovering {
-            width: 22px;
-            height: 22px;
+            width: 27px;
+            height: 27px;
         }
 
         @media (hover: none), (pointer: coarse) {
