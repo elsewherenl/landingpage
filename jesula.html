@@ -849,7 +849,7 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 20px;
             height: 20px;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 100000;
             margin: -10px 0 0 -10px;
             transform: translate3d(-100px, -100px, 0);
             will-change: transform;
@@ -1088,7 +1088,7 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.8;
     }
 
-    body.gate-locked > *:not(#privateGate) {
+    body.gate-locked > *:not(#privateGate):not(.cursor-dot) {
         display: none !important;
     }
 </style>
