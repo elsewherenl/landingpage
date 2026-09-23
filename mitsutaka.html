@@ -505,6 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
         display: grid;
         grid-template-rows: subgrid;
         grid-row: span 2;
+        row-gap: 0;
     }
 
     .work-caption {
@@ -520,6 +521,14 @@ document.addEventListener('DOMContentLoaded', function() {
         aspect-ratio: 1400 / 1376;
     }
 
+    .work-card.is-third {
+        grid-column: 1;
+    }
+
+    .work-card.is-third figure {
+        aspect-ratio: 4000 / 2252;
+    }
+
     .work-card figure {
         position: relative;
         overflow: hidden;
@@ -528,7 +537,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .work-card img {
-        position: relative;
+        position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
         object-fit: contain;
@@ -1162,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <div class="hero-frame">
-            <img src="images/mitsutaka-tsuryu/Mitsutaka In Transit.jpg" alt="In Transit — by Mitsutaka Tsuryu" loading="lazy" decoding="async">
+            <img src="images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg" alt="In Transit — by Mitsutaka Tsuryu" loading="lazy" decoding="async">
             <span class="hero-caption">In Transit</span>
         </div>
     </section>
@@ -1203,8 +1213,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="work-caption">
                     <h3 class="work-title">Unoccupied</h3>
                     <p class="work-year">&nbsp;</p>
-                    <p class="work-meta">60 &times; 100 cm<br>Hahnem&uuml;hle Fine Art Print<br>Edition of 10</p>
-                    <p class="work-price">&euro;750</p>
+                    <p class="work-meta">50 &times; 28 cm<br>Hahnem&uuml;hle Fine Art Print, 2025<br>Edition of 10</p>
+                    <p class="work-price">&euro;800</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Unoccupied&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Unoccupied%22%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
                 </div>
             </article>
@@ -1216,9 +1226,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="work-caption">
                     <h3 class="work-title">Behind the Veil</h3>
                     <p class="work-year">&nbsp;</p>
-                    <p class="work-meta">60 &times; 60 cm<br>Hahnem&uuml;hle Fine Art Print<br>Edition of 10</p>
-                    <p class="work-price">&euro;550</p>
+                    <p class="work-meta">50 &times; 49 cm<br>Hahnem&uuml;hle Fine Art Print, 2025<br>Edition of 10</p>
+                    <p class="work-price">&euro;800</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Behind%20the%20Veil&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Behind%20the%20Veil%22%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
+            </article>
+
+            <article class="work-card is-third">
+                <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg" data-title="In Transit" tabindex="0" role="button" aria-label="View In Transit fullscreen">
+                    <img src="images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg" alt="In Transit, by Mitsutaka Tsuryu" loading="lazy" decoding="async">
+                </figure>
+                <div class="work-caption">
+                    <h3 class="work-title">In Transit</h3>
+                    <p class="work-year">&nbsp;</p>
+                    <p class="work-meta">50 &times; 28 cm<br>Hahnem&uuml;hle Fine Art Print, 2021<br>Edition of 10</p>
+                    <p class="work-price">&euro;800</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20In%20Transit&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22In%20Transit%22%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
                 </div>
             </article>
         </div>
