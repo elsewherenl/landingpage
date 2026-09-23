@@ -643,18 +643,26 @@
             left: 0;
             width: 20px;
             height: 20px;
-            border-radius: 50%;
-            background: #95392E;
             pointer-events: none;
             z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.18s ease, height 0.18s ease;
-            will-change: width, height;
+            margin: -10px 0 0 -10px;
+            transform: translate3d(-100px, -100px, 0);
+            will-change: transform;
         }
 
-        .cursor-dot.is-hovering {
-            width: 27px;
-            height: 27px;
+        /* Grow is on a pseudo-element so the scale transition never
+           delays the dot's position, which tracks the pointer 1:1. */
+        .cursor-dot::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: #95392E;
+            transition: transform 0.18s ease;
+        }
+
+        .cursor-dot.is-hovering::after {
+            transform: scale(1.35);
         }
 
         @media (hover: none), (pointer: coarse) {
@@ -785,10 +793,19 @@
             const dot = document.getElementById('cursorDot');
             if (!dot || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
+            // Position via a GPU-composited transform, batched to one write
+            // per animation frame, so movement never triggers layout.
+            let x = 0, y = 0, queued = false;
             window.addEventListener('mousemove', (e) => {
-                dot.style.left = e.clientX + 'px';
-                dot.style.top = e.clientY + 'px';
-            });
+                x = e.clientX;
+                y = e.clientY;
+                if (queued) return;
+                queued = true;
+                requestAnimationFrame(() => {
+                    queued = false;
+                    dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                });
+            }, { passive: true });
 
             document.addEventListener('mouseover', (e) => {
                 const interactive = e.target.closest('a, button, [role="button"], input, textarea, select, label[for], summary');
