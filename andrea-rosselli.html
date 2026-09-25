@@ -514,6 +514,14 @@ document.addEventListener('DOMContentLoaded', function() {
         flex-direction: column;
     }
 
+    .work-card.is-third {
+        grid-column: 1;
+    }
+
+    .work-card.is-fourth {
+        grid-column: 2;
+    }
+
     .work-card figure {
         position: relative;
         overflow: hidden;
@@ -535,14 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .work-title {
         font-size: 1.05rem;
         font-weight: 400;
-        margin-bottom: 0.15rem;
-    }
-
-    .work-year {
-        font-size: 0.8rem;
-        font-weight: 300;
-        color: var(--warm-gray);
-        margin-bottom: 0.9rem;
+        margin-bottom: 0.6rem;
     }
 
     .work-meta {
@@ -556,6 +557,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     .work-price {
+        margin-top: auto;
         font-size: 0.95rem;
         font-weight: 500;
         margin-bottom: 1rem;
@@ -1154,8 +1156,8 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <div class="hero-frame">
-            <img src="images/andrea rosselli/Cantu, 2021.png" alt="Cantu, 2021 — by Andrea Rosselli" loading="lazy" decoding="async">
-            <span class="hero-caption">Cantu, 2021</span>
+            <img src="images/andrea rosselli/Cantu, 2021.png" alt="Cant&ugrave;, 2021 — by Andrea Rosselli" loading="lazy" decoding="async">
+            <span class="hero-caption">Cant&ugrave;, 2021</span>
         </div>
     </section>
 
@@ -1189,28 +1191,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="works-grid">
             <article class="work-card is-lead">
-                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled.png" data-title="Lorem Ipsum" tabindex="0" role="button" aria-label="View Lorem Ipsum fullscreen">
-                    <img src="images/andrea rosselli/Untitled.png" alt="Lorem Ipsum, by Andrea Rosselli" loading="lazy" decoding="async">
+                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled.png" data-title="Matera" tabindex="0" role="button" aria-label="View Matera fullscreen">
+                    <img src="images/andrea rosselli/Untitled.png" alt="Matera, by Andrea Rosselli" loading="lazy" decoding="async">
                 </figure>
                 <div class="work-caption">
-                    <h3 class="work-title">Lorem Ipsum</h3>
-                    <p class="work-year">&nbsp;</p>
+                    <h3 class="work-title">Matera</h3>
                     <p class="work-meta">Silver gelatin print<br>20 &times; 30 cm<br>Edition of 5</p>
-                    <p class="work-price">&euro;450</p>
-                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Lorem%20Ipsum&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Lorem%20Ipsum%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                    <p class="work-price">&euro;550</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Matera&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Matera%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
                 </div>
             </article>
 
             <article class="work-card is-secondary">
-                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled, 2026.png" data-title="Dolor Sit" tabindex="0" role="button" aria-label="View Dolor Sit fullscreen">
-                    <img src="images/andrea rosselli/Untitled, 2026.png" alt="Dolor Sit, by Andrea Rosselli" loading="lazy" decoding="async">
+                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Untitled, 2026.png" data-title="A morning walk" tabindex="0" role="button" aria-label="View A morning walk fullscreen">
+                    <img src="images/andrea rosselli/Untitled, 2026.png" alt="A morning walk, by Andrea Rosselli" loading="lazy" decoding="async">
                 </figure>
                 <div class="work-caption">
-                    <h3 class="work-title">Dolor Sit</h3>
-                    <p class="work-year">&nbsp;</p>
+                    <h3 class="work-title">A morning walk</h3>
                     <p class="work-meta">Silver gelatin print, FB paper, selenium toned<br>12 &times; 12 cm<br>Edition of 10</p>
-                    <p class="work-price">&euro;530</p>
-                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Dolor%20Sit&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Dolor%20Sit%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                    <p class="work-price">&euro;450</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20A%20morning%20walk&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22A%20morning%20walk%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
+            </article>
+
+            <article class="work-card is-third">
+                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Cantu, 2021.png" data-title="Cant&ugrave;" tabindex="0" role="button" aria-label="View Cant&ugrave; fullscreen">
+                    <img src="images/andrea rosselli/Cantu, 2021.png" alt="Cant&ugrave;, by Andrea Rosselli" loading="lazy" decoding="async">
+                </figure>
+                <div class="work-caption">
+                    <h3 class="work-title">Cant&ugrave;</h3>
+                    <p class="work-meta">Silver gelatin print, FB paper, selenium toned, 2021<br>12 &times; 18 cm<br>Edition of 25 (24 available)</p>
+                    <p class="work-price">&euro;550</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Cant%C3%B9&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Cant%C3%B9%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
+                </div>
+            </article>
+
+            <article class="work-card is-fourth">
+                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea Rosselli Ballerina.png" data-title="Ballerina" tabindex="0" role="button" aria-label="View Ballerina fullscreen">
+                    <img src="images/andrea rosselli/Andrea Rosselli Ballerina.png" alt="Ballerina, by Andrea Rosselli" loading="lazy" decoding="async">
+                </figure>
+                <div class="work-caption">
+                    <h3 class="work-title">Ballerina</h3>
+                    <p class="work-meta">12 &times; 12 cm<br>Edition of 10 (6 available)</p>
+                    <p class="work-price">&euro;475</p>
+                    <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Ballerina&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20%22Ballerina%22%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
                 </div>
             </article>
         </div>
