@@ -435,11 +435,22 @@
       "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1789929947/Jake_H_dctbae.jpg",
       "title": "Tibetan Country Doctor",
       "artist": "Jake Homovich",
-      "artist_handle": "https://www.instagram.com/valentin.valette/",
+      "artist_handle": "https://www.instagram.com/jake.homovich/",
       "caption": "Tibetan Country Doctor is a long-term documentary project developed through collaboration with Zhaba Gyatso, a rural Tibetan doctor practising in western Sichuan's Garzê Tibetan Autonomous Prefecture. The photographs are annotated by Gyatso, bringing his own experiences and reflections to the work. Far from county hospitals and formal medical infrastructure, the project documents the everyday realities of providing healthcare across remote villages, monasteries and pastoral settlements.",
       "permalink": "https://www.instagram.com/p/DcRJ5a9CJ9n/?img_index=3",
       "timestamp": "20/08/2026",
       "theme": "Cultural Exchange"
+    },
+    {
+      "id": "42",
+      "cloudinary_cropped_url": "https://res.cloudinary.com/dt8k6zzy8/image/upload/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg",
+      "title": "Behind the Veil",
+      "artist": "Mitsutaka Tsuryu",
+      "artist_handle": "https://www.instagram.com/n.takkun.takkun/",
+      "caption": "Mitsutaka's work explores the tension between presence and absence in urban spaces.",
+      "permalink": "https://www.instagram.com/p/DcBMxW4Dpr3/?img_index=1",
+      "timestamp": "14/08/2026",
+      "theme": "Inner Life"
     }
   ]
 }
