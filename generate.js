@@ -321,8 +321,8 @@ function isoDate(date) {
 
 // Rewrites sitemap.xml's <lastmod> for the site's canonical pages using each page's
 // actual on-disk file mtime — index.html/spotlight.html reflect the last generate.js
-// run that changed their content; about.html/cookie-policy.html reflect the last manual
-// edit. Preserves the sitemap's existing <changefreq>/<priority> and URL set as-is.
+// run that changed their content; about.html/cookie-policy.html/mitsutaka.html reflect the last
+// manual edit. Preserves the sitemap's existing <changefreq>/<priority> and URL set as-is.
 function updateSitemap() {
     const sitemapPath = path.join(ROOT, 'sitemap.xml');
     let sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
@@ -331,7 +331,8 @@ function updateSitemap() {
         'https://elsewherecollective.nl/': 'index.html',
         'https://elsewherecollective.nl/about': 'about.html',
         'https://elsewherecollective.nl/spotlight': 'spotlight.html',
-        'https://elsewherecollective.nl/cookie-policy': 'cookie-policy.html'
+        'https://elsewherecollective.nl/cookie-policy': 'cookie-policy.html',
+        'https://elsewherecollective.nl/mitsutaka': 'mitsutaka.html'
     };
 
     for (const [url, fileName] of Object.entries(pageFileByUrl)) {
