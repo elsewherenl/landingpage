@@ -1929,9 +1929,9 @@
             if (!dot || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
             // Position via a GPU-composited transform. The dot eases toward
-            // the pointer (covering ~38% of the gap per 60Hz frame, scaled so
+            // the pointer (covering ~60% of the gap per 60Hz frame, scaled so
             // 120Hz displays feel the same) and the loop idles once it lands.
-            const EASE = 0.38;
+            const EASE = 0.6;
             let tx = 0, ty = 0, x = 0, y = 0, last = 0, running = false, seen = false;
             function tick(now) {
                 const t = 1 - Math.pow(1 - EASE, Math.min(now - last, 64) / (1000 / 60));
