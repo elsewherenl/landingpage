@@ -211,7 +211,8 @@ function renderRailHtml(posts, originalIndexOf) {
                         <div class="entry-meta">
                             <h2 class="entry-title">${escapeHtml(post.title || 'Untitled')}</h2>
                             <p class="entry-artist">${escapeHtml(post.artist || '')}</p>
-                            <p class="entry-caption">${escapeHtml(post.caption || '')}</p>
+                            <p class="entry-caption">${escapeHtml(post.caption || '')}</p>${post.artist_page ? `
+                            <a class="entry-link" href="${escapeHtml(post.artist_page)}">View available works &rarr;</a>` : ''}
                         </div>
                     </article>`).join('');
 }

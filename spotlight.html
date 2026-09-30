@@ -1174,6 +1174,39 @@ document.addEventListener('DOMContentLoaded', function() {
         max-width: 60ch;
     }
 
+    /* Link to a represented artist's page (posts with artist_page in the feed) */
+    .entry-link,
+    .fullscreen-caption .caption-link {
+        display: inline-block;
+        font-family: 'SuisseIntl', sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        color: var(--deep-charcoal);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(44, 44, 44, 0.35);
+        transition: border-color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .entry-link {
+        font-size: 0.95rem;
+        margin-top: 1rem;
+    }
+
+    .fullscreen-caption .caption-link {
+        font-size: 0.8rem;
+        margin-top: 0.8rem;
+    }
+
+    .entry-link:hover,
+    .fullscreen-caption .caption-link:hover {
+        border-bottom-color: var(--deep-charcoal);
+        opacity: 0.7;
+    }
+
+    .fullscreen-caption .caption-link[hidden] {
+        display: none;
+    }
+
     /* ─── Grid / thumbnail view: dense uniform rows ─── */
     /* Masonry packed via JS (shortest-column) — each image keeps its native aspect
        ratio, no cropping, but columns self-level so none finishes early or leaves
@@ -1915,6 +1948,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h2 class="entry-title">Untitled</h2>
                             <p class="entry-artist">Andrea Rosselli</p>
                             <p class="entry-caption"></p>
+                            <a class="entry-link" href="/andrea">View available works &rarr;</a>
                         </div>
                     </article>
                     <article class="entry is-reversed" data-theme="Inner Life">
@@ -1925,6 +1959,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h2 class="entry-title">Behind the Veil</h2>
                             <p class="entry-artist">Mitsutaka Tsuryu</p>
                             <p class="entry-caption">Mitsutaka&#39;s work explores the tension between presence and absence in urban spaces.</p>
+                            <a class="entry-link" href="/mitsutaka">View available works &rarr;</a>
                         </div>
                     </article>
                     <article class="entry " data-theme="Cultural Exchange">
@@ -2669,6 +2704,7 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                 <div class="caption-title" id="captionTitle"></div>
                 <div class="caption-artist" id="captionArtist"></div>
                 <div class="caption-text" id="captionText"></div>
+                <a class="caption-link" id="captionLink" href="#" hidden>View available works &rarr;</a>
             </div>
         </div>
     </div>
@@ -2955,6 +2991,11 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
             document.getElementById('captionArtist').textContent = post.artist || '';
             document.getElementById('captionText').textContent = post.caption;
+
+            // Represented artists (artist_page in the feed) get a link to their page
+            const link = document.getElementById('captionLink');
+            link.hidden = !post.artist_page;
+            link.href = post.artist_page || '#';
         }
 
         function showPrevious() {
