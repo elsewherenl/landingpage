@@ -365,15 +365,23 @@ async function main() {
     }));
     const ratioOf = post => aspectRatioByPostId[post.id] || 1;
 
-    // index.html: homepage preview grid — the same first 12 posts with a non-empty
-    // caption every build (deterministic selection), but shuffled into a different
-    // display order each time generate.js runs (seeded, so re-running with unchanged
-    // data reproduces the same order — writeIfChanged stays a no-op). #gridData is
-    // derived from this same shuffled array, so the client's lightbox/resize-repack
-    // stays in sync with what's actually rendered.
+    // index.html: homepage preview grid — 12 posts with a non-empty caption: the
+    // HOME_NEWEST_COUNT newest (feed is oldest-first, so the last ones), plus a
+    // rotating pick of older ones, then shuffled into display order. Both the pick
+    // and the order are seeded by today's date (see homeSeedKey), so re-running on
+    // the same day is a no-op via writeIfChanged, and a new day rotates both.
+    // #gridData is derived from this same shuffled array, so the client's
+    // lightbox/resize-repack stays in sync with what's actually rendered.
+    const HOME_POST_COUNT = 12;
+    const HOME_NEWEST_COUNT = 4;
     const indexPath = path.join(ROOT, 'index.html');
     let indexHtml = fs.readFileSync(indexPath, 'utf8');
-    const homePostsSelected = allPosts.filter(p => p.caption && p.caption.trim() !== '').slice(0, 12);
+    const captionedPosts = allPosts.filter(p => p.caption && p.caption.trim() !== '');
+    const newestPosts = captionedPosts.slice(-HOME_NEWEST_COUNT);
+    const olderPosts = captionedPosts.slice(0, -HOME_NEWEST_COUNT);
+    const rotatingPosts = seededShuffle(olderPosts, 'home-pick:' + isoDate(new Date()))
+        .slice(0, HOME_POST_COUNT - newestPosts.length);
+    const homePostsSelected = newestPosts.concat(rotatingPosts);
     // Seed includes today's date (not just post ids) so re-running generate.js on a
     // different day gives a visibly different homepage order even when the post set
     // hasn't changed — still deterministic for any given day (re-running today is a
