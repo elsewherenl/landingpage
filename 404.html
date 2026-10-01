@@ -28,6 +28,15 @@
                 return;
             }
 
+            // /artists/ and /Artists 404 on GitHub Pages even though /artists exists.
+            // Retry once without the trailing slash and in lowercase before giving up
+            // on the homepage; the retried path has neither, so this can't loop.
+            const normalizedPath = cleanPath.toLowerCase();
+            if (normalizedPath !== path) {
+                window.location.replace(normalizedPath + window.location.search + window.location.hash);
+                return;
+            }
+
             const targetFile = routes[cleanPath];
             if (!targetFile) {
                 window.location.replace(fallbackPath);
