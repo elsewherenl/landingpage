@@ -3199,5 +3199,29 @@ Working exclusively with analog methods, process and result sit in balance.</p>
             });
         })();
     </script>
+<script>
+    // Analytics events. dataLayer only exists once the visitor has accepted
+    // analytics cookies (see the consent block in <head>), so nothing is sent
+    // without consent. Pushes an Arguments object, same as gtag() does.
+    function trackEvent(name, params) {
+        if (!window.dataLayer) return;
+        (function () { window.dataLayer.push(arguments); })('event', name, Object.assign({ transport_type: 'beacon' }, params));
+    }
+
+    // "View available works" clicks from the Editorial rail or the lightbox
+    // (Reports > Engagement > Events > view_available_works in GA).
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest('a.entry-link, a.caption-link');
+        if (!link) return;
+        var artistEl = link.classList.contains('entry-link')
+            ? link.closest('.entry-meta').querySelector('.entry-artist')
+            : document.getElementById('captionArtist');
+        trackEvent('view_available_works', {
+            artist_name: artistEl ? artistEl.textContent.trim() : '',
+            artist_page: link.getAttribute('href'),
+            source: link.classList.contains('entry-link') ? 'editorial' : 'lightbox'
+        });
+    });
+</script>
 </body>
 </html>

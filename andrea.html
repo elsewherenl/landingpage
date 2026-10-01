@@ -1457,5 +1457,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })();
     </script>
+<script>
+    // Analytics events. dataLayer only exists once the visitor has accepted
+    // analytics cookies (see the consent block in <head>), so nothing is sent
+    // without consent. Pushes an Arguments object, same as gtag() does.
+    function trackEvent(name, params) {
+        if (!window.dataLayer) return;
+        (function () { window.dataLayer.push(arguments); })('event', name, Object.assign({ transport_type: 'beacon' }, params));
+    }
+
+    // Enquire clicks: which work, by which artist (Reports > Engagement > Events
+    // > enquire_click in GA).
+    (function () {
+        var nameEl = document.querySelector('.artist-name');
+        var artist = nameEl ? nameEl.innerText.replace(/\s+/g, ' ').trim() : '';
+        document.querySelectorAll('.enquire-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var card = btn.closest('.work-card');
+                var titleEl = card && card.querySelector('.work-title');
+                var title = titleEl ? titleEl.textContent.replace(/\s*\(\d{4}\)\s*$/, '').trim() : '';
+                trackEvent('enquire_click', { artist_name: artist, artwork_title: title });
+            });
+        });
+    })();
+</script>
 </body>
 </html>
