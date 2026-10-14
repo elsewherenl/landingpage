@@ -229,7 +229,7 @@ function buildSpotlightJsonLd(posts) {
                 "@type": "CollectionPage",
                 "@id": "https://elsewherecollective.nl/spotlight#webpage",
                 "url": "https://elsewherecollective.nl/spotlight",
-                "name": "Spotlight",
+                "name": "Spotlights",
                 "description": "A running edit of photographic work curated by elsewhere collective.",
                 "isPartOf": { "@id": "https://elsewherecollective.nl/#website" },
                 "about": { "@id": "https://elsewherecollective.nl/#organization" },
