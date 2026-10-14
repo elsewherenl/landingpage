@@ -430,6 +430,48 @@
             color: var(--deep-charcoal);
         }
 
+        /* Primary CTA to the artist roster; matches the newsletter Join button */
+        /* 0.8rem + the tagline's 0.4rem margin + the link's 0.3rem top padding
+           = 1.5rem (24px) of visible space above the link text, matching the
+           24px from its underline down to the newsletter line. */
+        .hero-cta {
+            margin-top: 0.8rem;
+        }
+
+        .hero-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--deep-charcoal);
+            color: var(--deep-charcoal);
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            text-decoration: none;
+            transition: color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .hero-cta-link::after {
+            content: '→';
+            transition: transform 0.25s ease;
+        }
+
+        .hero-cta-link:hover {
+            color: var(--terracotta-red);
+            border-color: var(--terracotta-red);
+        }
+
+        .hero-cta-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        .hero-cta-link:focus-visible {
+            outline: 2px solid var(--terracotta-red);
+            outline-offset: 2px;
+        }
+
         .hero-gallery {
             width: 100%;
         }
@@ -518,14 +560,7 @@
             letter-spacing: 0.01em;
         }
 
-        .gallery-more {
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 2rem;
-        }
-
-        .gallery-follow,
-        .gallery-more a {
+        .gallery-explore {
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.95rem;
             font-weight: 300;
@@ -538,20 +573,157 @@
             transition: color 0.25s ease, opacity 0.25s ease;
         }
 
-        .gallery-follow::after,
-        .gallery-more a::after {
+        .gallery-explore::after {
             content: '→';
             transition: transform 0.25s ease;
         }
 
-        .gallery-follow:hover,
-        .gallery-more a:hover {
+        .gallery-explore:hover {
             color: var(--deep-charcoal);
         }
 
-        .gallery-follow:hover::after,
-        .gallery-more a:hover::after {
+        .gallery-explore:hover::after {
             transform: translateX(3px);
+        }
+
+        /* Works available to buy (below the Spotlights grid). Images keep their
+           own aspect ratio, never cropped; works are top-aligned, each caption
+           sitting directly under its image. */
+        .home-works {
+            display: flex;
+            justify-content: center;
+            background: var(--cream-bg);
+            padding: 2rem 0 4rem;
+        }
+
+        .home-works-inner {
+            max-width: 1600px;
+            width: 100%;
+            padding: 0 3rem;
+        }
+
+        .home-works-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-top: 1px solid rgba(44, 44, 44, 0.15);
+            padding-top: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .home-works-title {
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            color: var(--deep-charcoal);
+            margin: 0 0 0.5rem;
+        }
+
+        .home-works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 2rem;
+            row-gap: 3rem;
+            align-items: start;
+        }
+
+        .home-work-image {
+            display: block;
+            margin-bottom: 1.25rem;
+        }
+
+        .home-work-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .home-work-title {
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--deep-charcoal);
+            margin: 0;
+        }
+
+        .home-work-artist {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--deep-charcoal);
+            margin: 0.15rem 0 0;
+        }
+
+        .home-work-edition {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: var(--warm-gray);
+            margin: 0.15rem 0 0;
+        }
+
+        .home-work-price {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--deep-charcoal);
+            margin: 0.15rem 0 0.9rem;
+        }
+
+        .home-works-all,
+        .home-work-link {
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--deep-charcoal);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+            transition: color 0.25s ease;
+        }
+
+        .home-works-all {
+            color: var(--warm-gray);
+        }
+
+        .home-works-all::after,
+        .home-work-link::after {
+            content: '→';
+            transition: transform 0.25s ease;
+        }
+
+        .home-works-all:hover,
+        .home-work-link:hover {
+            color: var(--terracotta-red);
+        }
+
+        .home-works-all:hover::after,
+        .home-work-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        @media (max-width: 768px) {
+            .home-works-inner {
+                padding: 0 1.5rem;
+            }
+
+            .home-works-header {
+                padding-top: 2.5rem;
+            }
+
+            .home-works-title {
+                font-size: 1.4rem;
+            }
+
+            .home-works-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .home-work-image {
+                margin-bottom: 1rem;
+            }
         }
 
         .loading {
@@ -1120,10 +1292,6 @@
                 gap: 0.75rem;
             }
 
-            .gallery-more {
-                justify-content: flex-start;
-            }
-
             .hero-title {
                 font-size: 1.9rem;
                 margin-top: 0;
@@ -1371,6 +1539,9 @@
                     Work with atmosphere that invites contemplation rather than certainty.
                 </p>
             </div>
+            <div class="hero-text hero-cta">
+                <a href="/artists" class="hero-cta-link">Explore artists &amp; available works</a>
+            </div>
             <div class="hero-text hero-signup">
                 <p class="hero-tagline">
                     <span class="hero-tagline-emphasis">First access to elsewhere editions.</span> New artists, available works and upcoming exhibitions.
@@ -1420,7 +1591,7 @@
             <div class="hero-gallery">
                 <div class="gallery-header">
                     <span class="gallery-label">Selected photography</span>
-                    <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener" class="gallery-follow">Follow our curation on Instagram</a>
+                    <a href="/spotlight" class="gallery-explore">View all Spotlights</a>
                 </div>
                 <div class="grid-view" id="gridView">
                 <!-- GENERATED:GRID:START (generated by generate.js from instagram-feed.json — do not edit by hand) -->
@@ -1560,9 +1731,44 @@
                 <!-- GENERATED:GRID:END -->
                 </div>
                 <script type="application/json" id="gridData">[{"title":"Half Remembered, Half Imagined","artist":"Luca Ortis","caption":"Cloud Hidden. Working in cyanotype, landscapes are not precisely reproduced but shaped by chance and the act of making.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1771871847/Luca_O_amlsk2.jpg","width":500,"height":380},{"title":"Les Rochers Fauves","artist":"Clément Chapillon","caption":"Islands and isolation. Contradictory feelings arising from the insularity of Amorgos, Cyclades.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131617/CC_putlzt.png","width":500,"height":400},{"title":"Between Sakura","artist":"Nick Meek","caption":"Visiting nature","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199631/Nick_Meek_ddu2op.jpg","width":500,"height":390},{"title":"Tibetan Country Doctor","artist":"Jake Homovich","caption":"Tibetan Country Doctor is a long-term documentary project developed through collaboration with Zhaba Gyatso, a rural Tibetan doctor practising in western Sichuan's Garzê Tibetan Autonomous Prefecture. The photographs are annotated by Gyatso, bringing his own experiences and reflections to the work. Far from county hospitals and formal medical infrastructure, the project documents the everyday realities of providing healthcare across remote villages, monasteries and pastoral settlements.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1789929947/Jake_H_dctbae.jpg","width":500,"height":730},{"title":"Rhodanie","artist":"Bertrand Stofleth","caption":"Walking the Rhône river from source to sea, Stofleth finds the small and everyday along its grand course.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199621/Betrand_Stofleth_1_2_instli.jpg","width":500,"height":390},{"title":"Woman Carrying Water Buckets in the Snow","artist":"John Peter Askew","caption":"On 8 March 1998, International Women's Day, John Peter Askew stepped outside during village celebrations near Perm, Russia, and encountered a woman carrying water through the snow. Snow falling onto the lens provides an unexpected frame, while the colour of her dress suggests that the hard work might soon give way to a more relaxed evening.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1791561459/image_288_u9dnoc.jpg","width":500,"height":330},{"title":"Hold A Flower in the Palm of Your Hand","artist":"Mario Wong","caption":"Microcosm and macrocosm. Inspired by the Buddhist phrase \"One Flower, One World\", Mario focuses on the inherent harmony and balance found in nature.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765553564/Mario_Wong_for_JSON_yfe6kx.png","width":500,"height":320},{"title":"Of All The Wild Paths","artist":"Claire Amaouche","caption":"I wandered from place to place, from solitude to solitude, trying to grasp their hidden essence. Little by little, it seemed to me that it was not nature itself - eternal, wild, impenetrable - that I was drawing near, but the shifting reflection of my own drifting, and the void at the heart of my existence. Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Claire_A_w9zurb.jpg","width":500,"height":390},{"title":"Behind the Veil","artist":"Mitsutaka Tsuryu","caption":"Mitsutaka's work explores the tension between presence and absence in urban spaces.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg","width":500,"height":490},{"title":"Ice Fishers","artist":"Aleksey Kondratyev","caption":"For generations, Kazakh fishers have set out on the frozen Ishim River. In Ice Fishers, Aleksey Kondratyev traces how this practice intersects with modern global capitalism, as fishers shelter beneath salvaged plastics and packaging from Chinese, Russian, and Western goods.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg","width":500,"height":400},{"title":"Ghost Witness","artist":"Mårten Lange","caption":"Life inside China’s planned metropolises.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792002737/ghost_witness_28__2x_kevirx.jpg","width":500,"height":750},{"title":"I AM NOT HERE","artist":"Antonio Rosato","caption":"Antonio explores the way detachment and alienation shape how we see. The familiar becomes altered and uncertain.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1771349532/I_AM_NOT_HERE_lje91d.jpg","width":500,"height":340}]</script>
-                <div class="gallery-more">
-                    <a href="/spotlight">Explore Spotlights</a>
-                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works available to buy: hand-authored from the artist pages (andrea.html,
+         mitsutaka.html). Keep titles, editions and prices in
+         sync with the matching cards there. Images are never cropped. -->
+    <section class="home-works" aria-labelledby="homeWorksTitle">
+        <div class="home-works-inner">
+            <div class="home-works-header">
+                <h2 class="home-works-title" id="homeWorksTitle">Works available to buy</h2>
+                <a href="/artists" class="home-works-all">View all artists</a>
+            </div>
+            <div class="home-works-grid">
+                <article class="home-work">
+                    <a href="/mitsutaka" class="home-work-image" tabindex="-1" aria-hidden="true">
+                        <img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu" width="1800" height="1021" loading="lazy" decoding="async">
+                    </a>
+                    <div class="home-work-caption">
+                        <h3 class="home-work-title">Unoccupied (2025)</h3>
+                        <p class="home-work-artist">Mitsutaka Tsuryu</p>
+                        <p class="home-work-edition">Edition of 10</p>
+                        <p class="home-work-price">&euro;700</p>
+                        <a href="/mitsutaka" class="home-work-link">Explore all works by Mitsutaka</a>
+                    </div>
+                </article>
+                <article class="home-work">
+                    <a href="/andrea" class="home-work-image" tabindex="-1" aria-hidden="true">
+                        <img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli" width="1800" height="1200" loading="lazy" decoding="async">
+                    </a>
+                    <div class="home-work-caption">
+                        <h3 class="home-work-title">Matera (2022)</h3>
+                        <p class="home-work-artist">Andrea Rosselli</p>
+                        <p class="home-work-edition">Edition of 5</p>
+                        <p class="home-work-price">&euro;550</p>
+                        <a href="/andrea" class="home-work-link">Explore all works by Andrea</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
