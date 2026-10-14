@@ -379,7 +379,7 @@
             justify-content: center;
             position: relative;
             background: var(--cream-bg);
-            padding: var(--page-top-desktop) 0 2rem 0;
+            padding: var(--page-top-desktop) 0 0 0; /* gap below the grid is set by .home-works */
         }
 
         .hero-content {
@@ -589,11 +589,14 @@
         /* Works available to buy (below the Spotlights grid). Images keep their
            own aspect ratio, never cropped; works are top-aligned, each caption
            sitting directly under its image. */
+        /* Equal space between sections: 5rem from the Spotlights grid down to
+           this heading, and 5rem from the last work down to the contact info
+           (4rem padding + the footer's own 1rem top padding). */
         .home-works {
             display: flex;
             justify-content: center;
             background: var(--cream-bg);
-            padding: 2rem 0 4rem;
+            padding: 5rem 0 4rem;
         }
 
         .home-works-inner {
@@ -606,8 +609,6 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            border-top: 1px solid rgba(44, 44, 44, 0.15);
-            padding-top: 3rem;
             margin-bottom: 2rem;
         }
 
@@ -705,12 +706,13 @@
         }
 
         @media (max-width: 768px) {
-            .home-works-inner {
-                padding: 0 1.5rem;
+            /* Phones / tablet portrait: 4rem both ways */
+            .home-works {
+                padding: 4rem 0 3rem;
             }
 
-            .home-works-header {
-                padding-top: 2.5rem;
+            .home-works-inner {
+                padding: 0 1.5rem;
             }
 
             .home-works-title {
@@ -1176,7 +1178,7 @@
             }
 
             .hero {
-                padding-bottom: 1.5rem;
+                padding-bottom: 0;
             }
 
             .hero-intro {
