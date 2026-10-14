@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1rem;
         font-weight: 300;
         color: var(--warm-gray);
-        max-width: 46ch;
+        max-width: 760px; /* same text measure as the homepage hero and Spotlights intro */
     }
 
     /* Grid — same outer box model as .artists-hero (max-width/margin/side
@@ -368,6 +368,16 @@ document.addEventListener('DOMContentLoaded', function() {
         .ec-grid {
             grid-template-columns: repeat(auto-fit, minmax(var(--artists-col-min), 520px));
             column-gap: clamp(4rem, 16vw, 18rem);
+        }
+    }
+
+    /* Tablet landscape / small laptop (e.g. iPad at 1024px): the rule above
+       only fits two tiles from ~1115px, so hold two side by side here with a
+       narrower gap. Portrait tablets below 900px keep one tile per row. */
+    @media (min-width: 900px) and (max-width: 1199px) {
+        .ec-grid {
+            grid-template-columns: repeat(2, minmax(0, 520px));
+            column-gap: clamp(4rem, 8vw, 18rem);
         }
     }
 
