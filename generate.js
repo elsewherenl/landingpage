@@ -429,7 +429,7 @@ async function main() {
     const gridPosts = seededShuffle(allPosts, gridSeedKey);
     const gridAspectRatios = gridPosts.map(ratioOf);
     const gridDimensions = gridAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
-    const gridHtml = renderGridHtml(gridPosts, gridAspectRatios, gridDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 860 }, originalIndexOf);
+    const gridHtml = renderGridHtml(gridPosts, gridAspectRatios, gridDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 768 }, originalIndexOf);
 
     spotlightHtml = replaceBlock(spotlightHtml, 'RAIL', railHtml);
     spotlightHtml = replaceBlock(spotlightHtml, 'GRID', gridHtml);
