@@ -361,6 +361,16 @@ document.addEventListener('DOMContentLoaded', function() {
         row-gap: var(--artists-gutter-y);
     }
 
+    /* Desktop/laptop: tiles keep roughly a third of the width, with a wide gap
+       that scales with the viewport, rather than packing tight and leaving empty
+       tracks on the right while the roster is small. */
+    @media (min-width: 701px) {
+        .ec-grid {
+            grid-template-columns: repeat(auto-fit, minmax(var(--artists-col-min), 520px));
+            column-gap: clamp(4rem, 16vw, 18rem);
+        }
+    }
+
     .artist-tile a {
         display: block;
         text-decoration: none;
