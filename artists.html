@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-style: normal;
         font-display: swap;
     }
+    picture { display: contents; }
 </style>
 
 <style>
@@ -668,7 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/andrea">
                 <div class="thumb-wrapper">
-                    <img class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Photograph by Andrea Rosselli" loading="lazy" decoding="async">
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(100vw - 48px), 520px"><img fetchpriority="high" class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Photograph by Andrea Rosselli" decoding="async" width="1200" height="1800"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Andrea Rosselli</span>
@@ -679,7 +680,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/mitsutaka">
                 <div class="thumb-wrapper">
-                    <img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied — photograph by Mitsutaka Tsuryu" loading="lazy" decoding="async">
+                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), 520px"><img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied — photograph by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1800" height="1021"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Mitsutaka Tsuryu</span>

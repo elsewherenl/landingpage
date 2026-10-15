@@ -410,6 +410,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-style: normal;
         font-display: swap;
     }
+    picture { display: contents; }
 </style>
 
 <style>
@@ -861,6 +862,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .work-card.is-secondary {
             margin-top: 0;
         }
+        .work-card.is-third,
+        .work-card.is-fourth {
+            grid-column: auto;
+        }
     }
 
     @media (max-width: 480px) {
@@ -1193,13 +1198,13 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <div class="hero-frame">
-            <img src="images/andrea rosselli/Andrea_Rosselli_12836_web.jpg" alt="Black and white photograph of sunlit white walls and a balustrade against the sea — by Andrea Rosselli" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12836-480.webp 480w, images/responsive/andrea-rosselli-12836-800.webp 800w, images/responsive/andrea-rosselli-12836-1200.webp 1200w, images/responsive/andrea-rosselli-12836-1600.webp 1600w, images/responsive/andrea-rosselli-12836-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 96px), (max-width: 1600px) 64vw, 1070px"><img fetchpriority="high" src="images/andrea rosselli/Andrea_Rosselli_12836_web.jpg" alt="Black and white photograph of sunlit white walls and a balustrade against the sea — by Andrea Rosselli" decoding="async" width="1800" height="1244"></picture>
         </div>
     </section>
 
     <section class="about-section" id="about">
         <div class="about-portrait">
-            <img src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Untitled — by Andrea Rosselli" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(100vw - 48px), 440px"><img src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Untitled — by Andrea Rosselli" loading="lazy" decoding="async" width="1200" height="1800"></picture>
         </div>
 
         <div class="about-copy">
@@ -1215,7 +1220,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="about-detail-wrap">
             <div class="about-detail">
-                <img src="images/andrea rosselli/Andrea_Rosselli_Portrait_web.jpg" alt="Portrait of Andrea Rosselli" loading="lazy" decoding="async">
+                <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-portrait-480.webp 480w, images/responsive/andrea-rosselli-portrait-800.webp 800w, images/responsive/andrea-rosselli-portrait-1200.webp 1200w, images/responsive/andrea-rosselli-portrait-1600.webp 1600w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1100px) 220px, 380px"><img src="images/andrea rosselli/Andrea_Rosselli_Portrait_web.jpg" alt="Portrait of Andrea Rosselli" loading="lazy" decoding="async" width="1600" height="1600"></picture>
             </div>
         </div>
     </section>
@@ -1228,7 +1233,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="works-grid">
             <article class="work-card is-lead">
                 <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" data-title="Matera" tabindex="0" role="button" aria-label="View Matera fullscreen">
-                    <img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli" loading="lazy" decoding="async">
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1200"></picture>
                 </figure>
                 <div class="work-caption">
                     <h3 class="work-title">Matera (2022)</h3>
@@ -1240,7 +1245,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <article class="work-card is-secondary">
                 <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg" data-title="Di passaggio" tabindex="0" role="button" aria-label="View Di passaggio fullscreen">
-                    <img src="images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg" alt="Di passaggio, by Andrea Rosselli" loading="lazy" decoding="async">
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-di-passaggio-480.webp 480w, images/responsive/andrea-rosselli-di-passaggio-800.webp 800w, images/responsive/andrea-rosselli-di-passaggio-1200.webp 1200w, images/responsive/andrea-rosselli-di-passaggio-1600.webp 1600w, images/responsive/andrea-rosselli-di-passaggio-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg" alt="Di passaggio, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1800"></picture>
                 </figure>
                 <div class="work-caption">
                     <h3 class="work-title">Di passaggio (2021)</h3>
@@ -1252,7 +1257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <article class="work-card is-third">
                 <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg" data-title="Basilica di Galliano, Cant&ugrave;" tabindex="0" role="button" aria-label="View Basilica di Galliano, Cant&ugrave; fullscreen">
-                    <img src="images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg" alt="Basilica di Galliano, Cant&ugrave;, by Andrea Rosselli" loading="lazy" decoding="async">
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-basilica-di-galliano-480.webp 480w, images/responsive/andrea-rosselli-basilica-di-galliano-800.webp 800w, images/responsive/andrea-rosselli-basilica-di-galliano-1200.webp 1200w, images/responsive/andrea-rosselli-basilica-di-galliano-1600.webp 1600w, images/responsive/andrea-rosselli-basilica-di-galliano-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg" alt="Basilica di Galliano, Cant&ugrave;, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1200"></picture>
                 </figure>
                 <div class="work-caption">
                     <h3 class="work-title">Basilica di Galliano, Cant&ugrave; (2021)</h3>
@@ -1264,7 +1269,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <article class="work-card is-fourth">
                 <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg" data-title="Ballerina" tabindex="0" role="button" aria-label="View Ballerina fullscreen">
-                    <img src="images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg" alt="Ballerina, by Andrea Rosselli" loading="lazy" decoding="async">
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-ballerina-480.webp 480w, images/responsive/andrea-rosselli-ballerina-800.webp 800w, images/responsive/andrea-rosselli-ballerina-1200.webp 1200w, images/responsive/andrea-rosselli-ballerina-1600.webp 1600w, images/responsive/andrea-rosselli-ballerina-1799.webp 1799w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg" alt="Ballerina, by Andrea Rosselli" loading="lazy" decoding="async" width="1799" height="1800"></picture>
                 </figure>
                 <div class="work-caption">
                     <h3 class="work-title">Ballerina (2019)</h3>
