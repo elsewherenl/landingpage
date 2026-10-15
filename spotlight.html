@@ -936,6 +936,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --cream-bg: #F3EFE9;
         --deep-charcoal: #2C2C2C;
         --warm-gray: #8A8580;
+        --text-muted: #6F6B67;
         --warm-off-white: #FDFCF8;
         --terracotta-red: #95392E;
         --page-top-desktop: 7.25rem;
@@ -1058,7 +1059,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .page-subtitle {
         font-size: 1rem;
         font-weight: 300;
-        color: var(--warm-gray);
+        color: var(--text-muted);
         margin: 0;
     }
 
@@ -1068,7 +1069,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .page-subtitle a {
         color: var(--terracotta-red);
-        text-decoration: none;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
         transition: opacity 0.25s ease, color 0.25s ease;
     }
 
@@ -1117,7 +1120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: inherit;
         font-size: 0.9rem;
         letter-spacing: 0.02em;
-        color: rgba(44, 44, 44, 0.45);
+        color: rgba(44, 44, 44, 0.67);
         cursor: pointer;
         padding: 0.25rem 0;
         transition: color 0.25s ease;
@@ -1140,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 0.75rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: rgba(44, 44, 44, 0.4);
+        color: rgba(44, 44, 44, 0.67);
         flex-shrink: 0;
         min-width: 4.5rem;
     }
@@ -1158,7 +1161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: inherit;
         font-size: 0.9rem;
         letter-spacing: 0.02em;
-        color: rgba(44, 44, 44, 0.45);
+        color: rgba(44, 44, 44, 0.67);
         cursor: pointer;
         padding: 0.25rem 0;
         transition: color 0.25s ease;
@@ -1248,7 +1251,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .entry-artist {
         font-size: 1rem;
         font-weight: 300;
-        color: var(--warm-gray);
+        color: var(--text-muted);
         margin-bottom: 1rem;
     }
 
@@ -1258,7 +1261,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1rem;
         font-weight: 300;
         line-height: 1.6;
-        color: rgba(44, 44, 44, 0.65);
+        color: rgba(44, 44, 44, 0.68);
         max-width: 60ch;
     }
 
@@ -1363,13 +1366,13 @@ document.addEventListener('DOMContentLoaded', function() {
         font-family: 'SuisseIntl', sans-serif;
         font-size: 0.78rem;
         font-weight: 300;
-        color: var(--warm-gray);
+        color: var(--text-muted);
     }
 
     .loading {
         font-family: 'SuisseIntl', sans-serif;
         font-size: 0.95rem;
-        color: var(--warm-gray);
+        color: var(--text-muted);
         padding: 2rem 0;
     }
 
@@ -1399,7 +1402,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .contact-links a {
         font-size: 1rem;
         font-weight: 300;
-        color: var(--warm-gray);
+        color: var(--text-muted);
         text-decoration: none;
         letter-spacing: 0.02em;
         transition: color 0.3s ease, opacity 0.3s ease;
@@ -1474,7 +1477,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-weight: 300;
         letter-spacing: 0.02em;
         margin-bottom: 0;
-        color: var(--warm-gray);
+        color: var(--text-muted);
     }
 
     .fullscreen-caption .caption-text {
@@ -1484,7 +1487,7 @@ document.addEventListener('DOMContentLoaded', function() {
         line-height: 1.6;
         letter-spacing: 0.01em;
         margin-top: 0.6rem;
-        color: var(--warm-gray);
+        color: var(--text-muted);
         /* SuisseIntl's lightest real weight is 300 (no true lighter face exists);
            opacity stands in for weight to read quieter than the artist line. */
         opacity: 0.75;

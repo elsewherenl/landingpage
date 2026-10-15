@@ -260,6 +260,8 @@ document.addEventListener('DOMContentLoaded', function() {
         --cream-bg: #F3EFE9;
         --deep-charcoal: #2C2C2C;
         --warm-gray: #8A8580;
+        --text-muted: #6F6B67;
+        --terracotta-text: #8D614E;
         --warm-off-white: #FDFCF8;
         --biscuit-gold: #D6B370;
         --khaki: #C0B589;
@@ -338,7 +340,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .nav-menu a:hover,
     .nav-menu a.active {
-        opacity: 0.5;
         color: var(--deep-charcoal);
     }
 
@@ -355,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-weight: 300;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--soft-terracotta);
+        color: var(--terracotta-text);
         margin-bottom: 1rem;
     }
 
@@ -381,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .artists-hero p {
         font-size: 1rem;
         font-weight: 300;
-        color: var(--warm-gray);
+        color: var(--text-muted);
         max-width: 760px; /* same text measure as the homepage hero and Spotlights intro */
     }
 
@@ -474,13 +475,13 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 0.85rem;
         font-weight: 300;
         letter-spacing: 0.04em;
-        color: var(--warm-gray);
+        color: var(--text-muted);
         white-space: nowrap;
     }
 
     .artist-tile a:hover .artist-name,
     .artist-tile a:focus-visible .artist-name {
-        color: var(--soft-terracotta);
+        color: var(--terracotta-text);
     }
 
     @media (max-width: 700px) {

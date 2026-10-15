@@ -14,6 +14,9 @@
               --boxShadow: -5px 5px 10px 0px #00000012, 0px 0px 50px 0px #0000001a;
               --fontFamily: 'SuisseIntl', Helvetica Neue, Segoe UI, Arial, sans-serif;
               --primaryColor: #A8493D;
+              /* Soft terracotta: links and the Settings button sit on the dark banner,
+                 where --primaryColor text only reaches 2.5:1 contrast. */
+              --linkOnDarkColor: #C4A394;
               --backgroundColor: #2c2c2c;
               --textColor: #fdfcf8;
               --backdropBackgroundColor: #2C2C2C4d;
@@ -51,7 +54,7 @@
 #silktide-wrapper a {
   all: unset;
   display: inline-block;
-  color: var(--primaryColor);
+  color: var(--linkOnDarkColor);
   text-decoration: underline;
 }
 
@@ -172,7 +175,7 @@
   border: none;
   padding: 15px 0px;
   background-color: transparent;
-  color: var(--primaryColor);
+  color: var(--linkOnDarkColor);
   cursor: pointer;
   font-size: 16px;
 }
@@ -202,7 +205,7 @@
 
 #silktide-banner a {
   display: inline-block;
-  color: var(--primaryColor);
+  color: var(--linkOnDarkColor);
   text-decoration: underline;
   background-color: var(--backgroundColor);
 }
