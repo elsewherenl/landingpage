@@ -144,9 +144,9 @@ function seededShuffle(items, seedKey) {
     return result;
 }
 
-// Mirrors packIntoColumns() in the client JS: shortest-column masonry using each
-// post's aspect ratio, so the build-time pack matches what the client renders on
-// first paint (before any resize-triggered re-pack runs).
+// Mirrors packIntoColumns() in spotlight.html's client JS (used when the theme
+// filter re-packs the grid): shortest-column masonry using each post's aspect
+// ratio, so a filtered re-pack lays posts out the same way the build does.
 function packIntoColumns(items, columnCount) {
     const columns = Array.from({ length: columnCount }, () => []);
     const heights = new Array(columnCount).fill(0);
@@ -170,7 +170,12 @@ function packIntoColumns(items, columnCount) {
 // Defaults to the identity mapping (posts[i] -> i) when the display order already
 // matches the fetch order, e.g. index.html's #gridData is built from this same
 // shuffled array, so no remapping is needed there.
-function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCount, mobileBreakpoint }, originalIndexOf) {
+//
+// The grid is rendered twice, packed for 4 columns and for 2: CSS shows the
+// layout that matches the viewport (.grid-layout--2 at <= mobileBreakpoint), so
+// the page never re-packs on load or resize and nothing shifts once painted.
+// Both copies use identical image URLs, so each image only downloads once.
+function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, mobileBreakpoint }, originalIndexOf) {
     const indexOf = originalIndexOf || ((post, i) => i);
     const items = posts.map((post, i) => ({
         post,
@@ -180,9 +185,8 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
         dims: dimensions[i] || null,
         aspectRatio: aspectRatios[i] || 1
     }));
-    const columns = packIntoColumns(items, columnCount);
-
-    return columns.map(col => `
+    return [4, 2].map(columnCount => `
+                <div class="grid-layout grid-layout--${columnCount}">${packIntoColumns(items, columnCount).map(col => `
                 <div class="grid-col">
                     ${col.map(({ post, dataIndex, isEarly, isFirst, dims }) => `
                         <article class="grid-item" data-index="${dataIndex}" data-theme="${escapeHtml(post.theme || '')}">
@@ -195,6 +199,7 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, columnCou
                             </figure>
                         </article>
                     `).join('')}
+                </div>`).join('')}
                 </div>`).join('');
 }
 
@@ -391,7 +396,7 @@ async function main() {
     const homeAspectRatios = homePosts.map(ratioOf);
     const homeDimensions = homeAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
 
-    const homeGridHtml = renderGridHtml(homePosts, homeAspectRatios, homeDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 768 });
+    const homeGridHtml = renderGridHtml(homePosts, homeAspectRatios, homeDimensions, { imageWidth: 500, mobileBreakpoint: 768 });
     indexHtml = replaceBlock(indexHtml, 'GRID', homeGridHtml);
 
     const gridData = homePosts.map((post, i) => {
@@ -429,7 +434,7 @@ async function main() {
     const gridPosts = seededShuffle(allPosts, gridSeedKey);
     const gridAspectRatios = gridPosts.map(ratioOf);
     const gridDimensions = gridAspectRatios.map(ratio => dimensionsForRatio(ratio, 500));
-    const gridHtml = renderGridHtml(gridPosts, gridAspectRatios, gridDimensions, { imageWidth: 500, columnCount: 4, mobileBreakpoint: 768 }, originalIndexOf);
+    const gridHtml = renderGridHtml(gridPosts, gridAspectRatios, gridDimensions, { imageWidth: 500, mobileBreakpoint: 768 }, originalIndexOf);
 
     spotlightHtml = replaceBlock(spotlightHtml, 'RAIL', railHtml);
     spotlightHtml = replaceBlock(spotlightHtml, 'GRID', gridHtml);

@@ -805,10 +805,25 @@ class SilktideCookieBanner {
     }
   }
 
-  function initCookieBanner() {
-    if (!cookieBanner) {
-      cookieBanner = new SilktideCookieBanner(config); // Pass config to the CookieBanner instance
+  // Pages load the stylesheet asynchronously (media="print", swapped to "all" on
+  // load). Building the banner before it applies leaves it unstyled in the page
+  // flow for a moment, pushing the whole page down and back: a large layout shift.
+  function whenStylesReady(callback) {
+    const link = document.getElementById('silktide-consent-manager-css');
+    if (!link || link.media !== 'print') {
+      callback();
+      return;
     }
+    link.addEventListener('load', callback, {once: true});
+    link.addEventListener('error', callback, {once: true});
+  }
+
+  function initCookieBanner() {
+    whenStylesReady(() => {
+      if (!cookieBanner) {
+        cookieBanner = new SilktideCookieBanner(config); // Pass config to the CookieBanner instance
+      }
+    });
   }
 
   function injectScript(url, loadOption) {
