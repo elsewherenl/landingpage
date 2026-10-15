@@ -6,7 +6,7 @@
 
 <!-- Primary Meta Tags -->
 <title>artists | elsewhere</title>
-<meta name="description" content="Photographers represented by elsewhere, with limited edition prints available to buy — including Andrea Rosselli and Mitsutaka Tsuryu.">
+<meta name="description" content="Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="photographers for sale, buy photography Amsterdam, emerging photographers, contemporary photography artists, photography collective, art discovery">
 
@@ -18,15 +18,57 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://elsewherecollective.nl/artists">
 <meta property="og:title" content="artists | elsewhere">
-<meta property="og:description" content="Photographers represented by elsewhere, with limited edition prints available to buy — including Andrea Rosselli and Mitsutaka Tsuryu.">
+<meta property="og:description" content="Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.">
 <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://elsewherecollective.nl/artists">
 <meta property="twitter:title" content="artists | elsewhere">
-<meta property="twitter:description" content="Photographers represented by elsewhere, with limited edition prints available to buy — including Andrea Rosselli and Mitsutaka Tsuryu.">
+<meta property="twitter:description" content="Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.">
 <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "CollectionPage",
+            "@id": "https://elsewherecollective.nl/artists#webpage",
+            "url": "https://elsewherecollective.nl/artists",
+            "name": "artists | elsewhere",
+            "description": "Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.",
+            "isPartOf": { "@id": "https://elsewherecollective.nl/#website" },
+            "about": { "@id": "https://elsewherecollective.nl/#organization" },
+            "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "item": {
+                            "@type": "Person",
+                            "@id": "https://elsewherecollective.nl/andrea#person",
+                            "name": "Andrea Rosselli",
+                            "url": "https://elsewherecollective.nl/andrea"
+                        }
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "item": {
+                            "@type": "Person",
+                            "@id": "https://elsewherecollective.nl/mitsutaka#person",
+                            "name": "Mitsutaka Tsuryu",
+                            "url": "https://elsewherecollective.nl/mitsutaka"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
+</script>
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="favicon.png">
@@ -104,11 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 banner: {
                     description: "<p>We use cookies to analyse site usage and improve your experience. <a href=\"https://elsewherecollective.nl/cookie-policy\" target=\"_blank\">Cookie Policy.</a></p>",
                     acceptAllButtonText: "OK",
-                    acceptAllButtonAccessibleLabel: "Accept all cookies",
+                    acceptAllButtonAccessibleLabel: "OK, accept all cookies",
                     rejectNonEssentialButtonText: "Essential Only",
-                    rejectNonEssentialButtonAccessibleLabel: "Essential cookies only",
+                    rejectNonEssentialButtonAccessibleLabel: "Essential only: reject optional cookies",
                     preferencesButtonText: "Settings",
-                    preferencesButtonAccessibleLabel: "Cookie preferences"
+                    preferencesButtonAccessibleLabel: "Cookie settings"
                 },
                 preferences: {
                     title: "Cookie Settings",

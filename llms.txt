@@ -68,8 +68,14 @@ Contemporary landscape and environmental photography exploring nature, place and
 ## Discover elsewhere
 
 - [Official website](https://elsewherecollective.nl/): The official website of elsewhere.
-- [About elsewhere](https://elsewherecollective.nl/about.html): Information about elsewhere and its curatorial approach.
-- [Gallery](https://elsewherecollective.nl/spotlight.html): Contemporary photography selected and presented by elsewhere.
+- [About elsewhere](https://elsewherecollective.nl/about): Information about elsewhere and its curatorial approach.
+- [Spotlights](https://elsewherecollective.nl/spotlight): An ongoing series of contemporary photographers and works selected by elsewhere, with editorial context.
+- [Artists](https://elsewherecollective.nl/artists): Photographers working with elsewhere, with limited-edition prints available to buy.
+
+## Artists and available works
+
+- [Andrea Rosselli](https://elsewherecollective.nl/andrea): Italian analogue photographer. Hand-printed silver gelatin prints in limited editions.
+- [Mitsutaka Tsuryu](https://elsewherecollective.nl/mitsutaka): Fine art and street photography exploring presence and absence in urban spaces. Hahnemühle fine art prints in limited editions.
 
 ## Location
 
