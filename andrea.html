@@ -735,6 +735,53 @@ document.addEventListener('DOMContentLoaded', function() {
         margin-bottom: 1.1rem;
     }
 
+    /* Works with a framed-on-a-wall photo: the figure sits in .work-media with
+       a "View on wall" button over its bottom-right corner. The button is a
+       sibling of the figure, not inside it, since the figure is itself a
+       role="button" and buttons can't nest. */
+    .work-media {
+        position: relative;
+        margin-bottom: 1.1rem;
+    }
+
+    .work-media figure {
+        margin-bottom: 0;
+    }
+
+    .wall-btn {
+        position: absolute;
+        right: 0.9rem;
+        bottom: 0.9rem;
+        z-index: 1;
+        padding: 0.5rem 0.8rem;
+        border: none;
+        border-radius: 0;
+        background: rgba(243, 239, 233, 0.94);
+        color: var(--deep-charcoal);
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .wall-btn:hover {
+        background: var(--warm-off-white);
+    }
+
+    /* Keyboard focus ring only; a mouse click shouldn't leave an outline */
+    .lightbox-trigger:focus,
+    .wall-btn:focus {
+        outline: none;
+    }
+
+    .lightbox-trigger:focus-visible,
+    .wall-btn:focus-visible {
+        outline: 2px solid var(--deep-charcoal);
+        outline-offset: 3px;
+    }
+
     .work-card img {
         position: relative;
         width: 100%;
@@ -933,17 +980,59 @@ document.addEventListener('DOMContentLoaded', function() {
             transform: scale(1);
         }
 
-        .lightbox-caption {
+        .lightbox-meta {
             margin-top: 1.25rem;
+            align-self: center;
+            width: 100%;
+            max-width: var(--lightbox-image-width, 480px);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .lightbox-caption {
             color: var(--deep-charcoal);
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 0.04em;
             text-align: left;
-            align-self: center;
-            width: 100%;
-            max-width: var(--lightbox-image-width, 480px);
+        }
+
+        /* Print / On wall switch, shown only for works with a wall photo */
+        .lightbox-view-toggle {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .lightbox-view-toggle[hidden] {
+            display: none;
+        }
+
+        .lightbox-view-toggle button {
+            padding: 0 0 0.15rem;
+            border: none;
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            background: none;
+            color: var(--text-muted);
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .lightbox-view-toggle button:hover {
+            color: var(--deep-charcoal);
+        }
+
+        .lightbox-view-toggle button[aria-pressed="true"] {
+            color: var(--deep-charcoal);
+            border-bottom-color: var(--deep-charcoal);
         }
 
         .lightbox-close {
@@ -1010,6 +1099,13 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (max-width: 768px) {
             .lightbox {
                 padding: 1.25rem;
+            }
+
+            .wall-btn {
+                right: 0.6rem;
+                bottom: 0.6rem;
+                padding: 0.4rem 0.65rem;
+                font-size: 0.8rem;
             }
 
             .lightbox-stage img {
@@ -1234,9 +1330,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="works-grid">
             <article class="work-card is-lead">
-                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" data-title="Matera" tabindex="0" role="button" aria-label="View Matera fullscreen">
-                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1200"></picture>
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" data-wall="images/wall/andrea-rosselli-matera.webp" data-title="Matera" tabindex="0" role="button" aria-label="View Matera fullscreen">
+                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1200"></picture>
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Matera framed on a wall">View on wall <span aria-hidden="true">&#8599;</span></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Matera (2022)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2026 &middot; 30 &times; 20 cm<br>Edition of 5</p>
@@ -1246,9 +1345,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </article>
 
             <article class="work-card is-secondary">
-                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg" data-title="Di passaggio" tabindex="0" role="button" aria-label="View Di passaggio fullscreen">
-                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-di-passaggio-480.webp 480w, images/responsive/andrea-rosselli-di-passaggio-800.webp 800w, images/responsive/andrea-rosselli-di-passaggio-1200.webp 1200w, images/responsive/andrea-rosselli-di-passaggio-1600.webp 1600w, images/responsive/andrea-rosselli-di-passaggio-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg" alt="Di passaggio, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1800"></picture>
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg" data-wall="images/wall/andrea-rosselli-di-passaggio.webp" data-title="Di passaggio" tabindex="0" role="button" aria-label="View Di passaggio fullscreen">
+                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-di-passaggio-480.webp 480w, images/responsive/andrea-rosselli-di-passaggio-800.webp 800w, images/responsive/andrea-rosselli-di-passaggio-1200.webp 1200w, images/responsive/andrea-rosselli-di-passaggio-1600.webp 1600w, images/responsive/andrea-rosselli-di-passaggio-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg" alt="Di passaggio, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1800"></picture>
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Di passaggio framed on a wall">View on wall <span aria-hidden="true">&#8599;</span></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Di passaggio (2021)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2026 &middot; 12 &times; 12 cm<br>Edition of 15</p>
@@ -1258,9 +1360,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </article>
 
             <article class="work-card is-third">
-                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg" data-title="Basilica di Galliano, Cant&ugrave;" tabindex="0" role="button" aria-label="View Basilica di Galliano, Cant&ugrave; fullscreen">
-                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-basilica-di-galliano-480.webp 480w, images/responsive/andrea-rosselli-basilica-di-galliano-800.webp 800w, images/responsive/andrea-rosselli-basilica-di-galliano-1200.webp 1200w, images/responsive/andrea-rosselli-basilica-di-galliano-1600.webp 1600w, images/responsive/andrea-rosselli-basilica-di-galliano-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg" alt="Basilica di Galliano, Cant&ugrave;, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1200"></picture>
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg" data-wall="images/wall/andrea-rosselli-basilica-di-galliano.webp" data-title="Basilica di Galliano, Cant&ugrave;" tabindex="0" role="button" aria-label="View Basilica di Galliano, Cant&ugrave; fullscreen">
+                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-basilica-di-galliano-480.webp 480w, images/responsive/andrea-rosselli-basilica-di-galliano-800.webp 800w, images/responsive/andrea-rosselli-basilica-di-galliano-1200.webp 1200w, images/responsive/andrea-rosselli-basilica-di-galliano-1600.webp 1600w, images/responsive/andrea-rosselli-basilica-di-galliano-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg" alt="Basilica di Galliano, Cant&ugrave;, by Andrea Rosselli" loading="lazy" decoding="async" width="1800" height="1200"></picture>
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Basilica di Galliano, Cant&ugrave; framed on a wall">View on wall <span aria-hidden="true">&#8599;</span></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Basilica di Galliano, Cant&ugrave; (2021)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2025 &middot; 12 &times; 18 cm<br>Edition of 25 (24 available)</p>
@@ -1270,9 +1375,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </article>
 
             <article class="work-card is-fourth">
-                <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg" data-title="Ballerina" tabindex="0" role="button" aria-label="View Ballerina fullscreen">
-                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-ballerina-480.webp 480w, images/responsive/andrea-rosselli-ballerina-800.webp 800w, images/responsive/andrea-rosselli-ballerina-1200.webp 1200w, images/responsive/andrea-rosselli-ballerina-1600.webp 1600w, images/responsive/andrea-rosselli-ballerina-1799.webp 1799w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg" alt="Ballerina, by Andrea Rosselli" loading="lazy" decoding="async" width="1799" height="1800"></picture>
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg" data-wall="images/wall/andrea-rosselli-ballerina.webp" data-title="Ballerina" tabindex="0" role="button" aria-label="View Ballerina fullscreen">
+                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-ballerina-480.webp 480w, images/responsive/andrea-rosselli-ballerina-800.webp 800w, images/responsive/andrea-rosselli-ballerina-1200.webp 1200w, images/responsive/andrea-rosselli-ballerina-1600.webp 1600w, images/responsive/andrea-rosselli-ballerina-1799.webp 1799w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg" alt="Ballerina, by Andrea Rosselli" loading="lazy" decoding="async" width="1799" height="1800"></picture>
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Ballerina framed on a wall">View on wall <span aria-hidden="true">&#8599;</span></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Ballerina (2019)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2025 &middot; 12 &times; 12 cm<br>Edition of 10 (6 available)</p>
@@ -1291,7 +1399,13 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next work">&#8250;</button>
     <div class="lightbox-stage">
         <img id="lightboxImage" src="" alt="">
-        <p class="lightbox-caption" id="lightboxCaption"></p>
+        <div class="lightbox-meta">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+            <div class="lightbox-view-toggle" id="lightboxViewToggle" role="group" aria-label="View" hidden>
+                <button type="button" data-view="print" aria-pressed="true">Print</button>
+                <button type="button" data-view="wall" aria-pressed="false">On wall</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -1305,7 +1419,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var prevBtn = document.getElementById('lightboxPrev');
     var nextBtn = document.getElementById('lightboxNext');
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.lightbox-trigger'));
+    var viewToggle = document.getElementById('lightboxViewToggle');
+    var viewButtons = Array.prototype.slice.call(viewToggle.querySelectorAll('button'));
     var currentIndex = 0;
+    // Wall mode shows a work's framed-on-a-wall photo (data-wall) instead of the
+    // print. It carries over while paging, for every work that has a wall photo.
+    var wallMode = false;
     // Touch devices have no meaningful "click the image to navigate" gesture (a tap
     // is naturally just "look at this", and swipe already handles nav) — used to
     // gate the image-click navigation added below.
@@ -1319,11 +1438,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderLightbox() {
         var trigger = triggers[currentIndex];
+        var title = trigger.getAttribute('data-title') || '';
+        var wallSrc = trigger.getAttribute('data-wall');
+        var showWall = wallMode && !!wallSrc;
         lightboxImage.classList.remove('is-visible');
         lightboxImage.onload = syncCaptionWidth;
-        lightboxImage.src = trigger.getAttribute('data-full');
-        lightboxImage.alt = trigger.getAttribute('data-title') || '';
-        lightboxCaption.textContent = trigger.getAttribute('data-title') || '';
+        lightboxImage.src = showWall ? wallSrc : trigger.getAttribute('data-full');
+        lightboxImage.alt = showWall ? title + ', framed on a wall' : title;
+        lightboxCaption.textContent = title;
+        viewToggle.hidden = !wallSrc;
+        viewButtons.forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String((btn.getAttribute('data-view') === 'wall') === showWall));
+        });
         if (lightboxImage.complete) syncCaptionWidth();
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
@@ -1332,8 +1458,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function openLightbox(index) {
+    function openLightbox(index, view) {
         currentIndex = index;
+        wallMode = view === 'wall';
         renderLightbox();
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1362,6 +1489,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 openLightbox(index);
             }
+        });
+    });
+
+    function trackWallView(source) {
+        if (typeof trackEvent !== 'function') return;
+        trackEvent('view_on_wall', { artwork_title: triggers[currentIndex].getAttribute('data-title') || '', source: source });
+    }
+
+    document.querySelectorAll('.wall-btn').forEach(function (btn) {
+        var index = triggers.indexOf(btn.closest('.work-media').querySelector('.lightbox-trigger'));
+        btn.addEventListener('click', function () {
+            openLightbox(index, 'wall');
+            trackWallView('card');
+        });
+    });
+
+    viewButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var toWall = btn.getAttribute('data-view') === 'wall';
+            if (toWall === wallMode) return;
+            wallMode = toWall;
+            renderLightbox();
+            if (toWall) trackWallView('lightbox');
         });
     });
 
