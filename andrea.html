@@ -1474,6 +1474,7 @@ document.addEventListener('DOMContentLoaded', function() {
         zoomX = 0;
         zoomY = 0;
         zoomBox = null;
+        wheelPanned = false;
         lightboxImage.style.removeProperty('--zoom');
         lightboxImage.style.removeProperty('--zoom-x');
         lightboxImage.style.removeProperty('--zoom-y');
@@ -1653,9 +1654,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     lightboxImage.addEventListener('mousemove', function (e) {
-        if (isTouchDevice || zoom === 1) return;
+        if (isTouchDevice || zoom === 1 || wheelPanned) return;
         panToPointer(e.clientX, e.clientY, baseBox());
     });
+
+    // Trackpad: two-finger scroll pans a zoomed image, pinch (reported as a
+    // ctrl+wheel event, as is ctrl+mouse wheel) zooms around the pointer. Once
+    // scrolled, pointer panning stops until the next zoom, so the image doesn't
+    // jump back to wherever the pointer happens to be.
+    var wheelPanned = false;
+    var wheelIdle = null;
+    lightbox.addEventListener('wheel', function (e) {
+        if (!e.ctrlKey && zoom === 1) return;
+        e.preventDefault();
+        var unit = e.deltaMode === 1 ? 16 : 1;
+        var box = baseBox();
+        if (e.ctrlKey) {
+            var scale = Math.min(maxZoom(), Math.max(1, zoom * Math.exp(-e.deltaY * unit * 0.01)));
+            if (scale <= 1.01) { resetZoom(); return; }
+            var qx = (e.clientX - box.cx - zoomX) / zoom;
+            var qy = (e.clientY - box.cy - zoomY) / zoom;
+            zoomX = e.clientX - box.cx - scale * qx;
+            zoomY = e.clientY - box.cy - scale * qy;
+            zoom = scale;
+        } else {
+            zoomX -= e.deltaX * unit;
+            zoomY -= e.deltaY * unit;
+        }
+        wheelPanned = true;
+        lightboxImage.classList.add('is-gesturing');
+        clearTimeout(wheelIdle);
+        wheelIdle = setTimeout(function () { lightboxImage.classList.remove('is-gesturing'); }, 150);
+        applyZoom(box);
+    }, { passive: false });
 
     // Touch: one finger pans a zoomed image or swipes between works; two fingers
     // pinch. A swipe only navigates when unzoomed, and once horizontal movement
