@@ -728,7 +728,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .lightbox.active .lightbox-stage img.is-visible {
             opacity: 1;
-            transform: scale(1);
+            transform: translate(var(--zoom-x, 0px), var(--zoom-y, 0px)) scale(var(--zoom, 1));
+        }
+
+        /* Zoom: click (desktop) or double-tap/pinch (touch) the image. The
+           zoomed image overflows the stage, so chrome around it steps aside. */
+        .lightbox {
+            overflow: hidden;
+        }
+
+        .lightbox-stage img {
+            touch-action: none;
+        }
+
+        .lightbox.is-zoomed .lightbox-stage {
+            overflow: visible;
+        }
+
+        .lightbox.is-zoomed .lightbox-nav,
+        .lightbox.is-zoomed .lightbox-meta,
+        .lightbox.is-zoomed .lightbox-caption {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .lightbox-stage img.is-gesturing {
+            transition: opacity 0.35s ease;
         }
 
         .lightbox-caption {
@@ -1252,6 +1277,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // is naturally just "look at this", and swipe already handles nav) — used to
     // gate the image-click navigation added below.
     var isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    var zoom = 1;
+    var zoomX = 0;
+    var zoomY = 0;
+
+    function resetZoom() {
+        zoom = 1;
+        zoomX = 0;
+        zoomY = 0;
+        zoomBox = null;
+        lightboxImage.style.removeProperty('--zoom');
+        lightboxImage.style.removeProperty('--zoom-x');
+        lightboxImage.style.removeProperty('--zoom-y');
+        lightbox.classList.remove('is-zoomed');
+    }
 
     // The caption's max-width tracks the image's own rendered width so it lines
     // up flush with the image's left edge instead of the wider centered stage.
@@ -1261,6 +1300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderLightbox() {
         var trigger = triggers[currentIndex];
+        resetZoom();
         lightboxImage.classList.remove('is-visible');
         lightboxImage.onload = syncCaptionWidth;
         lightboxImage.src = trigger.getAttribute('data-full');
@@ -1283,6 +1323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function closeLightbox() {
         lightbox.classList.remove('active');
+        resetZoom();
         lightboxImage.classList.remove('is-visible');
         document.body.style.overflow = '';
     }
@@ -1320,22 +1361,160 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.target === lightbox) closeLightbox();
     });
 
-    // Desktop only: clicking the image itself navigates — left half goes to the
-    // previous work, right half to the next — mirroring the arrow buttons without
-    // requiring them to be aimed at. Skipped on touch devices, where a tap on the
-    // image is more naturally just "look at this" and swipe already handles nav.
+    // Desktop: clicking the image zooms in, and the zoomed image pans with the
+    // pointer (its position across the viewport maps to the same position across
+    // the image); clicking again zooms out. Touch: pinch or double-tap to zoom,
+    // drag to pan. The transform is translate(--zoom-x/y) scale(--zoom) around
+    // the image's centre, clamped so a zoomed edge never comes inside the viewport.
+    function maxZoom() {
+        var ratio = lightboxImage.naturalWidth / (lightboxImage.clientWidth || 1);
+        return Math.min(4, Math.max(2.5, ratio));
+    }
+
+    // The image's unzoomed centre and size, measured while unzoomed and kept for
+    // the zoom (mid-transition the on-screen rect lags the target transform)
+    var zoomBox = null;
+    function baseBox() {
+        if (zoom > 1 && zoomBox) return zoomBox;
+        var rect = lightboxImage.getBoundingClientRect();
+        return zoomBox = {
+            cx: rect.left + rect.width / 2 - zoomX,
+            cy: rect.top + rect.height / 2 - zoomY,
+            w: rect.width / zoom,
+            h: rect.height / zoom
+        };
+    }
+
+    function clampAxis(t, center, size, viewport) {
+        var half = size * zoom / 2;
+        if (half * 2 <= viewport) return viewport / 2 - center;
+        return Math.min(half - center, Math.max(viewport - center - half, t));
+    }
+
+    function applyZoom(box) {
+        box = box || baseBox();
+        zoomX = zoom > 1 ? clampAxis(zoomX, box.cx, box.w, window.innerWidth) : 0;
+        zoomY = zoom > 1 ? clampAxis(zoomY, box.cy, box.h, window.innerHeight) : 0;
+        lightboxImage.style.setProperty('--zoom', zoom);
+        lightboxImage.style.setProperty('--zoom-x', zoomX + 'px');
+        lightboxImage.style.setProperty('--zoom-y', zoomY + 'px');
+        lightbox.classList.toggle('is-zoomed', zoom > 1);
+    }
+
+    // Desktop pan: pointer at the viewport's left edge shows the image's left edge
+    function panToPointer(x, y, box) {
+        zoomX = lerpAxis(x, box.cx, box.w, window.innerWidth);
+        zoomY = lerpAxis(y, box.cy, box.h, window.innerHeight);
+        applyZoom(box);
+    }
+
+    function lerpAxis(p, center, size, viewport) {
+        var half = size * zoom / 2;
+        if (half * 2 <= viewport) return viewport / 2 - center;
+        var max = half - center;
+        var min = viewport - center - half;
+        return max + (min - max) * (p / viewport);
+    }
+
+    // Zoom so the image point under (x, y) stays put, as for a double-tap
+    function zoomAt(x, y, scale, box) {
+        zoomX = (x - box.cx) * (1 - scale);
+        zoomY = (y - box.cy) * (1 - scale);
+        zoom = scale;
+        applyZoom(box);
+    }
+
     lightboxImage.addEventListener('click', function (e) {
         if (isTouchDevice) return;
-        var rect = e.currentTarget.getBoundingClientRect();
-        var clickedLeftHalf = (e.clientX - rect.left) < rect.width / 2;
-        if (clickedLeftHalf) { showPrevious(); } else { showNext(); }
+        if (zoom > 1) { resetZoom(); return; }
+        var box = baseBox();
+        zoom = maxZoom();
+        panToPointer(e.clientX, e.clientY, box);
     });
 
-    // Swipe left/right to navigate on touch devices, mirroring the arrow buttons.
-    // Only treated as a swipe once horizontal movement clearly dominates vertical
-    // (so a scroll/drag doesn't accidentally flip the image).
+    lightboxImage.addEventListener('mousemove', function (e) {
+        if (isTouchDevice || zoom === 1) return;
+        panToPointer(e.clientX, e.clientY, baseBox());
+    });
+
+    // Touch: one finger pans a zoomed image or swipes between works; two fingers
+    // pinch. A swipe only navigates when unzoomed, and once horizontal movement
+    // clearly dominates vertical (so a drag doesn't accidentally flip the image).
     var touchStartX = 0;
     var touchStartY = 0;
+    var gesture = null;
+    var lastTap = { time: 0, x: 0, y: 0 };
+    // Set once a touch has pinched or panned, so lifting the fingers isn't a swipe
+    var swipeBlocked = false;
+
+    function touchMid(touches) {
+        return {
+            x: (touches[0].clientX + touches[1].clientX) / 2,
+            y: (touches[0].clientY + touches[1].clientY) / 2,
+            dist: Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY)
+        };
+    }
+
+    function startGesture(touches) {
+        var box = baseBox();
+        gesture = { box: box, zoom: zoom, x: zoomX, y: zoomY, moved: gesture ? gesture.moved : false };
+        if (touches.length > 1) {
+            gesture.pinch = touchMid(touches);
+        } else {
+            gesture.px = touches[0].clientX;
+            gesture.py = touches[0].clientY;
+        }
+    }
+
+    lightboxImage.addEventListener('touchstart', function (e) {
+        if (e.touches.length > 2) return;
+        if (e.touches.length === 1) gesture = null;
+        startGesture(e.touches);
+        lightboxImage.classList.add('is-gesturing');
+    }, { passive: true });
+
+    lightboxImage.addEventListener('touchmove', function (e) {
+        if (!gesture) return;
+        if (gesture.pinch && e.touches.length > 1) {
+            e.preventDefault();
+            var mid = touchMid(e.touches);
+            var scale = Math.min(maxZoom(), Math.max(1, gesture.zoom * mid.dist / gesture.pinch.dist));
+            // Keep the image point that started under the fingers' midpoint under it
+            var qx = (gesture.pinch.x - gesture.box.cx - gesture.x) / gesture.zoom;
+            var qy = (gesture.pinch.y - gesture.box.cy - gesture.y) / gesture.zoom;
+            zoom = scale;
+            zoomX = mid.x - gesture.box.cx - scale * qx;
+            zoomY = mid.y - gesture.box.cy - scale * qy;
+            gesture.moved = true;
+            swipeBlocked = true;
+            applyZoom(gesture.box);
+        } else if (!gesture.pinch && zoom > 1) {
+            e.preventDefault();
+            zoomX = gesture.x + e.touches[0].clientX - gesture.px;
+            zoomY = gesture.y + e.touches[0].clientY - gesture.py;
+            gesture.moved = true;
+            swipeBlocked = true;
+            applyZoom(gesture.box);
+        }
+    }, { passive: false });
+
+    lightboxImage.addEventListener('touchend', function (e) {
+        if (!gesture) return;
+        if (e.touches.length) { startGesture(e.touches); return; }
+        lightboxImage.classList.remove('is-gesturing');
+        if (zoom < 1.05) resetZoom();
+        var wasPinch = !!gesture.pinch || gesture.moved;
+        gesture = null;
+        if (wasPinch) return;
+        var touch = e.changedTouches[0];
+        var now = Date.now();
+        if (now - lastTap.time < 300 && Math.hypot(touch.clientX - lastTap.x, touch.clientY - lastTap.y) < 30) {
+            lastTap.time = 0;
+            if (zoom > 1) resetZoom(); else zoomAt(touch.clientX, touch.clientY, maxZoom(), baseBox());
+        } else {
+            lastTap = { time: now, x: touch.clientX, y: touch.clientY };
+        }
+    });
 
     lightbox.addEventListener('touchstart', function (e) {
         touchStartX = e.changedTouches[0].clientX;
@@ -1343,15 +1522,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: true });
 
     lightbox.addEventListener('touchend', function (e) {
+        if (e.touches.length) return;
+        var blocked = swipeBlocked || zoom > 1;
+        swipeBlocked = false;
+        if (blocked) return;
         var deltaX = e.changedTouches[0].clientX - touchStartX;
         var deltaY = e.changedTouches[0].clientY - touchStartY;
         if (Math.abs(deltaX) < 50 || Math.abs(deltaX) < Math.abs(deltaY) * 1.5) return;
         if (deltaX < 0) showNext(); else showPrevious();
     }, { passive: true });
 
+    window.addEventListener('resize', function () {
+        if (zoom > 1) resetZoom();
+    });
+
     document.addEventListener('keydown', function (e) {
         if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'Escape') {
+            if (zoom > 1) resetZoom(); else closeLightbox();
+        }
         if (e.key === 'ArrowLeft') showPrevious();
         if (e.key === 'ArrowRight') showNext();
     });
