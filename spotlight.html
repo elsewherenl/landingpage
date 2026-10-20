@@ -1134,6 +1134,35 @@ document.addEventListener('DOMContentLoaded', function() {
         color: var(--deep-charcoal);
     }
 
+    /* Phone-only "Themes: All ▾" dropdown trigger (see the max-width: 768px block) */
+    .theme-filter-toggle {
+        display: none;
+        appearance: none;
+        border: none;
+        background: none;
+        font-family: inherit;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        color: rgba(44, 44, 44, 0.67);
+        cursor: pointer;
+        padding: 0.25rem 0;
+    }
+
+    .theme-filter-toggle #themeToggleLabel {
+        color: var(--terracotta-red);
+    }
+
+    .theme-filter-caret {
+        display: inline-block;
+        font-size: 0.7rem;
+        margin-left: 0.15rem;
+        transition: transform 0.2s ease;
+    }
+
+    .theme-filter.is-open .theme-filter-caret {
+        transform: rotate(180deg);
+    }
+
     .grid-item.theme-hidden,
     .entry.theme-hidden {
         display: none;
@@ -1669,8 +1698,52 @@ document.addEventListener('DOMContentLoaded', function() {
             display: block;
         }
 
+        /* Phones: view toggle and themes share one row; themes open as a
+           small dropdown so the first photos make it above the fold. The
+           active view and theme are picked out in terracotta. */
         .view-toggle-row {
-            padding: 1.25rem 1.5rem 1.25rem;
+            padding: 1rem 1.5rem 0.25rem;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-toggle-row .view-toggle-label {
+            display: none;
+        }
+
+        .view-toggle-pill button.active,
+        .theme-filter-btn.active {
+            color: var(--terracotta-red);
+        }
+
+        .theme-filter {
+            position: relative;
+        }
+
+        .theme-filter-toggle {
+            display: inline-block;
+        }
+
+        .theme-filter-pill {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            z-index: 50;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-wrap: nowrap;
+            gap: 0.4rem;
+            padding: 0.85rem 1.1rem;
+            background: var(--cream-bg);
+            border: 1px solid rgba(44, 44, 44, 0.12);
+            box-shadow: 0 8px 24px rgba(44, 44, 44, 0.08);
+            white-space: nowrap;
+        }
+
+        .theme-filter.is-open .theme-filter-pill {
+            display: flex;
         }
 
         .rail {
@@ -1694,7 +1767,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .grid-view {
-            padding: 2rem 1.5rem 4rem;
+            padding: 1.25rem 1.5rem 4rem;
             gap: 0.75rem;
         }
 
@@ -1922,6 +1995,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="theme-filter">
             <span class="view-toggle-label">Themes</span>
+            <button type="button" class="theme-filter-toggle" id="themeToggle" aria-expanded="false" aria-controls="themeFilter">Themes: <span id="themeToggleLabel">All</span> <span class="theme-filter-caret" aria-hidden="true">&#9662;</span></button>
             <div class="theme-filter-pill" id="themeFilter">
                 <button type="button" class="theme-filter-btn active" data-theme="">All</button>
                 <button type="button" class="theme-filter-btn" data-theme="Cultural Exchange">Cultural Exchange</button>
@@ -3749,7 +3823,34 @@ Working exclusively with analog methods, process and result sit in balance.</p>
                 const isAll = b.dataset.theme === '';
                 b.classList.toggle('active', isAll ? activeThemes.size === 0 : activeThemes.has(b.dataset.theme));
             });
+            themeToggleLabel.textContent = activeThemes.size === 0 ? 'All'
+                : activeThemes.size === 1 ? [...activeThemes][0]
+                : activeThemes.size + ' themes';
         }
+
+        // Phones: "Themes: All ▾" opens the theme list as a dropdown. Themes
+        // toggle on tap so several can be combined; "All", tapping outside or
+        // Escape closes it. Hidden on wider screens.
+        const themeToggle = document.getElementById('themeToggle');
+        const themeToggleLabel = document.getElementById('themeToggleLabel');
+        const themeFilterWrap = themeToggle.closest('.theme-filter');
+
+        function setThemeMenu(open) {
+            themeFilterWrap.classList.toggle('is-open', open);
+            themeToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            setThemeMenu(!themeFilterWrap.classList.contains('is-open'));
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!themeFilterWrap.contains(e.target)) setThemeMenu(false);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setThemeMenu(false);
+        });
 
         const themeFilter = document.getElementById('themeFilter');
         themeFilter.addEventListener('click', (e) => {
@@ -3772,6 +3873,9 @@ Working exclusively with analog methods, process and result sit in balance.</p>
 
             updateThemeButtonStates();
             applyThemeFilter();
+            // "All" resets and closes; individual themes leave the list open
+            // so several can be ticked (touch taps toggle, see above)
+            if (theme === '') setThemeMenu(false);
         });
 
         loadPosts();

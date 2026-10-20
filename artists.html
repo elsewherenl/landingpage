@@ -271,10 +271,13 @@ document.addEventListener('DOMContentLoaded', function() {
         --page-top-mobile: 7rem;
         --page-top-small: 9rem;
 
-        --artists-col-min: 420px;
-        --artists-gutter-x: 4rem;
+        --artists-gutter-x: clamp(4rem, 16vw, 18rem);
         --artists-gutter-y: 6rem;
         --artists-ratio: 4 / 5;
+        /* Viewport top to the tiles' top edge, plus the caption below them.
+           Tiles are sized so image and name both fit on landing. */
+        --artists-grid-top: 15.25rem;
+        --artists-caption-h: 6rem;
     }
 
     * {
@@ -347,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .artists-hero {
         max-width: 1600px;
         margin: 0 auto;
-        padding: var(--page-top-desktop) 3rem 3rem;
+        padding: var(--page-top-desktop) 3rem 2rem;
     }
 
     .artists-hero .eyebrow {
@@ -392,36 +395,37 @@ document.addEventListener('DOMContentLoaded', function() {
     .artists-grid {
         max-width: 1600px;
         margin: 0 auto;
-        padding: 1rem 3rem 8rem;
+        padding: 0 3rem 8rem;
     }
 
+    /* Tiles take the smallest of: 520px, half the row (so two always sit
+       side by side, phones included), and the height left under the hero
+       (so each name lands above the fold). The 240px floor stops them
+       shrinking to nothing on very short landscape windows. */
     .ec-grid {
+        --tile-w: min(
+            520px,
+            calc((100% - var(--artists-gutter-x)) / 2 - 1px),
+            max(240px, calc((100svh - var(--artists-grid-top) - var(--artists-caption-h)) * 0.8))
+        );
         max-width: 1600px;
         margin: 0;
         list-style: none;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(var(--artists-col-min), 1fr));
+        grid-template-columns: repeat(auto-fill, var(--tile-w));
         column-gap: var(--artists-gutter-x);
         row-gap: var(--artists-gutter-y);
     }
 
-    /* Desktop/laptop: tiles keep roughly a third of the width, with a wide gap
-       that scales with the viewport, rather than packing tight and leaving empty
-       tracks on the right while the roster is small. */
-    @media (min-width: 701px) {
+    /* Browsers without svh units (pre-2022) would otherwise drop --tile-w
+       entirely and fall back to one full-width column. */
+    @supports not (height: 100svh) {
         .ec-grid {
-            grid-template-columns: repeat(auto-fit, minmax(var(--artists-col-min), 520px));
-            column-gap: clamp(4rem, 16vw, 18rem);
-        }
-    }
-
-    /* Tablet landscape / small laptop (e.g. iPad at 1024px): the rule above
-       only fits two tiles from ~1115px, so hold two side by side here with a
-       narrower gap. Portrait tablets below 900px keep one tile per row. */
-    @media (min-width: 900px) and (max-width: 1199px) {
-        .ec-grid {
-            grid-template-columns: repeat(2, minmax(0, 520px));
-            column-gap: clamp(4rem, 8vw, 18rem);
+            --tile-w: min(
+                520px,
+                calc((100% - var(--artists-gutter-x)) / 2 - 1px),
+                max(240px, calc((100vh - var(--artists-grid-top) - var(--artists-caption-h)) * 0.8))
+            );
         }
     }
 
@@ -486,9 +490,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     @media (max-width: 700px) {
         :root {
-            --artists-col-min: 220px;
-            --artists-gutter-x: 1.5rem;
+            --artists-gutter-x: 1rem;
             --artists-gutter-y: 2.75rem;
+            --artists-grid-top: 15rem;
+            --artists-caption-h: 4rem;
         }
 
         .header {
@@ -514,11 +519,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .artists-hero {
-            padding: var(--page-top-mobile) 1.5rem 2.5rem;
+            padding: var(--page-top-mobile) 1.5rem 1.5rem;
         }
 
         .artists-grid {
-            padding: 0.5rem 1.5rem 5rem;
+            padding: 0 1.5rem 5rem;
+        }
+
+        .artist-tile .artist-caption {
+            margin-top: 0.75rem;
+        }
+
+        .artist-tile .artist-name {
+            font-size: 1.05rem;
+            line-height: 1.35;
         }
     }
 
@@ -712,7 +726,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/andrea">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(100vw - 48px), 520px"><img fetchpriority="high" class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Photograph by Andrea Rosselli" decoding="async" width="1200" height="1800"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(50vw - 32px), 520px"><img fetchpriority="high" class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Photograph by Andrea Rosselli" decoding="async" width="1200" height="1800"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Andrea Rosselli</span>
@@ -723,7 +737,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/mitsutaka">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), 520px"><img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied — photograph by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1800" height="1021"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(50vw - 32px), 520px"><img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied — photograph by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1800" height="1021"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Mitsutaka Tsuryu</span>

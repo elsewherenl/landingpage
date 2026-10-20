@@ -360,7 +360,7 @@
             margin: 0 auto;
             padding: var(--page-top-desktop) 3rem 4rem;
             display: grid;
-            grid-template-columns: 1.4fr 0.6fr;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
             gap: 4rem;
             align-items: start;
         }
@@ -524,11 +524,14 @@
             gap: 2rem;
             position: sticky;
             top: var(--page-top-desktop);
-            margin-top: 4rem;
         }
 
+        /* As large as the column allows, but never taller than the space
+           under the header, so the whole image stays in view while pinned
+           beside the scrolling text. */
         .image-placeholder {
-            width: 100%;
+            width: min(100%, calc((100svh - var(--page-top-desktop) - 1.5rem) * 0.75));
+            margin-left: auto;
             aspect-ratio: 3/4;
             background-image: url('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/58c03f97-c655-4a97-82fe-c306d1fbf376.jpeg');
             background-size: cover;

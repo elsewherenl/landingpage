@@ -870,8 +870,15 @@ document.addEventListener('DOMContentLoaded', function() {
         .intro {
             grid-template-columns: 1fr;
         }
+        /* Phones: the hero image shrinks with the screen height so the
+           artist's name and location still land above the fold. */
+        .intro {
+            gap: 1.5rem;
+        }
         .hero-frame {
-            min-height: 320px;
+            min-height: 0;
+            height: 280px; /* browsers without svh units */
+            height: clamp(200px, calc(100svh - 21rem), 320px);
             order: -1;
             width: 100%;
         }
