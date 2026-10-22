@@ -341,6 +341,7 @@
 
         .nav-menu a {
             text-decoration: none;
+            white-space: nowrap;
             color: rgba(44,44,44,0.75);
             font-weight: 300;
             font-size: 1.05rem;
@@ -828,6 +829,14 @@
                 display: none;
             }
         }
+
+        /* Smallest phones (≤350px): keep logo and "Artists & Works" nav on one line */
+        @media (max-width: 350px) {
+            .logo { font-size: 1.05rem; }
+            .header-container { gap: 0.75rem; }
+            .nav-menu { gap: 0.6rem; }
+            .nav-menu a { font-size: 0.72rem; }
+        }
     </style>
 </head>
 <body>
@@ -838,7 +847,7 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="/about">About</a></li>
-                    <li><a href="/artists">Artists</a></li>
+                    <li><a href="/artists">Artists &amp; Works</a></li>
                     <li><a href="/spotlight">Spotlights</a></li>
                 </ul>
             </nav>

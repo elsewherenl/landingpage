@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Primary Meta Tags -->
-<title>artists | elsewhere</title>
+<title>artists &amp; works | elsewhere</title>
 <meta name="description" content="Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="photographers for sale, buy photography Amsterdam, emerging photographers, contemporary photography artists, photography collective, art discovery">
@@ -17,14 +17,14 @@
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://elsewherecollective.nl/artists">
-<meta property="og:title" content="artists | elsewhere">
+<meta property="og:title" content="artists &amp; works | elsewhere">
 <meta property="og:description" content="Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.">
 <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://elsewherecollective.nl/artists">
-<meta property="twitter:title" content="artists | elsewhere">
+<meta property="twitter:title" content="artists &amp; works | elsewhere">
 <meta property="twitter:description" content="Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.">
 <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
@@ -36,7 +36,7 @@
             "@type": "CollectionPage",
             "@id": "https://elsewherecollective.nl/artists#webpage",
             "url": "https://elsewherecollective.nl/artists",
-            "name": "artists | elsewhere",
+            "name": "artists & works | elsewhere",
             "description": "Photographers working with elsewhere, including Andrea Rosselli and Mitsutaka Tsuryu, with limited-edition prints available to buy.",
             "isPartOf": { "@id": "https://elsewherecollective.nl/#website" },
             "about": { "@id": "https://elsewherecollective.nl/#organization" },
@@ -334,6 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     .nav-menu a {
         text-decoration: none;
+        white-space: nowrap;
         color: rgba(44, 44, 44, 0.75);
         font-weight: 300;
         font-size: 1.05rem;
@@ -699,6 +700,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 text-align: center;
             }
         }
+
+    /* Smallest phones (≤350px): keep logo and "Artists & Works" nav on one line */
+    @media (max-width: 350px) {
+        .logo { font-size: 1.05rem; }
+        .header-container { gap: 0.75rem; }
+        .nav-menu { gap: 0.6rem; }
+        .nav-menu a { font-size: 0.72rem; }
+    }
 </style>
 </head>
 <body>
@@ -709,7 +718,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <nav>
             <ul class="nav-menu">
                 <li><a href="/about">About</a></li>
-                <li><a href="/artists" class="active">Artists</a></li>
+                <li><a href="/artists" class="active">Artists &amp; Works</a></li>
                 <li><a href="/spotlight">Spotlights</a></li>
             </ul>
         </nav>
@@ -717,7 +726,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </header>
 
 <div class="artists-hero">
-    <h1>Artists</h1>
+    <h1>Artists &amp; Works</h1>
     <p>Artists working with elsewhere. Explore their practice and discover selected works available to buy.</p>
 </div>
 
