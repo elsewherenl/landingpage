@@ -789,18 +789,20 @@
             flex: 1;
             padding: 0.3rem 0;
             border: none;
-            border-bottom: 1px solid rgba(44, 44, 44, 0.3);
+            border-bottom: 1px solid var(--deep-charcoal);
             background: transparent;
             color: var(--deep-charcoal);
             font-family: 'SuisseIntl', sans-serif;
             font-size: 1rem;
-            font-weight: 300;
+            font-weight: 500;
+            letter-spacing: 0.01em;
             outline: none;
             transition: border-color 0.3s ease;
         }
 
+        .newsletter-input:hover,
         .newsletter-input:focus {
-            border-color: rgba(44, 44, 44, 0.7);
+            border-color: var(--terracotta-red);
         }
 
         .newsletter-input:focus-visible {
@@ -809,7 +811,8 @@
         }
 
         .newsletter-input::placeholder {
-            color: rgba(44, 44, 44, 0.35);
+            color: var(--deep-charcoal);
+            opacity: 1;
             transition: opacity 0.2s ease;
         }
 
@@ -834,9 +837,24 @@
             transition: color 0.25s ease, border-color 0.25s ease;
         }
 
+        .newsletter-button span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .newsletter-button span::after {
+            content: '→';
+            transition: transform 0.25s ease;
+        }
+
         .newsletter-button:hover {
             color: var(--terracotta-red);
             border-color: var(--terracotta-red);
+        }
+
+        .newsletter-button:hover:not(:disabled) span::after {
+            transform: translateX(3px);
         }
 
         .newsletter-button:disabled {
@@ -1599,7 +1617,7 @@
                             <input type="hidden" name="fields[ec_source]" value="inline">
                             <input type="hidden" name="ml-submit" value="1">
                             <input type="hidden" name="anticsrf" value="true">
-                            <button type="submit" class="js-nl-button newsletter-button"><span>Join →</span></button>
+                            <button type="submit" class="js-nl-button newsletter-button"><span>Join</span></button>
                         </form>
                     </div>
                     <iframe name="ml-iframe-inline" style="display:none"></iframe>
