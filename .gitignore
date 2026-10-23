@@ -4,10 +4,11 @@ spotlightrefresh.html
 spotlightUPDATE.html
 
 # Gated artist pages, local only until the artist is signed up
-nad.html
-images/nad-e-ali/
 jesula.html
 images/jesula/
+
+# Design previews, local only
+andrea-sizes.html
 
 # macOS folder metadata
 .DS_Store

@@ -340,7 +340,8 @@ function updateSitemap() {
         'https://elsewherecollective.nl/cookie-policy': 'cookie-policy.html',
         'https://elsewherecollective.nl/mitsutaka': 'mitsutaka.html',
         'https://elsewherecollective.nl/artists': 'artists.html',
-        'https://elsewherecollective.nl/andrea': 'andrea.html'
+        'https://elsewherecollective.nl/andrea': 'andrea.html',
+        'https://elsewherecollective.nl/nad': 'nad.html'
     };
 
     for (const [url, fileName] of Object.entries(pageFileByUrl)) {
