@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
         --page-top-mobile: 7rem;
         --page-top-small: 9rem;
 
-        --artists-gutter-x: clamp(4rem, 16vw, 18rem);
+        --artists-gutter-x: clamp(2.5rem, 6vw, 6rem);
         --artists-gutter-y: 6rem;
         --artists-ratio: 4 / 5;
         /* Viewport top to the tiles' top edge, plus the caption below them.
@@ -399,14 +399,14 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 0 3rem 8rem;
     }
 
-    /* Tiles take the smallest of: 520px, half the row (so two always sit
-       side by side, phones included), and the height left under the hero
+    /* Tiles take the smallest of: 520px, a third of the row (so all three
+       artists sit on one row, phones included), and the height left under the hero
        (so each name lands above the fold). The 240px floor stops them
        shrinking to nothing on very short landscape windows. */
     .ec-grid {
         --tile-w: min(
             520px,
-            calc((100% - var(--artists-gutter-x)) / 2 - 1px),
+            calc((100% - 2 * var(--artists-gutter-x)) / 3 - 1px),
             max(240px, calc((100svh - var(--artists-grid-top) - var(--artists-caption-h)) * 0.8))
         );
         max-width: 1600px;
@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .ec-grid {
             --tile-w: min(
                 520px,
-                calc((100% - var(--artists-gutter-x)) / 2 - 1px),
+                calc((100% - 2 * var(--artists-gutter-x)) / 3 - 1px),
                 max(240px, calc((100vh - var(--artists-grid-top) - var(--artists-caption-h)) * 0.8))
             );
         }
@@ -735,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/andrea">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(50vw - 32px), 520px"><img fetchpriority="high" class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Photograph by Andrea Rosselli" decoding="async" width="1200" height="1800"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(33vw - 24px), 520px"><img fetchpriority="high" class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Photograph by Andrea Rosselli" decoding="async" width="1200" height="1800"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Andrea Rosselli</span>
@@ -746,7 +746,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/mitsutaka">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(50vw - 32px), 520px"><img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied — photograph by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1800" height="1021"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(33vw - 24px), 520px"><img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied — photograph by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1800" height="1021"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Mitsutaka Tsuryu</span>
@@ -757,7 +757,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/nad">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/nad-e-ali-apples-480.webp 480w, images/responsive/nad-e-ali-apples-800.webp 800w, images/responsive/nad-e-ali-apples-1200.webp 1200w" sizes="(max-width: 700px) calc(50vw - 32px), 520px"><img class="thumb-work" src="images/nad-e-ali/NadEAli_Apples_web.jpg" alt="Cupped hands holding red apples — photograph by Nad-E-Ali" loading="lazy" decoding="async" width="1334" height="2000"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/nad-e-ali-apples-480.webp 480w, images/responsive/nad-e-ali-apples-800.webp 800w, images/responsive/nad-e-ali-apples-1200.webp 1200w" sizes="(max-width: 700px) calc(33vw - 24px), 520px"><img class="thumb-work" src="images/nad-e-ali/NadEAli_Apples_web.jpg" alt="Cupped hands holding red apples — photograph by Nad-E-Ali" loading="lazy" decoding="async" width="1334" height="2000"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Nad-E-Ali</span>
