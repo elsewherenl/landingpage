@@ -1651,9 +1651,172 @@ document.addEventListener('DOMContentLoaded', function() {
         .nav-menu { gap: 0.6rem; }
         .nav-menu a { font-size: 0.72rem; }
     }
+
+    /* ---------- Enquiry form: Enquire opens this instead of the mail app ---------- */
+    body.enquiry-open { overflow: hidden; }
+    .enquiry {
+        position: fixed; inset: 0; z-index: 100000; /* above the cookie banner (99999); the cursor dot, also 100000, comes later in the page so stays on top */
+        display: flex; align-items: center; justify-content: center;
+        padding: 1.5rem;
+        background: rgba(44, 44, 44, 0.45);
+        opacity: 0; visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    }
+    .enquiry.is-open {
+        opacity: 1; visibility: visible;
+        transition: opacity 0.3s ease;
+    }
+    .enquiry-panel {
+        position: relative;
+        width: 100%; max-width: 34rem; max-height: calc(100dvh - 3rem);
+        overflow-y: auto;
+        background: var(--cream-bg);
+        color: var(--deep-charcoal);
+        padding: 2.25rem 2.5rem 1.75rem;
+        transform: translateY(12px);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .enquiry.is-open .enquiry-panel { transform: none; }
+    .enquiry-close {
+        position: absolute; top: 1rem; right: 1rem;
+        width: 2.5rem; height: 2.5rem;
+        background: none; border: 0; cursor: pointer;
+        font-size: 1.6rem; line-height: 1; font-weight: 300; color: var(--deep-charcoal);
+    }
+    .enquiry-close:hover { opacity: 0.6; }
+    .enquiry-kicker {
+        font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--text-muted, #6F6B67); margin-bottom: 0.9rem;
+    }
+    .enquiry-work {
+        display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.1rem;
+        align-items: center;
+        padding-bottom: 1.25rem; margin-bottom: 1.4rem;
+        border-bottom: 1px solid var(--hairline);
+    }
+    .enquiry-work img { width: 4.5rem; height: 4.5rem; object-fit: cover; display: block; }
+    .enquiry-title { font-size: 1.25rem; font-weight: 400; line-height: 1.25; margin-bottom: 0.3rem; }
+    .enquiry-spec { font-size: 0.8125rem; font-weight: 300; color: var(--text-muted, #6F6B67); line-height: 1.5; }
+    .enquiry-spec strong { font-weight: 500; color: var(--deep-charcoal); }
+    .enquiry-field { display: block; margin-bottom: 1.1rem; }
+    .enquiry-field > span:first-child {
+        display: block; font-size: 0.8125rem; font-weight: 400;
+        letter-spacing: 0.02em; margin-bottom: 0.4rem;
+    }
+    .enquiry-field > span:first-child em { font-style: normal; font-weight: 300; color: var(--text-muted, #6F6B67); }
+    .enquiry-field input,
+    .enquiry-field textarea {
+        width: 100%;
+        font: inherit; font-size: 1rem; font-weight: 300; /* 16px: no iOS zoom on focus */
+        color: var(--deep-charcoal);
+        background: var(--warm-off-white);
+        border: 1px solid rgba(44, 44, 44, 0.2);
+        border-radius: 0;
+        padding: 0.65rem 0.85rem;
+        -webkit-appearance: none; appearance: none;
+        transition: border-color 0.2s ease;
+    }
+    .enquiry-field textarea { min-height: 8.75rem; resize: vertical; line-height: 1.55; }
+    .enquiry-field input:focus,
+    .enquiry-field textarea:focus { outline: none; border-color: var(--deep-charcoal); }
+    .enquiry-hint {
+        display: block;
+        font-size: 0.8125rem; font-weight: 300; color: var(--text-muted, #6F6B67);
+        margin: -0.15rem 0 0.5rem;
+    }
+    .enquiry-submit {
+        width: 100%;
+        margin-top: 0.4rem;
+        padding: 1rem 1.25rem;
+        background: var(--deep-charcoal); color: var(--warm-off-white);
+        border: 1px solid var(--deep-charcoal);
+        font: inherit; font-size: 0.94rem; font-weight: 400; letter-spacing: 0.04em;
+        cursor: pointer;
+        transition: background 0.25s ease, color 0.25s ease;
+    }
+    .enquiry-submit:hover { background: transparent; color: var(--deep-charcoal); }
+    .enquiry-submit[disabled] { opacity: 0.6; cursor: wait; }
+    .enquiry-small {
+        margin-top: 1.1rem;
+        font-size: 0.75rem; font-weight: 300; line-height: 1.55; color: var(--text-muted, #6F6B67);
+    }
+    .enquiry-small a { color: inherit; }
+    .enquiry-error {
+        margin-top: 0.9rem;
+        font-size: 0.8125rem; font-weight: 400; line-height: 1.55; color: #9A3F2B;
+    }
+    .enquiry-error a { color: inherit; }
+    .enquiry-done { display: none; padding: 1rem 0 0.5rem; }
+    .enquiry.is-sent form, .enquiry.is-sent .enquiry-work { display: none; }
+    .enquiry.is-sent .enquiry-done { display: block; }
+    .enquiry-done h2 { font-size: 1.6rem; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
+    .enquiry-done p { font-size: 0.94rem; font-weight: 300; line-height: 1.65; margin-bottom: 1.5rem; }
+    .enquiry-done button {
+        background: none; border: 0; padding: 0; cursor: pointer;
+        font: inherit; font-size: 0.94rem; color: var(--deep-charcoal);
+        text-decoration: underline; text-underline-offset: 0.2em;
+    }
+    .enquiry-bot { position: absolute; left: -9999px; }
+
+    /* Phones: full-screen sheet so there's room to type */
+    @media (max-width: 600px) {
+        .enquiry { padding: 0; align-items: stretch; }
+        .enquiry-panel {
+            max-width: none; max-height: none; height: 100dvh;
+            padding: 4rem 1.25rem calc(2rem + env(safe-area-inset-bottom));
+            transform: translateY(24px);
+        }
+        .enquiry-close { top: 0.75rem; right: 0.5rem; }
+    }
 </style>
 </head>
 <body>
+
+<div class="enquiry" id="enquiry" role="dialog" aria-modal="true" aria-labelledby="enquiryTitle" aria-hidden="true">
+    <div class="enquiry-panel">
+        <button type="button" class="enquiry-close" aria-label="Close">&times;</button>
+        <p class="enquiry-kicker">Enquire</p>
+        <div class="enquiry-work">
+            <img id="enquiryImg" src="" alt="">
+            <div>
+                <h2 class="enquiry-title" id="enquiryTitle"></h2>
+                <p class="enquiry-spec" id="enquirySpec"></p>
+            </div>
+        </div>
+
+        <form id="enquiryForm" novalidate>
+            <!-- Web3Forms emails each enquiry to hello@elsewherecollective.nl; the key
+                 only allows sending to that inbox, so it's safe to publish -->
+            <input type="hidden" name="access_key" value="3397200b-dd79-4a9e-808e-6523df8bfe49">
+            <input type="hidden" name="from_name" value="elsewhere collective website">
+            <input type="hidden" name="subject" id="enquirySubject">
+            <input type="hidden" name="artist" id="enquiryArtist">
+            <input type="hidden" name="artwork" id="enquiryArtwork">
+            <input type="hidden" name="size" id="enquirySize">
+            <input type="hidden" name="price" id="enquiryPrice">
+            <input type="checkbox" name="botcheck" class="enquiry-bot" tabindex="-1" autocomplete="off">
+
+            <label class="enquiry-field"><span>Name</span>
+                <input type="text" name="name" autocomplete="name" required></label>
+            <label class="enquiry-field"><span>Email</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" required></label>
+            <label class="enquiry-field"><span>Message</span>
+                <span class="enquiry-hint">Interested in more than one work? Let us know below.</span>
+                <textarea name="message" rows="6"></textarea></label>
+
+            <button type="submit" class="enquiry-submit">Send enquiry</button>
+            <p class="enquiry-small">We&rsquo;ll reply by email, usually within two working days. Your details are only used to answer this enquiry. Prefer email? <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a></p>
+            <p class="enquiry-error" id="enquiryError" role="alert" hidden></p>
+        </form>
+
+        <div class="enquiry-done" aria-live="polite">
+            <h2>Thank you.</h2>
+            <p id="enquiryDoneText"></p>
+            <button type="button" class="enquiry-back">Back to the works</button>
+        </div>
+    </div>
+</div>
+
     <div class="cursor-dot" id="cursorDot"></div>
 
 
@@ -2318,6 +2481,123 @@ document.addEventListener('DOMContentLoaded', function() {
                 var title = titleEl ? titleEl.textContent.replace(/\s*\(\d{4}\)\s*$/, '').trim() : '';
                 trackEvent('enquire_click', { artist_name: artist, artwork_title: title, print_size: link.getAttribute('data-size') });
             });
+        });
+    })();
+</script>
+
+<script>
+    // Enquire opens the enquiry form; the link's mailto stays as the fallback.
+    // Handles both one Enquire per work (.enquire-btn) and one per size (.size-enquire).
+    (function () {
+        var box = document.getElementById('enquiry');
+        var form = document.getElementById('enquiryForm');
+        var submit = form.querySelector('.enquiry-submit');
+        var error = document.getElementById('enquiryError');
+        var nameEl = document.querySelector('.artist-name');
+        var artist = nameEl ? nameEl.innerText.replace(/\s+/g, ' ').trim() : '';
+        var lastLink = null;
+        var current = {};
+
+        function text(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
+        function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+        function open(link) {
+            var card = link.closest('.work-card');
+            var row = link.closest('.size-row');
+            var title = text(card.querySelector('.work-title')).replace(/\s*\(\d{4}\)$/, '');
+            var size, sizeLabel, price, edition;
+            if (row) {
+                size = text(row.querySelector('.size-dim'));            // "Medium 50 × 70 cm"
+                var parts = size.match(/^(\S+)\s+(.*)$/);
+                sizeLabel = parts ? parts[1] + ', ' + parts[2] : size;  // "Medium, 50 × 70 cm"
+                price = text(row.querySelector('.size-price'));
+                edition = text(row.querySelector('.size-edition'));
+            } else {
+                var meta = text(card.querySelector('.work-meta'));
+                size = sizeLabel = (meta.match(/\d+(?:[.,]\d+)?\s*×\s*\d+(?:[.,]\d+)?\s*cm/) || [''])[0];
+                price = text(card.querySelector('.work-price'));
+                edition = (meta.match(/Edition of.*$/) || [''])[0];
+            }
+            var img = card.querySelector('img');
+            document.getElementById('enquiryImg').src = img ? (img.currentSrc || img.src) : '';
+            document.getElementById('enquiryTitle').textContent = title;
+            document.getElementById('enquirySpec').innerHTML = esc(artist) +
+                (size ? ' &middot; <strong>' + esc(size) + '</strong>' : '') +
+                (price ? ' &middot; ' + esc(price) : '') +
+                (edition ? '<br>' + esc(edition) : '');
+            document.getElementById('enquirySubject').value = 'Enquiry - ' + title + (size ? ', ' + size : '');
+            document.getElementById('enquiryArtist').value = artist;
+            document.getElementById('enquiryArtwork').value = title;
+            document.getElementById('enquirySize').value = size;
+            document.getElementById('enquiryPrice').value = price;
+            // Same opening as the mailto email; the visitor can edit or add to it
+            form.elements.message.value = "Hi, I'd like to enquire about " + title +
+                (sizeLabel ? ' (' + sizeLabel + ')' : '') + ' by ' + artist + '.\n\n' +
+                'Please could you provide more details about availability, purchase, delivery and timings?';
+            current = { title: title, size: size };
+            error.hidden = true;
+            box.classList.remove('is-sent');
+            box.classList.add('is-open');
+            box.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('enquiry-open');
+            lastLink = link;
+            setTimeout(function () { form.elements.name.focus({ preventScroll: true }); }, 50);
+        }
+
+        function close() {
+            box.classList.remove('is-open');
+            box.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('enquiry-open');
+            if (lastLink) lastLink.focus({ preventScroll: true });
+        }
+
+        document.querySelectorAll('.enquire-btn, .size-enquire').forEach(function (link) {
+            link.addEventListener('click', function (e) { e.preventDefault(); open(link); });
+        });
+        box.querySelector('.enquiry-close').addEventListener('click', close);
+        box.querySelector('.enquiry-back').addEventListener('click', close);
+        box.addEventListener('click', function (e) { if (e.target === box) close(); });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && box.classList.contains('is-open')) close();
+        });
+
+        function sent() {
+            var first = form.elements.name.value.trim().split(' ')[0];
+            document.getElementById('enquiryDoneText').textContent =
+                'We’ve received your enquiry' + (first ? ', ' + first : '') + ', for ' + current.title +
+                (current.size ? ' (' + current.size + ')' : '') +
+                '. We’ll reply to ' + form.elements.email.value.trim() + ' shortly.';
+            box.classList.add('is-sent');
+            box.querySelector('.enquiry-panel').scrollTop = 0;
+            trackEvent('enquiry_sent', { artist_name: artist, artwork_title: current.title, print_size: current.size });
+            form.reset();
+        }
+
+        function failed() {
+            // Hand over to the mail app with the usual pre-filled email
+            error.innerHTML = 'Sorry, that didn’t go through. Please <a href="' +
+                lastLink.getAttribute('href') + '">email your enquiry</a> instead.';
+            error.hidden = false;
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!form.reportValidity()) return;
+            error.hidden = true;
+            submit.disabled = true;
+            submit.textContent = 'Sending…';
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: new FormData(form)
+            })
+                .then(function (r) { return r.json(); })
+                .then(function (data) { data.success ? sent() : failed(); })
+                .catch(failed)
+                .then(function () {
+                    submit.disabled = false;
+                    submit.textContent = 'Send enquiry';
+                });
         });
     })();
 </script>
