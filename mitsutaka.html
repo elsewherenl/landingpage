@@ -1271,10 +1271,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     .enquiry-small a { color: inherit; }
     .enquiry-error {
-        margin-top: 0.9rem;
-        font-size: 0.8125rem; font-weight: 400; line-height: 1.55; color: #9A3F2B;
+        margin: 0 0 1rem;
+        padding: 0.85rem 1rem;
+        background: var(--warm-off-white);
+        border-left: 2px solid #9A3F2B;
+        font-size: 0.875rem; font-weight: 300; line-height: 1.55; color: var(--deep-charcoal);
     }
-    .enquiry-error a { color: inherit; }
+    .enquiry-error strong { font-weight: 500; color: #9A3F2B; }
+    .enquiry-error a { color: inherit; font-weight: 500; text-underline-offset: 0.2em; }
     .enquiry-done { display: none; padding: 1rem 0 0.5rem; }
     .enquiry.is-sent form, .enquiry.is-sent .enquiry-work { display: none; }
     .enquiry.is-sent .enquiry-done { display: block; }
@@ -1333,9 +1337,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="enquiry-hint">Interested in more than one work? Let us know below.</span>
                 <textarea name="message" rows="6"></textarea></label>
 
+            <p class="enquiry-error" id="enquiryError" role="alert" hidden></p>
             <button type="submit" class="enquiry-submit">Send enquiry</button>
             <p class="enquiry-small">We&rsquo;ll reply by email, usually within two working days. Your details are only used to answer this enquiry. Prefer email? <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a></p>
-            <p class="enquiry-error" id="enquiryError" role="alert" hidden></p>
         </form>
 
         <div class="enquiry-done" aria-live="polite">
@@ -1937,10 +1941,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function failed() {
-            // Hand over to the mail app with the usual pre-filled email
-            error.innerHTML = 'Sorry, that didn’t go through. Please <a href="' +
-                lastLink.getAttribute('href') + '">email your enquiry</a> instead.';
+            // Hand over to the mail app, keeping what the visitor wrote
+            var body = form.elements.message.value.trim() + '\n\n' + form.elements.name.value.trim();
+            var href = 'mailto:hello@elsewherecollective.nl?subject=' +
+                encodeURIComponent(document.getElementById('enquirySubject').value) +
+                '&body=' + encodeURIComponent(body);
+            error.innerHTML = '<strong>Sorry, your enquiry didn’t send.</strong><br>' +
+                '<a href="' + href + '">Send it from your email app</a> instead (your message is copied over), ' +
+                'or write to us at hello@elsewherecollective.nl.';
             error.hidden = false;
+            error.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         }
 
         form.addEventListener('submit', function (e) {
