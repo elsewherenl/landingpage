@@ -13,5 +13,12 @@ andrea-sizes.html
 # macOS folder metadata
 .DS_Store
 
+# Local-only print spec (not deployed)
+print-spec.html
+proofs/
+
+# Product-page mockups, local only
+mockup-*.html
+
 # Full-size framed-on-a-wall originals; the site uses the copies in images/wall/
 *- View on Wall.jpg
