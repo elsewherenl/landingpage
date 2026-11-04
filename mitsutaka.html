@@ -708,6 +708,65 @@ document.addEventListener('DOMContentLoaded', function() {
         margin-bottom: 1.1rem;
     }
 
+    /* Works with a framed-on-a-wall photo: the figure sits in .work-media with
+       a "View on wall" button over its bottom-right corner. The button is a
+       sibling of the figure, not inside it, since the figure is itself a
+       role="button" and buttons can't nest. */
+    .work-media {
+        position: relative;
+        align-self: start; /* the cards share row heights; keep the button on the photo */
+        margin-bottom: 1.1rem;
+    }
+
+    .work-media figure {
+        margin-bottom: 0;
+    }
+
+    .wall-btn {
+        position: absolute;
+        right: 0.9rem;
+        bottom: 0.9rem;
+        z-index: 1;
+        padding: 0.5rem 0.8rem;
+        border: none;
+        border-radius: 0;
+        background: rgba(243, 239, 233, 0.94);
+        color: var(--deep-charcoal);
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .wall-btn:hover {
+        background: var(--warm-off-white);
+    }
+
+    /* Drawn arrow rather than the ↗ character, which iOS renders as an emoji */
+    .wall-btn svg {
+        width: 0.95em;
+        height: 0.95em;
+        margin-left: 0.1em;
+        vertical-align: -0.12em;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.3;
+    }
+
+    /* Keyboard focus ring only; a mouse click shouldn't leave an outline */
+    .lightbox-trigger:focus,
+    .wall-btn:focus {
+        outline: none;
+    }
+
+    .lightbox-trigger:focus-visible,
+    .wall-btn:focus-visible {
+        outline: 2px solid var(--deep-charcoal);
+        outline-offset: 3px;
+    }
+
     .work-card img {
         position: absolute;
         inset: 0;
@@ -934,17 +993,59 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: opacity 0.35s ease;
         }
 
-        .lightbox-caption {
+        .lightbox-meta {
             margin-top: 1.25rem;
+            align-self: center;
+            width: 100%;
+            max-width: var(--lightbox-image-width, 480px);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .lightbox-caption {
             color: var(--deep-charcoal);
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 0.04em;
             text-align: left;
-            align-self: center;
-            width: 100%;
-            max-width: var(--lightbox-image-width, 480px);
+        }
+
+        /* Print / On wall switch, shown only for works with a wall photo */
+        .lightbox-view-toggle {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .lightbox-view-toggle[hidden] {
+            display: none;
+        }
+
+        .lightbox-view-toggle button {
+            padding: 0 0 0.15rem;
+            border: none;
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            background: none;
+            color: var(--text-muted);
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .lightbox-view-toggle button:hover {
+            color: var(--deep-charcoal);
+        }
+
+        .lightbox-view-toggle button[aria-pressed="true"] {
+            color: var(--deep-charcoal);
+            border-bottom-color: var(--deep-charcoal);
         }
 
         .lightbox-close {
@@ -1011,6 +1112,13 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (max-width: 768px) {
             .lightbox {
                 padding: 1.25rem;
+            }
+
+            .wall-btn {
+                right: 0.6rem;
+                bottom: 0.6rem;
+                padding: 0.4rem 0.65rem;
+                font-size: 0.8rem;
             }
 
             .lightbox-stage img {
@@ -1414,9 +1522,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <div class="works-grid">
             <article class="work-card is-lead">
-                <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" data-title="Unoccupied" tabindex="0" role="button" aria-label="View Unoccupied fullscreen">
-                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1800" height="1021"></picture>
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" data-wall="images/wall/mitsutaka-tsuryu-unoccupied.webp" data-title="Unoccupied" tabindex="0" role="button" aria-label="View Unoccupied fullscreen">
+                        <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1800" height="1021"></picture>
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Unoccupied framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Unoccupied (2025)</h3>
                     <p class="work-meta">Hahnem&uuml;hle FineArt Baryta<br>Printed 2026 &middot; 55 &times; 31 cm<br>Edition of 10</p>
@@ -1426,9 +1537,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </article>
 
             <article class="work-card is-secondary">
-                <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka Tsuryu Behind the Veil Card.jpg" data-title="Behind the Veil" tabindex="0" role="button" aria-label="View Behind the Veil fullscreen">
-                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-behind-the-veil-480.webp 480w, images/responsive/mitsutaka-tsuryu-behind-the-veil-800.webp 800w, images/responsive/mitsutaka-tsuryu-behind-the-veil-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-behind-the-veil-1400.webp 1400w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/mitsutaka-tsuryu/Mitsutaka Tsuryu Behind the Veil Card.jpg" alt="Behind the Veil, by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1400" height="1376"></picture>
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka Tsuryu Behind the Veil Card.jpg" data-wall="images/wall/mitsutaka-tsuryu-behind-the-veil.webp" data-title="Behind the Veil" tabindex="0" role="button" aria-label="View Behind the Veil fullscreen">
+                        <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-behind-the-veil-480.webp 480w, images/responsive/mitsutaka-tsuryu-behind-the-veil-800.webp 800w, images/responsive/mitsutaka-tsuryu-behind-the-veil-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-behind-the-veil-1400.webp 1400w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 37vw, 580px"><img src="images/mitsutaka-tsuryu/Mitsutaka Tsuryu Behind the Veil Card.jpg" alt="Behind the Veil, by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="1400" height="1376"></picture>
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Behind the Veil framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Behind the Veil (2025)</h3>
                     <p class="work-meta">Hahnem&uuml;hle FineArt Baryta<br>Printed 2026 &middot; 55 &times; 54 cm<br>Edition of 10</p>
@@ -1438,9 +1552,12 @@ document.addEventListener('DOMContentLoaded', function() {
             </article>
 
             <article class="work-card is-third">
-                <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg" data-title="In Transit" tabindex="0" role="button" aria-label="View In Transit fullscreen">
-                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-in-transit-480.webp 480w, images/responsive/mitsutaka-tsuryu-in-transit-800.webp 800w, images/responsive/mitsutaka-tsuryu-in-transit-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-in-transit-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-in-transit-2000.webp 2000w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg" alt="In Transit, by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="2400" height="1351"></picture>
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg" data-wall="images/wall/mitsutaka-tsuryu-in-transit.webp" data-title="In Transit" tabindex="0" role="button" aria-label="View In Transit fullscreen">
+                        <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-in-transit-480.webp 480w, images/responsive/mitsutaka-tsuryu-in-transit-800.webp 800w, images/responsive/mitsutaka-tsuryu-in-transit-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-in-transit-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-in-transit-2000.webp 2000w" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1600px) 55vw, 870px"><img src="images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg" alt="In Transit, by Mitsutaka Tsuryu" loading="lazy" decoding="async" width="2400" height="1351"></picture>
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View In Transit framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">In Transit (2021)</h3>
                     <p class="work-meta">Hahnem&uuml;hle FineArt Baryta<br>Printed 2026 &middot; 50 &times; 28 cm<br>Edition of 10</p>
@@ -1459,7 +1576,13 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next work">&#8250;</button>
     <div class="lightbox-stage">
         <img id="lightboxImage" src="" alt="">
-        <p class="lightbox-caption" id="lightboxCaption"></p>
+        <div class="lightbox-meta">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+            <div class="lightbox-view-toggle" id="lightboxViewToggle" role="group" aria-label="View" hidden>
+                <button type="button" data-view="print" aria-pressed="true">Print</button>
+                <button type="button" data-view="wall" aria-pressed="false">On wall</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -1473,7 +1596,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var prevBtn = document.getElementById('lightboxPrev');
     var nextBtn = document.getElementById('lightboxNext');
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.lightbox-trigger'));
+    var viewToggle = document.getElementById('lightboxViewToggle');
+    var viewButtons = Array.prototype.slice.call(viewToggle.querySelectorAll('button'));
     var currentIndex = 0;
+    // Wall mode shows a work's framed-on-a-wall photo (data-wall) instead of the
+    // print. It carries over while paging, for every work that has a wall photo.
+    var wallMode = false;
     // Touch devices have no meaningful "click the image to navigate" gesture (a tap
     // is naturally just "look at this", and swipe already handles nav) — used to
     // gate the image-click navigation added below.
@@ -1503,11 +1631,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderLightbox() {
         var trigger = triggers[currentIndex];
         resetZoom();
+        var title = trigger.getAttribute('data-title') || '';
+        var wallSrc = trigger.getAttribute('data-wall');
+        var showWall = wallMode && !!wallSrc;
         lightboxImage.classList.remove('is-visible');
         lightboxImage.onload = syncCaptionWidth;
-        lightboxImage.src = trigger.getAttribute('data-full');
-        lightboxImage.alt = trigger.getAttribute('data-title') || '';
-        lightboxCaption.textContent = trigger.getAttribute('data-title') || '';
+        lightboxImage.src = showWall ? wallSrc : trigger.getAttribute('data-full');
+        lightboxImage.alt = showWall ? title + ', framed on a wall' : title;
+        lightboxCaption.textContent = title;
+        viewToggle.hidden = !wallSrc;
+        viewButtons.forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String((btn.getAttribute('data-view') === 'wall') === showWall));
+        });
         if (lightboxImage.complete) syncCaptionWidth();
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
@@ -1516,8 +1651,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function openLightbox(index) {
+    function openLightbox(index, view) {
         currentIndex = index;
+        wallMode = view === 'wall';
         renderLightbox();
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1547,6 +1683,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 openLightbox(index);
             }
+        });
+    });
+
+    function trackWallView(source) {
+        if (typeof trackEvent !== 'function') return;
+        trackEvent('view_on_wall', { artwork_title: triggers[currentIndex].getAttribute('data-title') || '', source: source });
+    }
+
+    document.querySelectorAll('.wall-btn').forEach(function (btn) {
+        var index = triggers.indexOf(btn.closest('.work-media').querySelector('.lightbox-trigger'));
+        btn.addEventListener('click', function () {
+            openLightbox(index, 'wall');
+            trackWallView('card');
+        });
+    });
+
+    viewButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var toWall = btn.getAttribute('data-view') === 'wall';
+            if (toWall === wallMode) return;
+            wallMode = toWall;
+            renderLightbox();
+            if (toWall) trackWallView('lightbox');
         });
     });
 

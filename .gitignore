@@ -12,3 +12,6 @@ andrea-sizes.html
 
 # macOS folder metadata
 .DS_Store
+
+# Full-size framed-on-a-wall originals; the site uses the copies in images/wall/
+*- View on Wall.jpg
