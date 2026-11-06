@@ -903,9 +903,14 @@ document.addEventListener('DOMContentLoaded', function() {
         transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Portrait work: no grey fill around it; keeps its own shape, centred in the card */
+    /* Portrait work: no grey fill around it; keeps its own shape, left-aligned
+       with the title and text below */
     .work-card.is-portrait figure {
         background: none;
+    }
+    .work-card.is-portrait img {
+        object-position: left center;
+        transform-origin: left center;
     }
 
     .work-card:hover img {
