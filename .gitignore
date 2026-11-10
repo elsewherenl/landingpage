@@ -1,14 +1,17 @@
 CLAUDE.md
-spotlightrefresh.html
-
-spotlightUPDATE.html
 
 # Gated artist pages, local only until the artist is signed up
 jesula.html
 images/jesula/
+aleksey.html
+images/aleksey/
+images/responsive/aleksey-*
+elias.html
+images/elias/
+images/responsive/elias-*
 
-# Design previews, local only
-andrea-sizes.html
+# Artists roster preview with unreleased artists, local only
+artists-preview*.html
 
 # macOS folder metadata
 .DS_Store
@@ -17,7 +20,7 @@ andrea-sizes.html
 print-spec.html
 proofs/
 
-# Product-page mockups, local only
+# Design mockups, local only
 mockup-*.html
 
 # Full-size framed-on-a-wall originals; the site uses the copies in images/wall/

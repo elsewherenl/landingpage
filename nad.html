@@ -830,7 +830,7 @@ document.addEventListener('DOMContentLoaded', function() {
         font-weight: 300;
         line-height: 1.7;
         color: rgba(44, 44, 44, 0.85);
-        max-width: calc((100% - 3rem) * 1.4 / 2.4);
+        max-width: 60ch; /* same measure as every artist page (andrea.html) */
     }
 
     .works-empty {
@@ -1082,9 +1082,6 @@ document.addEventListener('DOMContentLoaded', function() {
     @media (max-width: 1024px) {
         .about-section {
             grid-template-columns: 1fr 1fr;
-        }
-        .works-note {
-            max-width: calc((100% - 3rem) / 2);
         }
     }
 
