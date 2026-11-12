@@ -362,8 +362,12 @@
             max-width: 1600px;
             margin: 0 auto;
             padding: var(--page-top-desktop) 3rem 4rem;
+        }
+
+        /* Section 1: text about 60%, photograph about 40% */
+        .about-intro {
             display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
             gap: 4rem;
             align-items: start;
         }
@@ -406,9 +410,11 @@
             color: var(--deep-charcoal);
         }
 
+        /* Flows on from the text above: a modest gap, and the same width as
+           the upper text column (its 3fr share of the 3fr/2fr grid, less the gap) */
         .founder-section {
-            margin-top: 1rem;
-            max-width: 900px;
+            margin-top: 1.2rem; /* plus the last paragraph's 0.8rem margin: about 32px */
+            max-width: calc((100% - 4rem) * 0.6);
         }
 
         .founder-section h2 {
@@ -433,7 +439,7 @@
         }
 
         .contact-block {
-            margin-top: 1rem;
+            margin-top: 2rem; /* about 32px, the same gap as before the founder section */
         }
 
         .text-block p {
@@ -454,13 +460,13 @@
 
         .theme-list {
             list-style: none;
-            margin: 0 0 0.8rem 0;
+            margin: 0.6rem 0 1.4rem 0;
             padding: 0;
             max-width: 900px;
         }
 
         .theme-list li {
-            margin-bottom: 0.9rem;
+            margin-bottom: 1.5rem;
         }
 
         .theme-list li:last-child {
@@ -521,21 +527,25 @@
         }
 
         /* Right Column - Images */
+        /* The photograph starts lower than the heading, roughly level with
+           the third paragraph, and scrolls with the page at full size */
         .image-column {
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            position: sticky;
-            top: var(--page-top-desktop);
+            margin-top: 12rem;
+            /* Takes no height in the layout, so the photograph can hang down
+               beside the founder text (left 60%) without pushing it lower */
+            height: 0;
         }
 
         /* As large as the column allows, but never taller than the space
            under the header, so the whole image stays in view while pinned
            beside the scrolling text. */
         .image-placeholder {
-            width: min(100%, calc((100svh - var(--page-top-desktop) - 1.5rem) * 0.75));
+            width: min(100%, calc(100svh - var(--page-top-desktop) - 1.5rem));
             margin-left: auto;
-            aspect-ratio: 3/4;
+            aspect-ratio: 1/1; /* the photograph is square (1080 × 1080) */
             background-image: url('https://raw.githubusercontent.com/elsewherenl/website/refs/heads/main/58c03f97-c655-4a97-82fe-c306d1fbf376.jpeg');
             background-size: cover;
             background-position: center;
@@ -710,9 +720,17 @@
     /* FIX 4: Add proper spacing for content below header */
     .about-container {
         padding: var(--page-top-mobile) 1.5rem 4rem; /* Increased from 8rem to 10rem and side padding reduced */
+        text-align: left;
+    }
+
+    .about-intro {
         grid-template-columns: 1fr;
         gap: 3rem;
-        text-align: left;
+    }
+
+    .founder-section {
+        margin-top: 1.2rem;
+        max-width: none;
     }
 
     .text-block h1 {
@@ -737,6 +755,7 @@
         position: relative;
         top: 0;
         margin-top: 0;
+        height: auto;
     }
 
     .image-placeholder {
@@ -857,60 +876,63 @@
     </header>
 
     <main class="about-container">
-        <!-- Left Column: Text Content -->
-        <div class="text-column">
-            <section class="text-block">
-                <h1>A nomadic gallery for contemporary photography.</h1>
-                <p class="subtitle">elsewhere presents emerging photographers alongside selected established artists, online and through exhibitions, collaborations, and temporary spaces.</p>
-                <p class="subtitle">In a world of endless images, where algorithmic discovery can make everything feel increasingly similar and disposable, we believe in the value of selection, context, and a point of view. As synthetic images become more prevalent, we are more and more drawn to photography as a human and physical act, from observation to making to experiencing.</p>
-                <p class="subtitle">We share work that explores how we live, the human condition, and our place in the world around us. Work with atmosphere that invites contemplation rather than certainty.</p>
-                <p class="subtitle">Our curation centres on three broad recurring themes:</p>
-                <ul class="theme-list">
-                    <li>
-                        <span class="theme-name">Cultural Exchange</span>
-                        <span class="theme-description">Perspectives on people, place, and ways of life.</span>
-                    </li>
-                    <li>
-                        <span class="theme-name">The Inner Life</span>
-                        <span class="theme-description">Reflections on the human condition.</span>
-                    </li>
-                    <li>
-                        <span class="theme-name">The Natural World</span>
-                        <span class="theme-description">Landscape, the environment, and our place within it.</span>
-                    </li>
-                </ul>
-                <p class="subtitle">Through thoughtful curation and limited-edition releases, we make fine-art photography easier to discover, experience, and own.</p>
-            </section>
+        <!-- Section 1: About elsewhere. Text about 60%, photograph about 40% -->
+        <div class="about-intro">
+            <div class="text-column">
+                <section class="text-block">
+                    <h1>A nomadic gallery for contemporary photography.</h1>
+                    <p class="subtitle">elsewhere presents emerging photographers alongside selected established artists, online and through exhibitions, collaborations, and temporary spaces.</p>
+                    <p class="subtitle">In a world of endless images, where algorithmic discovery can make everything feel increasingly similar and disposable, we believe in the value of selection, context, and a point of view. As synthetic images become more prevalent, we are more and more drawn to photography as a human and physical act, from observation to making to experiencing.</p>
+                    <p class="subtitle">We share work that explores how we live, the human condition, and our place in the world around us. Work with atmosphere that invites contemplation rather than certainty.</p>
+                    <p class="subtitle">Our curation centres on three broad recurring themes:</p>
+                    <ul class="theme-list">
+                        <li>
+                            <span class="theme-name">Cultural Exchange</span>
+                            <span class="theme-description">Perspectives on people, place, and ways of life.</span>
+                        </li>
+                        <li>
+                            <span class="theme-name">The Inner Life</span>
+                            <span class="theme-description">Reflections on the human condition.</span>
+                        </li>
+                        <li>
+                            <span class="theme-name">The Natural World</span>
+                            <span class="theme-description">Landscape, the environment, and our place within it.</span>
+                        </li>
+                    </ul>
+                    <p class="subtitle">Through thoughtful curation and limited-edition releases, we make fine-art photography easier to discover, experience, and own.</p>
+                </section>
+            </div>
 
-            <section class="founder-section">
-                <h2>Founded by Alex Martin</h2>
-
-                <p>Coming from a background in advertising and marketing, I've always had a passion for art and photography.</p>
-
-                <p>What I love about photography is its ambiguity. A photograph can describe something while still leaving space for mystery, contemplation, and your own interpretation.</p>
-
-                <p>I started elsewhere from a belief that discovering and buying photography could be more enjoyable and straightforward. There is incredible work being made by emerging photographers, but discovering it can be fragmented and buying it isn't always easy.</p>
-
-                <p>I want elsewhere to help champion these artists, find homes for their work, and help buyers discover exciting photography beyond the obvious.</p>
-
-                <p>The ambition is to build beyond selling work, creating a community and resource for artists while bringing photography into interesting spaces through exhibitions and pop-ups across Amsterdam.</p>
-
-                <p class="founder-location">Amsterdam, 2026.</p>
-            </section>
-
-            <section class="text-block contact-block">
-                <h2>Contact</h2>
-                <div class="contact-links">
-                    <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
-                    <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a>
-                </div>
-            </section>
+            <!-- Photograph (sticky beside the text) -->
+            <div class="image-column">
+                <div class="image-placeholder"></div>
+            </div>
         </div>
 
-        <!-- Right Column: Image (Sticky) -->
-        <div class="image-column">
-            <div class="image-placeholder"></div>
-        </div>
+        <!-- Section 2: Founded by Alex Martin, wider than the text column above -->
+        <section class="founder-section">
+            <h2>Founded by Alex Martin</h2>
+
+            <p>Coming from a background in advertising and marketing, I've always had a passion for art and photography.</p>
+
+            <p>What I love about photography is its ambiguity. A photograph can describe something while still leaving space for mystery, contemplation, and your own interpretation.</p>
+
+            <p>I started elsewhere from a belief that discovering and buying photography could be more enjoyable and straightforward. There is incredible work being made by emerging photographers, but discovering it can be fragmented and buying it isn't always easy.</p>
+
+            <p>I want elsewhere to help champion these artists, find homes for their work, and help buyers discover exciting photography beyond the obvious.</p>
+
+            <p>The ambition is to build beyond selling work, creating a community and resource for artists while bringing photography into interesting spaces through exhibitions and pop-ups across Amsterdam.</p>
+
+            <p class="founder-location">Amsterdam, 2026.</p>
+        </section>
+
+        <section class="text-block contact-block">
+            <h2>Contact</h2>
+            <div class="contact-links">
+                <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>
+                <a href="https://www.instagram.com/elsewhere___collective" target="_blank" rel="noopener">@elsewhere<span class="ig-handle-dash">___</span>collective</a>
+            </div>
+        </section>
     </main>
 
     <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
