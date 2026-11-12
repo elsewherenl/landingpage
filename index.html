@@ -2419,10 +2419,21 @@
                 });
             });
 
-            // Newsletter submit (MailerLite via hidden iframe, avoids CORS/JSONP issues).
-            // Each .js-nl-form instance (inline band, mobile sticky bar, ...) is bound
-            // independently and scoped to its own iframe/success/error elements, so
-            // multiple instances can coexist without cross-triggering each other.
+            // Newsletter submit. The form posts to MailerLite with fetch and reads
+            // its JSON reply (MailerLite allows cross-origin requests), so the
+            // message shown is what actually happened:
+            //   {"success":true}                      -> thank you
+            //   {"success":false, errors.fields.email} -> check the address
+            //   request fails or times out (often a privacy/ad-blocking
+            //   extension blocking MailerLite)       -> explain, offer email
+            // Without JS the form still posts natively into its hidden iframe.
+            // Each .js-nl-form instance is bound independently and scoped to its
+            // own success/error elements. Keep in step with newsletter-popup.js.
+            const NL_MESSAGES = {
+                invalid: 'That email address doesn\u2019t look right. Please check it and try again.',
+                failed: 'Something went wrong. Please try again or email us at hello@elsewherecollective.nl',
+                blocked: 'We couldn\u2019t reach our newsletter service. This is often caused by a privacy or ad-blocking extension. Please email us at hello@elsewherecollective.nl and we\u2019ll add you.'
+            };
             document.querySelectorAll('.js-nl-form').forEach(function(form) {
                 const source = form.dataset.source;
                 const emailInput = form.querySelector('.js-nl-email');
@@ -2432,52 +2443,49 @@
                 const instance = form.closest('.js-nl-instance');
                 const successMsg = instance.querySelector('.js-nl-success');
                 const errorMsg = instance.querySelector('.js-nl-error');
-                const iframe = document.getElementsByName(form.target)[0];
-                let submitted = false;
-                let responseTimer = null;
 
-                // The iframe fires an implicit `load` for its initial about:blank
-                // document before any submission happens — the `submitted` flag
-                // distinguishes that from a real post-submit response.
-                //
-                // KNOWN LIMITATION: `load` fires for any response the iframe receives,
-                // including a MailerLite error page or a 4xx/5xx status — there's no
-                // way to inspect the cross-origin response body/status from here. A
-                // rejected submission therefore still shows success, sets
-                // ec_subscribed = '1', and permanently suppresses the sticky bar for
-                // that visitor. Fixing this needs a same-origin API proxy in front of
-                // MailerLite (so the response can be read) and is out of scope here —
-                // documented so it isn't rediscovered later as a mystery bug.
-                iframe.addEventListener('load', function() {
-                    if (!submitted) return;
-                    submitted = false;
-                    clearTimeout(responseTimer);
-                    form.hidden = true;
-                    successMsg.classList.add('visible');
-                    localStorage.setItem('ec_subscribed', '1');
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'newsletter_signup', { method: source });
-                    }
-                });
+                function showError(kind) {
+                    errorMsg.textContent = NL_MESSAGES[kind];
+                    errorMsg.classList.add('visible');
+                    button.disabled = false;
+                    buttonLabel.textContent = originalLabel;
+                }
 
-                form.addEventListener('submit', function() {
+                form.addEventListener('submit', function(e) {
                     const email = emailInput.value.trim();
                     if (!email) return;
+                    e.preventDefault();
 
-                    submitted = true;
                     button.disabled = true;
                     buttonLabel.textContent = 'Joining';
                     successMsg.classList.remove('visible');
                     errorMsg.classList.remove('visible');
 
-                    // Form submits natively to the hidden iframe; we can't read the
-                    // cross-origin response, so treat no response within 8s as failure.
-                    responseTimer = setTimeout(function() {
-                        submitted = false;
-                        errorMsg.classList.add('visible');
-                        button.disabled = false;
-                        buttonLabel.textContent = originalLabel;
-                    }, 8000);
+                    const controller = window.AbortController ? new AbortController() : null;
+                    const timer = setTimeout(function() { if (controller) controller.abort(); }, 15000);
+
+                    fetch(form.action, { method: 'POST', body: new FormData(form), signal: controller ? controller.signal : undefined })
+                        // An unreadable reply means MailerLite answered but oddly: 'failed', not 'blocked'
+                        .then(function(res) { return res.json().catch(function() { return {}; }); })
+                        .then(function(data) {
+                            clearTimeout(timer);
+                            if (data && data.success) {
+                                form.hidden = true;
+                                successMsg.classList.add('visible');
+                                try { localStorage.setItem('ec_subscribed', '1'); } catch (err) {}
+                                if (typeof gtag === 'function') {
+                                    try { gtag('event', 'newsletter_signup', { method: source }); } catch (err) {}
+                                }
+                            } else if (data && data.errors && data.errors.fields && data.errors.fields.email) {
+                                showError('invalid');
+                            } else {
+                                showError('failed');
+                            }
+                        })
+                        .catch(function() {
+                            clearTimeout(timer);
+                            showError('blocked');
+                        });
                 });
             });
 

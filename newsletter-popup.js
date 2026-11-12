@@ -13,9 +13,11 @@
  *   - before the cookie banner has been answered, or while a lightbox, enquiry
  *     form or other overlay is open, or while someone is typing in a field
  *
- * Posts to the same MailerLite form as the homepage, via a hidden iframe, with
- * ec_source = popup. Like the homepage form, success is inferred from the
- * iframe loading within 8s (the cross-origin response can't be read).
+ * Posts to the same MailerLite form as the homepage, with ec_source = popup,
+ * using fetch and reading MailerLite's JSON reply (it allows cross-origin
+ * requests), so success, a rejected address and a blocked request (often a
+ * privacy or ad-blocking extension) each get their own message. Same logic as
+ * the homepage form in index.html; keep the two in step.
  * Sends no analytics events and loads nothing from third parties until
  * Subscribe is pressed. Built entirely in JS after load, so crawlers see no change.
  */
@@ -241,7 +243,7 @@
                     '<h2 class="nlp-title" id="nlpTitle">Stay in touch</h2>' +
                     '<p class="nlp-text" id="nlpText">Occasional notes from elsewhere: selected artists, new works, and upcoming exhibitions.</p>' +
                     '<p class="nlp-text nlp-giveaway"><strong>A chance to win a photograph for your walls.</strong> One subscriber will be selected to receive a limited-edition print from the elsewhere collection.</p>' +
-                    '<form class="nlp-form" action="' + MAILERLITE_ACTION + '" method="post" target="ml-iframe-popup">' +
+                    '<form class="nlp-form" action="' + MAILERLITE_ACTION + '" method="post">' +
                         '<label for="nlpEmail" class="nlp-hidden">Email address</label>' +
                         '<input type="email" id="nlpEmail" name="fields[email]" class="nlp-input" placeholder="Your email" required autocomplete="email" inputmode="email">' +
                         '<input type="hidden" name="fields[ec_source]" value="popup">' +
@@ -249,7 +251,6 @@
                         '<input type="hidden" name="anticsrf" value="true">' +
                         '<button type="submit" class="nlp-button">Subscribe</button>' +
                     '</form>' +
-                    '<iframe name="ml-iframe-popup" title="Newsletter sign-up response" tabindex="-1" aria-hidden="true" style="display:none"></iframe>' +
                     '<p class="nlp-msg nlp-success" role="status" aria-live="polite"></p>' +
                     '<p class="nlp-msg nlp-error" role="status" aria-live="polite"></p>' +
                 '</div>' +
@@ -291,9 +292,6 @@
         var button = popup.querySelector('.nlp-button');
         var success = popup.querySelector('.nlp-success');
         var error = popup.querySelector('.nlp-error');
-        var iframe = popup.querySelector('iframe');
-        var submitted = false;
-        var responseTimer = null;
 
         function showSuccess() {
             form.hidden = true;
@@ -331,16 +329,18 @@
         };
         document.addEventListener('keydown', onKeydown);
 
-        // The iframe fires a load for its initial blank document; `submitted`
-        // tells that apart from MailerLite's response.
-        iframe.addEventListener('load', function () {
-            if (!submitted) return;
-            submitted = false;
-            clearTimeout(responseTimer);
-            showSuccess();
-            set('localStorage', K_SUBSCRIBED, '1');
-            setTimeout(close, 4000);
-        });
+        var EMAIL = '<a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>';
+        var MESSAGES = {
+            invalid: 'That email address doesn\u2019t look right. Please check it and try again.',
+            failed: 'Something went wrong. Please try again or email us at ' + EMAIL,
+            blocked: 'We couldn\u2019t reach our newsletter service. This is often caused by a privacy or ad-blocking extension. Please email us at ' + EMAIL + ' and we\u2019ll add you.'
+        };
+        function showError(kind) {
+            error.innerHTML = MESSAGES[kind];
+            error.classList.add('is-visible');
+            button.disabled = false;
+            button.textContent = 'Subscribe';
+        }
 
         form.addEventListener('submit', function (e) {
             if (!input.value.trim()) return;
@@ -350,17 +350,32 @@
                 showSuccess();
                 return;
             }
-            submitted = true;
+            e.preventDefault();
             button.disabled = true;
             button.textContent = 'Subscribing';
             error.classList.remove('is-visible');
-            responseTimer = setTimeout(function () {
-                submitted = false;
-                error.innerHTML = 'Something went wrong. Please try again or email us at <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a>';
-                error.classList.add('is-visible');
-                button.disabled = false;
-                button.textContent = 'Subscribe';
-            }, 8000);
+
+            var controller = window.AbortController ? new AbortController() : null;
+            var timer = setTimeout(function () { if (controller) controller.abort(); }, 15000);
+            fetch(MAILERLITE_ACTION, { method: 'POST', body: new FormData(form), signal: controller ? controller.signal : undefined })
+                // An unreadable reply means MailerLite answered but oddly: 'failed', not 'blocked'
+                .then(function (res) { return res.json().catch(function () { return {}; }); })
+                .then(function (data) {
+                    clearTimeout(timer);
+                    if (data && data.success) {
+                        showSuccess();
+                        set('localStorage', K_SUBSCRIBED, '1');
+                        setTimeout(close, 4000);
+                    } else if (data && data.errors && data.errors.fields && data.errors.fields.email) {
+                        showError('invalid');
+                    } else {
+                        showError('failed');
+                    }
+                })
+                .catch(function () {
+                    clearTimeout(timer);
+                    showError('blocked');
+                });
         });
 
         // Modal: stop the page scrolling behind it, and move focus to the dialog
