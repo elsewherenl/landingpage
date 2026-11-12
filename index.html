@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>elsewhere | contemporary photography gallery, Amsterdam</title>
-    <meta name="description" content="elsewhere is an Amsterdam gallery where you can discover and collect contemporary photography: emerging and established photographers, limited-edition prints.">
+    <title>elsewhere — Contemporary Photography Gallery, Amsterdam</title>
+    <meta name="description" content="elsewhere collective is a contemporary photography gallery in Amsterdam, offering limited-edition prints by emerging and established photographers.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="contemporary photography, emerging photographers, limited edition prints, curated photography, art collection, photography prints, Amsterdam gallery, fine art photography">
 
@@ -16,8 +16,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/">
-    <meta property="og:title" content="elsewhere | contemporary photography gallery, Amsterdam">
-    <meta property="og:description" content="elsewhere is an Amsterdam gallery where you can discover and collect contemporary photography: emerging and established photographers, limited-edition prints.">
+    <meta property="og:title" content="elsewhere — Contemporary Photography Gallery, Amsterdam">
+    <meta property="og:description" content="elsewhere collective is a contemporary photography gallery in Amsterdam, offering limited-edition prints by emerging and established photographers.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
@@ -33,8 +33,8 @@
             }
         })();
     </script>
-    <meta property="twitter:title" content="elsewhere | contemporary photography gallery, Amsterdam">
-    <meta property="twitter:description" content="elsewhere is an Amsterdam gallery where you can discover and collect contemporary photography: emerging and established photographers, limited-edition prints.">
+    <meta property="twitter:title" content="elsewhere — Contemporary Photography Gallery, Amsterdam">
+    <meta property="twitter:description" content="elsewhere collective is a contemporary photography gallery in Amsterdam, offering limited-edition prints by emerging and established photographers.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Pinterest Verification -->
@@ -49,13 +49,15 @@
                 "@type": "WebSite",
                 "@id": "https://elsewherecollective.nl/#website",
                 "url": "https://elsewherecollective.nl",
-                "name": "elsewhere collective",
+                "name": "elsewhere",
+                "alternateName": "elsewhere collective",
                 "publisher": { "@id": "https://elsewherecollective.nl/#organization" }
             },
             {
                 "@type": "Organization",
                 "@id": "https://elsewherecollective.nl/#organization",
-                "name": "elsewhere collective",
+                "name": "elsewhere",
+                "alternateName": "elsewhere collective",
                 "url": "https://elsewherecollective.nl",
                 "logo": "https://elsewherecollective.nl/favicon.png",
                 "description": "elsewhere collective is a curated gallery championing emerging photographers alongside selected established voices, based in Amsterdam.",
@@ -1112,6 +1114,30 @@
             opacity: 0.75;
         }
 
+        /* Link to a represented artist's page (posts with artist_page in the
+           feed), same as the Spotlights lightbox */
+        .fullscreen-caption .caption-link {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            color: var(--deep-charcoal);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(44, 44, 44, 0.35);
+            transition: border-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .fullscreen-caption .caption-link:hover {
+            border-bottom-color: var(--deep-charcoal);
+            opacity: 0.7;
+        }
+
+        .fullscreen-caption .caption-link[hidden] {
+            display: none;
+        }
+
         .close-modal {
             position: fixed;
             top: clamp(1.25rem, 3vh, 2rem);
@@ -1684,30 +1710,30 @@
                     
                         <article class="grid-item" data-index="0" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Restricted Images — photograph by Patrick Waterhouse" width="500" height="390" loading="eager" fetchpriority="high">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ghost Witness, by Mårten Lange" width="500" height="750" loading="eager" fetchpriority="high">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Restricted Images</h3>
-                                    <p class="a">Patrick Waterhouse</p>
+                                    <h3 class="t">Ghost Witness</h3>
+                                    <p class="a">Mårten Lange</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="4" data-theme="Natural Worlds">
+                        <article class="grid-item" data-index="9" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain — photograph by Elias Kepplinger" width="500" height="500" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Teoswa, by Yimin Chen" width="500" height="380" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">The Moving Mountain</h3>
-                                    <p class="a">Elias Kepplinger</p>
+                                    <h3 class="t">Teoswa</h3>
+                                    <p class="a">Yimin Chen</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="10" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ice Fishers — photograph by Aleksey Kondratyev" width="500" height="400" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Woman Carrying Water Buckets in the Snow, by John Peter Askew" width="500" height="330" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Ice Fishers</h3>
-                                    <p class="a">Aleksey Kondratyev</p>
+                                    <h3 class="t">Woman Carrying Water Buckets in the Snow</h3>
+                                    <p class="a">John Peter Askew</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1717,50 +1743,27 @@
                     
                         <article class="grid-item" data-index="1" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Farewell to Elders — photograph by Mahmoud Khatab" width="500" height="750" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ice Fishers, by Aleksey Kondratyev" width="500" height="400" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Farewell to Elders</h3>
-                                    <p class="a">Mahmoud Khatab</p>
+                                    <h3 class="t">Ice Fishers</h3>
+                                    <p class="a">Aleksey Kondratyev</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="8" data-theme="Natural Worlds">
+                        <article class="grid-item" data-index="6" data-theme="Inner Life">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="In Light Years — photograph by Andrew Owen" width="500" height="400" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Abandon, by Uzma Mohsin" width="500" height="500" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">In Light Years</h3>
-                                    <p class="a">Andrew Owen</p>
+                                    <h3 class="t">Abandon</h3>
+                                    <p class="a">Uzma Mohsin</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="10" data-theme="">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Horse / Men — photograph by Nad-E-Ali" width="500" height="330" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Horse / Men</h3>
-                                    <p class="a">Nad-E-Ali</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                </div>
-                <div class="grid-col">
-                    
-                        <article class="grid-item" data-index="2" data-theme="Inner Life">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Of All The Wild Paths — photograph by Claire Amaouche" width="500" height="390" loading="eager">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Of All The Wild Paths</h3>
-                                    <p class="a">Claire Amaouche</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="5" data-theme="">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Cube — photograph by Orestis Ilias" width="500" height="380" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Cube, by Orestis Ilias" width="500" height="380" loading="lazy">
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">The Cube</h3>
                                     <p class="a">Orestis Ilias</p>
@@ -1768,12 +1771,35 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="9" data-theme="Cultural Exchange">
+                </div>
+                <div class="grid-col">
+                    
+                        <article class="grid-item" data-index="2" data-theme="Natural Worlds">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Yellow River — photograph by Zhang Kechun" width="500" height="390" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Abstract landscapes, Central Italy, by Kevin Scali" width="500" height="390" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">The Yellow River</h3>
-                                    <p class="a">Zhang Kechun</p>
+                                    <h3 class="t">Abstract landscapes, Central Italy</h3>
+                                    <p class="a">Kevin Scali</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="4" data-theme="Inner Life">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="I AM NOT HERE, by Antonio Rosato" width="500" height="340" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">I AM NOT HERE</h3>
+                                    <p class="a">Antonio Rosato</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="8" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain, by Elias Kepplinger" width="500" height="500" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">The Moving Mountain</h3>
+                                    <p class="a">Elias Kepplinger</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1781,32 +1807,32 @@
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="3" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="3" data-theme="Natural Worlds">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Wird — photograph by Bruno Hadjih" width="500" height="390" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Vastness, by Kim Woo Young" width="500" height="390" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Wird</h3>
-                                    <p class="a">Bruno Hadjih</p>
+                                    <h3 class="t">The Vastness</h3>
+                                    <p class="a">Kim Woo Young</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="6" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="5" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Woman Carrying Water Buckets in the Snow — photograph by John Peter Askew" width="500" height="330" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Horse / Men, by Nad-E-Ali" width="500" height="330" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Woman Carrying Water Buckets in the Snow</h3>
-                                    <p class="a">John Peter Askew</p>
+                                    <h3 class="t">Horse / Men</h3>
+                                    <p class="a">Nad-E-Ali</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="7" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="7" data-theme="Inner Life">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ghost Witness — photograph by Mårten Lange" width="500" height="750" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Behind the Veil, by Mitsutaka Tsuryu" width="500" height="490" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Ghost Witness</h3>
-                                    <p class="a">Mårten Lange</p>
+                                    <h3 class="t">Behind the Veil</h3>
+                                    <p class="a">Mitsutaka Tsuryu</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1818,27 +1844,37 @@
                     
                         <article class="grid-item" data-index="0" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Restricted Images — photograph by Patrick Waterhouse" width="500" height="390" loading="eager" fetchpriority="high">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ghost Witness, by Mårten Lange" width="500" height="750" loading="eager" fetchpriority="high">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Restricted Images</h3>
-                                    <p class="a">Patrick Waterhouse</p>
+                                    <h3 class="t">Ghost Witness</h3>
+                                    <p class="a">Mårten Lange</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="2" data-theme="Inner Life">
+                        <article class="grid-item" data-index="3" data-theme="Natural Worlds">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Claire_A_w9zurb.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Of All The Wild Paths — photograph by Claire Amaouche" width="500" height="390" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199630/Kim_Woo_Young_nzvp01.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Vastness, by Kim Woo Young" width="500" height="390" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Of All The Wild Paths</h3>
-                                    <p class="a">Claire Amaouche</p>
+                                    <h3 class="t">The Vastness</h3>
+                                    <p class="a">Kim Woo Young</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="4" data-theme="Natural Worlds">
+                        <article class="grid-item" data-index="6" data-theme="Inner Life">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain — photograph by Elias Kepplinger" width="500" height="500" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784198216/Uzma_fw4kxn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Abandon, by Uzma Mohsin" width="500" height="500" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Abandon</h3>
+                                    <p class="a">Uzma Mohsin</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="8" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain, by Elias Kepplinger" width="500" height="500" loading="lazy">
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">The Moving Mountain</h3>
                                     <p class="a">Elias Kepplinger</p>
@@ -1846,42 +1882,12 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="6" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="10" data-theme="">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Woman Carrying Water Buckets in the Snow — photograph by John Peter Askew" width="500" height="330" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Cube, by Orestis Ilias" width="500" height="380" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Woman Carrying Water Buckets in the Snow</h3>
-                                    <p class="a">John Peter Askew</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="8" data-theme="Natural Worlds">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199620/Andrew_Owen_ujenhr.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="In Light Years — photograph by Andrew Owen" width="500" height="400" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">In Light Years</h3>
-                                    <p class="a">Andrew Owen</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="9" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Yellow River — photograph by Zhang Kechun" width="500" height="390" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">The Yellow River</h3>
-                                    <p class="a">Zhang Kechun</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Horse / Men — photograph by Nad-E-Ali" width="500" height="330" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Horse / Men</h3>
-                                    <p class="a">Nad-E-Ali</p>
+                                    <h3 class="t">The Cube</h3>
+                                    <p class="a">Orestis Ilias</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1891,50 +1897,70 @@
                     
                         <article class="grid-item" data-index="1" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Mahmoud_K_ullxu7.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Farewell to Elders — photograph by Mahmoud Khatab" width="500" height="750" loading="eager">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Farewell to Elders</h3>
-                                    <p class="a">Mahmoud Khatab</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="3" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199618/bruno-hadjih_1_dzuk5k.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Wird — photograph by Bruno Hadjih" width="500" height="390" loading="eager">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Wird</h3>
-                                    <p class="a">Bruno Hadjih</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="5" data-theme="">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Cube — photograph by Orestis Ilias" width="500" height="380" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">The Cube</h3>
-                                    <p class="a">Orestis Ilias</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="7" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ghost Witness — photograph by Mårten Lange" width="500" height="750" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Ghost Witness</h3>
-                                    <p class="a">Mårten Lange</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="10" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ice Fishers — photograph by Aleksey Kondratyev" width="500" height="400" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ice Fishers, by Aleksey Kondratyev" width="500" height="400" loading="eager">
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">Ice Fishers</h3>
                                     <p class="a">Aleksey Kondratyev</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="2" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199625/Kevin_S_xvcygd.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Abstract landscapes, Central Italy, by Kevin Scali" width="500" height="390" loading="eager">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Abstract landscapes, Central Italy</h3>
+                                    <p class="a">Kevin Scali</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="4" data-theme="Inner Life">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1771349532/I_AM_NOT_HERE_lje91d.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="I AM NOT HERE, by Antonio Rosato" width="500" height="340" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">I AM NOT HERE</h3>
+                                    <p class="a">Antonio Rosato</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="5" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Horse / Men, by Nad-E-Ali" width="500" height="330" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Horse / Men</h3>
+                                    <p class="a">Nad-E-Ali</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="7" data-theme="Inner Life">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Behind the Veil, by Mitsutaka Tsuryu" width="500" height="490" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Behind the Veil</h3>
+                                    <p class="a">Mitsutaka Tsuryu</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="9" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765200002/Yimin_Chen_ujhcpr.png 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Teoswa, by Yimin Chen" width="500" height="380" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Teoswa</h3>
+                                    <p class="a">Yimin Chen</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Woman Carrying Water Buckets in the Snow, by John Peter Askew" width="500" height="330" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Woman Carrying Water Buckets in the Snow</h3>
+                                    <p class="a">John Peter Askew</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1943,7 +1969,7 @@
                 </div>
                 <!-- GENERATED:GRID:END -->
                 </div>
-                <script type="application/json" id="gridData">[{"title":"Restricted Images","artist":"Patrick Waterhouse","caption":"Working with Warlpiri artists in Central Australia, Patrick's black and white photographs of them are transformed through their traditional dot painting.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg","width":500,"height":390},{"title":"Farewell to Elders","artist":"Mahmoud Khatab","caption":"I spent a day at the Egyptian museum, where it hosted the royal mummies for the last day, forever, before being carried in a parade into another museum, to be shown and scrutinised. To be taken away from everything else they crossed the Nile with. I made my greetings to everything else that bid their farewell, to kings and queens who already departed, who only chose to be buried south of here, who only chose to be carried across the west bank of the Nile, who chose to be buried into the afterlife. Who saw the intimate writings on their walls something only their souls will recognise and recall in their coming rebirth.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Mahmoud_K_ullxu7.jpg","width":500,"height":750},{"title":"Of All The Wild Paths","artist":"Claire Amaouche","caption":"I wandered from place to place, from solitude to solitude, trying to grasp their hidden essence. Little by little, it seemed to me that it was not nature itself - eternal, wild, impenetrable - that I was drawing near, but the shifting reflection of my own drifting, and the void at the heart of my existence. Of All The Wild Paths speaks to our relationship with ourselves and the landscape. Even in the wilderness there is evidence of those who came before. Through painted silhouettes Claire traces that connection between us, the landscape, and our predecessors. Her figures appear - almost ghostly - hinting at the ethereal connection between past and present.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Claire_A_w9zurb.jpg","width":500,"height":390},{"title":"Wird","artist":"Bruno Hadjih","caption":"The wird is a Sufi invocation of incantations and prayers to reach the hal, a temporary state where the self dissolves into divine presence. Hadjih's colours and movements move away from a documentary approach to capture that feeling, and make the mystical appear closer.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199618/bruno-hadjih_1_dzuk5k.jpg","width":500,"height":390},{"title":"The Moving Mountain","artist":"Elias Kepplinger","caption":"Once a strong living being filled with vitality and magic, now barely kept alive by the last remaining blue ice. She appears as a human in the last years of life, unable to survive on her own, needing to be fed, needing cover when it’s too hot, unable to clean herself. Humanity tries to prevent this disappearance through technology, but we must question whether this is even possible in the face of an untameable natural world. A work dedicated to the mountain, the glacier, the untamed, and the wild, to draw attention to their disappearance.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg","width":500,"height":500},{"title":"The Cube","artist":"Orestis Ilias","caption":"Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871784/Orestis_The_Cube_jzcv1z.jpg","width":500,"height":380},{"title":"Woman Carrying Water Buckets in the Snow","artist":"John Peter Askew","caption":"On 8 March 1998, International Women's Day, John Peter Askew stepped outside during village celebrations near Perm, Russia, and encountered a woman carrying water through the snow. Snow falling onto the lens provides an unexpected frame, while the colour of her dress suggests that the hard work might soon give way to a more relaxed evening.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1791561459/image_288_u9dnoc.jpg","width":500,"height":330},{"title":"Ghost Witness","artist":"Mårten Lange","caption":"Life inside China’s planned metropolises.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792002737/ghost_witness_28__2x_kevirx.jpg","width":500,"height":750},{"title":"In Light Years","artist":"Andrew Owen","caption":"Fire and snow are testament to nature's power in California's extreme weather this decade.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199620/Andrew_Owen_ujenhr.jpg","width":500,"height":400},{"title":"The Yellow River","artist":"Zhang Kechun","caption":"Change and permanence along one of civilisation's great rivers.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199633/Zhang_The_Yellow_River_1_1_n7jibx.jpg","width":500,"height":390},{"title":"Ice Fishers","artist":"Aleksey Kondratyev","caption":"For generations, Kazakh fishers have set out on the frozen Ishim River. In Ice Fishers, Aleksey Kondratyev traces how this practice intersects with modern global capitalism, as fishers shelter beneath salvaged plastics and packaging from Chinese, Russian, and Western goods.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg","width":500,"height":400},{"title":"Horse / Men","artist":"Nad-E-Ali","caption":"Each year in Lahore, Pakistan, the Shiʿi Muslim community gathers for the Shabih-e Zuljanah processions, commemorating the martyrdom of Imam Husayn (peace be upon him).\n\nCentred around horses representing his revered steed, Zuljanah, the processions become spaces of collective remembrance, faith, and shared identity.\n\nIn Horse / Men, Nad offers a personal reflection on these rituals, focusing on the relationship between the horses, their caretakers, and the surrounding crowds.\n\nAmid the intensity of the procession, the horses both disrupt and direct the movement of people, becoming points of stillness and grace.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg","width":500,"height":330}]</script>
+                <script type="application/json" id="gridData">[{"title":"Ghost Witness","artist":"Mårten Lange","caption":"Life inside China’s planned metropolises.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792002737/ghost_witness_28__2x_kevirx.jpg","width":500,"height":750},{"title":"Ice Fishers","artist":"Aleksey Kondratyev","caption":"For generations, Kazakh fishers have set out on the frozen Ishim River. In Ice Fishers, Aleksey Kondratyev traces how this practice intersects with modern global capitalism, as fishers shelter beneath salvaged plastics and packaging from Chinese, Russian, and Western goods.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1790788504/Ice_Fishers_without_frame_lbvamm.jpg","width":500,"height":400},{"title":"Abstract landscapes, Central Italy","artist":"Kevin Scali","caption":"Oak and poppies in a blur of colour and movement.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199625/Kevin_S_xvcygd.jpg","width":500,"height":390},{"title":"The Vastness","artist":"Kim Woo Young","caption":"The desert in cold light. An uneasy relationship between the fleeting and the permanent, the natural and the human.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199630/Kim_Woo_Young_nzvp01.jpg","width":500,"height":390},{"title":"I AM NOT HERE","artist":"Antonio Rosato","caption":"Antonio explores the way detachment and alienation shape how we see. The familiar becomes altered and uncertain.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1771349532/I_AM_NOT_HERE_lje91d.jpg","width":500,"height":340},{"title":"Horse / Men","artist":"Nad-E-Ali","caption":"Each year in Lahore, Pakistan, the Shiʿi Muslim community gathers for the Shabih-e Zuljanah processions, commemorating the martyrdom of Imam Husayn (peace be upon him).\n\nCentred around horses representing his revered steed, Zuljanah, the processions become spaces of collective remembrance, faith, and shared identity.\n\nIn Horse / Men, Nad offers a personal reflection on these rituals, focusing on the relationship between the horses, their caretakers, and the surrounding crowds.\n\nAmid the intensity of the procession, the horses both disrupt and direct the movement of people, becoming points of stillness and grace.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg","width":500,"height":330,"artist_page":"/nad"},{"title":"Abandon","artist":"Uzma Mohsin","caption":"What remains after we leave. Residue, absence, and the traces left behind.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784198216/Uzma_fw4kxn.jpg","width":500,"height":500},{"title":"Behind the Veil","artist":"Mitsutaka Tsuryu","caption":"Mitsutaka's work explores the tension between presence and absence in urban spaces.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg","width":500,"height":490,"artist_page":"/mitsutaka"},{"title":"The Moving Mountain","artist":"Elias Kepplinger","caption":"Once a strong living being filled with vitality and magic, now barely kept alive by the last remaining blue ice. She appears as a human in the last years of life, unable to survive on her own, needing to be fed, needing cover when it’s too hot, unable to clean herself. Humanity tries to prevent this disappearance through technology, but we must question whether this is even possible in the face of an untameable natural world. A work dedicated to the mountain, the glacier, the untamed, and the wild, to draw attention to their disappearance.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg","width":500,"height":500},{"title":"Teoswa","artist":"Yimin Chen","caption":"Born in the steel labyrinth of Shenzhen, I felt little belonging to its restless skyline. Instead, I was drawn to the villages where human warmth lingers, where fading traditions still breathe. Teoswa is a journey into the ancestral echoes of his mother's hometown - the Teochew region of Guangdong - and an intimate search for the meaning of home.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765200002/Yimin_Chen_ujhcpr.png","width":500,"height":380},{"title":"The Cube","artist":"Orestis Ilias","caption":"Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871784/Orestis_The_Cube_jzcv1z.jpg","width":500,"height":380},{"title":"Woman Carrying Water Buckets in the Snow","artist":"John Peter Askew","caption":"On 8 March 1998, International Women's Day, John Peter Askew stepped outside during village celebrations near Perm, Russia, and encountered a woman carrying water through the snow. Snow falling onto the lens provides an unexpected frame, while the colour of her dress suggests that the hard work might soon give way to a more relaxed evening.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1791561459/image_288_u9dnoc.jpg","width":500,"height":330}]</script>
             </div>
         </div>
     </section>
@@ -1961,7 +1987,7 @@
             <div class="home-works-grid">
                 <article class="home-work">
                     <a href="/mitsutaka" class="home-work-image" tabindex="-1" aria-hidden="true">
-                        <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px"><img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu" width="1800" height="1021" loading="lazy" decoding="async"></picture>
+                        <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px"><img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light" width="1800" height="1021" loading="lazy" decoding="async"></picture>
                     </a>
                     <div class="home-work-caption">
                         <h3 class="home-work-title">Unoccupied (2025)</h3>
@@ -1973,7 +1999,7 @@
                 </article>
                 <article class="home-work">
                     <a href="/andrea" class="home-work-image" tabindex="-1" aria-hidden="true">
-                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli" width="1800" height="1200" loading="lazy" decoding="async"></picture>
+                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli: the stone houses of Matera in a dense, layered black and white view" width="1800" height="1200" loading="lazy" decoding="async"></picture>
                     </a>
                     <div class="home-work-caption">
                         <h3 class="home-work-title">Matera (2022)</h3>
@@ -1986,6 +2012,199 @@
             </div>
         </div>
     </section>
+    <!-- Works available to buy: every page load shows two of the represented
+         artists at random, each with one of their available works. The two
+         cards above are the no-JS fallback. Keep this list in step with the
+         "Available works" cards on andrea.html, mitsutaka.html and nad.html. -->
+    <script type="application/json" id="homeWorksData">
+[
+    {
+        "artist": "Andrea Rosselli",
+        "page": "/andrea",
+        "short": "Andrea",
+        "slug": "matera",
+        "title": "Matera (2022)",
+        "edition": "Edition of 10",
+        "price": "€550",
+        "src": "images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg",
+        "alt": "Matera, by Andrea Rosselli: the stone houses of Matera in a dense, layered black and white view",
+        "width": 1800,
+        "height": 1200,
+        "srcset": "images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w"
+    },
+    {
+        "artist": "Andrea Rosselli",
+        "page": "/andrea",
+        "short": "Andrea",
+        "slug": "di-passaggio",
+        "title": "Di passaggio (2021)",
+        "edition": "Edition of 15",
+        "price": "€450",
+        "src": "images/andrea rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg",
+        "alt": "Di passaggio, by Andrea Rosselli: blurred figures walking a small dog in soft, pale light",
+        "width": 1800,
+        "height": 1800,
+        "srcset": "images/responsive/andrea-rosselli-di-passaggio-480.webp 480w, images/responsive/andrea-rosselli-di-passaggio-800.webp 800w, images/responsive/andrea-rosselli-di-passaggio-1200.webp 1200w, images/responsive/andrea-rosselli-di-passaggio-1600.webp 1600w, images/responsive/andrea-rosselli-di-passaggio-1800.webp 1800w"
+    },
+    {
+        "artist": "Andrea Rosselli",
+        "page": "/andrea",
+        "short": "Andrea",
+        "slug": "basilica-di-galliano",
+        "title": "Basilica di Galliano, Cantù (2021)",
+        "edition": "Edition of 25 (24 available)",
+        "price": "€550",
+        "src": "images/andrea rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg",
+        "alt": "Basilica di Galliano, Cantù, by Andrea Rosselli: figures crossing a snow-covered slope below cypress trees and the basilica",
+        "width": 1800,
+        "height": 1200,
+        "srcset": "images/responsive/andrea-rosselli-basilica-di-galliano-480.webp 480w, images/responsive/andrea-rosselli-basilica-di-galliano-800.webp 800w, images/responsive/andrea-rosselli-basilica-di-galliano-1200.webp 1200w, images/responsive/andrea-rosselli-basilica-di-galliano-1600.webp 1600w, images/responsive/andrea-rosselli-basilica-di-galliano-1800.webp 1800w"
+    },
+    {
+        "artist": "Andrea Rosselli",
+        "page": "/andrea",
+        "short": "Andrea",
+        "slug": "ballerina",
+        "title": "Ballerina (2019)",
+        "edition": "Edition of 10 (6 available)",
+        "price": "€475",
+        "src": "images/andrea rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg",
+        "alt": "Ballerina, by Andrea Rosselli: a dancer in a white dress, blurred in motion against black",
+        "width": 1799,
+        "height": 1800,
+        "srcset": "images/responsive/andrea-rosselli-ballerina-480.webp 480w, images/responsive/andrea-rosselli-ballerina-800.webp 800w, images/responsive/andrea-rosselli-ballerina-1200.webp 1200w, images/responsive/andrea-rosselli-ballerina-1600.webp 1600w, images/responsive/andrea-rosselli-ballerina-1799.webp 1799w"
+    },
+    {
+        "artist": "Mitsutaka Tsuryu",
+        "page": "/mitsutaka",
+        "short": "Mitsutaka",
+        "slug": "unoccupied",
+        "title": "Unoccupied (2025)",
+        "edition": "Edition of 10",
+        "price": "€700",
+        "src": "images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg",
+        "alt": "Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light",
+        "width": 1800,
+        "height": 1021,
+        "srcset": "images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w"
+    },
+    {
+        "artist": "Mitsutaka Tsuryu",
+        "page": "/mitsutaka",
+        "short": "Mitsutaka",
+        "slug": "behind-the-veil",
+        "title": "Behind the Veil (2025)",
+        "edition": "Edition of 10",
+        "price": "€700",
+        "src": "images/mitsutaka-tsuryu/Mitsutaka Tsuryu Behind the Veil Card.jpg",
+        "alt": "Behind the Veil, by Mitsutaka Tsuryu: daylight through sheer curtains drawn across a window",
+        "width": 1400,
+        "height": 1376,
+        "srcset": "images/responsive/mitsutaka-tsuryu-behind-the-veil-480.webp 480w, images/responsive/mitsutaka-tsuryu-behind-the-veil-800.webp 800w, images/responsive/mitsutaka-tsuryu-behind-the-veil-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-behind-the-veil-1400.webp 1400w"
+    },
+    {
+        "artist": "Mitsutaka Tsuryu",
+        "page": "/mitsutaka",
+        "short": "Mitsutaka",
+        "slug": "in-transit",
+        "title": "In Transit (2021)",
+        "edition": "Edition of 10",
+        "price": "€700",
+        "src": "images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg",
+        "alt": "In Transit, by Mitsutaka Tsuryu: commuters blurred in motion on a train platform",
+        "width": 2400,
+        "height": 1351,
+        "srcset": "images/responsive/mitsutaka-tsuryu-in-transit-480.webp 480w, images/responsive/mitsutaka-tsuryu-in-transit-800.webp 800w, images/responsive/mitsutaka-tsuryu-in-transit-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-in-transit-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-in-transit-2000.webp 2000w"
+    },
+    {
+        "artist": "Nad-E-Ali",
+        "page": "/nad",
+        "short": "Nad-E-Ali",
+        "slug": "the-unveiling-of-sardar-badshah",
+        "title": "The Unveiling of Sardar Badshah",
+        "edition": "Editions of 5 to 15",
+        "price": "From €500",
+        "src": "images/nad-e-ali/NadEAli_HorseMen_21.jpg",
+        "alt": "The Unveiling of Sardar Badshah, by Nad-E-Ali: a crowd of mourners blurred in motion beneath strung lights, from Horse / Men",
+        "width": 2000,
+        "height": 1333,
+        "srcset": null
+    },
+    {
+        "artist": "Nad-E-Ali",
+        "page": "/nad",
+        "short": "Nad-E-Ali",
+        "slug": "moving-through-remembrance",
+        "title": "Moving through Remembrance",
+        "edition": "Editions of 5 to 15",
+        "price": "From €500",
+        "src": "images/nad-e-ali/NadEAli_HorseMen_30.jpg",
+        "alt": "Moving through Remembrance, by Nad-E-Ali: overlapping exposures of a crowd seen from above, from Horse / Men",
+        "width": 2000,
+        "height": 1333,
+        "srcset": null
+    },
+    {
+        "artist": "Nad-E-Ali",
+        "page": "/nad",
+        "short": "Nad-E-Ali",
+        "slug": "apples-of-hope",
+        "title": "Apples of Hope: Mannat for Ali Asghar (AS)",
+        "edition": "Editions of 5 to 15",
+        "price": "From €500",
+        "src": "images/nad-e-ali/NadEAli_Apples_web.jpg",
+        "alt": "Apples of Hope: Mannat for Ali Asghar (AS), by Nad-E-Ali: cupped hands holding three red apples against a dark background",
+        "width": 1334,
+        "height": 2000,
+        "srcset": "images/responsive/nad-e-ali-apples-480.webp 480w, images/responsive/nad-e-ali-apples-800.webp 800w, images/responsive/nad-e-ali-apples-1200.webp 1200w"
+    }
+]
+    </script>
+    <script>
+    (function () {
+        var grid = document.querySelector('.home-works-grid');
+        var data = document.getElementById('homeWorksData');
+        if (!grid || !data) return;
+        var works;
+        try { works = JSON.parse(data.textContent); } catch (e) { return; }
+
+        function esc(str) {
+            return String(str).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+        function pick(list) { return list[Math.floor(Math.random() * list.length)]; }
+
+        // Two different artists, in random order, then one work from each
+        var artists = [];
+        works.forEach(function (w) { if (artists.indexOf(w.page) === -1) artists.push(w.page); });
+        for (var i = artists.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = artists[i]; artists[i] = artists[j]; artists[j] = t;
+        }
+        var chosen = artists.slice(0, 2).map(function (page) {
+            return pick(works.filter(function (w) { return w.page === page; }));
+        });
+
+        var sizes = '(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px';
+        grid.innerHTML = chosen.map(function (w) {
+            var img = '<img src="' + esc(w.src) + '" alt="' + esc(w.alt) + '" width="' + w.width + '" height="' + w.height + '" loading="lazy" decoding="async">';
+            var media = w.srcset
+                ? '<picture><source type="image/webp" srcset="' + esc(w.srcset) + '" sizes="' + sizes + '">' + img + '</picture>'
+                : img;
+            return '<article class="home-work">' +
+                '<a href="' + esc(w.page + '#' + w.slug) + '" class="home-work-image" tabindex="-1" aria-hidden="true">' + media + '</a>' +
+                '<div class="home-work-caption">' +
+                    '<h3 class="home-work-title">' + esc(w.title) + '</h3>' +
+                    '<p class="home-work-artist">' + esc(w.artist) + '</p>' +
+                    '<p class="home-work-edition">' + esc(w.edition) + '</p>' +
+                    '<p class="home-work-price">' + esc(w.price) + '</p>' +
+                    '<a href="' + esc(w.page) + '" class="home-work-link">Explore all works by ' + esc(w.short) + '</a>' +
+                '</div>' +
+            '</article>';
+        }).join('');
+    })();
+    </script>
 
     <!-- Footer -->
     <footer class="footer">
@@ -2027,6 +2246,7 @@
                 <div class="caption-title" id="captionTitle"></div>
                 <div class="caption-artist" id="captionArtist"></div>
                 <div class="caption-text" id="captionText"></div>
+                <a class="caption-link" id="captionLink" href="#" hidden>View available works &rarr;</a>
             </div>
         </div>
     </div>
@@ -2103,6 +2323,11 @@
             document.getElementById('captionTitle').textContent = post.title || 'Untitled';
             document.getElementById('captionArtist').textContent = post.artist || '';
             document.getElementById('captionText').textContent = post.caption;
+
+            // Represented artists (artist_page in the feed) get a link to their page
+            const link = document.getElementById('captionLink');
+            link.hidden = !post.artist_page;
+            link.href = post.artist_page || '#';
         }
 
         function showPrevious() {
@@ -2304,11 +2529,41 @@
                 requestAnimationFrame(tick);
             }, { passive: true });
 
+            // Hide the dot when the pointer leaves the page (or the frame it's
+            // in), so it doesn't sit frozen at the edge beside the system cursor
+            document.addEventListener('mouseout', (e) => {
+                if (!e.relatedTarget) dot.style.opacity = '0';
+            });
+            window.addEventListener('mousemove', () => {
+                if (dot.style.opacity) dot.style.opacity = '';
+            }, { passive: true });
+
             document.addEventListener('mouseover', (e) => {
                 const interactive = e.target.closest('a, button, [role="button"], input, textarea, select, label[for], summary');
                 dot.classList.toggle('is-hovering', !!interactive);
             });
         })();
     </script>
+<script>
+    // Custom GA event. Pushes to dataLayer only if it exists (i.e. only after
+    // analytics consent); gtag isn't global after a mid-session accept.
+    function trackEvent(name, params) {
+        if (!window.dataLayer) return;
+        (function () { window.dataLayer.push(arguments); })('event', name, Object.assign({ transport_type: 'beacon' }, params));
+    }
+
+    // "View available works" clicks from the homepage lightbox, the same event
+    // Spotlights sends (Reports > Engagement > Events > view_available_works).
+    document.addEventListener('click', function (e) {
+        var link = e.target.closest('a.caption-link');
+        if (!link) return;
+        var artistEl = document.getElementById('captionArtist');
+        trackEvent('view_available_works', {
+            artist_name: artistEl ? artistEl.textContent.trim() : '',
+            artist_page: link.getAttribute('href'),
+            source: 'home'
+        });
+    });
+</script>
 </body>
 </html>

@@ -48,7 +48,7 @@ function srcsetUrls(url, widths) {
 function altText(post) {
     const title = (post.title || '').trim();
     const artist = (post.artist || '').trim();
-    return title ? `${title} — photograph by ${artist}` : `Photograph by ${artist}`;
+    return title ? `${title}, by ${artist}` : `Photograph by ${artist}`;
 }
 
 // Reads width/height from raw image bytes (JPEG SOF marker or PNG IHDR chunk) so we
@@ -260,7 +260,8 @@ function buildSpotlightJsonLd(posts) {
             {
                 "@type": "Organization",
                 "@id": "https://elsewherecollective.nl/#organization",
-                "name": "elsewhere collective",
+                "name": "elsewhere",
+                "alternateName": "elsewhere collective",
                 "url": "https://elsewherecollective.nl",
                 "logo": "https://elsewherecollective.nl/favicon.png",
                 "description": "elsewhere collective is a curated gallery championing emerging photographers alongside selected established voices, based in Amsterdam.",
@@ -409,7 +410,9 @@ async function main() {
             cloudinary_cropped_url: post.cloudinary_cropped_url,
             image_url: post.image_url,
             width: dims.width,
-            height: dims.height
+            height: dims.height,
+            // Represented artists: the lightbox links to their page, as on Spotlights
+            ...(post.artist_page ? { artist_page: post.artist_page } : {})
         };
     });
     indexHtml = replaceJsonScript(indexHtml, 'gridData', gridData);

@@ -153,6 +153,8 @@
         'background:rgba(44,44,44,.55);opacity:0;transition:opacity .4s ease;font-family:"SuisseIntl",sans-serif}' +
         '.nlp.is-visible{opacity:1}' +
         '.nlp *{box-sizing:border-box}' +
+        // The site draws its own cursor dot; keep the system cursor hidden here too
+        '@media (hover:hover) and (pointer:fine){.nlp,.nlp *{cursor:none!important}}' +
         '.nlp-panel{position:relative;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:start;' +
         'width:770px;max-width:100%;max-height:calc(100vh - 32px);overflow:auto;padding:56px;border-radius:0;' +
         'background:var(--cream-bg,#F3EFE9);color:' + C + ';transform:translateY(10px);' +
@@ -164,7 +166,6 @@
         '.nlp-close:hover{opacity:.6}' +
         '.nlp-close:focus{outline:none}' +
         '.nlp-close:focus-visible{outline:1px solid ' + C + ';outline-offset:-6px}' +
-        '.nlp-dot{display:block;width:14px;height:14px;margin-bottom:28px;border-radius:50%;background:' + C + '}' +
         '.nlp-title{margin:0 0 20px;font-size:2.75rem;font-weight:400;line-height:1.05;letter-spacing:-.02em}' +
         '.nlp-text{margin:0;font-size:1.05rem;font-weight:300;line-height:1.6;color:rgba(44,44,44,.8)}' +
         '.nlp-giveaway{margin-top:14px;font-size:.9rem}' +
@@ -203,7 +204,6 @@
         '@media (max-width:760px){' +
             '.nlp-panel{grid-template-columns:1fr;gap:0;width:420px;padding:48px 28px 32px}' +
             '.nlp-media{display:none}' +
-            '.nlp-dot{width:12px;height:12px;margin-bottom:20px}' +
             '.nlp-title{font-size:2rem;margin-bottom:14px}' +
             '.nlp-text{font-size:.95rem}' +
             '.nlp-giveaway{display:none}' +
@@ -239,7 +239,6 @@
                     '<svg aria-hidden="true" viewBox="0 0 18 18"><path d="M2 2l14 14M16 2L2 16"/></svg>' +
                 '</button>' +
                 '<div class="nlp-copy">' +
-                    '<span class="nlp-dot" aria-hidden="true"></span>' +
                     '<h2 class="nlp-title" id="nlpTitle">Stay in touch</h2>' +
                     '<p class="nlp-text" id="nlpText">Occasional notes from elsewhere: selected artists, new works, and upcoming exhibitions.</p>' +
                     '<p class="nlp-text nlp-giveaway"><strong>A chance to win a photograph for your walls.</strong> One subscriber will be selected to receive a limited-edition print from the elsewhere collection.</p>' +

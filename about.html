@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>about | elsewhere</title>
-    <meta name="description" content="Learn about elsewhere, an Amsterdam-based nomadic gallery for contemporary photography, and its curatorial approach, values, and themes.">
+    <title>About — Nomadic Photography Gallery, Amsterdam | elsewhere</title>
+    <meta name="description" content="elsewhere collective is a nomadic photography gallery in Amsterdam, presenting emerging and established photographers through prints and exhibitions.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="Amsterdam photography gallery, art curation, emerging photographers, contemporary photography Amsterdam, photography collective, art discovery">
 
@@ -16,8 +16,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/about">
-    <meta property="og:title" content="about | elsewhere">
-    <meta property="og:description" content="Learn about elsewhere, an Amsterdam-based nomadic gallery for contemporary photography, and its curatorial approach, values, and themes.">
+    <meta property="og:title" content="About — Nomadic Photography Gallery, Amsterdam | elsewhere">
+    <meta property="og:description" content="elsewhere collective is a nomadic photography gallery in Amsterdam, presenting emerging and established photographers through prints and exhibitions.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
@@ -32,8 +32,8 @@
             }
         })();
     </script>
-    <meta property="twitter:title" content="about | elsewhere">
-    <meta property="twitter:description" content="Learn about elsewhere, an Amsterdam-based nomadic gallery for contemporary photography, and its curatorial approach, values, and themes.">
+    <meta property="twitter:title" content="About — Nomadic Photography Gallery, Amsterdam | elsewhere">
+    <meta property="twitter:description" content="elsewhere collective is a nomadic photography gallery in Amsterdam, presenting emerging and established photographers through prints and exhibitions.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Schema.org JSON-LD -->
@@ -52,7 +52,8 @@
             {
                 "@type": "Organization",
                 "@id": "https://elsewherecollective.nl/#organization",
-                "name": "elsewhere collective",
+                "name": "elsewhere",
+                "alternateName": "elsewhere collective",
                 "url": "https://elsewherecollective.nl",
                 "logo": "https://elsewherecollective.nl/favicon.png",
                 "description": "elsewhere collective is a nomadic gallery for contemporary photography, presenting emerging photographers alongside selected established voices, based in Amsterdam.",
@@ -965,6 +966,15 @@
                 running = true;
                 last = performance.now();
                 requestAnimationFrame(tick);
+            }, { passive: true });
+
+            // Hide the dot when the pointer leaves the page (or the frame it's
+            // in), so it doesn't sit frozen at the edge beside the system cursor
+            document.addEventListener('mouseout', (e) => {
+                if (!e.relatedTarget) dot.style.opacity = '0';
+            });
+            window.addEventListener('mousemove', () => {
+                if (dot.style.opacity) dot.style.opacity = '';
             }, { passive: true });
 
             document.addEventListener('mouseover', (e) => {

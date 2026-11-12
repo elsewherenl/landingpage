@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>cookie policy | elsewhere</title>
+    <title>Cookie Policy | elsewhere</title>
     <meta name="title" content="cookie policy | elsewhere">
-    <meta name="description" content="Transparent information about how elsewhere collective uses cookies to improve your browsing experience and analyze site usage while respecting your privacy.">
+    <meta name="description" content="How elsewhere collective uses cookies, what analytics data is collected, and how to change your cookie choices at any time.">
     <meta name="keywords" content="cookie policy, privacy policy, GDPR, data usage, website cookies, analytics">
     
     <!-- Canonical URL -->
@@ -16,8 +16,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/cookie-policy">
-    <meta property="og:title" content="cookie policy | elsewhere">
-    <meta property="og:description" content="Transparent information about how we use cookies to improve your experience while respecting your privacy.">
+    <meta property="og:title" content="Cookie Policy | elsewhere">
+    <meta property="og:description" content="How elsewhere collective uses cookies, what analytics data is collected, and how to change your cookie choices at any time.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
     
     <!-- Twitter -->
@@ -32,8 +32,8 @@
             }
         })();
     </script>
-    <meta property="twitter:title" content="cookie policy | elsewhere">
-    <meta property="twitter:description" content="Transparent information about how we use cookies to improve your experience while respecting your privacy.">
+    <meta property="twitter:title" content="Cookie Policy | elsewhere">
+    <meta property="twitter:description" content="How elsewhere collective uses cookies, what analytics data is collected, and how to change your cookie choices at any time.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
     
     <!-- Favicon -->
@@ -836,6 +836,15 @@
                 running = true;
                 last = performance.now();
                 requestAnimationFrame(tick);
+            }, { passive: true });
+
+            // Hide the dot when the pointer leaves the page (or the frame it's
+            // in), so it doesn't sit frozen at the edge beside the system cursor
+            document.addEventListener('mouseout', (e) => {
+                if (!e.relatedTarget) dot.style.opacity = '0';
+            });
+            window.addEventListener('mousemove', () => {
+                if (dot.style.opacity) dot.style.opacity = '';
             }, { passive: true });
 
             document.addEventListener('mouseover', (e) => {
