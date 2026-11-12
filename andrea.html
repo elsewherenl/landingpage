@@ -262,6 +262,7 @@
 
 <link rel="stylesheet" id="silktide-consent-manager-css" href="cookie-banner/silktide-consent-manager.css" media="print" onload="this.media='all'">
 <script src="cookie-banner/silktide-consent-manager.js" defer></script>
+<script src="newsletter-popup.js" defer></script>
 
 <!-- Cookie Banner Configuration -->
 <script>
@@ -797,6 +798,7 @@ document.addEventListener('DOMContentLoaded', function() {
        role="button" and buttons can't nest. */
     .work-media {
         position: relative;
+        align-self: start; /* the cards share row heights; keep the button on the photo */
         margin-bottom: 1.1rem;
     }
 
