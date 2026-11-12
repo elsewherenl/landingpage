@@ -2,12 +2,13 @@
  * Newsletter pop-up: a second chance to subscribe, alongside the homepage form.
  *
  * Shows after 10 seconds of active browsing (tab visible and window focused),
- * summed across pages in this session, on whatever page the visitor is on.
+ * summed across pages and tabs in this visit, on whatever page the visitor is on.
  * On the homepage it waits until the sign-up form there is scrolled out of view.
+ * A visit ends after 30 minutes with no activity on the site (like Google
+ * Analytics sessions); localStorage, so it holds across tabs.
  * Never shows:
- *   - more than once per browsing session (sessionStorage)
- *   - within 7 days of last being shown, however it was left (localStorage
- *     ec_nlp_dismissed_at, set when it appears)
+ *   - more than once per visit, however it was left (closed, Esc, link, back
+ *     button); it can come back on the next visit
  *   - ever again after subscribing, here or via the homepage form (localStorage
  *     ec_subscribed, the key the homepage form already sets)
  *   - before the cookie banner has been answered, or while a lightbox, enquiry
@@ -25,13 +26,14 @@
     'use strict';
 
     var ACTIVE_MS_NEEDED = 10000;
-    var DISMISS_DAYS = 7;
+    var VISIT_GAP_MS = 30 * 60 * 1000;    // inactivity that ends a visit
     var TICK_MS = 1000;
 
-    var K_TIME = 'ec_nlp_active_ms';      // sessionStorage
-    var K_SHOWN = 'ec_nlp_shown';         // sessionStorage
-    var K_DISMISSED = 'ec_nlp_dismissed_at'; // localStorage
-    var K_SUBSCRIBED = 'ec_subscribed';   // localStorage, shared with homepage form
+    // All localStorage, so a visit spans tabs
+    var K_LAST = 'ec_nlp_last_active';    // last time the visitor was active on the site
+    var K_TIME = 'ec_nlp_visit_active_ms'; // active time so far this visit
+    var K_SHOWN = 'ec_nlp_visit_shown';   // '1' once shown (or Join pressed) this visit
+    var K_SUBSCRIBED = 'ec_subscribed';   // shared with homepage form
 
     var MAILERLITE_ACTION = 'https://assets.mailerlite.com/jsonp/2556020/forms/194893785895798150/subscribe';
 
@@ -42,13 +44,25 @@
         try { window[store].setItem(key, value); return true; } catch (e) { return false; }
     }
 
-    // Already subscribed, recently dismissed, or already shown this session
+    // Already subscribed, or already shown this visit
     function suppressed() {
         if (get('localStorage', K_SUBSCRIBED) === '1') return true;
-        if (get('sessionStorage', K_SHOWN) === '1') return true;
-        var dismissedAt = parseInt(get('localStorage', K_DISMISSED), 10);
-        if (dismissedAt && Date.now() - dismissedAt < DISMISS_DAYS * 864e5) return true;
+        if (get('localStorage', K_SHOWN) === '1') return true;
         return false;
+    }
+
+    // Starts a new visit if the visitor has been away for 30 minutes or more,
+    // then records them as active now
+    function touchVisit() {
+        var now = Date.now();
+        var last = parseInt(get('localStorage', K_LAST), 10);
+        if (!last || now - last >= VISIT_GAP_MS) {
+            try {
+                localStorage.removeItem(K_SHOWN);
+                localStorage.removeItem(K_TIME);
+            } catch (e) {}
+        }
+        set('localStorage', K_LAST, String(now));
     }
 
     // #nlp-preview shows a random work; #nlp-preview-3 shows the third, and so on
@@ -65,16 +79,23 @@
         // ec_subscribed, which stops it for good
         document.addEventListener('submit', function (e) {
             if (e.target.closest && e.target.closest('.js-nl-form')) {
-                set('sessionStorage', K_SHOWN, '1');
-                stop();
+                set('localStorage', K_SHOWN, '1');
             }
         }, true);
 
-        if (suppressed()) return;
-        // Without session storage we can't count time across pages or cap it to once per visit
-        if (!set('sessionStorage', 'ec_nlp_test', '1')) return;
+        // Without storage we can't track the visit or cap it to once per visit
+        if (!set('localStorage', K_LAST, get('localStorage', K_LAST) || String(Date.now()))) return;
 
-        activeMs = parseInt(get('sessionStorage', K_TIME), 10) || 0;
+        // Tidy up the keys from the earlier 7-day / per-tab version
+        try {
+            localStorage.removeItem('ec_nlp_dismissed_at');
+            sessionStorage.removeItem('ec_nlp_shown');
+            sessionStorage.removeItem('ec_nlp_active_ms');
+        } catch (e) {}
+
+        touchVisit();
+        // Runs even once suppressed, so a visitor reading one page for a long
+        // time still counts as the same visit
         timer = setInterval(tick, TICK_MS);
     }
 
@@ -108,23 +129,12 @@
 
     function tick() {
         if (!isActive()) return;
-        if (activeMs < ACTIVE_MS_NEEDED) {
-            activeMs += TICK_MS;
-            set('sessionStorage', K_TIME, String(activeMs));
-        }
-        if (activeMs >= ACTIVE_MS_NEEDED) {
-            if (suppressed() || blocked()) {
-                if (suppressed()) stop();
-                return;
-            }
-            stop();
-            show();
-        }
-    }
-
-    function stop() {
-        clearInterval(timer);
-        timer = null;
+        touchVisit();
+        if (popup || suppressed()) return;
+        // Read back each time: other tabs in the same visit add to it too
+        activeMs = (parseInt(get('localStorage', K_TIME), 10) || 0) + TICK_MS;
+        set('localStorage', K_TIME, String(activeMs));
+        if (activeMs >= ACTIVE_MS_NEEDED && !blocked()) show();
     }
 
     // One work, picked at random each time, from the public artists' available
@@ -217,11 +227,10 @@
 
     function show() {
         if (!PREVIEW) {
-            set('sessionStorage', K_SHOWN, '1');
-            // Being shown at all starts the 7-day pause, however it's left
+            // Being shown at all counts for this visit, however it's left
             // (close, Esc, the artist link, back button, closing the tab).
             // Subscribing then makes it permanent via ec_subscribed.
-            set('localStorage', K_DISMISSED, String(Date.now()));
+            set('localStorage', K_SHOWN, '1');
         }
 
         var style = document.createElement('style');
@@ -391,10 +400,6 @@
     }
 
     function dismiss() {
-        // A subscriber closing the thank-you message isn't a dismissal
-        if (!PREVIEW && get('localStorage', K_SUBSCRIBED) !== '1') {
-            set('localStorage', K_DISMISSED, String(Date.now()));
-        }
         close();
     }
 
