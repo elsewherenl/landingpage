@@ -1,10 +1,9 @@
 /*
  * Newsletter pop-up: a second chance to subscribe, alongside the homepage form.
  *
- * Shows once both are true (whichever comes later):
- *   - the visitor has viewed a second page this session (a reload doesn't count)
- *   - 20 seconds of active browsing (tab visible and window focused), summed
- *     across pages in this session
+ * Shows after 10 seconds of active browsing (tab visible and window focused),
+ * summed across pages in this session, on whatever page the visitor is on.
+ * On the homepage it waits until the sign-up form there is scrolled out of view.
  * Never shows:
  *   - more than once per browsing session (sessionStorage)
  *   - within 7 days of last being shown, however it was left (localStorage
@@ -23,13 +22,11 @@
 (function () {
     'use strict';
 
-    var ACTIVE_MS_NEEDED = 20000;
-    var PAGES_NEEDED = 2;
+    var ACTIVE_MS_NEEDED = 10000;
     var DISMISS_DAYS = 7;
     var TICK_MS = 1000;
 
     var K_TIME = 'ec_nlp_active_ms';      // sessionStorage
-    var K_PAGES = 'ec_nlp_pages';         // sessionStorage
     var K_SHOWN = 'ec_nlp_shown';         // sessionStorage
     var K_DISMISSED = 'ec_nlp_dismissed_at'; // localStorage
     var K_SUBSCRIBED = 'ec_subscribed';   // localStorage, shared with homepage form
@@ -56,23 +53,25 @@
     var previewMatch = location.hash.match(/^#nlp-preview(?:-(\d+))?$/);
     var PREVIEW = !!previewMatch;
 
-    var pages = [];
     var activeMs = 0;
     var timer = null;
 
-    // Normal start-up: bail out if suppressed, record this page, start counting
+    // Normal start-up: bail out if suppressed, then start counting
     function init() {
+        // Pressing Join on the homepage form stands the pop-up down for the rest
+        // of the visit straight away; a successful sign-up then sets
+        // ec_subscribed, which stops it for good
+        document.addEventListener('submit', function (e) {
+            if (e.target.closest && e.target.closest('.js-nl-form')) {
+                set('sessionStorage', K_SHOWN, '1');
+                stop();
+            }
+        }, true);
+
         if (suppressed()) return;
-        // Without session storage we can't count pages or cap it to once per visit
+        // Without session storage we can't count time across pages or cap it to once per visit
         if (!set('sessionStorage', 'ec_nlp_test', '1')) return;
 
-        // Record this page (/andrea and /andrea.html are the same page)
-        var path = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
-        try { pages = JSON.parse(get('sessionStorage', K_PAGES)) || []; } catch (e) { pages = []; }
-        if (pages.indexOf(path) === -1) {
-            pages.push(path);
-            set('sessionStorage', K_PAGES, JSON.stringify(pages));
-        }
         activeMs = parseInt(get('sessionStorage', K_TIME), 10) || 0;
         timer = setInterval(tick, TICK_MS);
     }
@@ -111,7 +110,7 @@
             activeMs += TICK_MS;
             set('sessionStorage', K_TIME, String(activeMs));
         }
-        if (activeMs >= ACTIVE_MS_NEEDED && pages.length >= PAGES_NEEDED) {
+        if (activeMs >= ACTIVE_MS_NEEDED) {
             if (suppressed() || blocked()) {
                 if (suppressed()) stop();
                 return;
