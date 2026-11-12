@@ -1,7 +1,7 @@
 /*
  * Newsletter pop-up: a second chance to subscribe, alongside the homepage form.
  *
- * Shows after 10 seconds of active browsing (tab visible and window focused),
+ * Shows after 6 seconds of active browsing (tab visible and window focused),
  * summed across pages and tabs in this visit, on whatever page the visitor is on.
  * On the homepage it waits until the sign-up form there is scrolled out of view.
  * A visit ends after 30 minutes with no activity on the site (like Google
@@ -25,7 +25,7 @@
 (function () {
     'use strict';
 
-    var ACTIVE_MS_NEEDED = 10000;
+    var ACTIVE_MS_NEEDED = 6000;
     var VISIT_GAP_MS = 30 * 60 * 1000;    // inactivity that ends a visit
     var TICK_MS = 1000;
 
