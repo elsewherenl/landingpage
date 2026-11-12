@@ -682,6 +682,14 @@
             align-items: start;
         }
 
+        /* The two works sit at 75% of the page width on desktop (phones keep
+           full width, see the 768px query), so they don't dominate the page */
+        @media (min-width: 769px) {
+            .home-works-grid {
+                max-width: 75%;
+            }
+        }
+
         .home-work-image {
             display: block;
             margin-bottom: 1.25rem;
@@ -1987,7 +1995,7 @@
             <div class="home-works-grid">
                 <article class="home-work">
                     <a href="/mitsutaka" class="home-work-image" tabindex="-1" aria-hidden="true">
-                        <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px"><img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light" width="1800" height="1021" loading="lazy" decoding="async"></picture>
+                        <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 35vw, 555px"><img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light" width="1800" height="1021" loading="lazy" decoding="async"></picture>
                     </a>
                     <div class="home-work-caption">
                         <h3 class="home-work-title">Unoccupied (2025)</h3>
@@ -1999,7 +2007,7 @@
                 </article>
                 <article class="home-work">
                     <a href="/andrea" class="home-work-image" tabindex="-1" aria-hidden="true">
-                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli: the stone houses of Matera in a dense, layered black and white view" width="1800" height="1200" loading="lazy" decoding="async"></picture>
+                        <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 35vw, 555px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli: the stone houses of Matera in a dense, layered black and white view" width="1800" height="1200" loading="lazy" decoding="async"></picture>
                     </a>
                     <div class="home-work-caption">
                         <h3 class="home-work-title">Matera (2022)</h3>
@@ -2186,7 +2194,7 @@
             return pick(works.filter(function (w) { return w.page === page; }));
         });
 
-        var sizes = '(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 46vw, 740px';
+        var sizes = '(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 35vw, 555px';
         grid.innerHTML = chosen.map(function (w) {
             var img = '<img src="' + esc(w.src) + '" alt="' + esc(w.alt) + '" width="' + w.width + '" height="' + w.height + '" loading="lazy" decoding="async">';
             var media = w.srcset
