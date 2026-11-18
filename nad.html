@@ -896,8 +896,17 @@ document.addEventListener('DOMContentLoaded', function() {
         margin-bottom: 5rem;
     }
 
-    .works-grid .work-card:nth-last-child(-n+2) .size-list {
+    /* Last row only: the last card, plus the one before it when that one
+       starts the row (odd). Plain nth-last-child(-n+2) would also catch the
+       top-right card when the count is odd. align-self: start keeps a list
+       from stretching to fill a taller shared row. */
+    .works-grid .work-card:last-child .size-list,
+    .works-grid .work-card:nth-child(odd):nth-last-child(2) .size-list {
         margin-bottom: 0;
+    }
+
+    .works-grid .size-list {
+        align-self: start;
     }
 
     /* Each card spans five shared rows (image, title, description, materials,
@@ -1175,7 +1184,8 @@ document.addEventListener('DOMContentLoaded', function() {
             row-gap: 5rem;
         }
         .works-grid .size-list,
-        .works-grid .work-card:nth-last-child(-n+2) .size-list {
+        .works-grid .work-card:last-child .size-list,
+        .works-grid .work-card:nth-child(odd):nth-last-child(2) .size-list {
             margin-bottom: 0;
         }
         .work-card {
