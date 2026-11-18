@@ -410,21 +410,21 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 0 3rem 8rem;
     }
 
-    /* Tiles take the smallest of: 520px, a third of the row (so all three
-       artists sit on one row, phones included), and the height left under the hero
-       (so each name lands above the fold). The 240px floor stops them
+    /* Two columns, so four artists sit in a 2 x 2 grid (phones included).
+       Tiles take the smallest of: 520px, half the row, and the height left
+       under the hero (so the first row's names land above the fold). The 240px floor stops them
        shrinking to nothing on very short landscape windows. */
     .ec-grid {
         --tile-w: min(
             520px,
-            calc((100% - 2 * var(--artists-gutter-x)) / 3 - 1px),
+            calc((100% - var(--artists-gutter-x)) / 2 - 1px),
             max(240px, calc((100svh - var(--artists-grid-top) - var(--artists-caption-h)) * 0.8))
         );
         max-width: 1600px;
         margin: 0;
         list-style: none;
         display: grid;
-        grid-template-columns: repeat(auto-fill, var(--tile-w));
+        grid-template-columns: repeat(2, var(--tile-w));
         column-gap: var(--artists-gutter-x);
         row-gap: var(--artists-gutter-y);
     }
@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .ec-grid {
             --tile-w: min(
                 520px,
-                calc((100% - 2 * var(--artists-gutter-x)) / 3 - 1px),
+                calc((100% - var(--artists-gutter-x)) / 2 - 1px),
                 max(240px, calc((100vh - var(--artists-grid-top) - var(--artists-caption-h)) * 0.8))
             );
         }
@@ -746,7 +746,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/aleksey">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/aleksey-kondratyev-ice-fishers-1-480.webp 480w, images/responsive/aleksey-kondratyev-ice-fishers-1-800.webp 800w, images/responsive/aleksey-kondratyev-ice-fishers-1-1200.webp 1200w, images/responsive/aleksey-kondratyev-ice-fishers-1-1600.webp 1600w" sizes="(max-width: 700px) calc(33vw - 24px), 520px"><img class="thumb-work" src="images/aleksey/Aleksey_Ice_Fishers_1_web.jpg" fetchpriority="high" alt="Untitled 20, by Aleksey Kondratyev: an ice fisher sheltering under clear plastic sheeting on a snow-covered river, from Ice Fishers" decoding="async" width="2000" height="1600"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/aleksey-kondratyev-ice-fishers-1-480.webp 480w, images/responsive/aleksey-kondratyev-ice-fishers-1-800.webp 800w, images/responsive/aleksey-kondratyev-ice-fishers-1-1200.webp 1200w, images/responsive/aleksey-kondratyev-ice-fishers-1-1600.webp 1600w" sizes="(max-width: 700px) calc(50vw - 24px), 520px"><img class="thumb-work" src="images/aleksey/Aleksey_Ice_Fishers_1_web.jpg" fetchpriority="high" alt="Untitled 20, by Aleksey Kondratyev: an ice fisher sheltering under clear plastic sheeting on a snow-covered river, from Ice Fishers" decoding="async" width="2000" height="1600"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Aleksey Kondratyev</span>
@@ -757,7 +757,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/nad">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/nad-e-ali-apples-480.webp 480w, images/responsive/nad-e-ali-apples-800.webp 800w, images/responsive/nad-e-ali-apples-1200.webp 1200w" sizes="(max-width: 700px) calc(33vw - 24px), 520px"><img class="thumb-work" src="images/nad-e-ali/NadEAli_Apples_web.jpg" alt="Apples of Hope: Mannat for Ali Asghar (AS), by Nad-E-Ali: cupped hands holding three red apples against a dark background" loading="lazy" decoding="async" width="1334" height="2000"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/nad-e-ali-apples-480.webp 480w, images/responsive/nad-e-ali-apples-800.webp 800w, images/responsive/nad-e-ali-apples-1200.webp 1200w" sizes="(max-width: 700px) calc(50vw - 24px), 520px"><img class="thumb-work" src="images/nad-e-ali/NadEAli_Apples_web.jpg" alt="Apples of Hope: Mannat for Ali Asghar (AS), by Nad-E-Ali: cupped hands holding three red apples against a dark background" loading="lazy" decoding="async" width="1334" height="2000"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Nad-E-Ali</span>
@@ -768,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/andrea">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(33vw - 24px), 520px"><img class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Untitled, by Andrea Rosselli: a figure hidden behind a large tied cushion, only bare feet showing" loading="lazy" decoding="async" width="1200" height="1800"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-12514-480.webp 480w, images/responsive/andrea-rosselli-12514-800.webp 800w, images/responsive/andrea-rosselli-12514-1200.webp 1200w" sizes="(max-width: 700px) calc(50vw - 24px), 520px"><img class="thumb-work" src="images/andrea rosselli/Andrea_Rosselli_12514_web.jpg" alt="Untitled, by Andrea Rosselli: a figure hidden behind a large tied cushion, only bare feet showing" loading="lazy" decoding="async" width="1200" height="1800"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Andrea Rosselli</span>
@@ -779,7 +779,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="artist-tile">
             <a href="/mitsutaka">
                 <div class="thumb-wrapper">
-                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(33vw - 24px), 520px"><img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light" loading="lazy" decoding="async" width="1800" height="1021"></picture>
+                    <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 700px) calc(50vw - 24px), 520px"><img class="thumb-work" src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light" loading="lazy" decoding="async" width="1800" height="1021"></picture>
                 </div>
                 <div class="artist-caption">
                     <span class="artist-name">Mitsutaka Tsuryu</span>
