@@ -149,7 +149,10 @@
         { title: 'In Transit', artist: 'Mitsutaka Tsuryu', page: '/mitsutaka', src: '/images/responsive/mitsutaka-tsuryu-in-transit-800.webp' },
         { title: 'The Unveiling of Sardar Badshah', artist: 'Nad-E-Ali', page: '/nad', src: '/images/nad-e-ali/NadEAli_HorseMen_21.jpg' },
         { title: 'Moving through Remembrance', artist: 'Nad-E-Ali', page: '/nad', src: '/images/nad-e-ali/NadEAli_HorseMen_30.jpg' },
-        { title: 'Apples of Hope: Mannat for Ali Asghar (AS)', artist: 'Nad-E-Ali', page: '/nad', src: '/images/responsive/nad-e-ali-apples-800.webp' }
+        { title: 'Apples of Hope: Mannat for Ali Asghar (AS)', artist: 'Nad-E-Ali', page: '/nad', src: '/images/responsive/nad-e-ali-apples-800.webp' },
+        { title: 'Untitled 04', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-untitled-04-800.webp' },
+        { title: 'Untitled 15', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-ice-fishers-2-800.webp' },
+        { title: 'Untitled 20', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-ice-fishers-1-800.webp' }
     ];
 
     function escapeHtml(str) {

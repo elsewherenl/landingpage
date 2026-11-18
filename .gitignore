@@ -3,12 +3,23 @@ CLAUDE.md
 # Gated artist pages, local only until the artist is signed up
 jesula.html
 images/jesula/
-aleksey.html
-images/aleksey/
-images/responsive/aleksey-*
+images/responsive/jesula-*
+images/wall/jesula-*
 elias.html
 images/elias/
 images/responsive/elias-*
+images/wall/elias-*
+
+# Aleksey Kondratyev (public): full-size originals and the work taken off the page
+images/aleksey/Aleksey_Ice_Fishers_1.jpg
+images/aleksey/Aleksey_Ice_Fishers_2.jpg
+images/aleksey/Aleksey_Ice_Fishers_3.png
+images/aleksey/Aleksey_Ice_Fishers_3_web.jpg
+images/aleksey/Aleksey_Death_Train.png
+images/aleksey/Aleksey_Portrait.png
+images/aleksey/Aleksey_Untitled_04.jpg
+images/responsive/aleksey-kondratyev-ice-fishers-3-*
+images/wall/aleksey-kondratyev-ice-fishers-3.webp
 
 # Artists roster preview with unreleased artists, local only
 artists-preview*.html
