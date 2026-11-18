@@ -925,7 +925,8 @@ document.addEventListener('DOMContentLoaded', function() {
         display: contents;
     }
 
-    .work-card > figure { grid-row: 1; }
+    .work-card > figure,
+    .work-card > .work-media { grid-row: 1; }
     .work-title { grid-row: 2; }
     .work-description { grid-row: 3; }
     .work-caption .work-meta { grid-row: 4; }
@@ -959,6 +960,69 @@ document.addEventListener('DOMContentLoaded', function() {
     .work-card.is-portrait img {
         object-position: left center;
         transform-origin: left center;
+    }
+
+    /* Works with a framed-on-a-wall photo: the figure sits in .work-media with
+       a "View on wall" button over its bottom-right corner. The button is a
+       sibling of the figure, not inside it, since the figure is itself a
+       role="button" and buttons can't nest. */
+    .work-media {
+        position: relative;
+        align-self: start; /* the cards share row heights; keep the button on the photo */
+        margin-bottom: 1.1rem;
+    }
+
+    .work-media figure {
+        margin-bottom: 0;
+    }
+
+    .wall-btn {
+        position: absolute;
+        right: 0.9rem;
+        bottom: 0.9rem;
+        z-index: 1;
+        padding: 0.5rem 0.8rem;
+        border: none;
+        border-radius: 0;
+        background: rgba(243, 239, 233, 0.94);
+        color: var(--deep-charcoal);
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .wall-btn:hover {
+        background: var(--warm-off-white);
+    }
+
+    /* Portrait work: the print is left-aligned in a 3:2 box with no fill, so
+       put the button on the print's own bottom-right corner (a 2:3 print is
+       4/9 of the box width) rather than out in the empty space. */
+    .work-card.is-portrait .wall-btn {
+        right: calc(100% - 44.44% + 0.9rem);
+    }
+
+    /* Drawn arrow rather than the ↗ character, which iOS renders as an emoji */
+    .wall-btn svg {
+        width: 0.95em;
+        height: 0.95em;
+        margin-left: 0.1em;
+        vertical-align: -0.12em;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.3;
+    }
+
+    .wall-btn:focus {
+        outline: none;
+    }
+
+    .wall-btn:focus-visible {
+        outline: 2px solid var(--deep-charcoal);
+        outline-offset: 3px;
     }
 
     .work-card:hover img {
@@ -1285,17 +1349,59 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: opacity 0.35s ease;
         }
 
-        .lightbox-caption {
+        .lightbox-meta {
             margin-top: 1.25rem;
+            align-self: center;
+            width: 100%;
+            max-width: var(--lightbox-image-width, 480px);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .lightbox-caption {
             color: var(--deep-charcoal);
             font-family: 'SuisseIntl', sans-serif;
             font-size: 0.85rem;
             font-weight: 300;
             letter-spacing: 0.04em;
             text-align: left;
-            align-self: center;
-            width: 100%;
-            max-width: var(--lightbox-image-width, 480px);
+        }
+
+        /* Print / On wall switch, shown only for works with a wall photo */
+        .lightbox-view-toggle {
+            display: flex;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .lightbox-view-toggle[hidden] {
+            display: none;
+        }
+
+        .lightbox-view-toggle button {
+            padding: 0 0 0.15rem;
+            border: none;
+            border-bottom: 1px solid transparent;
+            border-radius: 0;
+            background: none;
+            color: var(--text-muted);
+            font-family: 'SuisseIntl', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .lightbox-view-toggle button:hover {
+            color: var(--deep-charcoal);
+        }
+
+        .lightbox-view-toggle button[aria-pressed="true"] {
+            color: var(--deep-charcoal);
+            border-bottom-color: var(--deep-charcoal);
         }
 
         .lightbox-close {
@@ -1362,6 +1468,17 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (max-width: 768px) {
             .lightbox {
                 padding: 1.25rem;
+            }
+
+            .wall-btn {
+                right: 0.6rem;
+                bottom: 0.6rem;
+                padding: 0.4rem 0.65rem;
+                font-size: 0.8rem;
+            }
+
+            .work-card.is-portrait .wall-btn {
+                right: calc(100% - 44.44% + 0.6rem);
             }
 
             .lightbox-stage img {
@@ -1782,9 +1899,12 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Horse / Men works supplied by the artist. Each work has its own title; enquiry emails carry the title and the size. Same three sizes and prices for every work. -->
         <div class="works-grid">
             <article class="work-card" id="the-unveiling-of-sardar-badshah">
-                <figure class="lightbox-trigger" data-full="images/nad-e-ali/NadEAli_HorseMen_21.jpg" data-title="The Unveiling of Sardar Badshah" tabindex="0" role="button" aria-label="View The Unveiling of Sardar Badshah fullscreen">
-                    <img src="images/nad-e-ali/NadEAli_HorseMen_21.jpg" alt="The Unveiling of Sardar Badshah, by Nad-E-Ali: a crowd of mourners blurred in motion beneath strung lights, from Horse / Men" width="2000" height="1333" loading="lazy" decoding="async">
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/nad-e-ali/NadEAli_HorseMen_21.jpg" data-wall="images/wall/nad-e-ali-the-unveiling-of-sardar-badshah.webp" data-title="The Unveiling of Sardar Badshah" tabindex="0" role="button" aria-label="View The Unveiling of Sardar Badshah fullscreen">
+                        <img src="images/nad-e-ali/NadEAli_HorseMen_21.jpg" alt="The Unveiling of Sardar Badshah, by Nad-E-Ali: a crowd of mourners blurred in motion beneath strung lights, from Horse / Men" width="2000" height="1333" loading="lazy" decoding="async">
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View The Unveiling of Sardar Badshah framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">The Unveiling of Sardar Badshah</h3>
                     <p class="work-description">Sardar Badshah, a revered Zuljanah of Lahore, is ceremonially unveiled following preparations for Muharram. The moment brings the community together in an expression of devotion and collective remembrance.</p>
@@ -1812,9 +1932,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </article>
             <article class="work-card" id="moving-through-remembrance">
-                <figure class="lightbox-trigger" data-full="images/nad-e-ali/NadEAli_HorseMen_30.jpg" data-title="Moving through Remembrance" tabindex="0" role="button" aria-label="View Moving through Remembrance fullscreen">
-                    <img src="images/nad-e-ali/NadEAli_HorseMen_30.jpg" alt="Moving through Remembrance, by Nad-E-Ali: overlapping exposures of a crowd seen from above, from Horse / Men" width="2000" height="1333" loading="lazy" decoding="async">
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/nad-e-ali/NadEAli_HorseMen_30.jpg" data-wall="images/wall/nad-e-ali-moving-through-remembrance.webp" data-title="Moving through Remembrance" tabindex="0" role="button" aria-label="View Moving through Remembrance fullscreen">
+                        <img src="images/nad-e-ali/NadEAli_HorseMen_30.jpg" alt="Moving through Remembrance, by Nad-E-Ali: overlapping exposures of a crowd seen from above, from Horse / Men" width="2000" height="1333" loading="lazy" decoding="async">
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Moving through Remembrance framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Moving through Remembrance</h3>
                     <p class="work-description">A vivid, close-up perspective from within the procession, capturing the intimacy and immersive atmosphere of collective remembrance as it unfolds.</p>
@@ -1842,9 +1965,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </article>
             <article class="work-card is-portrait" id="apples-of-hope">
-                <figure class="lightbox-trigger" data-full="images/nad-e-ali/NadEAli_Apples_web.jpg" data-title="Apples of Hope: Mannat for Ali Asghar (AS)" tabindex="0" role="button" aria-label="View Apples of Hope: Mannat for Ali Asghar (AS) fullscreen">
-                    <img src="images/nad-e-ali/NadEAli_Apples_web.jpg" alt="Apples of Hope: Mannat for Ali Asghar (AS), by Nad-E-Ali: cupped hands holding three red apples against a dark background" width="1334" height="2000" loading="lazy" decoding="async">
-                </figure>
+                <div class="work-media">
+                    <figure class="lightbox-trigger" data-full="images/nad-e-ali/NadEAli_Apples_web.jpg" data-wall="images/wall/nad-e-ali-apples-of-hope.webp" data-title="Apples of Hope: Mannat for Ali Asghar (AS)" tabindex="0" role="button" aria-label="View Apples of Hope: Mannat for Ali Asghar (AS) fullscreen">
+                        <img src="images/nad-e-ali/NadEAli_Apples_web.jpg" alt="Apples of Hope: Mannat for Ali Asghar (AS), by Nad-E-Ali: cupped hands holding three red apples against a dark background" width="1334" height="2000" loading="lazy" decoding="async">
+                    </figure>
+                    <button type="button" class="wall-btn" aria-label="View Apples of Hope: Mannat for Ali Asghar (AS) framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
+                </div>
                 <div class="work-caption">
                     <h3 class="work-title">Apples of Hope: Mannat for Ali Asghar (AS)</h3>
                     <p class="work-description">During Muharram, women take apples from the symbolic cradle of Ali Asghar (AS), the infant son of Imam Husayn (AS), offering prayers for fertility and the well-being of their children. An intimate ritual bringing together faith, motherhood, and hope.</p>
@@ -1890,7 +2016,13 @@ document.addEventListener('DOMContentLoaded', function() {
         '<button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next work">&#8250;</button>' +
         '<div class="lightbox-stage">' +
             '<img id="lightboxImage" src="" alt="">' +
-            '<p class="lightbox-caption" id="lightboxCaption"></p>' +
+            '<div class="lightbox-meta">' +
+                '<p class="lightbox-caption" id="lightboxCaption"></p>' +
+                '<div class="lightbox-view-toggle" id="lightboxViewToggle" role="group" aria-label="View" hidden>' +
+                    '<button type="button" data-view="print" aria-pressed="true">Print</button>' +
+                    '<button type="button" data-view="wall" aria-pressed="false">On wall</button>' +
+                '</div>' +
+            '</div>' +
         '</div>';
     document.body.appendChild(lightbox);
 
@@ -1900,7 +2032,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var closeBtn = document.getElementById('lightboxClose');
     var prevBtn = document.getElementById('lightboxPrev');
     var nextBtn = document.getElementById('lightboxNext');
+    var viewToggle = document.getElementById('lightboxViewToggle');
+    var viewButtons = Array.prototype.slice.call(viewToggle.querySelectorAll('button'));
     var currentIndex = 0;
+    // Wall mode shows a work's framed-on-a-wall photo (data-wall) instead of the
+    // print. It carries over while paging, for every work that has a wall photo.
+    var wallMode = false;
     // Touch devices have no meaningful "click the image to navigate" gesture (a tap
     // is naturally just "look at this", and swipe already handles nav) — used to
     // gate the image-click navigation added below.
@@ -1930,11 +2067,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderLightbox() {
         var trigger = triggers[currentIndex];
         resetZoom();
+        var title = trigger.getAttribute('data-title') || '';
+        var wallSrc = trigger.getAttribute('data-wall');
+        var showWall = wallMode && !!wallSrc;
         lightboxImage.classList.remove('is-visible');
         lightboxImage.onload = syncCaptionWidth;
-        lightboxImage.src = trigger.getAttribute('data-full');
-        lightboxImage.alt = trigger.getAttribute('data-title') || '';
-        lightboxCaption.textContent = trigger.getAttribute('data-title') || '';
+        lightboxImage.src = showWall ? wallSrc : trigger.getAttribute('data-full');
+        lightboxImage.alt = showWall ? title + ', framed on a wall' : title;
+        lightboxCaption.textContent = title;
+        viewToggle.hidden = !wallSrc;
+        viewButtons.forEach(function (btn) {
+            btn.setAttribute('aria-pressed', String((btn.getAttribute('data-view') === 'wall') === showWall));
+        });
         if (lightboxImage.complete) syncCaptionWidth();
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
@@ -1943,8 +2087,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function openLightbox(index) {
+    function openLightbox(index, view) {
         currentIndex = index;
+        wallMode = view === 'wall';
         renderLightbox();
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1974,6 +2119,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 openLightbox(index);
             }
+        });
+    });
+
+    function trackWallView(source) {
+        if (typeof trackEvent !== 'function') return;
+        trackEvent('view_on_wall', { artwork_title: triggers[currentIndex].getAttribute('data-title') || '', source: source });
+    }
+
+    document.querySelectorAll('.wall-btn').forEach(function (btn) {
+        var index = triggers.indexOf(btn.closest('.work-media').querySelector('.lightbox-trigger'));
+        btn.addEventListener('click', function () {
+            openLightbox(index, 'wall');
+            trackWallView('card');
+        });
+    });
+
+    viewButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var toWall = btn.getAttribute('data-view') === 'wall';
+            if (toWall === wallMode) return;
+            wallMode = toWall;
+            renderLightbox();
+            if (toWall) trackWallView('lightbox');
         });
     });
 
