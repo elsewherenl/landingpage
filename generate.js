@@ -343,7 +343,8 @@ function updateSitemap() {
         'https://elsewherecollective.nl/artists': 'artists.html',
         'https://elsewherecollective.nl/andrea': 'andrea.html',
         'https://elsewherecollective.nl/nad': 'nad.html',
-        'https://elsewherecollective.nl/aleksey': 'aleksey.html'
+        'https://elsewherecollective.nl/aleksey': 'aleksey.html',
+        'https://elsewherecollective.nl/jesula': 'jesula.html'
     };
 
     for (const [url, fileName] of Object.entries(pageFileByUrl)) {

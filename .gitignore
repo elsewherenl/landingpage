@@ -1,14 +1,24 @@
 CLAUDE.md
 
 # Gated artist pages, local only until the artist is signed up
-jesula.html
-images/jesula/
-images/responsive/jesula-*
-images/wall/jesula-*
 elias.html
 images/elias/
 images/responsive/elias-*
 images/wall/elias-*
+
+# Jésula Toussaint Visser (public): full-size originals and the unused portrait
+images/jesula/Jesula 1.jpg
+images/jesula/Jesula Drafted.jpg
+images/jesula/Jesula Imperceptible.jpg
+images/jesula/Jesula Lucent Shadows.jpg
+images/jesula/Jesula Thought Bubble.jpg
+images/jesula/Jesula_About_Right.png
+images/jesula/Jesula_Doll.png
+images/jesula/Jesula_Portrait.png
+images/jesula/Jesula_Portrait_web.jpg
+images/jesula/Jesula_Thought_Bubble_Full.jpg
+images/jesula/Jesula_Triggers.png
+images/responsive/jesula-toussaint-visser-portrait-*
 
 # Aleksey Kondratyev (public): full-size originals and the work taken off the page
 images/aleksey/Aleksey_Ice_Fishers_1.jpg

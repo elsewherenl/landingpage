@@ -152,7 +152,12 @@
         { title: 'Apples of Hope: Mannat for Ali Asghar (AS)', artist: 'Nad-E-Ali', page: '/nad', src: '/images/responsive/nad-e-ali-apples-800.webp' },
         { title: 'Untitled 04', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-untitled-04-800.webp' },
         { title: 'Untitled 15', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-ice-fishers-2-800.webp' },
-        { title: 'Untitled 20', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-ice-fishers-1-800.webp' }
+        { title: 'Untitled 20', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-ice-fishers-1-800.webp' },
+        { title: 'Imperceptible', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-imperceptible-800.webp' },
+        { title: 'Triggers', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-triggers-800.webp' },
+        { title: 'Lucent Shadows', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-lucent-shadows-800.webp' },
+        { title: 'Thought Bubble', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-thought-bubble-full-800.webp' },
+        { title: 'Doll', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-doll-800.webp' }
     ];
 
     function escapeHtml(str) {
