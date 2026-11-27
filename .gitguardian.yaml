@@ -1,0 +1,8 @@
+# GitGuardian / ggshield settings.
+# The Web3Forms access key is public by design: the enquiry form posts from the
+# browser, and the key can only send mail to hello@elsewherecollective.nl.
+version: 2
+secret:
+  ignored_matches:
+    - name: Web3Forms public access key (enquiry form)
+      match: 3397200b-dd79-4a9e-808e-6523df8bfe49
