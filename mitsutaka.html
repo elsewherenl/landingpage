@@ -59,10 +59,11 @@
             "subjectOf": [
                     {
                         "@type": ["VisualArtwork", "Product"],
+                        "@id": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-unoccupied#artwork",
                         "name": "Unoccupied",
                         "description": "Limited edition Hahnemühle FineArt Baryta print of Unoccupied by Mitsutaka Tsuryu, edition of 10.",
                         "image": "https://elsewherecollective.nl/images/mitsutaka-tsuryu/Mitsutaka%20Unoccupied%20Card.jpg",
-                        "url": "https://elsewherecollective.nl/mitsutaka#unoccupied",
+                        "url": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-unoccupied",
                         "brand": { "@type": "Brand", "name": "Mitsutaka Tsuryu" },
                         "artEdition": "10",
                         "artform": "Photograph",
@@ -77,16 +78,17 @@
                             "priceCurrency": "EUR",
                             "availability": "https://schema.org/InStock",
                             "itemCondition": "https://schema.org/NewCondition",
-                            "url": "https://elsewherecollective.nl/mitsutaka#unoccupied",
+                            "url": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-unoccupied",
                             "seller": { "@id": "https://elsewherecollective.nl/#organization" }
                         }
                     },
                     {
                         "@type": ["VisualArtwork", "Product"],
+                        "@id": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-behind-the-veil#artwork",
                         "name": "Behind the Veil",
                         "description": "Limited edition Hahnemühle FineArt Baryta print of Behind the Veil by Mitsutaka Tsuryu, edition of 10.",
                         "image": "https://elsewherecollective.nl/images/mitsutaka-tsuryu/Mitsutaka%20Tsuryu%20Behind%20the%20Veil%20Card.jpg",
-                        "url": "https://elsewherecollective.nl/mitsutaka#behind-the-veil",
+                        "url": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-behind-the-veil",
                         "brand": { "@type": "Brand", "name": "Mitsutaka Tsuryu" },
                         "artEdition": "10",
                         "artform": "Photograph",
@@ -101,16 +103,17 @@
                             "priceCurrency": "EUR",
                             "availability": "https://schema.org/InStock",
                             "itemCondition": "https://schema.org/NewCondition",
-                            "url": "https://elsewherecollective.nl/mitsutaka#behind-the-veil",
+                            "url": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-behind-the-veil",
                             "seller": { "@id": "https://elsewherecollective.nl/#organization" }
                         }
                     },
                     {
                         "@type": ["VisualArtwork", "Product"],
+                        "@id": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-in-transit#artwork",
                         "name": "In Transit",
                         "description": "Limited edition Hahnemühle FineArt Baryta print of In Transit by Mitsutaka Tsuryu, edition of 10.",
                         "image": "https://elsewherecollective.nl/images/mitsutaka-tsuryu/Mitsutaka_Tsuryu_In_Transit_2021_web.jpg",
-                        "url": "https://elsewherecollective.nl/mitsutaka#in-transit",
+                        "url": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-in-transit",
                         "brand": { "@type": "Brand", "name": "Mitsutaka Tsuryu" },
                         "artEdition": "10",
                         "artform": "Photograph",
@@ -125,7 +128,7 @@
                             "priceCurrency": "EUR",
                             "availability": "https://schema.org/InStock",
                             "itemCondition": "https://schema.org/NewCondition",
-                            "url": "https://elsewherecollective.nl/mitsutaka#in-transit",
+                            "url": "https://elsewherecollective.nl/works/mitsutaka-tsuryu-in-transit",
                             "seller": { "@id": "https://elsewherecollective.nl/#organization" }
                         }
                     }
@@ -817,6 +820,18 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1.2rem;
         font-weight: 400;
         margin-bottom: 0.6rem;
+    }
+
+    /* A title that links to the work's own page looks like plain text until hovered */
+    .work-title a {
+        color: inherit;
+        text-decoration: none;
+        text-underline-offset: 0.2em;
+        text-decoration-thickness: 1px;
+    }
+
+    .work-title a:hover {
+        text-decoration-line: underline;
     }
 
     .work-meta {
@@ -1562,7 +1577,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="wall-btn" aria-label="View Unoccupied framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
                 </div>
                 <div class="work-caption">
-                    <h3 class="work-title">Unoccupied (2025)</h3>
+                    <h3 class="work-title"><a href="/works/mitsutaka-tsuryu-unoccupied">Unoccupied</a> (2025)</h3>
                     <p class="work-meta">Hahnem&uuml;hle FineArt Baryta<br>Printed 2026 &middot; 31 &times; 55 cm<br>Edition of 10</p>
                     <p class="work-price">&euro;700</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Unoccupied&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Unoccupied%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%2C%20delivery%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
@@ -1577,7 +1592,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="wall-btn" aria-label="View Behind the Veil framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
                 </div>
                 <div class="work-caption">
-                    <h3 class="work-title">Behind the Veil (2025)</h3>
+                    <h3 class="work-title"><a href="/works/mitsutaka-tsuryu-behind-the-veil">Behind the Veil</a> (2025)</h3>
                     <p class="work-meta">Hahnem&uuml;hle FineArt Baryta<br>Printed 2026 &middot; 54 &times; 55 cm<br>Edition of 10</p>
                     <p class="work-price">&euro;700</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Behind%20the%20Veil&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Behind%20the%20Veil%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%2C%20delivery%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
@@ -1592,7 +1607,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="wall-btn" aria-label="View In Transit framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
                 </div>
                 <div class="work-caption">
-                    <h3 class="work-title">In Transit (2021)</h3>
+                    <h3 class="work-title"><a href="/works/mitsutaka-tsuryu-in-transit">In Transit</a> (2021)</h3>
                     <p class="work-meta">Hahnem&uuml;hle FineArt Baryta<br>Printed 2026 &middot; 28 &times; 50 cm<br>Edition of 10</p>
                     <p class="work-price">&euro;700</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20In%20Transit&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20In%20Transit%20by%20Mitsutaka%20Tsuryu.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%2C%20delivery%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>

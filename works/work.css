@@ -1,0 +1,700 @@
+/* Shared stylesheet for every artwork page (works/<slug>.html, written by
+   generate.js from works.json). Lifted from the artist pages (mitsutaka.html,
+   aleksey.html) so a work page looks like the card it comes from: same
+   colours, type, hairlines, work details, size list and enquiry form. One
+   cached file for all work pages instead of a copy inlined in each. */
+
+@font-face {
+    font-family: 'SuisseIntl';
+    src: url('/fonts/SuisseIntl-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SuisseIntl';
+    src: url('/fonts/SuisseIntl-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'SuisseIntl';
+    src: url('/fonts/SuisseIntl-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --cream-bg: #F3EFE9;
+    --deep-charcoal: #2C2C2C;
+    --warm-gray: #8A8580;
+    --text-muted: #6F6B67;
+    --warm-off-white: #FDFCF8;
+    --khaki: #C0B589;
+    --hairline: rgba(44, 44, 44, 0.14);
+    --page-top-desktop: 7.25rem;
+    --page-top-mobile: 7rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+picture { display: contents; }
+
+body {
+    font-family: 'SuisseIntl', sans-serif;
+    background: var(--cream-bg);
+    color: var(--deep-charcoal);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Header: same as the artist pages */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(243, 239, 233, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    padding: 1.5rem 0;
+}
+.header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--deep-charcoal);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    transition: opacity 0.3s ease;
+}
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+.nav-menu a {
+    text-decoration: none;
+    white-space: nowrap;
+    color: rgba(44, 44, 44, 0.75);
+    font-weight: 300;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+.nav-menu a:hover {
+    opacity: 0.5;
+    color: var(--deep-charcoal);
+}
+
+.page {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: var(--page-top-desktop) 3rem 8rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+.back-link:hover {
+    color: var(--deep-charcoal);
+    opacity: 0.8;
+}
+
+/* ---------- The work: image large on the left, details on the right ---------- */
+.work-view {
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(18rem, 1fr);
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2.5rem;
+}
+
+/* The image keeps its own proportions and fits on screen whole. The inner
+   wrapper shrinks to the image's width and is centred in the column, so the
+   Print / On wall switch below lines up with the image's left edge. */
+.work-image-col {
+    display: flex;
+    justify-content: center;
+}
+.work-image-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
+}
+.work-figure {
+    display: block;
+    max-width: 100%;
+    cursor: pointer;
+}
+.work-figure:focus { outline: none; }
+.work-figure:focus-visible {
+    outline: 2px solid var(--deep-charcoal);
+    outline-offset: 3px;
+}
+.work-figure img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    /* Fits on screen with room left for the back link above and the
+       Print / On wall switch below, so a tall wall photo never pushes the
+       switch out of view */
+    max-height: calc(100vh - var(--page-top-desktop) - 8rem);
+    max-height: calc(100svh - var(--page-top-desktop) - 8rem);
+    object-fit: contain;
+}
+.work-figure img[hidden] { display: none; }
+
+/* Print / On wall switch, under the image (only for works with a wall photo) */
+.view-toggle {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin-top: 1.1rem;
+}
+.view-toggle[hidden] { display: none; }
+.view-toggle button {
+    background: none;
+    border: 0;
+    padding: 0.2rem 0;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    border-bottom: 1px solid transparent;
+}
+.view-toggle button:hover { color: var(--deep-charcoal); }
+.view-toggle button[aria-pressed="true"] {
+    color: var(--deep-charcoal);
+    font-weight: 400;
+    border-bottom-color: var(--deep-charcoal);
+}
+.view-toggle button:focus { outline: none; }
+.view-toggle button:focus-visible {
+    outline: 2px solid var(--deep-charcoal);
+    outline-offset: 3px;
+}
+
+.work-details {
+    position: sticky;
+    top: calc(var(--page-top-desktop) + 1rem);
+}
+.work-artist {
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.35rem;
+}
+.work-artist a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.work-artist a:hover { color: var(--deep-charcoal); }
+
+.work-title {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+}
+.work-year { font-weight: 300; }
+
+.work-meta {
+    border-top: 1px solid var(--hairline);
+    padding-top: 0.75rem;
+    font-size: 0.94rem;
+    font-weight: 300;
+    color: rgba(44, 44, 44, 0.7);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+}
+.work-price {
+    font-size: 1.09rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+.work-description {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+}
+
+.enquire-btn {
+    display: inline-block;
+    padding: 0.75rem 1.15rem;
+    border: 1px solid var(--deep-charcoal);
+    background: transparent;
+    color: var(--deep-charcoal);
+    font-family: 'SuisseIntl', sans-serif;
+    font-size: 0.94rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.enquire-btn:hover {
+    background: var(--deep-charcoal);
+    color: var(--warm-off-white);
+}
+
+.work-note {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.more-link {
+    display: inline-block;
+    margin-top: 1.25rem;
+    color: var(--deep-charcoal);
+    font-size: 0.94rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+}
+.more-link:hover { text-decoration: underline; }
+
+/* ---------- Several sizes: one row per size (as on aleksey.html) ---------- */
+.size-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content max-content;
+    column-gap: 1.1rem;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+}
+.size-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(44, 44, 44, 0.09);
+}
+.size-row:first-child { border-top: 1px solid rgba(44, 44, 44, 0.09); }
+.size-dim {
+    font-weight: 500;
+    color: var(--deep-charcoal);
+    white-space: nowrap;
+}
+.size-edition {
+    font-weight: 300;
+    color: #736D67;
+}
+.size-price {
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: right;
+}
+.size-enquire {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    color: var(--deep-charcoal);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+    white-space: nowrap;
+}
+.size-enquire::after {
+    content: '→';
+    transition: transform 0.25s ease;
+}
+.size-enquire:hover { text-decoration-line: underline; }
+.size-enquire:hover::after { transform: translateX(3px); }
+.work-meta + .size-list { margin-top: -0.25rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    /* Stacked, the back link sits just above the title, so the artist's
+       name above the title would say the same thing twice */
+    .work-artist { display: none; }
+    .work-view {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+        margin-top: 1.5rem;
+    }
+    .work-details { position: static; }
+    .work-figure img { max-height: 75vh; }
+}
+
+@media (max-width: 700px) {
+    .header { padding: 1rem 0; }
+    .header-container { padding: 0 1.5rem; }
+    .logo { font-size: 1.3rem; letter-spacing: 0.02em; }
+    .nav-menu { gap: 1.1rem; }
+    .nav-menu a { font-size: 0.85rem; letter-spacing: 0.01em; }
+    .page { padding: var(--page-top-mobile) 1.5rem 5rem; }
+    .back-link { font-size: 1.05rem; }
+    .work-title { font-size: 1.7rem; }
+}
+
+@media (max-width: 480px) {
+    .logo { font-size: 1.2rem; }
+    .nav-menu { gap: 0.5rem; }
+    .nav-menu a { font-size: 0.8rem; }
+    .size-list { grid-template-columns: 1fr max-content; }
+    .size-row { row-gap: 0.2rem; }
+    .size-dim { grid-column: 1; grid-row: 1; }
+    .size-price { grid-column: 2; grid-row: 1; }
+    .size-edition { grid-column: 1; grid-row: 2; }
+    .size-enquire { grid-column: 2; grid-row: 2; justify-self: end; }
+}
+
+@media (max-width: 350px) {
+    .logo { font-size: 1.05rem; }
+    .header-container { gap: 0.75rem; }
+    .nav-menu { gap: 0.6rem; }
+    .nav-menu a { font-size: 0.72rem; }
+}
+
+/* ---------- Fullscreen view (same as the artist pages' lightbox) ---------- */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--cream-bg);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(2rem, 8vh, 6rem) clamp(2rem, 10vw, 8rem);
+    overflow: hidden;
+}
+.lightbox.active { display: flex; }
+.lightbox-stage {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+.lightbox-stage img {
+    max-width: 100%;
+    max-height: min(70vh, calc(100vh - clamp(9rem, 24vh, 14rem)));
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    align-self: center;
+    box-shadow: 0 1px 2px rgba(44, 44, 44, 0.06);
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    touch-action: none;
+}
+.lightbox.active .lightbox-stage img.is-visible {
+    opacity: 1;
+    transform: translate(var(--zoom-x, 0px), var(--zoom-y, 0px)) scale(var(--zoom, 1));
+}
+.lightbox.is-zoomed .lightbox-stage { overflow: visible; }
+.lightbox.is-zoomed .lightbox-nav,
+.lightbox.is-zoomed .lightbox-meta,
+.lightbox.is-zoomed .lightbox-caption {
+    opacity: 0;
+    pointer-events: none;
+}
+.lightbox-stage img.is-gesturing { transition: opacity 0.35s ease; }
+.lightbox-meta {
+    margin-top: 1.25rem;
+    align-self: center;
+    width: 100%;
+    max-width: var(--lightbox-image-width, 480px);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+.lightbox-caption {
+    color: var(--deep-charcoal);
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    text-align: left;
+}
+.lightbox-view-toggle {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.lightbox-view-toggle[hidden] { display: none; }
+.lightbox-view-toggle button {
+    padding: 0 0 0.15rem;
+    border: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
+    background: none;
+    color: var(--text-muted);
+    font-family: 'SuisseIntl', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.lightbox-view-toggle button:hover { color: var(--deep-charcoal); }
+.lightbox-view-toggle button[aria-pressed="true"] {
+    color: var(--deep-charcoal);
+    border-bottom-color: var(--deep-charcoal);
+}
+.lightbox-close {
+    position: fixed;
+    top: clamp(1.25rem, 3vh, 2rem);
+    right: clamp(1.25rem, 3vw, 2rem);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: var(--deep-charcoal);
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+    z-index: 2001;
+}
+.lightbox-close:hover { opacity: 1; }
+/* One work per page, so no paging arrows */
+.lightbox-nav { display: none; }
+@media (max-width: 768px) {
+    .lightbox { padding: 1.25rem; }
+    .lightbox-stage img { max-height: calc(100vh - 9rem); }
+}
+
+/* ---------- Custom cursor (as on every page) ---------- */
+body { cursor: none; }
+*, *::before, *::after { cursor: none !important; }
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 100000;
+    margin: -10px 0 0 -10px;
+    transform: translate3d(-100px, -100px, 0);
+    will-change: transform;
+}
+.cursor-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #95392E;
+    transition: transform 0.18s ease;
+}
+.cursor-dot.is-hovering::after { transform: scale(1.35); }
+@media (hover: none), (pointer: coarse) {
+    body, *, *::before, *::after { cursor: auto !important; }
+    .cursor-dot { display: none; }
+}
+
+/* ---------- Fallback cookie banner (only if Silktide fails to load) ---------- */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--deep-charcoal);
+    color: var(--warm-off-white);
+    padding: 1rem 2rem;
+    z-index: 10000;
+    display: none;
+}
+.cookie-banner.show { display: block; }
+.cookie-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.cookie-text {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.4;
+}
+.cookie-link {
+    color: var(--khaki);
+    text-decoration: none;
+    border-bottom: 1px solid var(--khaki);
+    margin-left: 0.5rem;
+}
+.cookie-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+.cookie-button {
+    background: var(--khaki);
+    color: var(--deep-charcoal);
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.essential-link {
+    font-size: 0.85rem;
+    color: rgba(253, 252, 248, 0.7);
+    text-decoration: underline;
+}
+@media (max-width: 768px) {
+    .cookie-banner { padding: 1rem; }
+    .cookie-content { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+/* ---------- Enquiry form (same as the artist pages) ---------- */
+body.enquiry-open { overflow: hidden; }
+.enquiry {
+    position: fixed; inset: 0; z-index: 100000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    background: rgba(44, 44, 44, 0.45);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.enquiry.is-open {
+    opacity: 1; visibility: visible;
+    transition: opacity 0.3s ease;
+}
+.enquiry-panel {
+    position: relative;
+    width: 100%; max-width: 34rem; max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
+    background: var(--cream-bg);
+    color: var(--deep-charcoal);
+    padding: 2.25rem 2.5rem 1.75rem;
+    transform: translateY(12px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.enquiry.is-open .enquiry-panel { transform: none; }
+.enquiry-close {
+    position: absolute; top: 1rem; right: 1rem;
+    width: 2.5rem; height: 2.5rem;
+    background: none; border: 0;
+    font-size: 1.6rem; line-height: 1; font-weight: 300; color: var(--deep-charcoal);
+}
+.enquiry-close:hover { opacity: 0.6; }
+.enquiry-kicker {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.9rem;
+}
+.enquiry-work {
+    display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.1rem;
+    align-items: center;
+    padding-bottom: 1.25rem; margin-bottom: 1.4rem;
+    border-bottom: 1px solid var(--hairline);
+}
+.enquiry-work img { width: 4.5rem; height: 4.5rem; object-fit: cover; display: block; }
+.enquiry-title { font-size: 1.25rem; font-weight: 400; line-height: 1.25; margin-bottom: 0.3rem; }
+.enquiry-spec { font-size: 0.8125rem; font-weight: 300; color: var(--text-muted); line-height: 1.5; }
+.enquiry-spec strong { font-weight: 500; color: var(--deep-charcoal); }
+.enquiry-field { display: block; margin-bottom: 1.1rem; }
+.enquiry-field > span:first-child {
+    display: block; font-size: 0.8125rem; font-weight: 400;
+    letter-spacing: 0.02em; margin-bottom: 0.4rem;
+}
+.enquiry-field input,
+.enquiry-field textarea {
+    width: 100%;
+    font: inherit; font-size: 1rem; font-weight: 300;
+    color: var(--deep-charcoal);
+    background: var(--warm-off-white);
+    border: 1px solid rgba(44, 44, 44, 0.2);
+    border-radius: 0;
+    padding: 0.65rem 0.85rem;
+    -webkit-appearance: none; appearance: none;
+    transition: border-color 0.2s ease;
+}
+.enquiry-field textarea { min-height: 8.75rem; resize: vertical; line-height: 1.55; }
+.enquiry-field input:focus,
+.enquiry-field textarea:focus { outline: none; border-color: var(--deep-charcoal); }
+.enquiry-hint {
+    display: block;
+    font-size: 0.8125rem; font-weight: 300; color: var(--text-muted);
+    margin: -0.15rem 0 0.5rem;
+}
+.enquiry-submit {
+    width: 100%;
+    margin-top: 0.4rem;
+    padding: 1rem 1.25rem;
+    background: var(--deep-charcoal); color: var(--warm-off-white);
+    border: 1px solid var(--deep-charcoal);
+    font: inherit; font-size: 0.94rem; font-weight: 400; letter-spacing: 0.04em;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+.enquiry-submit:hover { background: transparent; color: var(--deep-charcoal); }
+.enquiry-submit[disabled] { opacity: 0.6; }
+.enquiry-small {
+    margin-top: 1.1rem;
+    font-size: 0.75rem; font-weight: 300; line-height: 1.55; color: var(--text-muted);
+}
+.enquiry-small a { color: inherit; }
+.enquiry-error {
+    margin: 0 0 1rem;
+    padding: 0.85rem 1rem;
+    background: var(--warm-off-white);
+    border-left: 2px solid #9A3F2B;
+    font-size: 0.875rem; font-weight: 300; line-height: 1.55;
+}
+.enquiry-error strong { font-weight: 500; color: #9A3F2B; }
+.enquiry-error a { color: inherit; font-weight: 500; text-underline-offset: 0.2em; }
+.enquiry-done { display: none; padding: 1rem 0 0.5rem; }
+.enquiry.is-sent form, .enquiry.is-sent .enquiry-work { display: none; }
+.enquiry.is-sent .enquiry-done { display: block; }
+.enquiry-done h2 { font-size: 1.6rem; font-weight: 300; letter-spacing: -0.01em; margin-bottom: 0.9rem; }
+.enquiry-done p { font-size: 0.94rem; font-weight: 300; line-height: 1.65; margin-bottom: 1.5rem; }
+.enquiry-done button {
+    background: none; border: 0; padding: 0;
+    font: inherit; font-size: 0.94rem; color: var(--deep-charcoal);
+    text-decoration: underline; text-underline-offset: 0.2em;
+}
+.enquiry-bot { position: absolute; left: -9999px; }
+@media (max-width: 600px) {
+    .enquiry { padding: 0; align-items: stretch; }
+    .enquiry-panel {
+        max-width: none; max-height: none; height: 100dvh;
+        padding: 4rem 1.25rem calc(2rem + env(safe-area-inset-bottom));
+        transform: translateY(24px);
+    }
+    .enquiry-close { top: 0.75rem; right: 0.5rem; }
+}

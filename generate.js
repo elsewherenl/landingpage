@@ -326,15 +326,389 @@ function isoDate(date) {
     return date.toISOString().slice(0, 10);
 }
 
+// ---------------------------------------------------------------------------
+// Artwork pages: one page per work on sale, from works.json, at
+// /works/<slug> (GitHub Pages serves works/<slug>.html there with a 200).
+// works.json is the single source of truth for these pages; the page template,
+// meta tags, JSON-LD and sitemap entry all come from it. Shared CSS/JS live in
+// works/work.css and works/work.js. Paths are root-absolute (/images/...) since
+// the pages sit one folder down.
+// ---------------------------------------------------------------------------
+const WORKS_PATH = path.join(ROOT, 'works.json');
+const WORKS_DIR = path.join(ROOT, 'works');
+const SITE = 'https://elsewherecollective.nl';
+const DEFAULT_COLLECTING_NOTE = 'All works are offered in limited editions and accompanied by a certificate of authenticity. Professional framing is available on request.';
+
+function readWorks() {
+    if (!fs.existsSync(WORKS_PATH)) return { artists: {}, works: [] };
+    const data = JSON.parse(fs.readFileSync(WORKS_PATH, 'utf8'));
+    const seen = new Set();
+    for (const work of data.works) {
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(work.slug)) throw new Error(`works.json: bad slug "${work.slug}"`);
+        if (seen.has(work.slug)) throw new Error(`works.json: duplicate slug "${work.slug}"`);
+        seen.add(work.slug);
+        if (!data.artists[work.artist]) throw new Error(`works.json: unknown artist "${work.artist}" for ${work.slug}`);
+        if (!work.sizes || !work.sizes.length) throw new Error(`works.json: ${work.slug} has no sizes`);
+    }
+    return data;
+}
+
+function workUrl(work) {
+    return `${SITE}/works/${work.slug}`;
+}
+
+function formatPrice(price) {
+    return '€' + Number(price).toLocaleString('en-GB');
+}
+
+function mailtoHref(subject, body) {
+    return 'mailto:hello@elsewherecollective.nl?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+}
+
+function enquiryBody(title, artistName, size) {
+    return `Hi, I'd like to enquire about ${title}${size ? ` (${size})` : ''} by ${artistName}.\n\n` +
+        'Please could you provide more details about availability, purchase, delivery and timings?\n\nThanks,';
+}
+
+// Facts first, as on the artist pages: who, what, size, edition, price, where
+function workMetaDescription(work, artist) {
+    const sizes = work.sizes;
+    const lead = `${work.title}${work.year ? ` (${work.year})` : ''} by ${artist.name}: ${printPhrase(work)}`;
+    let facts;
+    if (sizes.length === 1) {
+        const s = sizes[0];
+        facts = `${lead}, ${s.dimensions}, ${s.edition.toLowerCase()}, ${formatPrice(s.price)}.`;
+    } else {
+        facts = `${lead} in ${sizes.length} sizes, from ${formatPrice(Math.min(...sizes.map(s => s.price)))}.`;
+    }
+    // The gallery and city when they fit within Google's ~155 characters
+    const full = `${facts} From elsewhere, Amsterdam.`;
+    return full.length <= 155 ? full : facts;
+}
+
+// "limited-edition Hahnemühle FineArt Baryta print", "limited-edition silver
+// gelatin print on fibre-based paper", or just "limited-edition print"
+function printPhrase(work) {
+    const m = work.art_medium || work.medium;
+    if (!m) return 'limited-edition print';
+    const lower = /^[A-Z][a-z]/.test(m) && /print/i.test(m) ? m.charAt(0).toLowerCase() + m.slice(1) : m;
+    return /print/i.test(m) ? `limited-edition ${lower}` : `limited-edition ${m} print`;
+}
+
+function workPageTitle(work, artist) {
+    return `${work.title} by ${artist.name} | Limited Edition Photography Print | elsewhere`;
+}
+
+function buildWorkJsonLd(work, artist, artistKey, pageTitle, description) {
+    const url = workUrl(work);
+    const image = SITE + work.image.src;
+    const personId = `${SITE}${artist.page}#person`;
+    const sizes = work.sizes;
+    const offerFor = s => ({
+        '@type': 'Offer',
+        ...(sizes.length > 1 ? { name: `${s.dimensions}, ${s.edition.charAt(0).toLowerCase()}${s.edition.slice(1)}` } : {}),
+        price: String(s.price),
+        priceCurrency: 'EUR',
+        availability: `https://schema.org/${work.availability || 'InStock'}`,
+        itemCondition: 'https://schema.org/NewCondition',
+        url,
+        seller: { '@id': `${SITE}/#organization` }
+    });
+    const single = sizes.length === 1 ? sizes[0] : null;
+    const artwork = {
+        '@type': ['VisualArtwork', 'Product'],
+        '@id': `${url}#artwork`,
+        name: work.title,
+        description: work.description ||
+            `${printPhrase(work).replace(/^l/, 'L')} of ${work.title} by ${artist.name}` +
+            (single ? `, ${single.edition.charAt(0).toLowerCase()}${single.edition.slice(1)}.` : `, in ${sizes.length} sizes.`),
+        image,
+        url,
+        brand: { '@type': 'Brand', name: artist.name },
+        artform: 'Photograph',
+        ...(work.art_medium || work.medium ? { artMedium: work.art_medium || work.medium } : {}),
+        ...(work.year ? { dateCreated: work.year } : {}),
+        ...(single && single.edition_size ? { artEdition: String(single.edition_size) } : {}),
+        ...(single && single.width_cm ? { width: { '@type': 'Distance', name: `${single.width_cm} cm` } } : {}),
+        ...(single && single.height_cm ? { height: { '@type': 'Distance', name: `${single.height_cm} cm` } } : {}),
+        creator: { '@type': 'Person', '@id': personId, name: artist.name, url: SITE + artist.page },
+        offers: single ? offerFor(single) : sizes.map(offerFor)
+    };
+    return {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'ItemPage',
+                '@id': `${url}#webpage`,
+                url,
+                name: pageTitle,
+                description,
+                isPartOf: { '@id': `${SITE}/#website` },
+                primaryImageOfPage: image,
+                mainEntity: { '@id': `${url}#artwork` },
+                breadcrumb: { '@id': `${url}#breadcrumb` }
+            },
+            artwork,
+            {
+                '@type': 'BreadcrumbList',
+                '@id': `${url}#breadcrumb`,
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+                    { '@type': 'ListItem', position: 2, name: 'Artists & Works', item: `${SITE}/artists` },
+                    { '@type': 'ListItem', position: 3, name: artist.name, item: SITE + artist.page },
+                    { '@type': 'ListItem', position: 4, name: work.title, item: url }
+                ]
+            },
+            {
+                '@type': 'Organization',
+                '@id': `${SITE}/#organization`,
+                name: 'elsewhere',
+                alternateName: 'elsewhere collective',
+                url: SITE,
+                sameAs: ['https://www.instagram.com/elsewhere___collective']
+            }
+        ]
+    };
+}
+
+function renderWorkPage(work, artist, artistKey) {
+    const e = escapeHtml;
+    const url = workUrl(work);
+    const pageTitle = workPageTitle(work, artist);
+    const description = workMetaDescription(work, artist);
+    const jsonLd = JSON.stringify(buildWorkJsonLd(work, artist, artistKey, pageTitle, description), null, 4)
+        .replace(/</g, '\\u003c');
+    const img = work.image;
+    const srcset = img.webp ? img.webp_widths.map(w => `${img.webp}-${w}.webp ${w}w`).join(', ') : '';
+    const sizes = work.sizes;
+    const single = sizes.length === 1 ? sizes[0] : null;
+
+    // Same format as the artist page cards: medium, then printed year and size, then edition
+    const printedLine = [work.printed ? `Printed ${e(work.printed)}` : '', single ? e(single.dimensions) : '']
+        .filter(Boolean).join(' &middot; ');
+    const metaLines = [work.medium ? e(work.medium) : '', printedLine, single ? e(single.edition) : ''].filter(Boolean).join('<br>');
+
+    const sizeListHtml = single ? '' : `
+                <ul class="size-list" aria-label="Sizes and prices">
+${sizes.map(s => `                    <li class="size-row">
+                        <span class="size-dim">${e(s.dimensions)}</span>
+                        <span class="size-edition">${e(s.edition)}</span>
+                        <span class="size-price">${e(formatPrice(s.price))}</span>
+                        <a href="${e(mailtoHref(`Enquiry - ${work.title}, ${s.dimensions}`, enquiryBody(work.title, artist.name, s.dimensions)))}" class="size-enquire">Enquire</a>
+                    </li>`).join('\n')}
+                </ul>`;
+
+    const priceAndEnquire = single ? `
+                <p class="work-price">${e(formatPrice(single.price))}</p>
+                <a href="${e(mailtoHref(`Enquiry - ${work.title}`, enquiryBody(work.title, artist.name)))}" class="enquire-btn">Enquire</a>` : '';
+
+    const wallHtml = work.wall ? `
+                    <img id="wallImage" data-src="${e(work.wall.src)}" alt="${e(work.title)}, by ${e(artist.name)}, shown framed on a wall" width="${work.wall.width}" height="${work.wall.height}" decoding="async" hidden>` : '';
+    const toggleHtml = work.wall ? `
+                <div class="view-toggle" id="viewToggle" role="group" aria-label="View">
+                    <button type="button" data-view="print" aria-pressed="true">Print</button>
+                    <button type="button" data-view="wall" aria-pressed="false">On wall</button>
+                </div>` : '';
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Generated by generate.js from works.json; do not edit by hand -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>${e(pageTitle)}</title>
+<meta name="description" content="${e(description)}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="${e(url)}">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="${e(url)}">
+<meta property="og:title" content="${e(pageTitle)}">
+<meta property="og:description" content="${e(description)}">
+<meta property="og:image" content="${e(SITE + img.src)}">
+<meta property="og:image:width" content="${img.width}">
+<meta property="og:image:height" content="${img.height}">
+<meta property="og:image:alt" content="${e(work.alt)}">
+<meta property="og:site_name" content="elsewhere collective">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="${e(url)}">
+<meta property="twitter:title" content="${e(pageTitle)}">
+<meta property="twitter:description" content="${e(description)}">
+<meta property="twitter:image" content="${e(SITE + img.src)}">
+<meta property="twitter:image:alt" content="${e(work.alt)}">
+
+<script type="application/ld+json">
+${jsonLd}
+</script>
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="preload" href="/fonts/SuisseIntl-Light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/SuisseIntl-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Google Analytics, only with consent (same as every page) -->
+<script>
+    if (localStorage.getItem('analyticsConsent') === 'true') {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NZVK7P7J3D');
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-NZVK7P7J3D';
+        document.head.appendChild(script);
+    }
+</script>
+
+<link rel="stylesheet" href="/works/work.css">
+<link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css" media="print" onload="this.media='all'">
+<script src="/cookie-banner/silktide-consent-manager.js" defer></script>
+<!-- No newsletter pop-up on artwork pages: the page is about the work -->
+<script src="/works/work.js" defer></script>
+</head>
+<body>
+
+<div class="enquiry" id="enquiry" role="dialog" aria-modal="true" aria-labelledby="enquiryTitle" aria-hidden="true">
+    <div class="enquiry-panel">
+        <button type="button" class="enquiry-close" aria-label="Close">&times;</button>
+        <p class="enquiry-kicker">Enquire</p>
+        <div class="enquiry-work">
+            <img id="enquiryImg" src="" alt="">
+            <div>
+                <h2 class="enquiry-title" id="enquiryTitle"></h2>
+                <p class="enquiry-spec" id="enquirySpec"></p>
+            </div>
+        </div>
+
+        <form id="enquiryForm" novalidate>
+            <!-- Web3Forms emails each enquiry to hello@elsewherecollective.nl; the key
+                 only allows sending to that inbox, so it's safe to publish -->
+            <input type="hidden" name="access_key" value="3397200b-dd79-4a9e-808e-6523df8bfe49">
+            <input type="hidden" name="from_name" value="elsewhere collective website">
+            <input type="hidden" name="subject" id="enquirySubject">
+            <input type="hidden" name="artist" id="enquiryArtist">
+            <input type="hidden" name="artwork" id="enquiryArtwork">
+            <input type="hidden" name="size" id="enquirySize">
+            <input type="hidden" name="price" id="enquiryPrice">
+            <input type="checkbox" name="botcheck" class="enquiry-bot" tabindex="-1" autocomplete="off">
+
+            <label class="enquiry-field"><span>Name</span>
+                <input type="text" name="name" autocomplete="name" required></label>
+            <label class="enquiry-field"><span>Email</span>
+                <input type="email" name="email" autocomplete="email" inputmode="email" required></label>
+            <label class="enquiry-field"><span>Message</span>
+                <span class="enquiry-hint">Interested in more than one work? Let us know below.</span>
+                <textarea name="message" rows="6"></textarea></label>
+
+            <p class="enquiry-error" id="enquiryError" role="alert" hidden></p>
+            <button type="submit" class="enquiry-submit">Send enquiry</button>
+            <p class="enquiry-small">We&rsquo;ll reply by email, usually within two working days. Your details are only used to answer this enquiry. Prefer email? <a href="mailto:hello@elsewherecollective.nl">hello@elsewherecollective.nl</a></p>
+        </form>
+
+        <div class="enquiry-done" aria-live="polite">
+            <h2>Thank you.</h2>
+            <p id="enquiryDoneText"></p>
+            <button type="button" class="enquiry-back">Back to the work</button>
+        </div>
+    </div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<header class="header">
+    <div class="header-container">
+        <a href="/" class="logo">elsewhere</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="/about">About</a></li>
+                <li><a href="/artists">Artists &amp; Works</a></li>
+                <li><a href="/spotlight">Spotlights</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <a href="${e(artist.page)}#works" class="back-link">&larr; ${e(artist.name)}</a>
+
+    <article class="work-view" data-artist="${e(artist.name)}" data-title="${e(work.title)}">
+        <div class="work-image-col">
+            <div class="work-image-inner">
+            <figure class="work-figure lightbox-trigger" data-full="${e(img.src)}"${work.wall ? ` data-wall="${e(work.wall.src)}"` : ''} data-title="${e(work.title)}" tabindex="0" role="button" aria-label="View ${e(work.title)} fullscreen">
+                ${srcset ? `<picture><source type="image/webp" srcset="${e(srcset)}" sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 900px) calc(100vw - 96px), 66vw">` : ''}<img id="workImage" src="${e(img.src)}" alt="${e(work.alt)}" width="${img.width}" height="${img.height}" fetchpriority="high" decoding="async">${srcset ? '</picture>' : ''}${wallHtml}
+            </figure>${toggleHtml}
+            </div>
+        </div>
+
+        <div class="work-details">
+            <p class="work-artist"><a href="${e(artist.page)}">${e(artist.name)}</a></p>
+            <h1 class="work-title">${e(work.title)}${work.year ? ` <span class="work-year">(${e(work.year)})</span>` : ''}</h1>
+${work.description ? `            <p class="work-description">${e(work.description)}</p>\n` : ''}${metaLines ? `            <p class="work-meta">${metaLines}</p>` : ''}${sizeListHtml}${priceAndEnquire}
+            <p class="work-note">${e(artist.collecting_note || DEFAULT_COLLECTING_NOTE)}</p>
+        </div>
+    </article>
+</main>
+
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous work">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next work">&#8250;</button>
+    <div class="lightbox-stage">
+        <img id="lightboxImage" src="" alt="">
+        <div class="lightbox-meta">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+            <div class="lightbox-view-toggle" id="lightboxViewToggle" role="group" aria-label="View" hidden>
+                <button type="button" data-view="print" aria-pressed="true">Print</button>
+                <button type="button" data-view="wall" aria-pressed="false">On wall</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+`;
+}
+
+// Writes works/<slug>.html for every work; returns the URL → file map for the sitemap
+function writeWorkPages() {
+    const data = readWorks();
+    const pageFileByUrl = {};
+    if (!data.works.length) return pageFileByUrl;
+    if (!fs.existsSync(WORKS_DIR)) fs.mkdirSync(WORKS_DIR);
+    for (const work of data.works) {
+        const artist = data.artists[work.artist];
+        const file = path.join('works', `${work.slug}.html`);
+        const changed = writeIfChanged(path.join(ROOT, file), renderWorkPage(work, artist, work.artist));
+        pageFileByUrl[workUrl(work)] = file;
+        console.log(`  ${changed ? 'wrote' : 'unchanged'} ${file}`);
+    }
+    return pageFileByUrl;
+}
+
+// Adds a sitemap <url> block for any page not yet listed (artwork pages)
+function ensureSitemapEntries(sitemapXml, urls) {
+    for (const url of urls) {
+        if (sitemapXml.includes(`<loc>${url}</loc>`)) continue;
+        const block = `  <url>\n    <loc>${url}</loc>\n    <lastmod></lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n`;
+        sitemapXml = sitemapXml.replace('</urlset>', block + '</urlset>');
+    }
+    return sitemapXml;
+}
+
 // Rewrites sitemap.xml's <lastmod> for the site's canonical pages using each page's
 // actual on-disk file mtime — index.html/spotlight.html reflect the last generate.js
 // run that changed their content; about.html/cookie-policy.html/mitsutaka.html reflect the last
-// manual edit. Preserves the sitemap's existing <changefreq>/<priority> and URL set as-is.
-function updateSitemap() {
+// manual edit. Preserves the sitemap's existing <changefreq>/<priority> and URL set as-is,
+// adding an entry for each artwork page (workPageFileByUrl) that isn't listed yet.
+function updateSitemap(workPageFileByUrl = {}) {
     const sitemapPath = path.join(ROOT, 'sitemap.xml');
-    let sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
+    let sitemapXml = ensureSitemapEntries(fs.readFileSync(sitemapPath, 'utf8'), Object.keys(workPageFileByUrl));
 
     const pageFileByUrl = {
+        ...workPageFileByUrl,
         'https://elsewherecollective.nl/': 'index.html',
         'https://elsewherecollective.nl/about': 'about.html',
         'https://elsewherecollective.nl/spotlight': 'spotlight.html',
@@ -363,6 +737,16 @@ function updateSitemap() {
 }
 
 async function main() {
+    // `node generate.js --works`: only the artwork pages and the sitemap (no
+    // Cloudinary requests, no homepage reshuffle)
+    if (process.argv.includes('--works')) {
+        console.log('generate.js --works: artwork pages from works.json');
+        updateSitemap(writeWorkPages());
+        console.log('  updated sitemap.xml');
+        console.log('done');
+        return;
+    }
+
     const feed = JSON.parse(fs.readFileSync(FEED_PATH, 'utf8'));
     const allPosts = feed.posts || [];
 
@@ -448,7 +832,8 @@ async function main() {
     spotlightHtml = replaceJsonLdScript(spotlightHtml, 'spotlight-jsonld', spotlightJsonLd);
     const spotlightChanged = writeIfChanged(spotlightPath, spotlightHtml);
 
-    updateSitemap();
+    const workPageFileByUrl = writeWorkPages();
+    updateSitemap(workPageFileByUrl);
 
     console.log(`  updated index.html (${homePosts.length} posts)${indexChanged ? '' : ' — unchanged'}`);
     console.log(`  updated spotlight.html (${allPosts.length} posts, including JSON-LD ItemList)${spotlightChanged ? '' : ' — unchanged'}`);

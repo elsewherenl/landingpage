@@ -6,7 +6,7 @@
 
     <!-- Primary Meta Tags -->
     <title>elsewhere | Contemporary Photography Gallery, Amsterdam</title>
-    <meta name="description" content="elsewhere collective is a contemporary photography gallery in Amsterdam, offering limited-edition prints by emerging and established photographers.">
+    <meta name="description" content="Discover contemporary photography at elsewhere, an independent gallery in Amsterdam. Explore and collect limited-edition photographic prints by emerging and established artists.">
     <meta name="robots" content="index, follow">
     <meta name="keywords" content="contemporary photography, emerging photographers, limited edition prints, curated photography, art collection, photography prints, Amsterdam gallery, fine art photography">
 
@@ -17,7 +17,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elsewherecollective.nl/">
     <meta property="og:title" content="elsewhere | Contemporary Photography Gallery, Amsterdam">
-    <meta property="og:description" content="elsewhere collective is a contemporary photography gallery in Amsterdam, offering limited-edition prints by emerging and established photographers.">
+    <meta property="og:description" content="Discover contemporary photography at elsewhere, an independent gallery in Amsterdam. Explore and collect limited-edition photographic prints by emerging and established artists.">
     <meta property="og:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Twitter -->
@@ -34,7 +34,7 @@
         })();
     </script>
     <meta property="twitter:title" content="elsewhere | Contemporary Photography Gallery, Amsterdam">
-    <meta property="twitter:description" content="elsewhere collective is a contemporary photography gallery in Amsterdam, offering limited-edition prints by emerging and established photographers.">
+    <meta property="twitter:description" content="Discover contemporary photography at elsewhere, an independent gallery in Amsterdam. Explore and collect limited-edition photographic prints by emerging and established artists.">
     <meta property="twitter:image" content="https://elsewherecollective.nl/og-image.png">
 
     <!-- Pinterest Verification -->
@@ -707,6 +707,18 @@
             font-weight: 400;
             color: var(--deep-charcoal);
             margin: 0;
+        }
+
+        /* A title that links to the work's own page looks like plain text until hovered */
+        .home-work-title a {
+            color: inherit;
+            text-decoration: none;
+            text-underline-offset: 0.2em;
+            text-decoration-thickness: 1px;
+        }
+
+        .home-work-title a:hover {
+            text-decoration-line: underline;
         }
 
         .home-work-artist {
@@ -1650,7 +1662,7 @@
             </div>
             <div class="hero-text hero-body">
                 <p class="hero-tagline">
-                    A curated gallery for contemporary photography.
+                    A curated gallery for contemporary photography and limited-edition photographic prints, based in Amsterdam.
                 </p>
             </div>
             <div class="hero-text hero-cta">
@@ -1994,11 +2006,11 @@
             </div>
             <div class="home-works-grid">
                 <article class="home-work">
-                    <a href="/mitsutaka" class="home-work-image" tabindex="-1" aria-hidden="true">
+                    <a href="/works/mitsutaka-tsuryu-unoccupied" class="home-work-image" tabindex="-1" aria-hidden="true">
                         <picture><source type="image/webp" srcset="images/responsive/mitsutaka-tsuryu-unoccupied-480.webp 480w, images/responsive/mitsutaka-tsuryu-unoccupied-800.webp 800w, images/responsive/mitsutaka-tsuryu-unoccupied-1200.webp 1200w, images/responsive/mitsutaka-tsuryu-unoccupied-1600.webp 1600w, images/responsive/mitsutaka-tsuryu-unoccupied-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 35vw, 555px"><img src="images/mitsutaka-tsuryu/Mitsutaka Unoccupied Card.jpg" alt="Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light" width="1800" height="1021" loading="lazy" decoding="async"></picture>
                     </a>
                     <div class="home-work-caption">
-                        <h3 class="home-work-title">Unoccupied (2025)</h3>
+                        <h3 class="home-work-title"><a href="/works/mitsutaka-tsuryu-unoccupied">Unoccupied</a> (2025)</h3>
                         <p class="home-work-artist">Mitsutaka Tsuryu</p>
                         <p class="home-work-edition">Edition of 10</p>
                         <p class="home-work-price">&euro;700</p>
@@ -2006,11 +2018,11 @@
                     </div>
                 </article>
                 <article class="home-work">
-                    <a href="/andrea" class="home-work-image" tabindex="-1" aria-hidden="true">
+                    <a href="/works/andrea-rosselli-matera" class="home-work-image" tabindex="-1" aria-hidden="true">
                         <picture><source type="image/webp" srcset="images/responsive/andrea-rosselli-matera-480.webp 480w, images/responsive/andrea-rosselli-matera-800.webp 800w, images/responsive/andrea-rosselli-matera-1200.webp 1200w, images/responsive/andrea-rosselli-matera-1600.webp 1600w, images/responsive/andrea-rosselli-matera-1800.webp 1800w" sizes="(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 35vw, 555px"><img src="images/andrea rosselli/Andrea_Rosselli_Matera_12630_web.jpg" alt="Matera, by Andrea Rosselli: the stone houses of Matera in a dense, layered black and white view" width="1800" height="1200" loading="lazy" decoding="async"></picture>
                     </a>
                     <div class="home-work-caption">
-                        <h3 class="home-work-title">Matera (2022)</h3>
+                        <h3 class="home-work-title"><a href="/works/andrea-rosselli-matera">Matera</a> (2022)</h3>
                         <p class="home-work-artist">Andrea Rosselli</p>
                         <p class="home-work-edition">Edition of 10</p>
                         <p class="home-work-price">&euro;550</p>
@@ -2031,6 +2043,7 @@
         "page": "/andrea",
         "short": "Andrea",
         "slug": "matera",
+        "work_page": "/works/andrea-rosselli-matera",
         "title": "Matera (2022)",
         "edition": "Edition of 10",
         "price": "€550",
@@ -2045,6 +2058,7 @@
         "page": "/andrea",
         "short": "Andrea",
         "slug": "di-passaggio",
+        "work_page": "/works/andrea-rosselli-di-passaggio",
         "title": "Di passaggio (2021)",
         "edition": "Edition of 15",
         "price": "€450",
@@ -2059,6 +2073,7 @@
         "page": "/andrea",
         "short": "Andrea",
         "slug": "basilica-di-galliano",
+        "work_page": "/works/andrea-rosselli-basilica-di-galliano",
         "title": "Basilica di Galliano, Cantù (2021)",
         "edition": "Edition of 25",
         "price": "€550",
@@ -2073,6 +2088,7 @@
         "page": "/andrea",
         "short": "Andrea",
         "slug": "ballerina",
+        "work_page": "/works/andrea-rosselli-ballerina",
         "title": "Ballerina (2019)",
         "edition": "Edition of 10",
         "price": "€475",
@@ -2087,6 +2103,7 @@
         "page": "/mitsutaka",
         "short": "Mitsutaka",
         "slug": "unoccupied",
+        "work_page": "/works/mitsutaka-tsuryu-unoccupied",
         "title": "Unoccupied (2025)",
         "edition": "Edition of 10",
         "price": "€700",
@@ -2101,6 +2118,7 @@
         "page": "/mitsutaka",
         "short": "Mitsutaka",
         "slug": "behind-the-veil",
+        "work_page": "/works/mitsutaka-tsuryu-behind-the-veil",
         "title": "Behind the Veil (2025)",
         "edition": "Edition of 10",
         "price": "€700",
@@ -2115,6 +2133,7 @@
         "page": "/mitsutaka",
         "short": "Mitsutaka",
         "slug": "in-transit",
+        "work_page": "/works/mitsutaka-tsuryu-in-transit",
         "title": "In Transit (2021)",
         "edition": "Edition of 10",
         "price": "€700",
@@ -2129,6 +2148,7 @@
         "page": "/nad",
         "short": "Nad E Ali",
         "slug": "the-unveiling-of-sardar-badshah",
+        "work_page": "/works/nad-e-ali-the-unveiling-of-sardar-badshah",
         "title": "The Unveiling of Sardar Badshah",
         "edition": "Editions of 5 to 15",
         "price": "From €500",
@@ -2143,6 +2163,7 @@
         "page": "/nad",
         "short": "Nad E Ali",
         "slug": "moving-through-remembrance",
+        "work_page": "/works/nad-e-ali-moving-through-remembrance",
         "title": "Moving through Remembrance",
         "edition": "Editions of 5 to 15",
         "price": "From €500",
@@ -2157,6 +2178,7 @@
         "page": "/nad",
         "short": "Nad E Ali",
         "slug": "apples-of-hope",
+        "work_page": "/works/nad-e-ali-apples-of-hope",
         "title": "Apples of Hope: Mannat for Ali Asghar (AS)",
         "edition": "Editions of 5 to 15",
         "price": "From €500",
@@ -2171,6 +2193,7 @@
         "page": "/aleksey",
         "short": "Aleksey",
         "slug": "untitled-04",
+        "work_page": "/works/aleksey-kondratyev-untitled-04",
         "title": "Untitled 04 (2014)",
         "edition": "Edition of 5",
         "price": "From €1,100",
@@ -2185,6 +2208,7 @@
         "page": "/aleksey",
         "short": "Aleksey",
         "slug": "untitled-15",
+        "work_page": "/works/aleksey-kondratyev-untitled-15",
         "title": "Untitled 15 (2016)",
         "edition": "Edition of 5",
         "price": "From €1,100",
@@ -2199,6 +2223,7 @@
         "page": "/aleksey",
         "short": "Aleksey",
         "slug": "untitled-20",
+        "work_page": "/works/aleksey-kondratyev-untitled-20",
         "title": "Untitled 20 (2016)",
         "edition": "Edition of 5",
         "price": "From €1,300",
@@ -2213,6 +2238,7 @@
         "page": "/jesula",
         "short": "Jésula",
         "slug": "imperceptible",
+        "work_page": "/works/jesula-toussaint-visser-imperceptible",
         "title": "Imperceptible",
         "edition": "Editions of 5 to 8",
         "price": "From €1,850",
@@ -2227,6 +2253,7 @@
         "page": "/jesula",
         "short": "Jésula",
         "slug": "triggers",
+        "work_page": "/works/jesula-toussaint-visser-triggers",
         "title": "Triggers",
         "edition": "Editions of 5 to 8",
         "price": "From €1,850",
@@ -2241,6 +2268,7 @@
         "page": "/jesula",
         "short": "Jésula",
         "slug": "lucent-shadows",
+        "work_page": "/works/jesula-toussaint-visser-lucent-shadows",
         "title": "Lucent Shadows",
         "edition": "Editions of 10 to 15",
         "price": "From €850",
@@ -2255,6 +2283,7 @@
         "page": "/jesula",
         "short": "Jésula",
         "slug": "thought-bubble",
+        "work_page": "/works/jesula-toussaint-visser-thought-bubble",
         "title": "Thought Bubble",
         "edition": "Editions of 10 to 15",
         "price": "From €850",
@@ -2269,6 +2298,7 @@
         "page": "/jesula",
         "short": "Jésula",
         "slug": "doll",
+        "work_page": "/works/jesula-toussaint-visser-doll",
         "title": "Doll",
         "edition": "Edition of 10",
         "price": "From €1,400",
@@ -2307,15 +2337,22 @@
         });
 
         var sizes = '(max-width: 768px) calc(100vw - 48px), (max-width: 1640px) 35vw, 555px';
+        // Works with their own page (work_page, from works.json): the title links
+        // there, the year stays plain text
+        function titleHtml(w) {
+            if (!w.work_page) return esc(w.title);
+            var m = w.title.match(/^(.*?)(\s*\(\d{4}\))?$/);
+            return '<a href="' + esc(w.work_page) + '">' + esc(m[1]) + '</a>' + esc(m[2] || '');
+        }
         grid.innerHTML = chosen.map(function (w) {
             var img = '<img src="' + esc(w.src) + '" alt="' + esc(w.alt) + '" width="' + w.width + '" height="' + w.height + '" loading="lazy" decoding="async">';
             var media = w.srcset
                 ? '<picture><source type="image/webp" srcset="' + esc(w.srcset) + '" sizes="' + sizes + '">' + img + '</picture>'
                 : img;
             return '<article class="home-work">' +
-                '<a href="' + esc(w.page + '#' + w.slug) + '" class="home-work-image" tabindex="-1" aria-hidden="true">' + media + '</a>' +
+                '<a href="' + esc(w.work_page || (w.page + '#' + w.slug)) + '" class="home-work-image" tabindex="-1" aria-hidden="true">' + media + '</a>' +
                 '<div class="home-work-caption">' +
-                    '<h3 class="home-work-title">' + esc(w.title) + '</h3>' +
+                    '<h3 class="home-work-title">' + titleHtml(w) + '</h3>' +
                     '<p class="home-work-artist">' + esc(w.artist) + '</p>' +
                     '<p class="home-work-edition">' + esc(w.edition) + '</p>' +
                     '<p class="home-work-price">' + esc(w.price) + '</p>' +

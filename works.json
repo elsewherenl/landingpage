@@ -1,0 +1,891 @@
+{
+    "_about": "Single source of truth for works on sale (not Spotlights, which is instagram-feed.json). generate.js writes one page per work to works/<slug>.html and adds it to sitemap.xml. A slug is permanent once published: never rename it; mark a sold work SoldOut instead of removing it. Keep in step with the artist page cards until those are generated too.",
+    "artists": {
+        "andrea": {
+            "name": "Andrea Rosselli",
+            "page": "/andrea",
+            "collecting_note": "Andrea’s photographs are hand-printed, offered in limited editions and accompanied by a certificate of authenticity. Professional framing is available on request."
+        },
+        "mitsutaka": {
+            "name": "Mitsutaka Tsuryu",
+            "page": "/mitsutaka"
+        },
+        "nad": {
+            "name": "Nad E Ali",
+            "page": "/nad"
+        },
+        "aleksey": {
+            "name": "Aleksey Kondratyev",
+            "page": "/aleksey"
+        },
+        "jesula": {
+            "name": "Jésula Toussaint Visser",
+            "page": "/jesula"
+        }
+    },
+    "works": [
+        {
+            "slug": "andrea-rosselli-matera",
+            "artist": "andrea",
+            "card_id": "matera",
+            "title": "Matera",
+            "year": "2022",
+            "medium": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.",
+            "art_medium": "Silver gelatin print on fibre-based paper",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "20 × 30 cm",
+                    "height_cm": 20,
+                    "width_cm": 30,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 550
+                }
+            ],
+            "image": {
+                "src": "/images/works/andrea-rosselli-matera.jpg",
+                "width": 1800,
+                "height": 1200,
+                "webp": "/images/responsive/andrea-rosselli-matera",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    1800
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/andrea-rosselli-matera.webp",
+                "width": 768,
+                "height": 1024
+            },
+            "alt": "Matera, by Andrea Rosselli: the stone houses of Matera in a dense, layered black and white view",
+            "description": null
+        },
+        {
+            "slug": "andrea-rosselli-di-passaggio",
+            "artist": "andrea",
+            "card_id": "di-passaggio",
+            "title": "Di passaggio",
+            "year": "2021",
+            "medium": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.",
+            "art_medium": "Silver gelatin print on fibre-based paper",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "12 × 12 cm",
+                    "height_cm": 12,
+                    "width_cm": 12,
+                    "edition": "Edition of 15",
+                    "edition_size": 15,
+                    "price": 450
+                }
+            ],
+            "image": {
+                "src": "/images/works/andrea-rosselli-di-passaggio.jpg",
+                "width": 1800,
+                "height": 1800,
+                "webp": "/images/responsive/andrea-rosselli-di-passaggio",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    1800
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/andrea-rosselli-di-passaggio.webp",
+                "width": 1500,
+                "height": 2000
+            },
+            "alt": "Di passaggio, by Andrea Rosselli: blurred figures walking a small dog in soft, pale light",
+            "description": null
+        },
+        {
+            "slug": "andrea-rosselli-basilica-di-galliano",
+            "artist": "andrea",
+            "card_id": "basilica-di-galliano",
+            "title": "Basilica di Galliano, Cantù",
+            "year": "2021",
+            "medium": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.",
+            "art_medium": "Silver gelatin print on fibre-based paper",
+            "printed": "2025",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "12 × 18 cm",
+                    "height_cm": 12,
+                    "width_cm": 18,
+                    "edition": "Edition of 25",
+                    "edition_size": 25,
+                    "price": 550
+                }
+            ],
+            "image": {
+                "src": "/images/works/andrea-rosselli-basilica-di-galliano.jpg",
+                "width": 1800,
+                "height": 1200,
+                "webp": "/images/responsive/andrea-rosselli-basilica-di-galliano",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    1800
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/andrea-rosselli-basilica-di-galliano.webp",
+                "width": 1500,
+                "height": 2000
+            },
+            "alt": "Basilica di Galliano, Cantù, by Andrea Rosselli: figures crossing a snow-covered slope below cypress trees and the basilica",
+            "description": null
+        },
+        {
+            "slug": "andrea-rosselli-ballerina",
+            "artist": "andrea",
+            "card_id": "ballerina",
+            "title": "Ballerina",
+            "year": "2019",
+            "medium": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.",
+            "art_medium": "Silver gelatin print on fibre-based paper",
+            "printed": "2025",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "12 × 12 cm",
+                    "height_cm": 12,
+                    "width_cm": 12,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 475
+                }
+            ],
+            "image": {
+                "src": "/images/works/andrea-rosselli-ballerina.jpg",
+                "width": 1799,
+                "height": 1800,
+                "webp": "/images/responsive/andrea-rosselli-ballerina",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    1799
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/andrea-rosselli-ballerina.webp",
+                "width": 1500,
+                "height": 2000
+            },
+            "alt": "Ballerina, by Andrea Rosselli: a dancer in a white dress, blurred in motion against black",
+            "description": null
+        },
+        {
+            "slug": "mitsutaka-tsuryu-unoccupied",
+            "artist": "mitsutaka",
+            "card_id": "unoccupied",
+            "title": "Unoccupied",
+            "year": "2025",
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "31 × 55 cm",
+                    "height_cm": 31,
+                    "width_cm": 55,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 700
+                }
+            ],
+            "image": {
+                "src": "/images/works/mitsutaka-tsuryu-unoccupied.jpg",
+                "width": 1800,
+                "height": 1021,
+                "webp": "/images/responsive/mitsutaka-tsuryu-unoccupied",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    1800
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/mitsutaka-tsuryu-unoccupied.webp",
+                "width": 1600,
+                "height": 2000
+            },
+            "alt": "Unoccupied, by Mitsutaka Tsuryu: an empty car park at night, lit in pools of light",
+            "description": null
+        },
+        {
+            "slug": "mitsutaka-tsuryu-behind-the-veil",
+            "artist": "mitsutaka",
+            "card_id": "behind-the-veil",
+            "title": "Behind the Veil",
+            "year": "2025",
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "54 × 55 cm",
+                    "height_cm": 54,
+                    "width_cm": 55,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 700
+                }
+            ],
+            "image": {
+                "src": "/images/works/mitsutaka-tsuryu-behind-the-veil.jpg",
+                "width": 1400,
+                "height": 1376,
+                "webp": "/images/responsive/mitsutaka-tsuryu-behind-the-veil",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1400
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/mitsutaka-tsuryu-behind-the-veil.webp",
+                "width": 1600,
+                "height": 2000
+            },
+            "alt": "Behind the Veil, by Mitsutaka Tsuryu: daylight through sheer curtains drawn across a window",
+            "description": null
+        },
+        {
+            "slug": "mitsutaka-tsuryu-in-transit",
+            "artist": "mitsutaka",
+            "card_id": "in-transit",
+            "title": "In Transit",
+            "year": "2021",
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "28 × 50 cm",
+                    "height_cm": 28,
+                    "width_cm": 50,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 700
+                }
+            ],
+            "image": {
+                "src": "/images/works/mitsutaka-tsuryu-in-transit.jpg",
+                "width": 2400,
+                "height": 1351,
+                "webp": "/images/responsive/mitsutaka-tsuryu-in-transit",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    2000
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/mitsutaka-tsuryu-in-transit.webp",
+                "width": 1600,
+                "height": 2000
+            },
+            "alt": "In Transit, by Mitsutaka Tsuryu: commuters blurred in motion on a train platform",
+            "description": null
+        },
+        {
+            "slug": "nad-e-ali-the-unveiling-of-sardar-badshah",
+            "artist": "nad",
+            "card_id": "the-unveiling-of-sardar-badshah",
+            "title": "The Unveiling of Sardar Badshah",
+            "year": null,
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "30 × 40 cm",
+                    "height_cm": 30,
+                    "width_cm": 40,
+                    "edition": "Edition of 15 (+2 Artist Proofs)",
+                    "edition_size": 15,
+                    "price": 500
+                },
+                {
+                    "dimensions": "50 × 70 cm",
+                    "height_cm": 50,
+                    "width_cm": 70,
+                    "edition": "Edition of 10 (+2 Artist Proofs)",
+                    "edition_size": 10,
+                    "price": 700
+                },
+                {
+                    "dimensions": "70 × 100 cm",
+                    "height_cm": 70,
+                    "width_cm": 100,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 1000
+                }
+            ],
+            "image": {
+                "src": "/images/works/nad-e-ali-the-unveiling-of-sardar-badshah.jpg",
+                "width": 2000,
+                "height": 1333,
+                "webp": null,
+                "webp_widths": []
+            },
+            "wall": {
+                "src": "/images/wall/nad-e-ali-the-unveiling-of-sardar-badshah.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "The Unveiling of Sardar Badshah, by Nad E Ali: a crowd of mourners blurred in motion beneath strung lights, from Horse / Men",
+            "description": "Sardar Badshah, a revered Zuljanah of Lahore, is ceremonially unveiled following preparations for Muharram. The moment brings the community together in an expression of devotion and collective remembrance."
+        },
+        {
+            "slug": "nad-e-ali-moving-through-remembrance",
+            "artist": "nad",
+            "card_id": "moving-through-remembrance",
+            "title": "Moving through Remembrance",
+            "year": null,
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "30 × 40 cm",
+                    "height_cm": 30,
+                    "width_cm": 40,
+                    "edition": "Edition of 15 (+2 Artist Proofs)",
+                    "edition_size": 15,
+                    "price": 500
+                },
+                {
+                    "dimensions": "50 × 70 cm",
+                    "height_cm": 50,
+                    "width_cm": 70,
+                    "edition": "Edition of 10 (+2 Artist Proofs)",
+                    "edition_size": 10,
+                    "price": 700
+                },
+                {
+                    "dimensions": "70 × 100 cm",
+                    "height_cm": 70,
+                    "width_cm": 100,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 1000
+                }
+            ],
+            "image": {
+                "src": "/images/works/nad-e-ali-moving-through-remembrance.jpg",
+                "width": 2000,
+                "height": 1333,
+                "webp": null,
+                "webp_widths": []
+            },
+            "wall": {
+                "src": "/images/wall/nad-e-ali-moving-through-remembrance.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Moving through Remembrance, by Nad E Ali: overlapping exposures of a crowd seen from above, from Horse / Men",
+            "description": "A vivid, close-up perspective from within the procession, capturing the intimacy and immersive atmosphere of collective remembrance as it unfolds."
+        },
+        {
+            "slug": "nad-e-ali-apples-of-hope",
+            "artist": "nad",
+            "card_id": "apples-of-hope",
+            "title": "Apples of Hope: Mannat for Ali Asghar (AS)",
+            "year": null,
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "40 × 30 cm",
+                    "height_cm": 40,
+                    "width_cm": 30,
+                    "edition": "Edition of 15 (+2 Artist Proofs)",
+                    "edition_size": 15,
+                    "price": 500
+                },
+                {
+                    "dimensions": "70 × 50 cm",
+                    "height_cm": 70,
+                    "width_cm": 50,
+                    "edition": "Edition of 10 (+2 Artist Proofs)",
+                    "edition_size": 10,
+                    "price": 700
+                },
+                {
+                    "dimensions": "100 × 70 cm",
+                    "height_cm": 100,
+                    "width_cm": 70,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 1000
+                }
+            ],
+            "image": {
+                "src": "/images/works/nad-e-ali-apples-of-hope.jpg",
+                "width": 1334,
+                "height": 2000,
+                "webp": null,
+                "webp_widths": []
+            },
+            "wall": {
+                "src": "/images/wall/nad-e-ali-apples-of-hope.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Apples of Hope: Mannat for Ali Asghar (AS), by Nad E Ali: cupped hands holding three red apples against a dark background",
+            "description": "During Muharram, women take apples from the symbolic cradle of Ali Asghar (AS), the infant son of Imam Husayn (AS), offering prayers for fertility and the well-being of their children. An intimate ritual bringing together faith, motherhood, and hope."
+        },
+        {
+            "slug": "aleksey-kondratyev-untitled-04",
+            "artist": "aleksey",
+            "card_id": "untitled-04",
+            "title": "Untitled 04",
+            "year": "2014",
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "40 × 50 cm",
+                    "height_cm": 40,
+                    "width_cm": 50,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 1100
+                },
+                {
+                    "dimensions": "60 × 75 cm",
+                    "height_cm": 60,
+                    "width_cm": 75,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 2200
+                },
+                {
+                    "dimensions": "100 × 125 cm",
+                    "height_cm": 100,
+                    "width_cm": 125,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 3650
+                }
+            ],
+            "image": {
+                "src": "/images/works/aleksey-kondratyev-untitled-04.jpg",
+                "width": 2000,
+                "height": 1600,
+                "webp": "/images/responsive/aleksey-kondratyev-untitled-04",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    2000
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/aleksey-kondratyev-untitled-04.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Untitled 04, by Aleksey Kondratyev: three ice fishers sheltering under plastic sheeting, small on a white frozen river in fog, from Ice Fishers",
+            "description": null
+        },
+        {
+            "slug": "aleksey-kondratyev-untitled-15",
+            "artist": "aleksey",
+            "card_id": "untitled-15",
+            "title": "Untitled 15",
+            "year": "2016",
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "40 × 50 cm",
+                    "height_cm": 40,
+                    "width_cm": 50,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 1100
+                },
+                {
+                    "dimensions": "60 × 75 cm",
+                    "height_cm": 60,
+                    "width_cm": 75,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 2200
+                },
+                {
+                    "dimensions": "100 × 125 cm",
+                    "height_cm": 100,
+                    "width_cm": 125,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 3650
+                }
+            ],
+            "image": {
+                "src": "/images/works/aleksey-kondratyev-untitled-15.jpg",
+                "width": 2000,
+                "height": 1599,
+                "webp": "/images/responsive/aleksey-kondratyev-ice-fishers-2",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    2000
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/aleksey-kondratyev-ice-fishers-2.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Untitled 15, by Aleksey Kondratyev: two ice fishers sheltering under clear plastic sheeting on a snow-covered river, a wooden stick upright beside them, from Ice Fishers",
+            "description": null
+        },
+        {
+            "slug": "aleksey-kondratyev-untitled-20",
+            "artist": "aleksey",
+            "card_id": "untitled-20",
+            "title": "Untitled 20",
+            "year": "2016",
+            "medium": "Hahnemühle FineArt Baryta",
+            "art_medium": "Hahnemühle FineArt Baryta",
+            "printed": "2026",
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "40 × 50 cm",
+                    "height_cm": 40,
+                    "width_cm": 50,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 1300
+                },
+                {
+                    "dimensions": "60 × 75 cm",
+                    "height_cm": 60,
+                    "width_cm": 75,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 2550
+                },
+                {
+                    "dimensions": "100 × 125 cm",
+                    "height_cm": 100,
+                    "width_cm": 125,
+                    "edition": "Edition of 5 (+2 Artist Proofs)",
+                    "edition_size": 5,
+                    "price": 4100
+                }
+            ],
+            "image": {
+                "src": "/images/works/aleksey-kondratyev-untitled-20.jpg",
+                "width": 2000,
+                "height": 1600,
+                "webp": "/images/responsive/aleksey-kondratyev-ice-fishers-1",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1600,
+                    2000
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/aleksey-kondratyev-ice-fishers-1.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Untitled 20, by Aleksey Kondratyev: an ice fisher sheltering under clear plastic sheeting on a snow-covered river, from Ice Fishers",
+            "description": null
+        },
+        {
+            "slug": "jesula-toussaint-visser-imperceptible",
+            "artist": "jesula",
+            "card_id": "imperceptible",
+            "title": "Imperceptible",
+            "year": "2026",
+            "medium": "Fabriano Artistico Watercolour 310 gsm",
+            "art_medium": "Fabriano Artistico Watercolour 310 gsm",
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "45 × 30 cm",
+                    "height_cm": 45,
+                    "width_cm": 30,
+                    "edition": "Edition of 8",
+                    "edition_size": 8,
+                    "price": 1850
+                },
+                {
+                    "dimensions": "110 × 73 cm",
+                    "height_cm": 110,
+                    "width_cm": 73,
+                    "edition": "Edition of 5",
+                    "edition_size": 5,
+                    "price": 4495
+                }
+            ],
+            "image": {
+                "src": "/images/works/jesula-toussaint-visser-imperceptible.jpg",
+                "width": 1000,
+                "height": 1500,
+                "webp": "/images/responsive/jesula-toussaint-visser-imperceptible",
+                "webp_widths": [
+                    480,
+                    800,
+                    1000
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/jesula-toussaint-visser-imperceptible.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Imperceptible, by Jésula Toussaint Visser: a face veiled behind a curved, finely ribbed translucent sheet, in blue-violet",
+            "description": null
+        },
+        {
+            "slug": "jesula-toussaint-visser-triggers",
+            "artist": "jesula",
+            "card_id": "triggers",
+            "title": "Triggers",
+            "year": "2026",
+            "medium": "Fabriano Artistico Watercolour 310 gsm",
+            "art_medium": "Fabriano Artistico Watercolour 310 gsm",
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "45 × 30 cm",
+                    "height_cm": 45,
+                    "width_cm": 30,
+                    "edition": "Edition of 8",
+                    "edition_size": 8,
+                    "price": 1850
+                },
+                {
+                    "dimensions": "110 × 73 cm",
+                    "height_cm": 110,
+                    "width_cm": 73,
+                    "edition": "Edition of 5",
+                    "edition_size": 5,
+                    "price": 4495
+                }
+            ],
+            "image": {
+                "src": "/images/works/jesula-toussaint-visser-triggers.jpg",
+                "width": 1000,
+                "height": 1500,
+                "webp": "/images/responsive/jesula-toussaint-visser-triggers",
+                "webp_widths": [
+                    480,
+                    800,
+                    1000
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/jesula-toussaint-visser-triggers.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Triggers, by Jésula Toussaint Visser: a figure under bubbled plastic, one hand over the face",
+            "description": null
+        },
+        {
+            "slug": "jesula-toussaint-visser-lucent-shadows",
+            "artist": "jesula",
+            "card_id": "lucent-shadows",
+            "title": "Lucent Shadows",
+            "year": "2023",
+            "medium": null,
+            "art_medium": null,
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "30 × 20 cm",
+                    "height_cm": 30,
+                    "width_cm": 20,
+                    "edition": "Edition of 15",
+                    "edition_size": 15,
+                    "price": 850
+                },
+                {
+                    "dimensions": "60 × 40 cm",
+                    "height_cm": 60,
+                    "width_cm": 40,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 1700
+                },
+                {
+                    "dimensions": "90 × 60 cm",
+                    "height_cm": 90,
+                    "width_cm": 60,
+                    "edition": "Edition of 13",
+                    "edition_size": 13,
+                    "price": 2595
+                }
+            ],
+            "image": {
+                "src": "/images/works/jesula-toussaint-visser-lucent-shadows.jpg",
+                "width": 1000,
+                "height": 1500,
+                "webp": "/images/responsive/jesula-toussaint-visser-lucent-shadows",
+                "webp_widths": [
+                    480,
+                    800,
+                    1000
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/jesula-toussaint-visser-lucent-shadows.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Lucent Shadows, by Jésula Toussaint Visser: a figure in profile, hair blurred with movement, against deep orange",
+            "description": null
+        },
+        {
+            "slug": "jesula-toussaint-visser-thought-bubble",
+            "artist": "jesula",
+            "card_id": "thought-bubble",
+            "title": "Thought Bubble",
+            "year": "2025",
+            "medium": null,
+            "art_medium": null,
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "30 × 20 cm",
+                    "height_cm": 30,
+                    "width_cm": 20,
+                    "edition": "Edition of 15",
+                    "edition_size": 15,
+                    "price": 850
+                },
+                {
+                    "dimensions": "60 × 40 cm",
+                    "height_cm": 60,
+                    "width_cm": 40,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 1700
+                },
+                {
+                    "dimensions": "90 × 60 cm",
+                    "height_cm": 90,
+                    "width_cm": 60,
+                    "edition": "Edition of 13",
+                    "edition_size": 13,
+                    "price": 2595
+                }
+            ],
+            "image": {
+                "src": "/images/works/jesula-toussaint-visser-thought-bubble.jpg",
+                "width": 1429,
+                "height": 2000,
+                "webp": "/images/responsive/jesula-toussaint-visser-thought-bubble-full",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1429
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/jesula-toussaint-visser-thought-bubble.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Thought Bubble, by Jésula Toussaint Visser: a blurred figure in a dark polo neck, the face hidden behind a pale glowing shape",
+            "description": null
+        },
+        {
+            "slug": "jesula-toussaint-visser-doll",
+            "artist": "jesula",
+            "card_id": "doll",
+            "title": "Doll",
+            "year": "2022",
+            "medium": "Epson Cold Press Natural",
+            "art_medium": "Epson Cold Press Natural",
+            "printed": null,
+            "availability": "InStock",
+            "sizes": [
+                {
+                    "dimensions": "45 × 30 cm",
+                    "height_cm": 45,
+                    "width_cm": 30,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 1400
+                },
+                {
+                    "dimensions": "90 × 60 cm",
+                    "height_cm": 90,
+                    "width_cm": 60,
+                    "edition": "Edition of 10",
+                    "edition_size": 10,
+                    "price": 2595
+                }
+            ],
+            "image": {
+                "src": "/images/works/jesula-toussaint-visser-doll.jpg",
+                "width": 1333,
+                "height": 2000,
+                "webp": "/images/responsive/jesula-toussaint-visser-doll",
+                "webp_widths": [
+                    480,
+                    800,
+                    1200,
+                    1333
+                ]
+            },
+            "wall": {
+                "src": "/images/wall/jesula-toussaint-visser-doll.webp",
+                "width": 1657,
+                "height": 2000
+            },
+            "alt": "Doll, by Jésula Toussaint Visser: a face lit softly against black, framed by braids",
+            "description": null
+        }
+    ]
+}

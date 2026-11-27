@@ -137,24 +137,24 @@
     // One work, picked at random each time, from the public artists' available
     // works. Keep in step with the "Available works" cards on each artist page.
     var WORKS = [
-        { title: 'Matera', artist: 'Andrea Rosselli', page: '/andrea', src: '/images/responsive/andrea-rosselli-matera-800.webp' },
-        { title: 'Di passaggio', artist: 'Andrea Rosselli', page: '/andrea', src: '/images/responsive/andrea-rosselli-di-passaggio-800.webp' },
-        { title: 'Basilica di Galliano, Cant\u00f9', artist: 'Andrea Rosselli', page: '/andrea', src: '/images/responsive/andrea-rosselli-basilica-di-galliano-800.webp' },
-        { title: 'Ballerina', artist: 'Andrea Rosselli', page: '/andrea', src: '/images/responsive/andrea-rosselli-ballerina-800.webp' },
-        { title: 'Unoccupied', artist: 'Mitsutaka Tsuryu', page: '/mitsutaka', src: '/images/responsive/mitsutaka-tsuryu-unoccupied-800.webp' },
-        { title: 'Behind the Veil', artist: 'Mitsutaka Tsuryu', page: '/mitsutaka', src: '/images/responsive/mitsutaka-tsuryu-behind-the-veil-800.webp' },
-        { title: 'In Transit', artist: 'Mitsutaka Tsuryu', page: '/mitsutaka', src: '/images/responsive/mitsutaka-tsuryu-in-transit-800.webp' },
-        { title: 'The Unveiling of Sardar Badshah', artist: 'Nad E Ali', page: '/nad', src: '/images/nad-e-ali/NadEAli_HorseMen_21.jpg' },
-        { title: 'Moving through Remembrance', artist: 'Nad E Ali', page: '/nad', src: '/images/nad-e-ali/NadEAli_HorseMen_30.jpg' },
-        { title: 'Apples of Hope: Mannat for Ali Asghar (AS)', artist: 'Nad E Ali', page: '/nad', src: '/images/responsive/nad-e-ali-apples-800.webp' },
-        { title: 'Untitled 04', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-untitled-04-800.webp' },
-        { title: 'Untitled 15', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-ice-fishers-2-800.webp' },
-        { title: 'Untitled 20', artist: 'Aleksey Kondratyev', page: '/aleksey', src: '/images/responsive/aleksey-kondratyev-ice-fishers-1-800.webp' },
-        { title: 'Imperceptible', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-imperceptible-800.webp' },
-        { title: 'Triggers', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-triggers-800.webp' },
-        { title: 'Lucent Shadows', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-lucent-shadows-800.webp' },
-        { title: 'Thought Bubble', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-thought-bubble-full-800.webp' },
-        { title: 'Doll', artist: 'Jésula Toussaint Visser', page: '/jesula', src: '/images/responsive/jesula-toussaint-visser-doll-800.webp' }
+        { title: 'Matera', artist: 'Andrea Rosselli', page: '/andrea', work_page: '/works/andrea-rosselli-matera', src: '/images/responsive/andrea-rosselli-matera-800.webp' },
+        { title: 'Di passaggio', artist: 'Andrea Rosselli', page: '/andrea', work_page: '/works/andrea-rosselli-di-passaggio', src: '/images/responsive/andrea-rosselli-di-passaggio-800.webp' },
+        { title: 'Basilica di Galliano, Cant\u00f9', artist: 'Andrea Rosselli', page: '/andrea', work_page: '/works/andrea-rosselli-basilica-di-galliano', src: '/images/responsive/andrea-rosselli-basilica-di-galliano-800.webp' },
+        { title: 'Ballerina', artist: 'Andrea Rosselli', page: '/andrea', work_page: '/works/andrea-rosselli-ballerina', src: '/images/responsive/andrea-rosselli-ballerina-800.webp' },
+        { title: 'Unoccupied', artist: 'Mitsutaka Tsuryu', page: '/mitsutaka', work_page: '/works/mitsutaka-tsuryu-unoccupied', src: '/images/responsive/mitsutaka-tsuryu-unoccupied-800.webp' },
+        { title: 'Behind the Veil', artist: 'Mitsutaka Tsuryu', page: '/mitsutaka', work_page: '/works/mitsutaka-tsuryu-behind-the-veil', src: '/images/responsive/mitsutaka-tsuryu-behind-the-veil-800.webp' },
+        { title: 'In Transit', artist: 'Mitsutaka Tsuryu', page: '/mitsutaka', work_page: '/works/mitsutaka-tsuryu-in-transit', src: '/images/responsive/mitsutaka-tsuryu-in-transit-800.webp' },
+        { title: 'The Unveiling of Sardar Badshah', artist: 'Nad E Ali', page: '/nad', work_page: '/works/nad-e-ali-the-unveiling-of-sardar-badshah', src: '/images/nad-e-ali/NadEAli_HorseMen_21.jpg' },
+        { title: 'Moving through Remembrance', artist: 'Nad E Ali', page: '/nad', work_page: '/works/nad-e-ali-moving-through-remembrance', src: '/images/nad-e-ali/NadEAli_HorseMen_30.jpg' },
+        { title: 'Apples of Hope: Mannat for Ali Asghar (AS)', artist: 'Nad E Ali', page: '/nad', work_page: '/works/nad-e-ali-apples-of-hope', src: '/images/responsive/nad-e-ali-apples-800.webp' },
+        { title: 'Untitled 04', artist: 'Aleksey Kondratyev', page: '/aleksey', work_page: '/works/aleksey-kondratyev-untitled-04', src: '/images/responsive/aleksey-kondratyev-untitled-04-800.webp' },
+        { title: 'Untitled 15', artist: 'Aleksey Kondratyev', page: '/aleksey', work_page: '/works/aleksey-kondratyev-untitled-15', src: '/images/responsive/aleksey-kondratyev-ice-fishers-2-800.webp' },
+        { title: 'Untitled 20', artist: 'Aleksey Kondratyev', page: '/aleksey', work_page: '/works/aleksey-kondratyev-untitled-20', src: '/images/responsive/aleksey-kondratyev-ice-fishers-1-800.webp' },
+        { title: 'Imperceptible', artist: 'Jésula Toussaint Visser', page: '/jesula', work_page: '/works/jesula-toussaint-visser-imperceptible', src: '/images/responsive/jesula-toussaint-visser-imperceptible-800.webp' },
+        { title: 'Triggers', artist: 'Jésula Toussaint Visser', page: '/jesula', work_page: '/works/jesula-toussaint-visser-triggers', src: '/images/responsive/jesula-toussaint-visser-triggers-800.webp' },
+        { title: 'Lucent Shadows', artist: 'Jésula Toussaint Visser', page: '/jesula', work_page: '/works/jesula-toussaint-visser-lucent-shadows', src: '/images/responsive/jesula-toussaint-visser-lucent-shadows-800.webp' },
+        { title: 'Thought Bubble', artist: 'Jésula Toussaint Visser', page: '/jesula', work_page: '/works/jesula-toussaint-visser-thought-bubble', src: '/images/responsive/jesula-toussaint-visser-thought-bubble-full-800.webp' },
+        { title: 'Doll', artist: 'Jésula Toussaint Visser', page: '/jesula', work_page: '/works/jesula-toussaint-visser-doll', src: '/images/responsive/jesula-toussaint-visser-doll-800.webp' }
     ];
 
     function escapeHtml(str) {
@@ -270,7 +270,8 @@
                 '</div>' +
                 '<div class="nlp-media"><figure class="nlp-image">' +
                     '<img src="' + work.src + '" alt="' + escapeHtml(work.title + ', by ' + work.artist) + '" decoding="async">' +
-                    '<figcaption class="nlp-caption">' + escapeHtml(work.title) + ', ' +
+                    '<figcaption class="nlp-caption">' +
+                        (work.work_page ? '<a href="' + work.work_page + '">' + escapeHtml(work.title) + '</a>' : escapeHtml(work.title)) + ', ' +
                         '<a href="' + work.page + '">' + escapeHtml(work.artist) + '</a></figcaption>' +
                 '</figure></div>' +
             '</div>';

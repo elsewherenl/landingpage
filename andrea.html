@@ -70,10 +70,11 @@
                         "VisualArtwork",
                         "Product"
                     ],
+                    "@id": "https://elsewherecollective.nl/works/andrea-rosselli-matera#artwork",
                     "name": "Matera",
                     "description": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist. Matera by Andrea Rosselli, edition of 10.",
                     "image": "https://elsewherecollective.nl/images/andrea%20rosselli/Andrea_Rosselli_Matera_12630_web.jpg",
-                    "url": "https://elsewherecollective.nl/andrea#matera",
+                    "url": "https://elsewherecollective.nl/works/andrea-rosselli-matera",
                     "brand": {
                         "@type": "Brand",
                         "name": "Andrea Rosselli"
@@ -99,7 +100,7 @@
                         "priceCurrency": "EUR",
                         "availability": "https://schema.org/InStock",
                         "itemCondition": "https://schema.org/NewCondition",
-                        "url": "https://elsewherecollective.nl/andrea#matera",
+                        "url": "https://elsewherecollective.nl/works/andrea-rosselli-matera",
                         "seller": {
                             "@id": "https://elsewherecollective.nl/#organization"
                         }
@@ -110,10 +111,11 @@
                         "VisualArtwork",
                         "Product"
                     ],
+                    "@id": "https://elsewherecollective.nl/works/andrea-rosselli-di-passaggio#artwork",
                     "name": "Di passaggio",
                     "description": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist. Di passaggio by Andrea Rosselli, edition of 15.",
                     "image": "https://elsewherecollective.nl/images/andrea%20rosselli/Andrea_Rosselli_Di_Passaggio_10328_web.jpg",
-                    "url": "https://elsewherecollective.nl/andrea#di-passaggio",
+                    "url": "https://elsewherecollective.nl/works/andrea-rosselli-di-passaggio",
                     "brand": {
                         "@type": "Brand",
                         "name": "Andrea Rosselli"
@@ -139,7 +141,7 @@
                         "priceCurrency": "EUR",
                         "availability": "https://schema.org/InStock",
                         "itemCondition": "https://schema.org/NewCondition",
-                        "url": "https://elsewherecollective.nl/andrea#di-passaggio",
+                        "url": "https://elsewherecollective.nl/works/andrea-rosselli-di-passaggio",
                         "seller": {
                             "@id": "https://elsewherecollective.nl/#organization"
                         }
@@ -150,10 +152,11 @@
                         "VisualArtwork",
                         "Product"
                     ],
+                    "@id": "https://elsewherecollective.nl/works/andrea-rosselli-basilica-di-galliano#artwork",
                     "name": "Basilica di Galliano, Cantù",
                     "description": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist. Basilica di Galliano, Cantù by Andrea Rosselli, edition of 25.",
                     "image": "https://elsewherecollective.nl/images/andrea%20rosselli/Andrea_Rosselli_Basilica_di_Galliano_10333_web.jpg",
-                    "url": "https://elsewherecollective.nl/andrea#basilica-di-galliano",
+                    "url": "https://elsewherecollective.nl/works/andrea-rosselli-basilica-di-galliano",
                     "brand": {
                         "@type": "Brand",
                         "name": "Andrea Rosselli"
@@ -179,7 +182,7 @@
                         "priceCurrency": "EUR",
                         "availability": "https://schema.org/InStock",
                         "itemCondition": "https://schema.org/NewCondition",
-                        "url": "https://elsewherecollective.nl/andrea#basilica-di-galliano",
+                        "url": "https://elsewherecollective.nl/works/andrea-rosselli-basilica-di-galliano",
                         "seller": {
                             "@id": "https://elsewherecollective.nl/#organization"
                         }
@@ -190,10 +193,11 @@
                         "VisualArtwork",
                         "Product"
                     ],
+                    "@id": "https://elsewherecollective.nl/works/andrea-rosselli-ballerina#artwork",
                     "name": "Ballerina",
                     "description": "Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist. Ballerina by Andrea Rosselli, edition of 10.",
                     "image": "https://elsewherecollective.nl/images/andrea%20rosselli/Andrea_Rosselli_Ballerina_1651_web.jpg",
-                    "url": "https://elsewherecollective.nl/andrea#ballerina",
+                    "url": "https://elsewherecollective.nl/works/andrea-rosselli-ballerina",
                     "brand": {
                         "@type": "Brand",
                         "name": "Andrea Rosselli"
@@ -219,7 +223,7 @@
                         "priceCurrency": "EUR",
                         "availability": "https://schema.org/InStock",
                         "itemCondition": "https://schema.org/NewCondition",
-                        "url": "https://elsewherecollective.nl/andrea#ballerina",
+                        "url": "https://elsewherecollective.nl/works/andrea-rosselli-ballerina",
                         "seller": {
                             "@id": "https://elsewherecollective.nl/#organization"
                         }
@@ -899,6 +903,18 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1.2rem;
         font-weight: 400;
         margin-bottom: 0.6rem;
+    }
+
+    /* A title that links to the work's own page looks like plain text until hovered */
+    .work-title a {
+        color: inherit;
+        text-decoration: none;
+        text-underline-offset: 0.2em;
+        text-decoration-thickness: 1px;
+    }
+
+    .work-title a:hover {
+        text-decoration-line: underline;
     }
 
     .work-meta {
@@ -1647,7 +1663,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="wall-btn" aria-label="View Matera framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
                 </div>
                 <div class="work-caption">
-                    <h3 class="work-title">Matera (2022)</h3>
+                    <h3 class="work-title"><a href="/works/andrea-rosselli-matera">Matera</a> (2022)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2026 &middot; 20 &times; 30 cm<br>Edition of 10</p>
                     <p class="work-price">&euro;550</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Matera&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Matera%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%2C%20delivery%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
@@ -1662,7 +1678,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="wall-btn" aria-label="View Di passaggio framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
                 </div>
                 <div class="work-caption">
-                    <h3 class="work-title">Di passaggio (2021)</h3>
+                    <h3 class="work-title"><a href="/works/andrea-rosselli-di-passaggio">Di passaggio</a> (2021)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2026 &middot; 12 &times; 12 cm<br>Edition of 15</p>
                     <p class="work-price">&euro;450</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Di%20passaggio&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Di%20passaggio%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%2C%20delivery%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
@@ -1677,7 +1693,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="wall-btn" aria-label="View Basilica di Galliano, Cant&ugrave; framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
                 </div>
                 <div class="work-caption">
-                    <h3 class="work-title">Basilica di Galliano, Cant&ugrave; (2021)</h3>
+                    <h3 class="work-title"><a href="/works/andrea-rosselli-basilica-di-galliano">Basilica di Galliano, Cant&ugrave;</a> (2021)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2025 &middot; 12 &times; 18 cm<br>Edition of 25</p>
                     <p class="work-price">&euro;550</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Basilica%20di%20Galliano%2C%20Cant%C3%B9&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Basilica%20di%20Galliano%2C%20Cant%C3%B9%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%2C%20delivery%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
@@ -1692,7 +1708,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button type="button" class="wall-btn" aria-label="View Ballerina framed on a wall">View on wall <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4.5 11.5l7-7M6 4.5h5.5V10"/></svg></button>
                 </div>
                 <div class="work-caption">
-                    <h3 class="work-title">Ballerina (2019)</h3>
+                    <h3 class="work-title"><a href="/works/andrea-rosselli-ballerina">Ballerina</a> (2019)</h3>
                     <p class="work-meta">Hand-printed silver gelatin print on fibre-based paper, selenium toned by the artist.<br>Printed 2025 &middot; 12 &times; 12 cm<br>Edition of 10</p>
                     <p class="work-price">&euro;475</p>
                     <a href="mailto:hello@elsewherecollective.nl?subject=Enquiry%20-%20Ballerina&body=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Ballerina%20by%20Andrea%20Rosselli.%0A%0APlease%20could%20you%20provide%20more%20details%20about%20availability%2C%20purchase%2C%20delivery%20and%20timings%3F%0A%0AThanks%2C" class="enquire-btn">Enquire</a>
