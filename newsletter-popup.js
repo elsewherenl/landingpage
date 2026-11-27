@@ -1,7 +1,7 @@
 /*
  * Newsletter pop-up: a second chance to subscribe, alongside the homepage form.
  *
- * Shows after 6 seconds of active browsing (tab visible and window focused),
+ * Shows after 4 seconds of active browsing (tab visible and window focused),
  * summed across pages and tabs in this visit, on whatever page the visitor is on.
  * On the homepage it waits until the sign-up form there is scrolled out of view.
  * A visit ends after 30 minutes with no activity on the site (like Google
@@ -11,7 +11,7 @@
  *     button); it can come back on the next visit
  *   - ever again after subscribing, here or via the homepage form (localStorage
  *     ec_subscribed, the key the homepage form already sets)
- *   - before the cookie banner has been answered, or while a lightbox, enquiry
+ *   - while the cookie settings panel, a lightbox, enquiry
  *     form or other overlay is open, or while someone is typing in a field
  *
  * Posts to the same MailerLite form as the homepage, with ec_source = popup,
@@ -25,7 +25,7 @@
 (function () {
     'use strict';
 
-    var ACTIVE_MS_NEEDED = 6000;
+    var ACTIVE_MS_NEEDED = 4000;
     var VISIT_GAP_MS = 30 * 60 * 1000;    // inactivity that ends a visit
     var TICK_MS = 1000;
 
@@ -105,11 +105,8 @@
 
     // Anything that means now is a bad moment to appear
     function blocked() {
-        // Cookie banner not yet answered (both Silktide and the fallback banner set this)
-        if (get('localStorage', 'analyticsConsent') === null) return true;
-        // ...or the banner or cookie settings are on screen (Silktide removes
-        // #silktide-banner once answered; the fallback banner uses .show)
-        if (document.querySelector('#silktide-banner, .cookie-banner.show')) return true;
+        // An unanswered cookie banner doesn't hold it back (it sits above the banner,
+        // which is still there once it closes), but the settings panel does
         var modal = document.getElementById('silktide-modal');
         if (modal && getComputedStyle(modal).display !== 'none') return true;
         // Lightbox, fullscreen viewer, enquiry form, or anything else locking scroll
@@ -168,7 +165,7 @@
 
     var C = 'var(--deep-charcoal,#2C2C2C)';
     var STYLES = '' +
-        '.nlp{position:fixed;inset:0;z-index:1600;display:flex;align-items:center;justify-content:center;padding:16px;' +
+        '.nlp{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:16px;' +
         'background:rgba(44,44,44,.55);opacity:0;transition:opacity .4s ease;font-family:"SuisseIntl",sans-serif}' +
         '.nlp.is-visible{opacity:1}' +
         '.nlp *{box-sizing:border-box}' +
