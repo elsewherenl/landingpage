@@ -230,7 +230,17 @@
 
     var popup, onKeydown, onResize, previousFocus, previousOverflow;
 
+    // GA event; only after analytics consent (dataLayer exists). gtag isn't
+    // global after a mid-session accept, so push to dataLayer directly.
+    function track(name, params) {
+        if (!window.dataLayer) return;
+        (function () { window.dataLayer.push(arguments); })('event', name, Object.assign({ transport_type: 'beacon' }, params));
+    }
+    var signedUp = false;
+
     function show() {
+        // Not counted for #nlp-preview, which isn't a real showing
+        if (!PREVIEW) track('newsletter_popup_shown', {});
         if (!PREVIEW) {
             // Being shown at all counts for this visit, however it's left
             // (close, Esc, the artist link, back button, closing the tab).
@@ -320,15 +330,15 @@
             success.classList.add('is-visible');
         }
 
-        popup.querySelector('.nlp-close').addEventListener('click', dismiss);
+        popup.querySelector('.nlp-close').addEventListener('click', function () { dismiss('close_button'); });
         // A click on the dimmed area outside the panel closes it
         popup.addEventListener('click', function (e) {
-            if (e.target === popup) dismiss();
+            if (e.target === popup) dismiss('outside_click');
         });
 
         onKeydown = function (e) {
             if (e.key === 'Escape' || e.key === 'Esc') {
-                dismiss();
+                dismiss('escape');
                 return;
             }
             // Keep Tab inside the dialog while it's open
@@ -386,11 +396,9 @@
                     if (data && data.success) {
                         showSuccess();
                         set('localStorage', K_SUBSCRIBED, '1');
-                        // GA event, same as the homepage form; only after analytics
-                        // consent (dataLayer exists)
-                        if (window.dataLayer) {
-                            (function () { window.dataLayer.push(arguments); })('event', 'newsletter_signup', { method: 'popup', transport_type: 'beacon' });
-                        }
+                        signedUp = true;
+                        // Same event as the homepage form
+                        track('newsletter_signup', { method: 'popup' });
                         setTimeout(close, 4000);
                     } else if (data && data.errors && data.errors.fields && data.errors.fields.email) {
                         showError('invalid');
@@ -416,7 +424,10 @@
         });
     }
 
-    function dismiss() {
+    // Closed by the visitor (not the auto-close after signing up). Closing it
+    // after signing up isn't counted as a dismissal.
+    function dismiss(method) {
+        if (popup && !PREVIEW && !signedUp) track('newsletter_popup_close', { method: method });
         close();
     }
 
