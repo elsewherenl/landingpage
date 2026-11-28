@@ -2626,8 +2626,10 @@
                                 form.hidden = true;
                                 successMsg.classList.add('visible');
                                 try { localStorage.setItem('ec_subscribed', '1'); } catch (err) {}
-                                if (typeof gtag === 'function') {
-                                    try { gtag('event', 'newsletter_signup', { method: source }); } catch (err) {}
+                                // GA event, only after analytics consent (dataLayer exists);
+                                // gtag isn't global after a mid-session accept
+                                if (window.dataLayer) {
+                                    (function () { window.dataLayer.push(arguments); })('event', 'newsletter_signup', { method: source, transport_type: 'beacon' });
                                 }
                             } else if (data && data.errors && data.errors.fields && data.errors.fields.email) {
                                 showError('invalid');

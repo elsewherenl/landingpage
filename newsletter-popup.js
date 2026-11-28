@@ -386,6 +386,11 @@
                     if (data && data.success) {
                         showSuccess();
                         set('localStorage', K_SUBSCRIBED, '1');
+                        // GA event, same as the homepage form; only after analytics
+                        // consent (dataLayer exists)
+                        if (window.dataLayer) {
+                            (function () { window.dataLayer.push(arguments); })('event', 'newsletter_signup', { method: 'popup', transport_type: 'beacon' });
+                        }
                         setTimeout(close, 4000);
                     } else if (data && data.errors && data.errors.fields && data.errors.fields.email) {
                         showError('invalid');
