@@ -275,7 +275,13 @@
                         '<a href="' + work.page + '">' + escapeHtml(work.artist) + '</a></figcaption>' +
                 '</figure></div>' +
             '</div>';
-        document.body.appendChild(popup);
+        // Insert before the site's cursor dot: both are z-index 100000, so the
+        // later one paints on top. Appended after it, the pop-up would hide the
+        // dot (dimmed under the backdrop, gone over the panel, where the system
+        // cursor is hidden too), leaving no visible cursor.
+        var cursorDot = document.getElementById('cursorDot');
+        if (cursorDot && cursorDot.parentNode === document.body) document.body.insertBefore(popup, cursorDot);
+        else document.body.appendChild(popup);
 
         var panel = popup.querySelector('.nlp-panel');
         var media = popup.querySelector('.nlp-media');
