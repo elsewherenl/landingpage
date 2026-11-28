@@ -1,0 +1,108 @@
+/* Mobile menu, shared by every page with the site header.
+   At 960px and below (before the desktop links get crowded) the header shows
+   a "Menu" text button to the right of the logo; it opens the four links
+   stacked under the header on the cream background, and reads "Close" while
+   open (site-nav.js). Above 960px nothing here applies: the desktop nav is
+   each page's own. Selectors start with .header so they outrank each page's
+   own .nav-menu rules at its 768/480/350px breakpoints. */
+
+.nav-toggle {
+    display: none;
+}
+
+@media (max-width: 960px) {
+    .header .nav-toggle {
+        display: block;
+        margin: -0.5rem 0;
+        padding: 0.5rem 0;
+        border: 0;
+        border-radius: 0;
+        background: none;
+        -webkit-appearance: none;
+        appearance: none;
+        font-family: 'SuisseIntl', sans-serif;
+        font-size: 1rem;
+        font-weight: 300;
+        letter-spacing: 0.04em;
+        line-height: 1.6;
+        color: rgba(44, 44, 44, 0.75);
+        transition: color 0.3s ease;
+    }
+
+    .header .nav-toggle:hover,
+    .header.nav-open .nav-toggle {
+        color: var(--deep-charcoal, #2C2C2C);
+    }
+
+    .header .nav-toggle:focus {
+        outline: none;
+    }
+
+    .header .nav-toggle:focus-visible {
+        outline: 1px solid currentColor;
+        outline-offset: 4px;
+    }
+
+    /* The open menu fills the screen below the header. Percentages here are
+       of the header's height, so the panel ends at the bottom of the screen. */
+    .header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: calc(100vh - 100%);
+        height: calc(100dvh - 100%);
+        overflow-y: auto;
+        background: var(--cream-bg, #F3EFE9);
+    }
+
+    .header.nav-open {
+        background: var(--cream-bg, #F3EFE9);
+    }
+
+    .header.nav-open nav {
+        display: block;
+    }
+
+    .header .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1.75rem;
+        width: auto;
+        margin: 0;
+        padding: 2.5rem 3rem 3rem;
+        list-style: none;
+    }
+
+    .header .nav-menu a {
+        font-size: 1.6rem;
+        font-weight: 300;
+        letter-spacing: 0.01em;
+        line-height: 1.3;
+        color: rgba(44, 44, 44, 0.75);
+    }
+
+    .header .nav-menu a.active,
+    .header .nav-menu a[aria-current="page"] {
+        color: var(--deep-charcoal, #2C2C2C);
+    }
+}
+
+/* Phones: the header's side padding is 1.5rem, so the links line up with the logo */
+@media (max-width: 768px) {
+    .header .nav-toggle {
+        font-size: 0.95rem;
+    }
+
+    .header .nav-menu {
+        gap: 1.5rem;
+        padding: 2rem 1.5rem 3rem;
+    }
+
+    .header .nav-menu a {
+        font-size: 1.5rem;
+    }
+}

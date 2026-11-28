@@ -207,19 +207,43 @@ function renderGridHtml(posts, aspectRatios, dimensions, { imageWidth, mobileBre
 // array (see seededShuffle) — originalIndexOf maps each post back to its index in
 // that array, since data-index is what openFullscreen() uses to look the post up
 // client-side (posts[index]) and must stay correct regardless of display order.
-function renderRailHtml(posts, originalIndexOf) {
-    return posts.map((post, i) => `
-                    <article class="entry ${i % 2 === 1 ? 'is-reversed' : ''}" data-theme="${escapeHtml(post.theme || '')}">
+// Anchor id for a Spotlight entry, from the artist's name ("Jésula Toussaint
+// Visser" -> "jesula-toussaint-visser"), so artist pages can link to
+// /spotlight#<id>. A second post by the same artist gets "-2", and so on.
+function slugify(str) {
+    return String(str).normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+function entryIds(posts) {
+    const seen = {};
+    const idByPost = new Map();
+    for (const post of posts) {
+        const base = slugify(post.artist || post.title || 'spotlight') || 'spotlight';
+        seen[base] = (seen[base] || 0) + 1;
+        idByPost.set(post, seen[base] === 1 ? base : `${base}-${seen[base]}`);
+    }
+    return idByPost;
+}
+
+// dimsOf(post) gives the 800px image's width/height, so the browser reserves
+// each image's space before it loads (keeps a /spotlight#<id> jump on target)
+function renderRailHtml(posts, originalIndexOf, idByPost, dimsOf) {
+    return posts.map((post, i) => {
+        const dims = dimsOf(post);
+        return `
+                    <article class="entry ${i % 2 === 1 ? 'is-reversed' : ''}" id="${escapeHtml(idByPost.get(post))}" data-theme="${escapeHtml(post.theme || '')}">
                         <figure class="entry-figure" data-index="${originalIndexOf(post)}">
-                            <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 800) || post.image_url)}" alt="${escapeHtml(altText(post))}" loading="lazy">
+                            <img src="${escapeHtml(optimizedUrl(post.cloudinary_cropped_url, 800) || post.image_url)}" alt="${escapeHtml(altText(post))}" width="${dims.width}" height="${dims.height}" loading="lazy">
                         </figure>
                         <div class="entry-meta">
                             <h2 class="entry-title">${escapeHtml(post.title || 'Untitled')}</h2>
                             <p class="entry-artist">${escapeHtml(post.artist || '')}</p>
                             <p class="entry-caption">${escapeHtml(post.caption || '')}</p>${post.artist_page ? `
-                            <a class="entry-link" href="${escapeHtml(post.artist_page)}">View available works &rarr;</a>` : ''}
+                            <a class="entry-link" href="${escapeHtml(post.artist_page)}">Explore available works &rarr;</a>` : ''}
                         </div>
-                    </article>`).join('');
+                    </article>`;
+    }).join('');
 }
 
 // Builds the Spotlight page's full JSON-LD graph (CollectionPage > ItemList of
@@ -564,6 +588,8 @@ ${jsonLd}
 </script>
 
 <link rel="stylesheet" href="/works/work.css">
+<link rel="stylesheet" href="/site-nav.css">
+<script src="/site-nav.js" defer></script>
 <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css" media="print" onload="this.media='all'">
 <script src="/cookie-banner/silktide-consent-manager.js" defer></script>
 <!-- No newsletter pop-up on artwork pages: the page is about the work -->
@@ -620,11 +646,13 @@ ${jsonLd}
 <header class="header">
     <div class="header-container">
         <a href="/" class="logo">elsewhere</a>
-        <nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" aria-label="Main">
             <ul class="nav-menu">
                 <li><a href="/about">About</a></li>
                 <li><a href="/artists">Artists &amp; Works</a></li>
                 <li><a href="/spotlight">Spotlights</a></li>
+                <li><a href="/art-sourcing">Art Sourcing</a></li>
             </ul>
         </nav>
     </div>
@@ -711,6 +739,7 @@ function updateSitemap(workPageFileByUrl = {}) {
         ...workPageFileByUrl,
         'https://elsewherecollective.nl/': 'index.html',
         'https://elsewherecollective.nl/about': 'about.html',
+        'https://elsewherecollective.nl/art-sourcing': 'art-sourcing.html',
         'https://elsewherecollective.nl/spotlight': 'spotlight.html',
         'https://elsewherecollective.nl/cookie-policy': 'cookie-policy.html',
         'https://elsewherecollective.nl/mitsutaka': 'mitsutaka.html',
@@ -818,7 +847,8 @@ async function main() {
 
     const railSeedKey = 'rail:' + allPosts.map(p => p.id).join(',');
     const railPosts = seededShuffle(allPosts, railSeedKey);
-    const railHtml = renderRailHtml(railPosts, originalIndexOf);
+    // Ids follow feed order (not the shuffle), so an artist's first post keeps its id
+    const railHtml = renderRailHtml(railPosts, originalIndexOf, entryIds(allPosts), post => dimensionsForRatio(ratioOf(post), 800));
 
     const gridSeedKey = 'grid:' + allPosts.map(p => p.id).join(',');
     const gridPosts = seededShuffle(allPosts, gridSeedKey);

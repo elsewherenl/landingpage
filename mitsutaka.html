@@ -1456,7 +1456,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .enquiry-close { top: 0.75rem; right: 0.5rem; }
     }
-</style>
+
+        /* In-text links: the surrounding text's colour and type, with a subtle
+           underline that darkens on hover (no blue, no buttons) */
+        .text-link {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
+            text-decoration-color: rgba(44, 44, 44, 0.35);
+            transition: color 0.3s ease, text-decoration-color 0.3s ease;
+        }
+
+        .text-link:hover {
+            color: var(--deep-charcoal, #2C2C2C);
+            text-decoration-color: currentColor;
+        }
+    </style>
+    <link rel="stylesheet" href="site-nav.css">
+    <script src="site-nav.js" defer></script>
 </head>
 <body>
 
@@ -1509,11 +1527,13 @@ document.addEventListener('DOMContentLoaded', function() {
 <header class="header">
     <div class="header-container">
         <a href="/" class="logo">elsewhere</a>
-        <nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" aria-label="Main">
             <ul class="nav-menu">
                 <li><a href="/about">About</a></li>
                 <li><a href="/artists">Artists &amp; Works</a></li>
                 <li><a href="/spotlight">Spotlights</a></li>
+                <li><a href="/art-sourcing">Art Sourcing</a></li>
             </ul>
         </nav>
     </div>
@@ -1548,6 +1568,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p>Mitsutaka Tsuryu is a Japanese fine art and street photographer whose work explores the tension between presence and absence in urban spaces. Through minimal compositions shaped by light, shadow, and architectural structure, he captures moments where human presence is suggested rather than directly shown.</p>
             <p>His images are quiet and contemplative, inviting a slower attention to the city and what passes through it.</p>
             <p>His work has been exhibited at BBA Gallery in Berlin and the Kyoto City KYOCERA Museum of Art. He has received multiple Gold Awards at the European Photography Awards and six honourable mentions at the Prix de la Photographie Paris.</p>
+            <p>Featured in our Spotlights: <a href="/spotlight#mitsutaka-tsuryu" class="text-link">Behind the Veil</a>.</p>
 
             <div class="about-quote">
                 <blockquote>&ldquo;I hope people feel a sense of calm from my work, as if they have discovered silence hidden inside the city&rsquo;s noise.&rdquo;</blockquote>

@@ -156,6 +156,8 @@
 </script>
 
 <link rel="stylesheet" href="/works/work.css">
+<link rel="stylesheet" href="/site-nav.css">
+<script src="/site-nav.js" defer></script>
 <link rel="stylesheet" id="silktide-consent-manager-css" href="/cookie-banner/silktide-consent-manager.css" media="print" onload="this.media='all'">
 <script src="/cookie-banner/silktide-consent-manager.js" defer></script>
 <!-- No newsletter pop-up on artwork pages: the page is about the work -->
@@ -212,11 +214,13 @@
 <header class="header">
     <div class="header-container">
         <a href="/" class="logo">elsewhere</a>
-        <nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" aria-label="Main">
             <ul class="nav-menu">
                 <li><a href="/about">About</a></li>
                 <li><a href="/artists">Artists &amp; Works</a></li>
                 <li><a href="/spotlight">Spotlights</a></li>
+                <li><a href="/art-sourcing">Art Sourcing</a></li>
             </ul>
         </nav>
     </div>

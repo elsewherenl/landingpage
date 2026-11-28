@@ -1637,6 +1637,8 @@
             .nav-menu a { font-size: 0.72rem; }
         }
     </style>
+    <link rel="stylesheet" href="site-nav.css">
+    <script src="site-nav.js" defer></script>
 </head>
 <body>
     <div class="cursor-dot" id="cursorDot"></div>
@@ -1644,11 +1646,13 @@
     <header class="header">
         <div class="header-container">
             <a href="/" class="logo">elsewhere</a>
-            <nav>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+            <nav id="siteNav" aria-label="Main">
                 <ul class="nav-menu">
                     <li><a href="/about">About</a></li>
                     <li><a href="/artists">Artists &amp; Works</a></li>
                     <li><a href="/spotlight">Spotlights</a></li>
+                    <li><a href="/art-sourcing">Art Sourcing</a></li>
                 </ul>
             </nav>
         </div>
@@ -1730,93 +1734,7 @@
                     
                         <article class="grid-item" data-index="0" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ashes of the Arabian&#39;s Pearl, by Valentin Valette" width="500" height="630" loading="eager" fetchpriority="high">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Ashes of the Arabian&#39;s Pearl</h3>
-                                    <p class="a">Valentin Valette</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="5" data-theme="">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Book of Days, by Alvin Ng" width="500" height="640" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Book of Days</h3>
-                                    <p class="a">Alvin Ng</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                </div>
-                <div class="grid-col">
-                    
-                        <article class="grid-item" data-index="1" data-theme="Natural Worlds">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Till Mines Do Us Part, by Ece Gökalp" width="500" height="630" loading="eager">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Till Mines Do Us Part</h3>
-                                    <p class="a">Ece Gökalp</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="6" data-theme="Inner Life">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="You can’t enter the same river twice, by Francisco Gonzalez Camacho" width="500" height="370" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">You can’t enter the same river twice</h3>
-                                    <p class="a">Francisco Gonzalez Camacho</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="9" data-theme="Natural Worlds">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Hold A Flower in the Palm of Your Hand, by Mario Wong" width="500" height="320" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Hold A Flower in the Palm of Your Hand</h3>
-                                    <p class="a">Mario Wong</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                </div>
-                <div class="grid-col">
-                    
-                        <article class="grid-item" data-index="2" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Semi-Fiction, by Larissa Araz" width="500" height="330" loading="eager">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Semi-Fiction</h3>
-                                    <p class="a">Larissa Araz</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="4" data-theme="Natural Worlds">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain, by Elias Kepplinger" width="500" height="500" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">The Moving Mountain</h3>
-                                    <p class="a">Elias Kepplinger</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="8" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Woman Carrying Water Buckets in the Snow, by John Peter Askew" width="500" height="330" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Woman Carrying Water Buckets in the Snow</h3>
-                                    <p class="a">John Peter Askew</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Restricted Images, by Patrick Waterhouse" width="500" height="390" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Restricted Images, by Patrick Waterhouse" width="500" height="390" loading="eager" fetchpriority="high">
                                 <figcaption class="grid-item-label">
                                     <h3 class="t">Restricted Images</h3>
                                     <p class="a">Patrick Waterhouse</p>
@@ -1824,15 +1742,68 @@
                             </figure>
                         </article>
                     
+                        <article class="grid-item" data-index="5" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Rhodanie, by Bertrand Stofleth" width="500" height="390" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Rhodanie</h3>
+                                    <p class="a">Bertrand Stofleth</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="8" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Semi-Fiction, by Larissa Araz" width="500" height="330" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Semi-Fiction</h3>
+                                    <p class="a">Larissa Araz</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ghost Witness, by Mårten Lange" width="500" height="750" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Ghost Witness</h3>
+                                    <p class="a">Mårten Lange</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
                 </div>
                 <div class="grid-col">
                     
-                        <article class="grid-item" data-index="3" data-theme="Inner Life">
+                        <article class="grid-item" data-index="1" data-theme="">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Deriva, by Uxío da Vila" width="500" height="700" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Cube, by Orestis Ilias" width="500" height="380" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Deriva</h3>
-                                    <p class="a">Uxío da Vila</p>
+                                    <h3 class="t">The Cube</h3>
+                                    <p class="a">Orestis Ilias</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="4" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Metamorphosis, by Claudia Fuggetti" width="500" height="750" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Metamorphosis</h3>
+                                    <p class="a">Claudia Fuggetti</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                </div>
+                <div class="grid-col">
+                    
+                        <article class="grid-item" data-index="2" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain, by Elias Kepplinger" width="500" height="500" loading="eager">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">The Moving Mountain</h3>
+                                    <p class="a">Elias Kepplinger</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1847,12 +1818,45 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="10" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="9" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Rhodanie, by Bertrand Stofleth" width="500" height="390" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Woman Carrying Water Buckets in the Snow, by John Peter Askew" width="500" height="330" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Rhodanie</h3>
-                                    <p class="a">Bertrand Stofleth</p>
+                                    <h3 class="t">Woman Carrying Water Buckets in the Snow</h3>
+                                    <p class="a">John Peter Askew</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                </div>
+                <div class="grid-col">
+                    
+                        <article class="grid-item" data-index="3" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Somewhere in Africa, by Brigitte Bourger" width="500" height="390" loading="eager">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Somewhere in Africa</h3>
+                                    <p class="a">Brigitte Bourger</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="6" data-theme="Inner Life">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Behind the Veil, by Mitsutaka Tsuryu" width="500" height="490" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Behind the Veil</h3>
+                                    <p class="a">Mitsutaka Tsuryu</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="10" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Fugue Photographique, by Charline Cocset" width="500" height="750" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Fugue Photographique</h3>
+                                    <p class="a">Charline Cocset</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1864,40 +1868,30 @@
                     
                         <article class="grid-item" data-index="0" data-theme="Cultural Exchange">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1789929479/Valentin_Valette_sbbb1j.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ashes of the Arabian&#39;s Pearl, by Valentin Valette" width="500" height="630" loading="eager" fetchpriority="high">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Restricted Images, by Patrick Waterhouse" width="500" height="390" loading="eager" fetchpriority="high">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Ashes of the Arabian&#39;s Pearl</h3>
-                                    <p class="a">Valentin Valette</p>
+                                    <h3 class="t">Restricted Images</h3>
+                                    <p class="a">Patrick Waterhouse</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="2" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="3" data-theme="Natural Worlds">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Semi-Fiction, by Larissa Araz" width="500" height="330" loading="eager">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199617/Brigitte_B_xgukvf.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Somewhere in Africa, by Brigitte Bourger" width="500" height="390" loading="eager">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">Semi-Fiction</h3>
-                                    <p class="a">Larissa Araz</p>
+                                    <h3 class="t">Somewhere in Africa</h3>
+                                    <p class="a">Brigitte Bourger</p>
                                 </figcaption>
                             </figure>
                         </article>
                     
                         <article class="grid-item" data-index="4" data-theme="Natural Worlds">
                             <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain, by Elias Kepplinger" width="500" height="500" loading="lazy">
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199624/Claudia_F_l7qt8w.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Metamorphosis, by Claudia Fuggetti" width="500" height="750" loading="lazy">
                                 <figcaption class="grid-item-label">
-                                    <h3 class="t">The Moving Mountain</h3>
-                                    <p class="a">Elias Kepplinger</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="6" data-theme="Inner Life">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="You can’t enter the same river twice, by Francisco Gonzalez Camacho" width="500" height="370" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">You can’t enter the same river twice</h3>
-                                    <p class="a">Francisco Gonzalez Camacho</p>
+                                    <h3 class="t">Metamorphosis</h3>
+                                    <p class="a">Claudia Fuggetti</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -1912,60 +1906,7 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="9" data-theme="Natural Worlds">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765553564/Mario_Wong_for_JSON_yfe6kx.png 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Hold A Flower in the Palm of Your Hand, by Mario Wong" width="500" height="320" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Hold A Flower in the Palm of Your Hand</h3>
-                                    <p class="a">Mario Wong</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Restricted Images, by Patrick Waterhouse" width="500" height="390" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Restricted Images</h3>
-                                    <p class="a">Patrick Waterhouse</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                </div>
-                <div class="grid-col">
-                    
-                        <article class="grid-item" data-index="1" data-theme="Natural Worlds">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002067/Latmos_6w_m_b1elt6.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Till Mines Do Us Part, by Ece Gökalp" width="500" height="630" loading="eager">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Till Mines Do Us Part</h3>
-                                    <p class="a">Ece Gökalp</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="3" data-theme="Inner Life">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784131779/Deriva_09-2_scovje.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Deriva, by Uxío da Vila" width="500" height="700" loading="eager">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Deriva</h3>
-                                    <p class="a">Uxío da Vila</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="5" data-theme="">
-                            <figure>
-                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871725/Alvin_Ng_rgjrcu.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Book of Days, by Alvin Ng" width="500" height="640" loading="lazy">
-                                <figcaption class="grid-item-label">
-                                    <h3 class="t">Book of Days</h3>
-                                    <p class="a">Alvin Ng</p>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    
-                        <article class="grid-item" data-index="8" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="9" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1791561459/image_288_u9dnoc.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Woman Carrying Water Buckets in the Snow, by John Peter Askew" width="500" height="330" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1975,7 +1916,40 @@
                             </figure>
                         </article>
                     
-                        <article class="grid-item" data-index="10" data-theme="Cultural Exchange">
+                        <article class="grid-item" data-index="11" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1792002737/ghost_witness_28__2x_kevirx.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Ghost Witness, by Mårten Lange" width="500" height="750" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Ghost Witness</h3>
+                                    <p class="a">Mårten Lange</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                </div>
+                <div class="grid-col">
+                    
+                        <article class="grid-item" data-index="1" data-theme="">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1776871784/Orestis_The_Cube_jzcv1z.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Cube, by Orestis Ilias" width="500" height="380" loading="eager">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">The Cube</h3>
+                                    <p class="a">Orestis Ilias</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="2" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="The Moving Mountain, by Elias Kepplinger" width="500" height="500" loading="eager">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">The Moving Mountain</h3>
+                                    <p class="a">Elias Kepplinger</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="5" data-theme="Cultural Exchange">
                             <figure>
                                 <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1765199621/Betrand_Stofleth_1_2_instli.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Rhodanie, by Bertrand Stofleth" width="500" height="390" loading="lazy">
                                 <figcaption class="grid-item-label">
@@ -1985,11 +1959,41 @@
                             </figure>
                         </article>
                     
+                        <article class="grid-item" data-index="6" data-theme="Inner Life">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Behind the Veil, by Mitsutaka Tsuryu" width="500" height="490" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Behind the Veil</h3>
+                                    <p class="a">Mitsutaka Tsuryu</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="8" data-theme="Cultural Exchange">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1795177823/semi_fiction00.JPG_so1b11.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Semi-Fiction, by Larissa Araz" width="500" height="330" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Semi-Fiction</h3>
+                                    <p class="a">Larissa Araz</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
+                        <article class="grid-item" data-index="10" data-theme="Natural Worlds">
+                            <figure>
+                                <img src="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg" srcset="https://res.cloudinary.com/dt8k6zzy8/image/upload/w_250,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 250w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_375,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 375w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_500,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 500w, https://res.cloudinary.com/dt8k6zzy8/image/upload/w_750,q_auto,f_auto/v1784132115/Charline_vdqz50.jpg 750w" sizes="(max-width: 768px) 45vw, 22vw" alt="Fugue Photographique, by Charline Cocset" width="500" height="750" loading="lazy">
+                                <figcaption class="grid-item-label">
+                                    <h3 class="t">Fugue Photographique</h3>
+                                    <p class="a">Charline Cocset</p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    
                 </div>
                 </div>
                 <!-- GENERATED:GRID:END -->
                 </div>
-                <script type="application/json" id="gridData">[{"title":"Ashes of the Arabian's Pearl","artist":"Valentin Valette","caption":"Exploring the dynamics of economic development in Oman, through those who build the nation and those it is built for.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1789929479/Valentin_Valette_sbbb1j.jpg","width":500,"height":630},{"title":"Till Mines Do Us Part","artist":"Ece Gökalp","caption":"What a landscape remembers.\n\nThe Latmos region in western Turkey is home to some of the earliest Neolithic rock art and settlements. Today, this cultural landscape faces increasing threat from mining expansion.\n\nTill Mines Do Us Part explores what stands to be lost as mining threatens both the landscape and the collective memory held within it.\n\nInspired by these Neolithic artistic traditions, rocks and minerals gathered from the region are used to produce watercolours on bleached cyanotypes.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792002067/Latmos_6w_m_b1elt6.jpg","width":500,"height":630},{"title":"Semi-Fiction","artist":"Larissa Araz","caption":"In Semi-Fiction, Larissa draws on her own life and on fiction to imagine the communities and places she belongs to. Some of the places have since disappeared, whilst others never existed.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1795177823/semi_fiction00.JPG_so1b11.jpg","width":500,"height":330},{"title":"Deriva","artist":"Uxío da Vila","caption":"Seen, but never fully revealed.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784131779/Deriva_09-2_scovje.jpg","width":500,"height":700},{"title":"The Moving Mountain","artist":"Elias Kepplinger","caption":"Once a strong living being filled with vitality and magic, now barely kept alive by the last remaining blue ice. She appears as a human in the last years of life, unable to survive on her own, needing to be fed, needing cover when it’s too hot, unable to clean herself. Humanity tries to prevent this disappearance through technology, but we must question whether this is even possible in the face of an untameable natural world. A work dedicated to the mountain, the glacier, the untamed, and the wild, to draw attention to their disappearance.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg","width":500,"height":500},{"title":"Book of Days","artist":"Alvin Ng","caption":"Through the alchemy of hand-manipulated photographs, I breathe life into ancient verses, revealing their profound essence and forging a harmonious fusion of ancient wisdom and contemporary vision. Inspired by Ovid's Book of Days, Alvin's works suggest a hidden magic beneath the surface of our everyday world. Each image invites us to go beyond the surface, where ancient wisdom and myths speak through contemporary vision.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871725/Alvin_Ng_rgjrcu.jpg","width":500,"height":640},{"title":"You can’t enter the same river twice","artist":"Francisco Gonzalez Camacho","caption":"Everything flows. Forms shift, never quite settling.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784292160/You_cant_enter_the_same_river_twice_xm47op.jpg","width":500,"height":370},{"title":"Horse / Men","artist":"Nad E Ali","caption":"Each year in Lahore, Pakistan, the Shiʿi Muslim community gathers for the Shabih-e Zuljanah processions, commemorating the martyrdom of Imam Husayn (peace be upon him).\n\nCentred around horses representing his revered steed, Zuljanah, the processions become spaces of collective remembrance, faith, and shared identity.\n\nIn Horse / Men, Nad offers a personal reflection on these rituals, focusing on the relationship between the horses, their caretakers, and the surrounding crowds.\n\nAmid the intensity of the procession, the horses both disrupt and direct the movement of people, becoming points of stillness and grace.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg","width":500,"height":330,"artist_page":"/nad"},{"title":"Woman Carrying Water Buckets in the Snow","artist":"John Peter Askew","caption":"On 8 March 1998, International Women's Day, John Peter Askew stepped outside during village celebrations near Perm, Russia, and encountered a woman carrying water through the snow. Snow falling onto the lens provides an unexpected frame, while the colour of her dress suggests that the hard work might soon give way to a more relaxed evening.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1791561459/image_288_u9dnoc.jpg","width":500,"height":330},{"title":"Hold A Flower in the Palm of Your Hand","artist":"Mario Wong","caption":"Microcosm and macrocosm. Inspired by the Buddhist phrase \"One Flower, One World\", Mario focuses on the inherent harmony and balance found in nature.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765553564/Mario_Wong_for_JSON_yfe6kx.png","width":500,"height":320},{"title":"Rhodanie","artist":"Bertrand Stofleth","caption":"Walking the Rhône river from source to sea, Stofleth finds the small and everyday along its grand course.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199621/Betrand_Stofleth_1_2_instli.jpg","width":500,"height":390},{"title":"Restricted Images","artist":"Patrick Waterhouse","caption":"Working with Warlpiri artists in Central Australia, Patrick's black and white photographs of them are transformed through their traditional dot painting.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg","width":500,"height":390}]</script>
+                <script type="application/json" id="gridData">[{"title":"Restricted Images","artist":"Patrick Waterhouse","caption":"Working with Warlpiri artists in Central Australia, Patrick's black and white photographs of them are transformed through their traditional dot painting.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199633/PW_Restricted_Images_3_2_hl7yos.jpg","width":500,"height":390},{"title":"The Cube","artist":"Orestis Ilias","caption":"Raw marble from Pedeli's Quarry outside Athens - source of the Parthenon. Here it sits, ready to rebuild the city.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1776871784/Orestis_The_Cube_jzcv1z.jpg","width":500,"height":380},{"title":"The Moving Mountain","artist":"Elias Kepplinger","caption":"Once a strong living being filled with vitality and magic, now barely kept alive by the last remaining blue ice. She appears as a human in the last years of life, unable to survive on her own, needing to be fed, needing cover when it’s too hot, unable to clean herself. Humanity tries to prevent this disappearance through technology, but we must question whether this is even possible in the face of an untameable natural world. A work dedicated to the mountain, the glacier, the untamed, and the wild, to draw attention to their disappearance.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1794221494/The_Moving_Mountain_1_1_hkq0jn.jpg","width":500,"height":500},{"title":"Somewhere in Africa","artist":"Brigitte Bourger","caption":"Figures in motion - from a series on lives by the sea.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199617/Brigitte_B_xgukvf.jpg","width":500,"height":390},{"title":"Metamorphosis","artist":"Claudia Fuggetti","caption":"Inspired by the notion that the ecological crisis is a crisis of perception, of how we experience the world around us. Metamorphosis invites us to reconsider our relationship with nature and to experience it as a living entity. Throughout the series, Claudia plays with perceptions of reality and fiction. The use of colour, perspective, and intervention creates ambiguity that encourages new relationships with nature to emerge.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199624/Claudia_F_l7qt8w.jpg","width":500,"height":750},{"title":"Rhodanie","artist":"Bertrand Stofleth","caption":"Walking the Rhône river from source to sea, Stofleth finds the small and everyday along its grand course.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1765199621/Betrand_Stofleth_1_2_instli.jpg","width":500,"height":390},{"title":"Behind the Veil","artist":"Mitsutaka Tsuryu","caption":"Mitsutaka's work explores the tension between presence and absence in urban spaces.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1790516564/Mitsutaka_Tsuryu_Behind_the_Veil_2025_v827hu.jpg","width":500,"height":490,"artist_page":"/mitsutaka"},{"title":"Horse / Men","artist":"Nad E Ali","caption":"Each year in Lahore, Pakistan, the Shiʿi Muslim community gathers for the Shabih-e Zuljanah processions, commemorating the martyrdom of Imam Husayn (peace be upon him).\n\nCentred around horses representing his revered steed, Zuljanah, the processions become spaces of collective remembrance, faith, and shared identity.\n\nIn Horse / Men, Nad offers a personal reflection on these rituals, focusing on the relationship between the horses, their caretakers, and the surrounding crowds.\n\nAmid the intensity of the procession, the horses both disrupt and direct the movement of people, becoming points of stillness and grace.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792770190/NadEAli_HorseMen_21.jpg_ogcrop.jpg","width":500,"height":330,"artist_page":"/nad"},{"title":"Semi-Fiction","artist":"Larissa Araz","caption":"In Semi-Fiction, Larissa draws on her own life and on fiction to imagine the communities and places she belongs to. Some of the places have since disappeared, whilst others never existed.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1795177823/semi_fiction00.JPG_so1b11.jpg","width":500,"height":330},{"title":"Woman Carrying Water Buckets in the Snow","artist":"John Peter Askew","caption":"On 8 March 1998, International Women's Day, John Peter Askew stepped outside during village celebrations near Perm, Russia, and encountered a woman carrying water through the snow. Snow falling onto the lens provides an unexpected frame, while the colour of her dress suggests that the hard work might soon give way to a more relaxed evening.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1791561459/image_288_u9dnoc.jpg","width":500,"height":330},{"title":"Fugue Photographique","artist":"Charline Cocset","caption":"Natural forms softened into atmosphere.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1784132115/Charline_vdqz50.jpg","width":500,"height":750},{"title":"Ghost Witness","artist":"Mårten Lange","caption":"Life inside China’s planned metropolises.","cloudinary_cropped_url":"https://res.cloudinary.com/dt8k6zzy8/image/upload/v1792002737/ghost_witness_28__2x_kevirx.jpg","width":500,"height":750}]</script>
             </div>
         </div>
     </section>
@@ -2403,7 +2407,7 @@
                 <div class="caption-title" id="captionTitle"></div>
                 <div class="caption-artist" id="captionArtist"></div>
                 <div class="caption-text" id="captionText"></div>
-                <a class="caption-link" id="captionLink" href="#" hidden>View available works &rarr;</a>
+                <a class="caption-link" id="captionLink" href="#" hidden>Explore available works &rarr;</a>
             </div>
         </div>
     </div>

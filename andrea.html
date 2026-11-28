@@ -1545,7 +1545,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         .enquiry-close { top: 0.75rem; right: 0.5rem; }
     }
-</style>
+
+        /* In-text links: the surrounding text's colour and type, with a subtle
+           underline that darkens on hover (no blue, no buttons) */
+        .text-link {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
+            text-decoration-color: rgba(44, 44, 44, 0.35);
+            transition: color 0.3s ease, text-decoration-color 0.3s ease;
+        }
+
+        .text-link:hover {
+            color: var(--deep-charcoal, #2C2C2C);
+            text-decoration-color: currentColor;
+        }
+    </style>
+    <link rel="stylesheet" href="site-nav.css">
+    <script src="site-nav.js" defer></script>
 </head>
 <body>
 
@@ -1598,11 +1616,13 @@ document.addEventListener('DOMContentLoaded', function() {
 <header class="header">
     <div class="header-container">
         <a href="/" class="logo">elsewhere</a>
-        <nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+        <nav id="siteNav" aria-label="Main">
             <ul class="nav-menu">
                 <li><a href="/about">About</a></li>
                 <li><a href="/artists">Artists &amp; Works</a></li>
                 <li><a href="/spotlight">Spotlights</a></li>
+                <li><a href="/art-sourcing">Art Sourcing</a></li>
             </ul>
         </nav>
     </div>
@@ -1634,6 +1654,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2>About</h2>
             <p>Andrea Rosselli is an Italian photographer working exclusively in analogue and developing his own prints by hand.</p>
             <p>His influences span photography, cinema, music, and art, with photographers including Luigi Ghirri, Mario Giacomelli, Andr&eacute; Kert&eacute;sz, and Masao Yamamoto informing his approach.</p>
+            <p>Featured in our Spotlights: <a href="/spotlight#andrea-rosselli" class="text-link">Andrea Rosselli</a>.</p>
 
             <div class="about-quote">
                 <blockquote>&ldquo;Working in analogue keeps me connected to the materials and allows the process to remain as artisanal as possible.&rdquo;</blockquote>
